@@ -22,9 +22,9 @@ Miryoku is an ergonomic, minimal, orthogonal, and universal keyboard layout.
     - [[#alternative-layouts][Alternative Layouts]]
 - [[#code-generation][Code Generation]]
   - [[#table-conversion-scripts][Table Conversion Scripts]]
-    - [[#table-layout-taphold][table-layout-taphold]]
-    - [[#table-layout-half][table-layout-half]]
-    - [[#table-layout-full][table-layout-full]]
+    - [[#table-map-taphold][table-map-taphold]]
+    - [[#table-map-half][table-map-half]]
+    - [[#table-map-full][table-map-full]]
     - [[#table-layer-defines][table-layer-defines]]
   - [[#data][Data]]
     - [[#layers-1][layers]]
@@ -327,11 +327,11 @@ Duplicate base layer tap keys on thumbs rather than trans to enable auto-repeat.
 ** Table Conversion Scripts
 
 
-*** table-layout-taphold
+*** table-map-taphold
 
 Produce base layer from separate tap and hold tables.
 
-#+NAME: table-layout-taphold
+#+NAME: table-map-taphold
 #+BEGIN_SRC python :var tap_table=colemakdhm :var hold_table=hold :var symbol_names_table=symbol-names :var mods_table=mods :var nonkp_table=nonkp :tangle no :results verbatim
 width = 14
 mods_dict = dict.fromkeys(mods_table[0])
@@ -361,20 +361,20 @@ results = results.rstrip('\n, ')
 return results
 #+END_SRC
 
-#+RESULTS: table-layout-taphold
+#+RESULTS: table-map-taphold
 : &kp Q,        &kp W,        &kp F,        &kp P,        &kp B,        &kp J,        &kp L,        &kp U,        &kp Y,        &kp QUOT,
 : &hm LGUI A,   &hm LALT R,   &hm LCTL S,   &hm LSFT T,   &kp G,        &kp M,        &hm LSFT N,   &hm LCTL E,   &hm LALT I,   &hm LGUI O,
 : &kp Z,        &hm ALGR X,   &kp C,        &kp D,        &kp V,        &kp K,        &kp H,        &kp COMM,     &hm ALGR DOT, &kp SLSH,
 : X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL ENT, &lt NSL BSPC, &lt FUNL DEL, X_NP,         X_NP
 
 
-*** table-layout-half
+*** table-map-half
 
 Produce sub layers given layer name and corresponding table for single hand and
 incorporating mods and reset from base layer.  Layer names must end with 'R' or
 'L'.  A layer with shifted symbols can also be generated.
 
-#+NAME: table-layout-half
+#+NAME: table-map-half
 #+BEGIN_SRC python :var hold_table=hold :var mode="l" :var half_table=nsl :var symbol_names_table=symbol-names :var mods_table=mods :var nonkp_table=nonkp :var shift="false" :tangle no :results verbatim
 width = 10
 mods_dict = dict.fromkeys(mods_table[0])
@@ -417,18 +417,18 @@ results = results.rstrip('\n, ')
 return results
 #+END_SRC
 
-#+RESULTS: table-layout-half
+#+RESULTS: table-map-half
 : &kp LBRC, &kp 7,    &kp 8,    &kp 9,    &kp RBRC, X_NA,     X_NA,     X_NA,     X_NA,     &rst,
 : &kp SCLN, &kp 4,    &kp 5,    &kp 6,    &kp EQL,  X_NA,     &kp LSFT, &kp LCTL, &kp LALT, &kp LGUI,
 : &kp GRV,  &kp 1,    &kp 2,    &kp 3,    &kp BSLS, X_NA,     X_NA,     X_NA,     &kp ALGR, X_NA,
 : X_NP,     X_NP,     &kp DOT,  &kp 0,    &kp MINS, X_NA,     X_NA,     X_NA,     X_NP,     X_NP
 
 
-*** table-layout-full
+*** table-map-full
 
 Produce full layer from single table.  Fill for unused keys is configurable.
 
-#+NAME: table-layout-full
+#+NAME: table-map-full
 #+BEGIN_SRC python :var table=mbo :var fill="&trans" :var symbol_names_table=symbol-names :var nonkp_table=nonkp :tangle no :results verbatim
 width = 10
 symbol_names_dict = {}
@@ -453,7 +453,7 @@ results = results.rstrip('\n, ')
 return results
 #+END_SRC
 
-#+RESULTS: table-layout-full
+#+RESULTS: table-map-full
 : &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
 : &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
 : &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
@@ -601,31 +601,31 @@ layout is mapped onto keyboards with different physical layouts as a subset.
         bindings = <
 #if defined MIRYOKU_ALPHAS_COLEMAK
           SUBMAP(
-<<table-layout-taphold(tap_table=colemak)>>
+<<table-map-taphold(tap_table=colemak)>>
           )
 #elif defined MIRYOKU_ALPHAS_COLEMAKDH
           SUBMAP(
-<<table-layout-taphold(tap_table=colemakdh)>>
+<<table-map-taphold(tap_table=colemakdh)>>
           )
 #elif defined MIRYOKU_ALPHAS_DVORAK
           SUBMAP(
-<<table-layout-taphold(tap_table=dvorak)>>
+<<table-map-taphold(tap_table=dvorak)>>
           )
 #elif defined MIRYOKU_ALPHAS_HALMAK
           SUBMAP(
-<<table-layout-taphold(tap_table=halmak)>>
+<<table-map-taphold(tap_table=halmak)>>
           )
 #elif defined MIRYOKU_ALPHAS_WORKMAN
           SUBMAP(
-<<table-layout-taphold(tap_table=workman)>>
+<<table-map-taphold(tap_table=workman)>>
           )
 #elif defined MIRYOKU_ALPHAS_QWERTY
           SUBMAP(
-<<table-layout-taphold(tap_table=qwerty)>>
+<<table-map-taphold(tap_table=qwerty)>>
           )
 #else
           SUBMAP(
-<<table-layout-taphold(tap_table=colemakdhm)>>
+<<table-map-taphold(tap_table=colemakdhm)>>
           )
 #endif
         >;
@@ -633,7 +633,7 @@ layout is mapped onto keyboards with different physical layouts as a subset.
       MBO_layer {
         bindings = <
           SUBMAP(
-<<table-layout-full(table=mbo)>>
+<<table-map-full(table=mbo)>>
           )
         >;
       };
@@ -641,11 +641,11 @@ layout is mapped onto keyboards with different physical layouts as a subset.
         bindings = <
 #if defined MIRYOKU_NAV_VI
           SUBMAP(
-<<table-layout-half(mode="r", half_table=navr-vi)>>
+<<table-map-half(mode="r", half_table=navr-vi)>>
           )
 #else
           SUBMAP(
-<<table-layout-half(mode="r", half_table=navr)>>
+<<table-map-half(mode="r", half_table=navr)>>
           )
 #endif
         >;
@@ -654,11 +654,11 @@ layout is mapped onto keyboards with different physical layouts as a subset.
         bindings = <
 #if defined MIRYOKU_NAV_VI
           SUBMAP(
-<<table-layout-half(mode="r", half_table=mour-vi)>>
+<<table-map-half(mode="r", half_table=mour-vi)>>
           )
 #else
           SUBMAP(
-<<table-layout-half(mode="r", half_table=mour)>>
+<<table-map-half(mode="r", half_table=mour)>>
           )
 #endif
         >;
@@ -667,11 +667,11 @@ layout is mapped onto keyboards with different physical layouts as a subset.
         bindings = <
 #if defined MIRYOKU_NAV_VI
           SUBMAP(
-<<table-layout-half(mode="r", half_table=medr-vi)>>
+<<table-map-half(mode="r", half_table=medr-vi)>>
           )
 #else
           SUBMAP(
-<<table-layout-half(mode="r", half_table=medr)>>
+<<table-map-half(mode="r", half_table=medr)>>
           )
 #endif
         >;
@@ -679,21 +679,21 @@ layout is mapped onto keyboards with different physical layouts as a subset.
       NSL_layer {
         bindings = <
           SUBMAP(
-<<table-layout-half(mode="l", half_table=nsl)>>
+<<table-map-half(mode="l", half_table=nsl)>>
           )
         >;
       };
       NSSL_layer {
         bindings = <
           SUBMAP(
-<<table-layout-half(mode="l", half_table=nssl)>>
+<<table-map-half(mode="l", half_table=nssl)>>
           )
         >;
       };
       FUNL_layer {
         bindings = <
           SUBMAP(
-<<table-layout-half(mode="l", half_table=funl)>>
+<<table-map-half(mode="l", half_table=funl)>>
           )
         >;
       };
