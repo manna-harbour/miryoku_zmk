@@ -1,0 +1,707 @@
+# After making changes to code or tables call org-babel-tangle (C-c C-v t).
+
+#+Title: Miryoku (ZMK) [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/miryoku-roa-32.png]]
+
+[[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/layers/miryoku-legends_keycodes.png]]
+
+Miryoku is an ergonomic, minimal, orthogonal, and universal keyboard layout.
+
+*This document describes miryoku for ZMK only. For the development branch, general documentation, and other implementations see
+[[https://github.com/manna-harbour/miryoku/blob/master/README.org][github.com/manna-harbour/miryoku]].*
+
+* Contents                                                              :TOC_3:
+- [[#layout][Layout]]
+  - [[#layers][Layers]]
+    - [[#base-base][Base (~BASE~)]]
+    - [[#navigation-navr][Navigation (~NAVR~)]]
+    - [[#mouse-mour][Mouse (~MOUR~)]]
+    - [[#media-medr][Media (~MEDR~)]]
+    - [[#numerals-and-symbols-nsl][Numerals and Symbols (~NSL~)]]
+    - [[#shifted-numerals-and-symbols-nssl][Shifted Numerals and Symbols (~NSSL~)]]
+    - [[#function-and-system-funl][Function and System (~FUNL~)]]
+    - [[#alternative-layouts][Alternative Layouts]]
+- [[#code-generation][Code Generation]]
+  - [[#table-conversion-scripts][Table Conversion Scripts]]
+    - [[#table-layout-taphold][table-layout-taphold]]
+    - [[#table-layout-half][table-layout-half]]
+    - [[#table-layout-full][table-layout-full]]
+    - [[#table-layer-defines][table-layer-defines]]
+  - [[#data][Data]]
+    - [[#symbol-names][symbol-names]]
+    - [[#mods][mods]]
+    - [[#nonkc][nonkc]]
+    - [[#header][header]]
+- [[#subset-mapping][Subset Mapping]]
+  - [[#userspace][Userspace]]
+    - [[#miryokukeymap][[[./miryoku.keymap]]]]
+- [[#documentation][Documentation]]
+- [[#contact][Contact]]
+
+* Layout
+
+** Layers
+
+The layers are maintained in tables, with the thumb keys on the bottom row.
+~X_NP~ indicates the key is not present and is used to fill in the table around
+the thumb keys.  The grid arrangement of the tables does not imply a particular
+physical layout.
+
+Basic keycodes are entered without the ~KC_~ prefix.  Symbols can be entered
+as-is, except for '-' (~MINS~), '.' (~DOT~), '|' (~PIPE~), and '"' (~DQUO~).
+Empty cells are unused.
+
+The base layer has both halves of the layout joined for convenience.  Other
+layers are specified as a single hand.
+
+
+*** Base (~BASE~)
+
+The base layer is maintained as separate tap and hold tables and are combined
+into the corresponding tap-hold keycodes for mods and layer change.  Mods (and
+reset) will be available on sub layers on the same hand as the layer change
+thumb key.  Unknown names are considered to be layer names.
+
+Base layer alphas are Colemak-DHm.  Thumb keys are backspace, enter, delete on
+the right and space, tab, escape on the left.  Dot, comma and apostrophe are
+included for prose, dot and slash for file and directory names.
+
+
+**** Tap
+
+#+NAME: colemakdhm
+| Q     | W     | F     | P     | B     | J     | L     | U     | Y     | '     |
+| A     | R     | S     | T     | G     | M     | N     | E     | I     | O     |
+| Z     | X     | C     | D     | V     | K     | H     | ,     | DOT   | /     |
+| X_NP  | X_NP  | ESC   | SPC   | TAB   | ENT   | BSPC  | DEL   | X_NP  | X_NP  |
+
+
+**** Hold
+
+#+NAME: hold
+| &rst  |       |       |       |       |       |       |       |       | &rst  |
+| LGUI  | LALT  | LCTL  | LSFT  |       |       | LSFT  | LCTL  | LALT  | LGUI  |
+|       | ALGR  |       |       |       |       |       |       | ALGR  |       |
+| X_NP  | X_NP  | MEDR  | NAVR  | MOUR  | NSSL  | NSL   | FUNL  | X_NP  | X_NP  |
+
+
+*** Navigation (~NAVR~)
+
+Primary right-hand layer (left home thumb) is navigation and editing.  Cursor
+keys are on the home position, line and page movement below, clipboard above,
+caps lock and insert on the inner column.  Thumb keys are duplicated from the
+base layer to avoid having to layer change mid edit and to enable auto-repeat.
+
+#+NAME: navr
+| AGIN | UNDO | CUT  | COPY | PSTE |
+| CAPS | LEFT | DOWN | UP   | RGHT |
+| INS  | HOME | PGDN | PGUP | END  |
+| ENT  | BSPC | DEL  | X_NP | X_NP |
+
+
+*** Mouse (~MOUR~)
+
+Secondary right-hand layer is mouse emulation.  Mouse movement mirrors cursor
+navigation on home and wheel mirrors line / page movement below.  Buttons are on
+the thumbs (L, M, R).  Mouse movement, click, and drag with modifiers can be
+performed from the home position.  Unused keys are available for other related
+functions.
+
+#+NAME: mour
+|      |      |      |      |      |
+|      | MS_L | MS_D | MS_U | MS_R |
+|      | WH_L | WH_D | WH_U | WH_R |
+| BTN1 | BTN3 | BTN2 | X_NP | X_NP |
+
+
+**** Mouse Buttons Overlay (~MBO~)
+
+Available for automatic activation depending on keyboard hardware and
+configuration.  Not activated manually.
+
+#+NAME: mbo
+|      |      |      |      |      |      |      |      |      |      |
+|      |      |      |      |      |      |      |      |      |      |
+|      |      |      |      |      |      |      |      |      |      |
+| X_NP | X_NP |      |      |      | BTN1 | BTN3 | BTN2 | X_NP | X_NP |
+
+
+*** Media (~MEDR~)
+
+Tertiary right-hand layer is media control, with volume up / down and next /
+prev mirroring the navigation keys.  Pause, stop and mute are on thumbs.  RGB
+control is on the top row (combine with shift to invert).  Unused keys are
+available for other related functions.
+
+#+NAME: medr
+| RGB_TOG | RGB_MOD | RGB_HUI | RGB_SAI | RGB_VAI |
+|         | MPRV    | VOLD    | VOLU    | MNXT    |
+|         |         |         |         |         |
+| MSTP    | MPLY    | MUTE    | X_NP    | X_NP    |
+
+
+*** Numerals and Symbols (~NSL~)
+
+Primary left-hand layer (right home thumb) is numerals and symbols.  Numerals
+are in the standard numpad locations with symbols in the remaining positions.
+Dot is duplicated from the base layer.
+
+#+NAME: nsl
+| [    | 7    | 8    | 9    | ]    |
+| ;    | 4    | 5    | 6    | =    |
+| `    | 1    | 2    | 3    | \    |
+| X_NP | X_NP | DOT  | 0    | MINS |
+
+
+*** Shifted Numerals and Symbols (~NSSL~)
+
+Secondary left-hand layer has shifted symbols in the same locations to reduce
+chording when using mods with shifted symbols.  Open parenthesis is duplicated
+next to close parenthesis.
+
+#+NAME: nssl
+| {    | &    | *    | (    | }    |
+| :    | $    | %    | ^    | +    |
+| ~    | !    | @    | #    | PIPE |
+| X_NP | X_NP | (    | )    | _    |
+
+
+*** Function and System (~FUNL~)
+
+Tertiary left-hand layer has function keys mirroring the numerals on the primary
+layer with extras on the pinkie column, plus system keys on the inner column.
+App (menu) is on the tertiary thumb key and other thumb keys are duplicated from
+the base layer to enable auto-repeat.
+
+
+#+NAME: funl
+| F12  | F7   | F8   | F9   | PSCR |
+| F11  | F4   | F5   | F6   | SLCK |
+| F10  | F1   | F2   | F3   | PAUS |
+| X_NP | X_NP | APP  | SPC  | TAB  |
+
+
+*** Alternative Layouts
+
+The defaults are recommended, but alternative layouts are provided to
+accommodate existing muscle memory.
+
+
+**** Base Layer Alphas
+
+To select, append the corresponding option to the ~make~ command line when
+building, e.g. ~MIRYOKU_ALPHAS=QWERTY~.
+
+
+***** Colemak
+
+~MIRYOKU_ALPHAS=COLEMAK~
+
+#+NAME: colemak
+| Q    | W    | F    | P    | G    | J    | L    | U    | Y    | '    |
+| A    | R    | S    | T    | D    | H    | N    | E    | I    | O    |
+| Z    | X    | C    | V    | B    | K    | M    | ,    | DOT  | /    |
+| X_NP | X_NP | ESC  | SPC  | TAB  | ENT  | BSPC | DEL  | X_NP | X_NP |
+
+
+***** Colemak Mod-DH
+
+~MIRYOKU_ALPHAS=COLEMAKDH~
+
+#+NAME: colemakdh
+| Q    | W    | F    | P    | B    | J    | L    | U    | Y    | '    |
+| A    | R    | S    | T    | G    | K    | N    | E    | I    | O    |
+| Z    | X    | C    | D    | V    | M    | H    | ,    | DOT  | /    |
+| X_NP | X_NP | ESC  | SPC  | TAB  | ENT  | BSPC | DEL  | X_NP | X_NP |
+
+
+***** Dvorak
+
+~MIRYOKU_ALPHAS=DVORAK~
+
+#+NAME: dvorak
+| '    | ,    | DOT  | P    | Y    | F    | G    | C    | R    | L    |
+| A    | O    | E    | U    | I    | D    | H    | T    | N    | S    |
+| /    | Q    | J    | K    | X    | B    | M    | W    | V    | Z    |
+| X_NP | X_NP | ESC  | SPC  | TAB  | ENT  | BSPC | DEL  | X_NP | X_NP |
+
+
+***** Halmak
+
+~MIRYOKU_ALPHAS=HALMAK~
+
+#+NAME: halmak
+| W    | L    | R    | B    | Z    | '    | Q    | U    | D    | J    |
+| S    | H    | N    | T    | ,    | DOT  | A    | E    | O    | I    |
+| F    | M    | V    | C    | /    | G    | P    | X    | K    | Y    |
+| X_NP | X_NP | ESC  | SPC  | TAB  | ENT  | BSPC | DEL  | X_NP | X_NP |
+
+
+***** Workman
+
+~MIRYOKU_ALPHAS=WORKMAN~
+
+#+NAME: workman
+| Q    | D    | R    | W    | B    | J    | F    | U    | P    | '    |
+| A    | S    | H    | T    | G    | Y    | N    | E    | O    | I    |
+| Z    | X    | M    | C    | V    | K    | L    | ,    | DOT  | /    |
+| X_NP | X_NP | ESC  | SPC  | TAB  | ENT  | BSPC | DEL  | X_NP | X_NP |
+
+
+***** QWERTY
+
+~MIRYOKU_ALPHAS=QWERTY~
+
+#+NAME: qwerty
+| Q    | W    | E    | R    | T    | Y    | U    | I    | O    | P    |
+| A    | S    | D    | F    | G    | H    | J    | K    | L    | '    |
+| Z    | X    | C    | V    | B    | N    | M    | ,    | DOT  | /    |
+| X_NP | X_NP | ESC  | SPC  | TAB  | ENT  | BSPC | DEL  | X_NP | X_NP |
+
+
+**** vi-Style Navigation
+
+To select, append ~MIRYOKU_NAV=VI~ to the ~make~ command line when building.
+
+
+***** Navigation (NAVR)
+
+#+NAME: navr-vi
+| AGIN | UNDO | CUT  | COPY | PSTE |
+| LEFT | DOWN | UP   | RGHT | CAPS |
+| HOME | PGDN | PGUP | END  | INS  |
+| ENT  | BSPC | DEL  | X_NP | X_NP |
+
+
+***** Mouse (MOUR)
+
+#+NAME: mour-vi
+|      |      |      |      |      |
+| MS_L | MS_D | MS_U | MS_R |      |
+| WH_L | WH_D | WH_U | WH_R |      |
+| BTN1 | BTN3 | BTN2 | X_NP | X_NP |
+
+
+***** Media (MEDR)
+
+#+NAME: medr-vi
+| RGB_TOG | RGB_MOD | RGB_HUI | RGB_SAI | RGB_VAI |
+| MPRV    | VOLD    | VOLU    | MNXT    |         |
+|         |         |         |         |         |
+| MSTP    | MPLY    | MUTE    | X_NP    | X_NP    |
+
+
+
+*** COMMENT Templates
+
+#+NAME: tem
+| <l4> | <l4> | <l4> | <l4> | <l4> | <l4> | <l4> | <l4> | <l4> | <l4> |
+|------+------+------+------+------+------+------+------+------+------|
+|      |      |      |      |      |      |      |      |      |      |
+|      |      |      |      |      |      |      |      |      |      |
+|      |      |      |      |      |      |      |      |      |      |
+| X_NP | X_NP |      |      |      |      |      |      | X_NP | X_NP |
+
+
+Duplicate base layer tap keys on thumbs rather than trans to enable auto-repeat.
+
+#+NAME: temr
+| <l4> | <l4> | <l4> | <l4> | <l4> |
+|------+------+------+------+------|
+|      |      |      |      |      |
+|      |      |      |      |      |
+|      |      |      |      |      |
+| ENT  | BSPC | DEL  | X_NP | X_NP |
+
+#+NAME: teml
+| <l4> | <l4> | <l4> | <l4> | <l4> |
+|------+------+------+------+------|
+|      |      |      |      |      |
+|      |      |      |      |      |
+|      |      |      |      |      |
+| X_NP | X_NP | ESC  | SPC  | TAB  |
+
+
+* Code Generation
+
+** Table Conversion Scripts
+
+
+*** table-layout-taphold
+
+Produce base layer from separate tap and hold tables.
+
+#+NAME: table-layout-taphold
+#+BEGIN_SRC python :var layer_name="BASE" :var tap_table=colemakdhm :var hold_table=hold :var symbol_names_table=symbol-names :var mods_table=mods :var nonkc_table=nonkc :tangle no :results verbatim
+width = 14
+mods_dict = dict.fromkeys(mods_table[0])
+nonkc_tuple = tuple(nonkc_table[0])
+symbol_names_dict = {}
+results = ''
+for symbol, name, shifted_symbol, shifted_name in symbol_names_table:
+  symbol_names_dict[symbol] = name
+  symbol_names_dict[shifted_symbol] = shifted_name
+for tap_row, hold_row in map(None, tap_table, hold_table):
+  for tap, hold in map(None, tap_row, hold_row):
+    if tap == '':
+      code = 'X_NU'
+    elif tap in symbol_names_dict:
+      code = symbol_names_dict[tap]
+    else:
+      code = tap
+    if hold in mods_dict:
+      code = '&hm ' + str(hold) + ' ' + code
+    elif hold != '' and not str(hold).startswith(nonkc_tuple):
+      code = '&lt ' + str(hold) + ' ' + code
+    elif not str(code).startswith(nonkc_tuple):
+      code = '&kp ' + str(code)
+    results += (code + ', ').ljust(width)
+  results = results.rstrip(' ') + '\n'
+results = results.rstrip('\n, ')
+return results
+#+END_SRC
+
+#+RESULTS: table-layout-taphold
+: &kp Q,        &kp W,        &kp F,        &kp P,        &kp B,        &kp J,        &kp L,        &kp U,        &kp Y,        &kp QUOT,
+: &hm LGUI A,   &hm LALT R,   &hm LCTL S,   &hm LSFT T,   &kp G,        &kp M,        &hm LSFT N,   &hm LCTL E,   &hm LALT I,   &hm LGUI O,
+: &kp Z,        &hm ALGR X,   &kp C,        &kp D,        &kp V,        &kp K,        &kp H,        &kp COMM,     &hm ALGR DOT, &kp SLSH,
+: X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL ENT, &lt NSL BSPC, &lt FUNL DEL, X_NP,         X_NP
+
+
+*** table-layout-half
+
+Produce sub layers given layer name and corresponding table for single hand and
+incorporating mods and reset from base layer.  Layer names must end with 'R' or
+'L'.  A layer with shifted symbols can also be generated.
+
+#+NAME: table-layout-half
+#+BEGIN_SRC python :var hold_table=hold :var layer_name="NSL" :var half_table=nsl :var symbol_names_table=symbol-names :var mods_table=mods :var nonkc_table=nonkc :var shift="false" :tangle no :results verbatim
+width = 10
+mods_dict = dict.fromkeys(mods_table[0])
+nonkc_tuple = tuple(nonkc_table[0])
+symbol_names_dict = {}
+shifted_symbol_names_dict = {}
+for symbol, name, shifted_symbol, shifted_name in symbol_names_table:
+  symbol_names_dict[symbol] = name
+  symbol_names_dict[shifted_symbol] = shifted_name
+  shifted_symbol_names_dict[symbol] = shifted_name
+length = len(half_table[0])
+mode = layer_name[-1:].lower()
+results = ''
+for half_row, hold_row in map(None, half_table, hold_table):
+  hold_row_l, hold_row_r = hold_row[:length], hold_row[length:]
+  for lr, hold_row_lr in ('l', hold_row_l), ('r', hold_row_r):
+    if lr == mode:
+      for half in half_row:
+        if half == '':
+          code = 'X_NU'
+        elif shift == "true" and half in shifted_symbol_names_dict:
+          code = shifted_symbol_names_dict[half]
+        elif half in symbol_names_dict:
+          code = symbol_names_dict[half]
+        else:
+          code = half
+        if not str(code).startswith(nonkc_tuple):
+          code = '&kp ' + str(code)
+        results += (str(code) + ', ').ljust(width)
+    else:
+      for hold in hold_row_lr:
+        if hold == '' or not str(hold).startswith(nonkc_tuple) and hold not in mods_dict:
+          code = 'X_NA'
+        else:
+          code = hold
+        if not str(code).startswith(nonkc_tuple):
+          code = '&kp ' + str(code)
+        results += (str(code) + ', ').ljust(width)
+  results = results.rstrip(' ') + '\n'
+results = results.rstrip('\n, ')
+return results
+#+END_SRC
+
+#+RESULTS: table-layout-half
+: &kp LBRC, &kp 7,    &kp 8,    &kp 9,    &kp RBRC, X_NA,     X_NA,     X_NA,     X_NA,     &rst,
+: &kp SCLN, &kp 4,    &kp 5,    &kp 6,    &kp EQL,  X_NA,     &kp LSFT, &kp LCTL, &kp LALT, &kp LGUI,
+: &kp GRV,  &kp 1,    &kp 2,    &kp 3,    &kp BSLS, X_NA,     X_NA,     X_NA,     &kp ALGR, X_NA,
+: X_NP,     X_NP,     &kp DOT,  &kp 0,    &kp MINS, X_NA,     X_NA,     X_NA,     X_NP,     X_NP
+
+
+*** table-layout-full
+
+Produce full layer from single table.  Fill for unused keys is configurable.
+
+#+NAME: table-layout-full
+#+BEGIN_SRC python :var table=mbo :var layer_name="MBO" :var fill="&trans" :var symbol_names_table=symbol-names :var nonkc_table=nonkc :tangle no :results verbatim
+width = 10
+symbol_names_dict = {}
+nonkc_tuple = tuple(nonkc_table[0])
+for symbol, name, shifted_symbol, shifted_name in symbol_names_table:
+  symbol_names_dict[symbol] = name
+  symbol_names_dict[shifted_symbol] = shifted_name
+results = ''
+for row in table:
+  for key in row:
+    if key == '':
+      code = fill
+    elif key in symbol_names_dict:
+      code = symbol_names_dict[key]
+    else:
+      code = key
+    if not str(code).startswith(nonkc_tuple):
+      code = '&kp ' + str(code)
+    results += (code + ', ').ljust(width)
+  results = results.rstrip(' ') + '\n'
+results = results.rstrip('\n, ')
+return results
+#+END_SRC
+
+#+RESULTS: table-layout-full
+: &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
+: &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
+: &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
+: X_NP,     X_NP,     &trans,   &trans,   &trans,   &kp BTN1, &kp BTN3, &kp BTN2, X_NP,     X_NP
+
+
+*** table-layer-defines
+
+Produce layer defines from layer names in hold table.
+
+#+NAME: table-layer-defines
+#+BEGIN_SRC python :var hold_table=hold :var mods_table=mods :var nonkc_table=nonkc :tangle no
+width = 5
+mods_dict = dict.fromkeys(mods_table[0])
+nonkc_tuple = tuple(nonkc_table[0])
+results = '#define BASE 0\n#define MBO  1\n'
+i = 2
+for hold_row in hold_table:
+  for hold in hold_row:
+    if hold not in mods_dict and hold != '' and not str(hold).startswith(nonkc_tuple):
+      results += '#define ' + (hold + ' ').ljust(width) + str(i) + '\n'
+      i += 1
+return results
+#+END_SRC
+
+#+RESULTS: table-layer-defines
+: #define BASE 0
+: #define MBO  1
+: #define MEDR 2
+: #define NAVR 3
+: #define MOUR 4
+: #define NSSL 5
+: #define NSL  6
+: #define FUNL 7
+
+
+** Data
+
+*** symbol-names
+
+Symbol, name, and shifted symbol mappings for use in tables.
+
+#+NAME: symbol-names
+| `    | GRV  | ~    | TILD |
+| "-"  | MINS | _    | UNDS |
+| =    | EQL  | +    | PLUS |
+| [    | LBRC | {    | LCBR |
+| ]    | RBRC | }    | RCBR |
+| \    | BSLS | PIPE | PIPE |
+| ;    | SCLN | :    | COLN |
+| '    | QUOT | DQUO | DQUO |
+| ,    | COMM | <    | LT   |
+| "."  | DOT  | >    | GT   |
+| /    | SLSH | ?    | QUES |
+| 1    | 1    | !    | EXLM |
+| 2    | 2    | @    | AT   |
+| 3    | 3    | #    | HASH |
+| 4    | 4    | $    | DLR  |
+| 5    | 5    | %    | PERC |
+| 6    | 6    | ^    | CIRC |
+| 7    | 7    | &    | AMPR |
+| 8    | 8    | *    | ASTR |
+| 9    | 9    | (    | LPRN |
+| 0    | 0    | )    | RPRN |
+
+
+*** mods
+
+Modifiers usable in hold table.  Need to have the same name for ~KC_~ and ~_T~
+versions.
+
+#+NAME: mods
+| LSFT | LCTL | LALT | LGUI | ALGR |
+
+
+*** nonkc
+
+Keycodes that match any of these prefixes will not have ~KC_~ automatically
+prepended.
+
+#+NAME: nonkc
+| X_ | &  |
+
+
+*** header
+
+Header for tangled source files.
+
+#+NAME: header
+#+BEGIN_SRC C :tangle no
+generated from miryoku_zmk.org  -*- buffer-read-only: t -*-
+#+END_SRC
+
+
+* Subset Mapping
+
+The keymap, build options, and configuration are shared between keyboards.  The
+layout is mapped onto keyboards with different physical layouts as a subset.
+
+** Userspace
+
+*** [[./miryoku.keymap]]
+
+#+BEGIN_SRC C :noweb yes :padline no :tangle miryoku.keymap
+// <<header>>
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+<<table-layer-defines()>>
+
+#define X_NP &none // key is not present
+#define X_NA &none // present but not available for use
+#define X_NU &none // available but not used
+
+/ {
+  behaviors {
+    hm: homerow_mods {
+      compatible = "zmk,behavior-hold-tap";
+      label = "HOMEROW_MODS";
+      #binding-cells = <2>;
+      tapping_term_ms = <200>;
+      flavor = "tap-preferred";
+      bindings = <&kp>, <&kp>;
+    };
+  };
+  keymap {
+    compatible = "zmk,keymap";
+      BASE_layer {
+        bindings = <
+#if defined MIRYOKU_ALPHAS_COLEMAK
+          SUBMAP(
+<<table-layout-taphold(layer_name="BASE", tap_table=colemak, hold_table=hold)>>
+          )
+#elif defined MIRYOKU_ALPHAS_COLEMAKDH
+          SUBMAP(
+<<table-layout-taphold(layer_name="BASE", tap_table=colemakdh, hold_table=hold)>>
+          )
+#elif defined MIRYOKU_ALPHAS_DVORAK
+          SUBMAP(
+<<table-layout-taphold(layer_name="BASE", tap_table=dvorak, hold_table=hold)>>
+          )
+#elif defined MIRYOKU_ALPHAS_HALMAK
+          SUBMAP(
+<<table-layout-taphold(layer_name="BASE", tap_table=halmak, hold_table=hold)>>
+          )
+#elif defined MIRYOKU_ALPHAS_WORKMAN
+          SUBMAP(
+<<table-layout-taphold(layer_name="BASE", tap_table=workman, hold_table=hold)>>
+          )
+#elif defined MIRYOKU_ALPHAS_QWERTY
+          SUBMAP(
+<<table-layout-taphold(layer_name="BASE", tap_table=qwerty, hold_table=hold)>>
+          )
+#else
+          SUBMAP(
+<<table-layout-taphold(layer_name="BASE", tap_table=colemakdhm, hold_table=hold)>>
+          )
+#endif
+        >;
+      };
+      MBO_layer {
+        bindings = <
+          SUBMAP(
+<<table-layout-full(layer_name="MBO", table=mbo, fill="&trans")>>
+          )
+        >;
+      };
+      NAVR_layer {
+        bindings = <
+#if defined MIRYOKU_NAV_VI
+          SUBMAP(
+<<table-layout-half(layer_name="NAVR", half_table=navr-vi)>>
+          )
+#else
+          SUBMAP(
+<<table-layout-half(layer_name="NAVR", half_table=navr)>>
+          )
+#endif
+        >;
+      };
+      MOUR_layer {
+        bindings = <
+#if defined MIRYOKU_NAV_VI
+          SUBMAP(
+<<table-layout-half(layer_name="MOUR", half_table=mour-vi)>>
+          )
+#else
+          SUBMAP(
+<<table-layout-half(layer_name="MOUR", half_table=mour)>>
+          )
+#endif
+        >;
+      };
+      MEDR_layer {
+        bindings = <
+#if defined MIRYOKU_NAV_VI
+          SUBMAP(
+<<table-layout-half(layer_name="MEDR", half_table=medr-vi)>>
+          )
+#else
+          SUBMAP(
+<<table-layout-half(layer_name="MEDR", half_table=medr)>>
+          )
+#endif
+        >;
+      };
+      FUNL_layer {
+        bindings = <
+          SUBMAP(
+<<table-layout-half(layer_name="FUNL", half_table=funl)>>
+          )
+        >;
+      };
+      NSL_layer {
+        bindings = <
+          SUBMAP(
+<<table-layout-half(layer_name="NSL", half_table=nsl)>>
+          )
+        >;
+      };
+      NSSL_layer {
+        bindings = <
+          SUBMAP(
+<<table-layout-half(layer_name="NSSL", half_table=nssl)>>
+          )
+        >;
+      };
+    };
+  };
+};
+#+END_SRC
+
+
+* Documentation                                                  :noexport_1:
+
+** ZMK
+
+- 
+
+** Org Mode
+
+- https://orgmode.org/
+- https://orgmode.org/manual/Tables.html
+- https://orgmode.org/manual/Working-with-Source-Code.html
+
+
+* Contact
+
+[[https://github.com/manna-harbour][https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/manna-harbour-boa-32.png]]
