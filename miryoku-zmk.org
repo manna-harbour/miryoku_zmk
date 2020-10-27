@@ -27,12 +27,13 @@ Miryoku is an ergonomic, minimal, orthogonal, and universal keyboard layout.
     - [[#table-layout-full][table-layout-full]]
     - [[#table-layer-defines][table-layer-defines]]
   - [[#data][Data]]
+    - [[#layers-1][layers]]
     - [[#symbol-names][symbol-names]]
     - [[#mods][mods]]
-    - [[#nonkc][nonkc]]
+    - [[#nonkp][nonkp]]
     - [[#header][header]]
 - [[#subset-mapping][Subset Mapping]]
-  - [[#userspace][Userspace]]
+  - [[#miryoku-include][miryoku include]]
     - [[#miryokukeymap][[[./miryoku.keymap]]]]
 - [[#documentation][Documentation]]
 - [[#contact][Contact]]
@@ -331,10 +332,10 @@ Duplicate base layer tap keys on thumbs rather than trans to enable auto-repeat.
 Produce base layer from separate tap and hold tables.
 
 #+NAME: table-layout-taphold
-#+BEGIN_SRC python :var layer_name="BASE" :var tap_table=colemakdhm :var hold_table=hold :var symbol_names_table=symbol-names :var mods_table=mods :var nonkc_table=nonkc :tangle no :results verbatim
+#+BEGIN_SRC python :var tap_table=colemakdhm :var hold_table=hold :var symbol_names_table=symbol-names :var mods_table=mods :var nonkp_table=nonkp :tangle no :results verbatim
 width = 14
 mods_dict = dict.fromkeys(mods_table[0])
-nonkc_tuple = tuple(nonkc_table[0])
+nonkp_tuple = tuple(nonkp_table[0])
 symbol_names_dict = {}
 results = ''
 for symbol, name, shifted_symbol, shifted_name in symbol_names_table:
@@ -350,9 +351,9 @@ for tap_row, hold_row in map(None, tap_table, hold_table):
       code = tap
     if hold in mods_dict:
       code = '&hm ' + str(hold) + ' ' + code
-    elif hold != '' and not str(hold).startswith(nonkc_tuple):
+    elif hold != '' and not str(hold).startswith(nonkp_tuple):
       code = '&lt ' + str(hold) + ' ' + code
-    elif not str(code).startswith(nonkc_tuple):
+    elif not str(code).startswith(nonkp_tuple):
       code = '&kp ' + str(code)
     results += (code + ', ').ljust(width)
   results = results.rstrip(' ') + '\n'
@@ -374,10 +375,10 @@ incorporating mods and reset from base layer.  Layer names must end with 'R' or
 'L'.  A layer with shifted symbols can also be generated.
 
 #+NAME: table-layout-half
-#+BEGIN_SRC python :var hold_table=hold :var layer_name="NSL" :var half_table=nsl :var symbol_names_table=symbol-names :var mods_table=mods :var nonkc_table=nonkc :var shift="false" :tangle no :results verbatim
+#+BEGIN_SRC python :var hold_table=hold :var mode="l" :var half_table=nsl :var symbol_names_table=symbol-names :var mods_table=mods :var nonkp_table=nonkp :var shift="false" :tangle no :results verbatim
 width = 10
 mods_dict = dict.fromkeys(mods_table[0])
-nonkc_tuple = tuple(nonkc_table[0])
+nonkp_tuple = tuple(nonkp_table[0])
 symbol_names_dict = {}
 shifted_symbol_names_dict = {}
 for symbol, name, shifted_symbol, shifted_name in symbol_names_table:
@@ -385,7 +386,6 @@ for symbol, name, shifted_symbol, shifted_name in symbol_names_table:
   symbol_names_dict[shifted_symbol] = shifted_name
   shifted_symbol_names_dict[symbol] = shifted_name
 length = len(half_table[0])
-mode = layer_name[-1:].lower()
 results = ''
 for half_row, hold_row in map(None, half_table, hold_table):
   hold_row_l, hold_row_r = hold_row[:length], hold_row[length:]
@@ -400,16 +400,16 @@ for half_row, hold_row in map(None, half_table, hold_table):
           code = symbol_names_dict[half]
         else:
           code = half
-        if not str(code).startswith(nonkc_tuple):
+        if not str(code).startswith(nonkp_tuple):
           code = '&kp ' + str(code)
         results += (str(code) + ', ').ljust(width)
     else:
       for hold in hold_row_lr:
-        if hold == '' or not str(hold).startswith(nonkc_tuple) and hold not in mods_dict:
+        if hold == '' or not str(hold).startswith(nonkp_tuple) and hold not in mods_dict:
           code = 'X_NA'
         else:
           code = hold
-        if not str(code).startswith(nonkc_tuple):
+        if not str(code).startswith(nonkp_tuple):
           code = '&kp ' + str(code)
         results += (str(code) + ', ').ljust(width)
   results = results.rstrip(' ') + '\n'
@@ -429,10 +429,10 @@ return results
 Produce full layer from single table.  Fill for unused keys is configurable.
 
 #+NAME: table-layout-full
-#+BEGIN_SRC python :var table=mbo :var layer_name="MBO" :var fill="&trans" :var symbol_names_table=symbol-names :var nonkc_table=nonkc :tangle no :results verbatim
+#+BEGIN_SRC python :var table=mbo :var fill="&trans" :var symbol_names_table=symbol-names :var nonkp_table=nonkp :tangle no :results verbatim
 width = 10
 symbol_names_dict = {}
-nonkc_tuple = tuple(nonkc_table[0])
+nonkp_tuple = tuple(nonkp_table[0])
 for symbol, name, shifted_symbol, shifted_name in symbol_names_table:
   symbol_names_dict[symbol] = name
   symbol_names_dict[shifted_symbol] = shifted_name
@@ -445,7 +445,7 @@ for row in table:
       code = symbol_names_dict[key]
     else:
       code = key
-    if not str(code).startswith(nonkc_tuple):
+    if not str(code).startswith(nonkp_tuple):
       code = '&kp ' + str(code)
     results += (code + ', ').ljust(width)
   results = results.rstrip(' ') + '\n'
@@ -465,32 +465,35 @@ return results
 Produce layer defines from layer names in hold table.
 
 #+NAME: table-layer-defines
-#+BEGIN_SRC python :var hold_table=hold :var mods_table=mods :var nonkc_table=nonkc :tangle no
+#+BEGIN_SRC python :var layers_table=layers :tangle no
 width = 5
-mods_dict = dict.fromkeys(mods_table[0])
-nonkc_tuple = tuple(nonkc_table[0])
-results = '#define BASE 0\n#define MBO  1\n'
-i = 2
-for hold_row in hold_table:
-  for hold in hold_row:
-    if hold not in mods_dict and hold != '' and not str(hold).startswith(nonkc_tuple):
-      results += '#define ' + (hold + ' ').ljust(width) + str(i) + '\n'
-      i += 1
+layers_list = layers_table[0]
+results = ''
+i = 0
+for layer in layers_list:
+  results += '#define ' + ( layer + ' ').ljust(width) + str(i) + '\n'
+  i += 1
 return results
 #+END_SRC
 
 #+RESULTS: table-layer-defines
 : #define BASE 0
 : #define MBO  1
-: #define MEDR 2
-: #define NAVR 3
-: #define MOUR 4
-: #define NSSL 5
-: #define NSL  6
+: #define NAVR 2
+: #define MOUR 3
+: #define MEDR 4
+: #define NSL  5
+: #define NSSL 6
 : #define FUNL 7
 
 
 ** Data
+
+*** layers
+
+#+NAME: layers
+| BASE | MBO  | NAVR | MOUR | MEDR | NSL | NSSL | FUNL |
+
 
 *** symbol-names
 
@@ -529,12 +532,12 @@ versions.
 | LSFT | LCTL | LALT | LGUI | ALGR |
 
 
-*** nonkc
+*** nonkp
 
 Keycodes that match any of these prefixes will not have ~KC_~ automatically
 prepended.
 
-#+NAME: nonkc
+#+NAME: nonkp
 | X_ | &  |
 
 
@@ -553,7 +556,7 @@ generated from miryoku_zmk.org  -*- buffer-read-only: t -*-
 The keymap, build options, and configuration are shared between keyboards.  The
 layout is mapped onto keyboards with different physical layouts as a subset.
 
-** Userspace
+** miryoku include
 
 *** [[./miryoku.keymap]]
 
@@ -598,31 +601,31 @@ layout is mapped onto keyboards with different physical layouts as a subset.
         bindings = <
 #if defined MIRYOKU_ALPHAS_COLEMAK
           SUBMAP(
-<<table-layout-taphold(layer_name="BASE", tap_table=colemak, hold_table=hold)>>
+<<table-layout-taphold(tap_table=colemak)>>
           )
 #elif defined MIRYOKU_ALPHAS_COLEMAKDH
           SUBMAP(
-<<table-layout-taphold(layer_name="BASE", tap_table=colemakdh, hold_table=hold)>>
+<<table-layout-taphold(tap_table=colemakdh)>>
           )
 #elif defined MIRYOKU_ALPHAS_DVORAK
           SUBMAP(
-<<table-layout-taphold(layer_name="BASE", tap_table=dvorak, hold_table=hold)>>
+<<table-layout-taphold(tap_table=dvorak)>>
           )
 #elif defined MIRYOKU_ALPHAS_HALMAK
           SUBMAP(
-<<table-layout-taphold(layer_name="BASE", tap_table=halmak, hold_table=hold)>>
+<<table-layout-taphold(tap_table=halmak)>>
           )
 #elif defined MIRYOKU_ALPHAS_WORKMAN
           SUBMAP(
-<<table-layout-taphold(layer_name="BASE", tap_table=workman, hold_table=hold)>>
+<<table-layout-taphold(tap_table=workman)>>
           )
 #elif defined MIRYOKU_ALPHAS_QWERTY
           SUBMAP(
-<<table-layout-taphold(layer_name="BASE", tap_table=qwerty, hold_table=hold)>>
+<<table-layout-taphold(tap_table=qwerty)>>
           )
 #else
           SUBMAP(
-<<table-layout-taphold(layer_name="BASE", tap_table=colemakdhm, hold_table=hold)>>
+<<table-layout-taphold(tap_table=colemakdhm)>>
           )
 #endif
         >;
@@ -630,7 +633,7 @@ layout is mapped onto keyboards with different physical layouts as a subset.
       MBO_layer {
         bindings = <
           SUBMAP(
-<<table-layout-full(layer_name="MBO", table=mbo, fill="&trans")>>
+<<table-layout-full(table=mbo)>>
           )
         >;
       };
@@ -638,11 +641,11 @@ layout is mapped onto keyboards with different physical layouts as a subset.
         bindings = <
 #if defined MIRYOKU_NAV_VI
           SUBMAP(
-<<table-layout-half(layer_name="NAVR", half_table=navr-vi)>>
+<<table-layout-half(mode="r", half_table=navr-vi)>>
           )
 #else
           SUBMAP(
-<<table-layout-half(layer_name="NAVR", half_table=navr)>>
+<<table-layout-half(mode="r", half_table=navr)>>
           )
 #endif
         >;
@@ -651,11 +654,11 @@ layout is mapped onto keyboards with different physical layouts as a subset.
         bindings = <
 #if defined MIRYOKU_NAV_VI
           SUBMAP(
-<<table-layout-half(layer_name="MOUR", half_table=mour-vi)>>
+<<table-layout-half(mode="r", half_table=mour-vi)>>
           )
 #else
           SUBMAP(
-<<table-layout-half(layer_name="MOUR", half_table=mour)>>
+<<table-layout-half(mode="r", half_table=mour)>>
           )
 #endif
         >;
@@ -664,33 +667,33 @@ layout is mapped onto keyboards with different physical layouts as a subset.
         bindings = <
 #if defined MIRYOKU_NAV_VI
           SUBMAP(
-<<table-layout-half(layer_name="MEDR", half_table=medr-vi)>>
+<<table-layout-half(mode="r", half_table=medr-vi)>>
           )
 #else
           SUBMAP(
-<<table-layout-half(layer_name="MEDR", half_table=medr)>>
+<<table-layout-half(mode="r", half_table=medr)>>
           )
 #endif
-        >;
-      };
-      FUNL_layer {
-        bindings = <
-          SUBMAP(
-<<table-layout-half(layer_name="FUNL", half_table=funl)>>
-          )
         >;
       };
       NSL_layer {
         bindings = <
           SUBMAP(
-<<table-layout-half(layer_name="NSL", half_table=nsl)>>
+<<table-layout-half(mode="l", half_table=nsl)>>
           )
         >;
       };
       NSSL_layer {
         bindings = <
           SUBMAP(
-<<table-layout-half(layer_name="NSSL", half_table=nssl)>>
+<<table-layout-half(mode="l", half_table=nssl)>>
+          )
+        >;
+      };
+      FUNL_layer {
+        bindings = <
+          SUBMAP(
+<<table-layout-half(mode="l", half_table=funl)>>
           )
         >;
       };

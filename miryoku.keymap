@@ -17,11 +17,11 @@
 
 #define BASE 0
 #define MBO  1
-#define MEDR 2
-#define NAVR 3
-#define MOUR 4
-#define NSSL 5
-#define NSL  6
+#define NAVR 2
+#define MOUR 3
+#define MEDR 4
+#define NSL  5
+#define NSSL 6
 #define FUNL 7
 
 #define X_NP &none // key is not present
@@ -162,16 +162,6 @@ X_NP,     X_NP,     X_NA,     X_NA,     X_NA,     &kp MSTP, &kp MPLY, &kp MUTE, 
 #endif
         >;
       };
-      FUNL_layer {
-        bindings = <
-          SUBMAP(
-&kp F12,  &kp F7,   &kp F8,   &kp F9,   &kp PSCR, X_NA,     X_NA,     X_NA,     X_NA,     &rst,
-&kp F11,  &kp F4,   &kp F5,   &kp F6,   &kp SLCK, X_NA,     &kp LSFT, &kp LCTL, &kp LALT, &kp LGUI,
-&kp F10,  &kp F1,   &kp F2,   &kp F3,   &kp PAUS, X_NA,     X_NA,     X_NA,     &kp ALGR, X_NA,
-X_NP,     X_NP,     &kp APP,  &kp SPC,  &kp TAB,  X_NA,     X_NA,     X_NA,     X_NP,     X_NP
-          )
-        >;
-      };
       NSL_layer {
         bindings = <
           SUBMAP(
@@ -189,6 +179,16 @@ X_NP,     X_NP,     &kp DOT,  &kp 0,    &kp MINS, X_NA,     X_NA,     X_NA,     
 &kp COLN, &kp DLR,  &kp PERC, &kp CIRC, &kp PLUS, X_NA,     &kp LSFT, &kp LCTL, &kp LALT, &kp LGUI,
 &kp TILD, &kp EXLM, &kp AT,   &kp HASH, &kp PIPE, X_NA,     X_NA,     X_NA,     &kp ALGR, X_NA,
 X_NP,     X_NP,     &kp LPRN, &kp RPRN, &kp UNDS, X_NA,     X_NA,     X_NA,     X_NP,     X_NP
+          )
+        >;
+      };
+      FUNL_layer {
+        bindings = <
+          SUBMAP(
+&kp F12,  &kp F7,   &kp F8,   &kp F9,   &kp PSCR, X_NA,     X_NA,     X_NA,     X_NA,     &rst,
+&kp F11,  &kp F4,   &kp F5,   &kp F6,   &kp SLCK, X_NA,     &kp LSFT, &kp LCTL, &kp LALT, &kp LGUI,
+&kp F10,  &kp F1,   &kp F2,   &kp F3,   &kp PAUS, X_NA,     X_NA,     X_NA,     &kp ALGR, X_NA,
+X_NP,     X_NP,     &kp APP,  &kp SPC,  &kp TAB,  X_NA,     X_NA,     X_NA,     X_NP,     X_NP
           )
         >;
       };
