@@ -31,6 +31,7 @@ Miryoku is an ergonomic, minimal, orthogonal, and universal keyboard layout.
     - [[#symbol-names][symbol-names]]
     - [[#mods][mods]]
     - [[#nonkp][nonkp]]
+    - [[#keycode-translation][keycode-translation]]
     - [[#header][header]]
 - [[#subset-mapping][Subset Mapping]]
   - [[#miryoku-include][miryoku include]]
@@ -79,7 +80,7 @@ included for prose, dot and slash for file and directory names.
 **** Hold
 
 #+NAME: hold
-| &rst  |       |       |       |       |       |       |       |       | &rst  |
+| RESET |       |       |       |       |       |       |       |       | RESET |
 | LGUI  | LALT  | LCTL  | LSFT  |       |       | LSFT  | LCTL  | LALT  | LGUI  |
 |       | ALGR  |       |       |       |       |       |       | ALGR  |       |
 | X_NP  | X_NP  | MEDR  | NAVR  | MOUR  | NSSL  | NSL   | FUNL  | X_NP  | X_NP  |
@@ -332,15 +333,19 @@ Duplicate base layer tap keys on thumbs rather than trans to enable auto-repeat.
 Produce base layer from separate tap and hold tables.
 
 #+NAME: table-map-taphold
-#+BEGIN_SRC python :var tap_table=colemakdhm :var hold_table=hold :var symbol_names_table=symbol-names :var mods_table=mods :var nonkp_table=nonkp :tangle no :results verbatim
+#+BEGIN_SRC python :var tap_table=colemakdhm :var hold_table=hold :var symbol_names_table=symbol-names :var mods_table=mods :var nonkp_table=nonkp :var layers_table=layers :var keycode_translation_table=keycode-translation :tangle no :results verbatim
 width = 14
 mods_dict = dict.fromkeys(mods_table[0])
 nonkp_tuple = tuple(nonkp_table[0])
+layers_dict = dict.fromkeys(layers_table[0])
 symbol_names_dict = {}
-results = ''
 for symbol, name, shifted_symbol, shifted_name in symbol_names_table:
   symbol_names_dict[symbol] = name
   symbol_names_dict[shifted_symbol] = shifted_name
+keycode_translation_dict = {}
+for standard, local in keycode_translation_table:
+  keycode_translation_dict[standard] = local
+results = ''
 for tap_row, hold_row in map(None, tap_table, hold_table):
   for tap, hold in map(None, tap_row, hold_row):
     if tap == '':
@@ -349,9 +354,13 @@ for tap_row, hold_row in map(None, tap_table, hold_table):
       code = symbol_names_dict[tap]
     else:
       code = tap
+    if code in keycode_translation_dict:
+      code = keycode_translation_dict[code]
     if hold in mods_dict:
+      if hold in keycode_translation_dict:
+        hold = keycode_translation_dict[hold]
       code = '&hm ' + str(hold) + ' ' + code
-    elif hold != '' and not str(hold).startswith(nonkp_tuple):
+    elif hold in layers_dict:
       code = '&lt ' + str(hold) + ' ' + code
     elif not str(code).startswith(nonkp_tuple):
       code = '&kp ' + str(code)
@@ -364,8 +373,8 @@ return results
 #+RESULTS: table-map-taphold
 : &kp Q,        &kp W,        &kp F,        &kp P,        &kp B,        &kp J,        &kp L,        &kp U,        &kp Y,        &kp QUOT,
 : &hm LGUI A,   &hm LALT R,   &hm LCTL S,   &hm LSFT T,   &kp G,        &kp M,        &hm LSFT N,   &hm LCTL E,   &hm LALT I,   &hm LGUI O,
-: &kp Z,        &hm ALGR X,   &kp C,        &kp D,        &kp V,        &kp K,        &kp H,        &kp COMM,     &hm ALGR DOT, &kp SLSH,
-: X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL ENT, &lt NSL BSPC, &lt FUNL DEL, X_NP,         X_NP
+: &kp Z,        &hm RALT X,   &kp C,        &kp D,        &kp V,        &kp K,        &kp H,        &kp CMMA,     &hm RALT DOT, &kp FSLH,
+: X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BKSP, &lt FUNL DEL, X_NP,         X_NP
 
 
 *** table-map-half
@@ -375,9 +384,10 @@ incorporating mods and reset from base layer.  Layer names must end with 'R' or
 'L'.  A layer with shifted symbols can also be generated.
 
 #+NAME: table-map-half
-#+BEGIN_SRC python :var hold_table=hold :var mode="l" :var half_table=nsl :var symbol_names_table=symbol-names :var mods_table=mods :var nonkp_table=nonkp :var shift="false" :tangle no :results verbatim
-width = 10
+#+BEGIN_SRC python :var hold_table=hold :var mode="r" :var half_table=navr :var symbol_names_table=symbol-names :var mods_table=mods :var nonkp_table=nonkp :var shift="false" :var layers_table=layers :var keycode_translation_table=keycode-translation :tangle no :results verbatim
+width = 13
 mods_dict = dict.fromkeys(mods_table[0])
+layers_dict = dict.fromkeys(layers_table[0])
 nonkp_tuple = tuple(nonkp_table[0])
 symbol_names_dict = {}
 shifted_symbol_names_dict = {}
@@ -385,6 +395,9 @@ for symbol, name, shifted_symbol, shifted_name in symbol_names_table:
   symbol_names_dict[symbol] = name
   symbol_names_dict[shifted_symbol] = shifted_name
   shifted_symbol_names_dict[symbol] = shifted_name
+keycode_translation_dict = {}
+for standard, local in keycode_translation_table:
+  keycode_translation_dict[standard] = local
 length = len(half_table[0])
 results = ''
 for half_row, hold_row in map(None, half_table, hold_table):
@@ -400,17 +413,26 @@ for half_row, hold_row in map(None, half_table, hold_table):
           code = symbol_names_dict[half]
         else:
           code = half
+        if code in keycode_translation_dict:
+          code = keycode_translation_dict[code]
         if not str(code).startswith(nonkp_tuple):
           code = '&kp ' + str(code)
         results += (str(code) + ', ').ljust(width)
     else:
       for hold in hold_row_lr:
-        if hold == '' or not str(hold).startswith(nonkp_tuple) and hold not in mods_dict:
-          code = 'X_NA'
+        if hold in mods_dict:
+          if hold in keycode_translation_dict:
+            hold = keycode_translation_dict[hold]
+          code = '&kp ' + str(hold)
         else:
-          code = hold
-        if not str(code).startswith(nonkp_tuple):
-          code = '&kp ' + str(code)
+          if hold in keycode_translation_dict:
+            hold = keycode_translation_dict[hold]
+          if hold == '' or hold in layers_dict:
+            code = 'X_NA'
+          elif str(hold).startswith(nonkp_tuple):
+            code = hold
+          else:
+            code = '&kp ' + str(hold)
         results += (str(code) + ', ').ljust(width)
   results = results.rstrip(' ') + '\n'
 results = results.rstrip('\n, ')
@@ -418,10 +440,10 @@ return results
 #+END_SRC
 
 #+RESULTS: table-map-half
-: &kp LBRC, &kp 7,    &kp 8,    &kp 9,    &kp RBRC, X_NA,     X_NA,     X_NA,     X_NA,     &rst,
-: &kp SCLN, &kp 4,    &kp 5,    &kp 6,    &kp EQL,  X_NA,     &kp LSFT, &kp LCTL, &kp LALT, &kp LGUI,
-: &kp GRV,  &kp 1,    &kp 2,    &kp 3,    &kp BSLS, X_NA,     X_NA,     X_NA,     &kp ALGR, X_NA,
-: X_NP,     X_NP,     &kp DOT,  &kp 0,    &kp MINS, X_NA,     X_NA,     X_NA,     X_NP,     X_NP
+: &bootloader, X_NA,        X_NA,        X_NA,        X_NA,        X_NU,        &kp UNDO,    &kp CUT,     &kp COPY,    &kp PSTE,
+: &kp LGUI,    &kp LALT,    &kp LCTL,    &kp LSFT,    X_NA,        &kp CLCK,    &kp LARW,    &kp DARW,    &kp UARW,    &kp RARW,
+: X_NA,        &kp RALT,    X_NA,        X_NA,        X_NA,        &kp INS,     &kp HOME,    &kp PGDN,    &kp PGUP,    &kp END,
+: X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp RET,     &kp BKSP,    &kp DEL,     X_NP,        X_NP
 
 
 *** table-map-full
@@ -429,13 +451,16 @@ return results
 Produce full layer from single table.  Fill for unused keys is configurable.
 
 #+NAME: table-map-full
-#+BEGIN_SRC python :var table=mbo :var fill="&trans" :var symbol_names_table=symbol-names :var nonkp_table=nonkp :tangle no :results verbatim
+#+BEGIN_SRC python :var table=mbo :var fill="&trans" :var symbol_names_table=symbol-names :var nonkp_table=nonkp :var keycode_translation_table=keycode-translation :tangle no :results verbatim
 width = 10
 symbol_names_dict = {}
 nonkp_tuple = tuple(nonkp_table[0])
 for symbol, name, shifted_symbol, shifted_name in symbol_names_table:
   symbol_names_dict[symbol] = name
   symbol_names_dict[shifted_symbol] = shifted_name
+keycode_translation_dict = {}
+for standard, local in keycode_translation_table:
+  keycode_translation_dict[standard] = local
 results = ''
 for row in table:
   for key in row:
@@ -445,6 +470,8 @@ for row in table:
       code = symbol_names_dict[key]
     else:
       code = key
+    if code in keycode_translation_dict:
+      code = keycode_translation_dict[code]
     if not str(code).startswith(nonkp_tuple):
       code = '&kp ' + str(code)
     results += (code + ', ').ljust(width)
@@ -457,7 +484,7 @@ return results
 : &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
 : &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
 : &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-: X_NP,     X_NP,     &trans,   &trans,   &trans,   &kp BTN1, &kp BTN3, &kp BTN2, X_NP,     X_NP
+: X_NP,     X_NP,     &trans,   &trans,   &trans,   X_NU,     X_NU,     X_NU,     X_NP,     X_NP
 
 
 *** table-layer-defines
@@ -540,6 +567,119 @@ prepended.
 #+NAME: nonkp
 | X_ | &  |
 
+*** keycode-translation
+
+standard keycode to implementation equivalent
+
+#+NAME: keycode-translation
+| 0       | NUM_0       |
+| 1       | NUM_1       |
+| 2       | NUM_2       |
+| 3       | NUM_3       |
+| 4       | NUM_4       |
+| 5       | NUM_5       |
+| 6       | NUM_6       |
+| 7       | NUM_7       |
+| 8       | NUM_8       |
+| 9       | NUM_9       |
+| AGIN    | X_NU        |
+| ALGR    | RALT        |
+| AMPR    | X_NU        |
+| APP     | X_NU        |
+| ASTR    | X_NU        |
+| AT      | X_NU        |
+| BSLS    | BSLH        |
+| BSPC    | BKSP        |
+| BTN1    | X_NU        |
+| BTN2    | X_NU        |
+| BTN3    | X_NU        |
+| CAPS    | CLCK        |
+| CIRC    | X_NU        |
+| COLN    | X_NU        |
+| COMM    | CMMA        |
+| COPY    | COPY        |
+| CUT     | CUT         |
+| DEL     | DEL         |
+| DLR     | X_NU        |
+| DOT     | DOT         |
+| DOWN    | DARW        |
+| DQUO    | X_NU        |
+| END     | END         |
+| ENT     | RET         |
+| EQL     | EQL         |
+| ESC     | ESC         |
+| EXLM    | X_NU        |
+| F1      | F1          |
+| F10     | F10         |
+| F11     | F11         |
+| F12     | F12         |
+| F2      | F2          |
+| F3      | F3          |
+| F4      | F4          |
+| F5      | F5          |
+| F6      | F6          |
+| F7      | F7          |
+| F8      | F8          |
+| F9      | F9          |
+| GRV     | GRAV        |
+| GT      | X_NU        |
+| HASH    | X_NU        |
+| HOME    | HOME        |
+| INS     | INS         |
+| LALT    | LALT        |
+| LBRC    | LBKT        |
+| LCBR    | X_NU        |
+| LCTL    | LCTL        |
+| LEFT    | LARW        |
+| LGUI    | LGUI        |
+| LPRN    | X_NU        |
+| LSFT    | LSFT        |
+| LT      | X_NU        |
+| MINS    | MINUS       |
+| MNXT    | M_NEXT      |
+| MPLY    | M_PLAY      |
+| MPRV    | M_PREV      |
+| MS_D    | X_NU        |
+| MS_L    | X_NU        |
+| MS_R    | X_NU        |
+| MSTP    | M_STOP      |
+| MS_U    | X_NU        |
+| MUTE    | M_MUTE      |
+| PAUS    | PAUS        |
+| PERC    | X_NU        |
+| PGDN    | PGDN        |
+| PGUP    | PGUP        |
+| PIPE    | X_NU        |
+| PLUS    | X_NU        |
+| PSCR    | PRSC        |
+| PSTE    | PSTE        |
+| QUES    | X_NU        |
+| QUOT    | QUOT        |
+| RBRC    | RBKT        |
+| RCBR    | X_NU        |
+| RESET   | &bootloader |
+| RGB_HUI | X_NU        |
+| RGB_MOD | X_NU        |
+| RGB_SAI | X_NU        |
+| RGB_TOG | X_NU        |
+| RGB_VAI | X_NU        |
+| RGHT    | RARW        |
+| RPRN    | X_NU        |
+| SCLN    | SCLN        |
+| SLCK    | SCLK        |
+| SLSH    | FSLH        |
+| SPC     | SPC         |
+| TAB     | TAB         |
+| TILD    | X_NU        |
+| UNDO    | UNDO        |
+| UNDS    | X_NU        |
+| UP      | UARW        |
+| VOLD    | VOLD        |
+| VOLU    | VOLU        |
+| WH_D    | X_NU        |
+| WH_L    | X_NU        |
+| WH_R    | X_NU        |
+| WH_U    | X_NU        |
 
 *** header
 
