@@ -519,7 +519,7 @@ return results
 *** layers
 
 #+NAME: layers
-| BASE | MBO  | NAVR | MOUR | MEDR | NSL | NSSL | FUNL |
+| BASE | TAP  | MBO  | NAVR | MOUR | MEDR | NSL  | NSSL | FUNL |
 
 
 *** symbol-names
@@ -707,7 +707,7 @@ layout is mapped onto keyboards with different physical layouts as a subset.
 //#include <dt-bindings/zmk/keys.h>
 //#include <dt-bindings/zmk/bt.h>
 
-#define SUBMAP(\
+#define MIRYOKU_SUBMAP(\
       K00,  K01,  K02,  K03,  K04,         K05,  K06,  K07,  K08,  K09,\
       K10,  K11,  K12,  K13,  K14,         K15,  K16,  K17,  K18,  K19,\
       K20,  K21,  K22,  K23,  K24,         K25,  K26,  K27,  K28,  K29,\
@@ -716,6 +716,16 @@ layout is mapped onto keyboards with different physical layouts as a subset.
 &none K00   K01   K02   K03   K04          K05   K06   K07   K08   K09   &none \
 &none K10   K11   K12   K13   K14          K15   K16   K17   K18   K19   &none \
 &none K20   K21   K22   K23   K24          K25   K26   K27   K28   K29   &none \
+                  K32   K33   K34          K35   K36   K37
+#define MIRYOKU_SUPERMAP(\
+      K00,  K01,  K02,  K03,  K04,         K05,  K06,  K07,  K08,  K09,\
+      K10,  K11,  K12,  K13,  K14,         K15,  K16,  K17,  K18,  K19,\
+      K20,  K21,  K22,  K23,  K24,         K25,  K26,  K27,  K28,  K29,\
+      N30,  N31,  K32,  K33,  K34,         K35,  K36,  K37,  N38,  N39\
+)\
+LALT  K00   K01   K02   K03   K04          K05   K06   K07   K08   K09   LGUI  \
+LCTL  K10   K11   K12   K13   K14          K15   K16   K17   K18   K19   LCTL  \
+LSFT  K20   K21   K22   K23   K24          K25   K26   K27   K28   K29   LSFT  \
                   K32   K33   K34          K35   K36   K37
 
 <<table-layer-defines()>>
@@ -740,39 +750,72 @@ layout is mapped onto keyboards with different physical layouts as a subset.
       BASE_layer {
         bindings = <
 #if defined MIRYOKU_ALPHAS_COLEMAK
-          SUBMAP(
+          MIRYOKU_SUBMAP(
 <<table-map-taphold(tap_table=colemak)>>
           )
 #elif defined MIRYOKU_ALPHAS_COLEMAKDH
-          SUBMAP(
+          MIRYOKU_SUBMAP(
 <<table-map-taphold(tap_table=colemakdh)>>
           )
 #elif defined MIRYOKU_ALPHAS_DVORAK
-          SUBMAP(
+          MIRYOKU_SUBMAP(
 <<table-map-taphold(tap_table=dvorak)>>
           )
 #elif defined MIRYOKU_ALPHAS_HALMAK
-          SUBMAP(
+          MIRYOKU_SUBMAP(
 <<table-map-taphold(tap_table=halmak)>>
           )
 #elif defined MIRYOKU_ALPHAS_WORKMAN
-          SUBMAP(
+          MIRYOKU_SUBMAP(
 <<table-map-taphold(tap_table=workman)>>
           )
 #elif defined MIRYOKU_ALPHAS_QWERTY
-          SUBMAP(
+          MIRYOKU_SUBMAP(
 <<table-map-taphold(tap_table=qwerty)>>
           )
 #else
-          SUBMAP(
+          MIRYOKU_SUBMAP(
 <<table-map-taphold(tap_table=colemakdhm)>>
+          )
+#endif
+        >;
+      };
+      TAP_layer {
+        bindings = <
+#if defined MIRYOKU_ALPHAS_COLEMAK
+          MIRYOKU_SUPERMAP(
+<<table-map-full(table=colemak)>>
+          )
+#elif defined MIRYOKU_ALPHAS_COLEMAKDH
+          MIRYOKU_SUPERMAP(
+<<table-map-full(table=colemakdh)>>
+          )
+#elif defined MIRYOKU_ALPHAS_DVORAK
+          MIRYOKU_SUPERMAP(
+<<table-map-full(table=dvorak)>>
+          )
+#elif defined MIRYOKU_ALPHAS_HALMAK
+          MIRYOKU_SUPERMAP(
+<<table-map-full(table=halmak)>>
+          )
+#elif defined MIRYOKU_ALPHAS_WORKMAN
+          MIRYOKU_SUPERMAP(
+<<table-map-full(table=workman)>>
+          )
+#elif defined MIRYOKU_ALPHAS_QWERTY
+          MIRYOKU_SUPERMAP(
+<<table-map-full(table=qwerty)>>
+          )
+#else
+          MIRYOKU_SUPERMAP(
+<<table-map-full(table=colemakdhm)>>
           )
 #endif
         >;
       };
       MBO_layer {
         bindings = <
-          SUBMAP(
+          MIRYOKU_SUBMAP(
 <<table-map-full(table=mbo)>>
           )
         >;
@@ -780,11 +823,11 @@ layout is mapped onto keyboards with different physical layouts as a subset.
       NAVR_layer {
         bindings = <
 #if defined MIRYOKU_NAV_VI
-          SUBMAP(
+          MIRYOKU_SUBMAP(
 <<table-map-half(mode="r", half_table=navr-vi)>>
           )
 #else
-          SUBMAP(
+          MIRYOKU_SUBMAP(
 <<table-map-half(mode="r", half_table=navr)>>
           )
 #endif
@@ -793,11 +836,11 @@ layout is mapped onto keyboards with different physical layouts as a subset.
       MOUR_layer {
         bindings = <
 #if defined MIRYOKU_NAV_VI
-          SUBMAP(
+          MIRYOKU_SUBMAP(
 <<table-map-half(mode="r", half_table=mour-vi)>>
           )
 #else
-          SUBMAP(
+          MIRYOKU_SUBMAP(
 <<table-map-half(mode="r", half_table=mour)>>
           )
 #endif
@@ -806,11 +849,11 @@ layout is mapped onto keyboards with different physical layouts as a subset.
       MEDR_layer {
         bindings = <
 #if defined MIRYOKU_NAV_VI
-          SUBMAP(
+          MIRYOKU_SUBMAP(
 <<table-map-half(mode="r", half_table=medr-vi)>>
           )
 #else
-          SUBMAP(
+          MIRYOKU_SUBMAP(
 <<table-map-half(mode="r", half_table=medr)>>
           )
 #endif
@@ -818,21 +861,21 @@ layout is mapped onto keyboards with different physical layouts as a subset.
       };
       NSL_layer {
         bindings = <
-          SUBMAP(
+          MIRYOKU_SUBMAP(
 <<table-map-half(mode="l", half_table=nsl)>>
           )
         >;
       };
       NSSL_layer {
         bindings = <
-          SUBMAP(
+          MIRYOKU_SUBMAP(
 <<table-map-half(mode="l", half_table=nssl)>>
           )
         >;
       };
       FUNL_layer {
         bindings = <
-          SUBMAP(
+          MIRYOKU_SUBMAP(
 <<table-map-half(mode="l", half_table=funl)>>
           )
         >;
