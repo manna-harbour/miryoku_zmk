@@ -31,52 +31,52 @@
       bindings = <
 #if defined MIRYOKU_ALPHAS_COLEMAK
         MIRYOKU_SUBMAP(
-&kp Q,        &kp W,        &kp F,        &kp P,        &kp G,        &kp J,        &kp L,        &kp U,        &kp Y,        &kp QUOT,
-&hm LGUI A,   &hm LALT R,   &hm LCTL S,   &hm LSFT T,   &kp D,        &kp H,        &hm LSFT N,   &hm LCTL E,   &hm LALT I,   &hm LGUI O,
-&kp Z,        &hm RALT X,   &kp C,        &kp V,        &kp B,        &kp K,        &kp M,        &kp CMMA,     &hm RALT DOT, &kp FSLH,
-X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BKSP, &lt FUNL DEL, X_NP,         X_NP
+&kp Q,        &kp W,        &kp F,        &kp P,        &kp G,        &kp J,        &kp L,        &kp U,        &kp Y,        &kp SQT,
+&hm LGUI A,   &hm LALT R,   &hm LCTRL S,  &hm LSHFT T,  &kp D,        &kp H,        &hm LSHFT N,  &hm LCTRL E,  &hm LALT I,   &hm LGUI O,
+&kp Z,        &hm RALT X,   &kp C,        &kp V,        &kp B,        &kp K,        &kp M,        &kp COMMA,    &hm RALT DOT, &kp SLASH,
+X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BSPC, &lt FUNL DEL, X_NP,         X_NP
         )
 #elif defined MIRYOKU_ALPHAS_COLEMAKDH
         MIRYOKU_SUBMAP(
-&kp Q,        &kp W,        &kp F,        &kp P,        &kp B,        &kp J,        &kp L,        &kp U,        &kp Y,        &kp QUOT,
-&hm LGUI A,   &hm LALT R,   &hm LCTL S,   &hm LSFT T,   &kp G,        &kp K,        &hm LSFT N,   &hm LCTL E,   &hm LALT I,   &hm LGUI O,
-&kp Z,        &hm RALT X,   &kp C,        &kp D,        &kp V,        &kp M,        &kp H,        &kp CMMA,     &hm RALT DOT, &kp FSLH,
-X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BKSP, &lt FUNL DEL, X_NP,         X_NP
+&kp Q,        &kp W,        &kp F,        &kp P,        &kp B,        &kp J,        &kp L,        &kp U,        &kp Y,        &kp SQT,
+&hm LGUI A,   &hm LALT R,   &hm LCTRL S,  &hm LSHFT T,  &kp G,        &kp K,        &hm LSHFT N,  &hm LCTRL E,  &hm LALT I,   &hm LGUI O,
+&kp Z,        &hm RALT X,   &kp C,        &kp D,        &kp V,        &kp M,        &kp H,        &kp COMMA,    &hm RALT DOT, &kp SLASH,
+X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BSPC, &lt FUNL DEL, X_NP,         X_NP
         )
 #elif defined MIRYOKU_ALPHAS_DVORAK
         MIRYOKU_SUBMAP(
-&kp QUOT,     &kp CMMA,     &kp DOT,      &kp P,        &kp Y,        &kp F,        &kp G,        &kp C,        &kp R,        &kp L,
-&hm LGUI A,   &hm LALT O,   &hm LCTL E,   &hm LSFT U,   &kp I,        &kp D,        &hm LSFT H,   &hm LCTL T,   &hm LALT N,   &hm LGUI S,
-&kp FSLH,     &hm RALT Q,   &kp J,        &kp K,        &kp X,        &kp B,        &kp M,        &kp W,        &hm RALT V,   &kp Z,
-X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BKSP, &lt FUNL DEL, X_NP,         X_NP
+&kp SQT,      &kp COMMA,    &kp DOT,      &kp P,        &kp Y,        &kp F,        &kp G,        &kp C,        &kp R,        &kp L,
+&hm LGUI A,   &hm LALT O,   &hm LCTRL E,  &hm LSHFT U,  &kp I,        &kp D,        &hm LSHFT H,  &hm LCTRL T,  &hm LALT N,   &hm LGUI S,
+&kp SLASH,    &hm RALT Q,   &kp J,        &kp K,        &kp X,        &kp B,        &kp M,        &kp W,        &hm RALT V,   &kp Z,
+X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BSPC, &lt FUNL DEL, X_NP,         X_NP
         )
 #elif defined MIRYOKU_ALPHAS_HALMAK
         MIRYOKU_SUBMAP(
-&kp W,        &kp L,        &kp R,        &kp B,        &kp Z,        &kp QUOT,     &kp Q,        &kp U,        &kp D,        &kp J,
-&hm LGUI S,   &hm LALT H,   &hm LCTL N,   &hm LSFT T,   &kp CMMA,     &kp DOT,      &hm LSFT A,   &hm LCTL E,   &hm LALT O,   &hm LGUI I,
-&kp F,        &hm RALT M,   &kp V,        &kp C,        &kp FSLH,     &kp G,        &kp P,        &kp X,        &hm RALT K,   &kp Y,
-X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BKSP, &lt FUNL DEL, X_NP,         X_NP
+&kp W,        &kp L,        &kp R,        &kp B,        &kp Z,        &kp SQT,      &kp Q,        &kp U,        &kp D,        &kp J,
+&hm LGUI S,   &hm LALT H,   &hm LCTRL N,  &hm LSHFT T,  &kp COMMA,    &kp DOT,      &hm LSHFT A,  &hm LCTRL E,  &hm LALT O,   &hm LGUI I,
+&kp F,        &hm RALT M,   &kp V,        &kp C,        &kp SLASH,    &kp G,        &kp P,        &kp X,        &hm RALT K,   &kp Y,
+X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BSPC, &lt FUNL DEL, X_NP,         X_NP
         )
 #elif defined MIRYOKU_ALPHAS_WORKMAN
         MIRYOKU_SUBMAP(
-&kp Q,        &kp D,        &kp R,        &kp W,        &kp B,        &kp J,        &kp F,        &kp U,        &kp P,        &kp QUOT,
-&hm LGUI A,   &hm LALT S,   &hm LCTL H,   &hm LSFT T,   &kp G,        &kp Y,        &hm LSFT N,   &hm LCTL E,   &hm LALT O,   &hm LGUI I,
-&kp Z,        &hm RALT X,   &kp M,        &kp C,        &kp V,        &kp K,        &kp L,        &kp CMMA,     &hm RALT DOT, &kp FSLH,
-X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BKSP, &lt FUNL DEL, X_NP,         X_NP
+&kp Q,        &kp D,        &kp R,        &kp W,        &kp B,        &kp J,        &kp F,        &kp U,        &kp P,        &kp SQT,
+&hm LGUI A,   &hm LALT S,   &hm LCTRL H,  &hm LSHFT T,  &kp G,        &kp Y,        &hm LSHFT N,  &hm LCTRL E,  &hm LALT O,   &hm LGUI I,
+&kp Z,        &hm RALT X,   &kp M,        &kp C,        &kp V,        &kp K,        &kp L,        &kp COMMA,    &hm RALT DOT, &kp SLASH,
+X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BSPC, &lt FUNL DEL, X_NP,         X_NP
         )
 #elif defined MIRYOKU_ALPHAS_QWERTY
         MIRYOKU_SUBMAP(
 &kp Q,        &kp W,        &kp E,        &kp R,        &kp T,        &kp Y,        &kp U,        &kp I,        &kp O,        &kp P,
-&hm LGUI A,   &hm LALT S,   &hm LCTL D,   &hm LSFT F,   &kp G,        &kp H,        &hm LSFT J,   &hm LCTL K,   &hm LALT L,   &hm LGUI QUOT,
-&kp Z,        &hm RALT X,   &kp C,        &kp V,        &kp B,        &kp N,        &kp M,        &kp CMMA,     &hm RALT DOT, &kp FSLH,
-X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BKSP, &lt FUNL DEL, X_NP,         X_NP
+&hm LGUI A,   &hm LALT S,   &hm LCTRL D,  &hm LSHFT F,  &kp G,        &kp H,        &hm LSHFT J,  &hm LCTRL K,  &hm LALT L,   &hm LGUI SQT,
+&kp Z,        &hm RALT X,   &kp C,        &kp V,        &kp B,        &kp N,        &kp M,        &kp COMMA,    &hm RALT DOT, &kp SLASH,
+X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BSPC, &lt FUNL DEL, X_NP,         X_NP
         )
 #else
         MIRYOKU_SUBMAP(
-&kp Q,        &kp W,        &kp F,        &kp P,        &kp B,        &kp J,        &kp L,        &kp U,        &kp Y,        &kp QUOT,
-&hm LGUI A,   &hm LALT R,   &hm LCTL S,   &hm LSFT T,   &kp G,        &kp M,        &hm LSFT N,   &hm LCTL E,   &hm LALT I,   &hm LGUI O,
-&kp Z,        &hm RALT X,   &kp C,        &kp D,        &kp V,        &kp K,        &kp H,        &kp CMMA,     &hm RALT DOT, &kp FSLH,
-X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BKSP, &lt FUNL DEL, X_NP,         X_NP
+&kp Q,        &kp W,        &kp F,        &kp P,        &kp B,        &kp J,        &kp L,        &kp U,        &kp Y,        &kp SQT,
+&hm LGUI A,   &hm LALT R,   &hm LCTRL S,  &hm LSHFT T,  &kp G,        &kp M,        &hm LSHFT N,  &hm LCTRL E,  &hm LALT I,   &hm LGUI O,
+&kp Z,        &hm RALT X,   &kp C,        &kp D,        &kp V,        &kp K,        &kp H,        &kp COMMA,    &hm RALT DOT, &kp SLASH,
+X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BSPC, &lt FUNL DEL, X_NP,         X_NP
         )
 #endif
       >;
@@ -85,52 +85,52 @@ X_NP,         X_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL R
       bindings = <
 #if defined MIRYOKU_ALPHAS_COLEMAK
         MIRYOKU_SUPERMAP(
-&kp Q,    &kp W,    &kp F,    &kp P,    &kp G,    &kp J,    &kp L,    &kp U,    &kp Y,    &kp QUOT,
+&kp Q,    &kp W,    &kp F,    &kp P,    &kp G,    &kp J,    &kp L,    &kp U,    &kp Y,    &kp SQT,
 &kp A,    &kp R,    &kp S,    &kp T,    &kp D,    &kp H,    &kp N,    &kp E,    &kp I,    &kp O,
-&kp Z,    &kp X,    &kp C,    &kp V,    &kp B,    &kp K,    &kp M,    &kp CMMA, &kp DOT,  &kp FSLH,
-X_NP,     X_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BKSP, &kp DEL,  X_NP,     X_NP
+&kp Z,    &kp X,    &kp C,    &kp V,    &kp B,    &kp K,    &kp M,    &kp COMMA, &kp DOT,  &kp SLASH,
+X_NP,     X_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  X_NP,     X_NP
         )
 #elif defined MIRYOKU_ALPHAS_COLEMAKDH
         MIRYOKU_SUPERMAP(
-&kp Q,    &kp W,    &kp F,    &kp P,    &kp B,    &kp J,    &kp L,    &kp U,    &kp Y,    &kp QUOT,
+&kp Q,    &kp W,    &kp F,    &kp P,    &kp B,    &kp J,    &kp L,    &kp U,    &kp Y,    &kp SQT,
 &kp A,    &kp R,    &kp S,    &kp T,    &kp G,    &kp K,    &kp N,    &kp E,    &kp I,    &kp O,
-&kp Z,    &kp X,    &kp C,    &kp D,    &kp V,    &kp M,    &kp H,    &kp CMMA, &kp DOT,  &kp FSLH,
-X_NP,     X_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BKSP, &kp DEL,  X_NP,     X_NP
+&kp Z,    &kp X,    &kp C,    &kp D,    &kp V,    &kp M,    &kp H,    &kp COMMA, &kp DOT,  &kp SLASH,
+X_NP,     X_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  X_NP,     X_NP
         )
 #elif defined MIRYOKU_ALPHAS_DVORAK
          MIRYOKU_SUPERMAP(
-&kp QUOT, &kp CMMA, &kp DOT,  &kp P,    &kp Y,    &kp F,    &kp G,    &kp C,    &kp R,    &kp L,
+&kp SQT,  &kp COMMA, &kp DOT,  &kp P,    &kp Y,    &kp F,    &kp G,    &kp C,    &kp R,    &kp L,
 &kp A,    &kp O,    &kp E,    &kp U,    &kp I,    &kp D,    &kp H,    &kp T,    &kp N,    &kp S,
-&kp FSLH, &kp Q,    &kp J,    &kp K,    &kp X,    &kp B,    &kp M,    &kp W,    &kp V,    &kp Z,
-X_NP,     X_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BKSP, &kp DEL,  X_NP,     X_NP
+&kp SLASH, &kp Q,    &kp J,    &kp K,    &kp X,    &kp B,    &kp M,    &kp W,    &kp V,    &kp Z,
+X_NP,     X_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  X_NP,     X_NP
         )
 #elif defined MIRYOKU_ALPHAS_HALMAK
         MIRYOKU_SUPERMAP(
-&kp W,    &kp L,    &kp R,    &kp B,    &kp Z,    &kp QUOT, &kp Q,    &kp U,    &kp D,    &kp J,
-&kp S,    &kp H,    &kp N,    &kp T,    &kp CMMA, &kp DOT,  &kp A,    &kp E,    &kp O,    &kp I,
-&kp F,    &kp M,    &kp V,    &kp C,    &kp FSLH, &kp G,    &kp P,    &kp X,    &kp K,    &kp Y,
-X_NP,     X_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BKSP, &kp DEL,  X_NP,     X_NP
+&kp W,    &kp L,    &kp R,    &kp B,    &kp Z,    &kp SQT,  &kp Q,    &kp U,    &kp D,    &kp J,
+&kp S,    &kp H,    &kp N,    &kp T,    &kp COMMA, &kp DOT,  &kp A,    &kp E,    &kp O,    &kp I,
+&kp F,    &kp M,    &kp V,    &kp C,    &kp SLASH, &kp G,    &kp P,    &kp X,    &kp K,    &kp Y,
+X_NP,     X_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  X_NP,     X_NP
         )
 #elif defined MIRYOKU_ALPHAS_WORKMAN
         MIRYOKU_SUPERMAP(
-&kp Q,    &kp D,    &kp R,    &kp W,    &kp B,    &kp J,    &kp F,    &kp U,    &kp P,    &kp QUOT,
+&kp Q,    &kp D,    &kp R,    &kp W,    &kp B,    &kp J,    &kp F,    &kp U,    &kp P,    &kp SQT,
 &kp A,    &kp S,    &kp H,    &kp T,    &kp G,    &kp Y,    &kp N,    &kp E,    &kp O,    &kp I,
-&kp Z,    &kp X,    &kp M,    &kp C,    &kp V,    &kp K,    &kp L,    &kp CMMA, &kp DOT,  &kp FSLH,
-X_NP,     X_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BKSP, &kp DEL,  X_NP,     X_NP
+&kp Z,    &kp X,    &kp M,    &kp C,    &kp V,    &kp K,    &kp L,    &kp COMMA, &kp DOT,  &kp SLASH,
+X_NP,     X_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  X_NP,     X_NP
         )
 #elif defined MIRYOKU_ALPHAS_QWERTY
         MIRYOKU_SUPERMAP(
 &kp Q,    &kp W,    &kp E,    &kp R,    &kp T,    &kp Y,    &kp U,    &kp I,    &kp O,    &kp P,
-&kp A,    &kp S,    &kp D,    &kp F,    &kp G,    &kp H,    &kp J,    &kp K,    &kp L,    &kp QUOT,
-&kp Z,    &kp X,    &kp C,    &kp V,    &kp B,    &kp N,    &kp M,    &kp CMMA, &kp DOT,  &kp FSLH,
-X_NP,     X_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BKSP, &kp DEL,  X_NP,     X_NP
+&kp A,    &kp S,    &kp D,    &kp F,    &kp G,    &kp H,    &kp J,    &kp K,    &kp L,    &kp SQT,
+&kp Z,    &kp X,    &kp C,    &kp V,    &kp B,    &kp N,    &kp M,    &kp COMMA, &kp DOT,  &kp SLASH,
+X_NP,     X_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  X_NP,     X_NP
         )
 #else
         MIRYOKU_SUPERMAP(
-&kp Q,    &kp W,    &kp F,    &kp P,    &kp B,    &kp J,    &kp L,    &kp U,    &kp Y,    &kp QUOT,
+&kp Q,    &kp W,    &kp F,    &kp P,    &kp B,    &kp J,    &kp L,    &kp U,    &kp Y,    &kp SQT,
 &kp A,    &kp R,    &kp S,    &kp T,    &kp G,    &kp M,    &kp N,    &kp E,    &kp I,    &kp O,
-&kp Z,    &kp X,    &kp C,    &kp D,    &kp V,    &kp K,    &kp H,    &kp CMMA, &kp DOT,  &kp FSLH,
-X_NP,     X_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BKSP, &kp DEL,  X_NP,     X_NP
+&kp Z,    &kp X,    &kp C,    &kp D,    &kp V,    &kp K,    &kp H,    &kp COMMA, &kp DOT,  &kp SLASH,
+X_NP,     X_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  X_NP,     X_NP
         )
 #endif
       >;
@@ -141,7 +141,7 @@ X_NP,     X_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BKSP, &kp DEL,  
 &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
 &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
 &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-X_NP,     X_NP,     &trans,   &trans,   &trans,   &kp A,    X_NU,     X_NU,     X_NP,     X_NP
+X_NP,     X_NP,     &trans,   &trans,   &trans,   X_NU,     X_NU,     X_NU,     X_NP,     X_NP
         )
       >;
     };
@@ -149,17 +149,17 @@ X_NP,     X_NP,     &trans,   &trans,   &trans,   &kp A,    X_NU,     X_NU,     
       bindings = <
 #if defined MIRYOKU_NAV_VI
         MIRYOKU_SUBMAP(
-&bootloader, X_NA,        X_NA,        X_NA,        X_NA,        X_NU,        &kp UNDO,    &kp CUT,     &kp COPY,    &kp PSTE,
-&kp LGUI,    &kp LALT,    &kp LCTL,    &kp LSFT,    X_NA,        &kp LARW,    &kp DARW,    &kp UARW,    &kp RARW,    &kp CLCK,
-X_NA,        &kp RALT,    X_NA,        X_NA,        X_NA,        &kp HOME,    &kp PGDN,    &kp PGUP,    &kp END,     &kp INS,
-X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp RET,     &kp BKSP,    &kp DEL,     X_NP,        X_NP
+&bootloader, X_NA,        X_NA,        X_NA,        X_NA,        &kp K_AGAIN, &kp K_UNDO,  &kp K_CUT,   &kp K_COPY,  &kp K_PASTE,
+&kp LGUI,    &kp LALT,    &kp LCTRL,   &kp LSHFT,   X_NA,        &kp LEFT,    &kp DOWN,    &kp UP,      &kp RIGHT,   &kp CAPS,
+X_NA,        &kp RALT,    X_NA,        X_NA,        X_NA,        &kp HOME,    &kp PG_DN,   &kp PG_UP,   &kp END,     &kp INS,
+X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp RET,     &kp BSPC,    &kp DEL,     X_NP,        X_NP
         )
 #else
         MIRYOKU_SUBMAP(
-&bootloader, X_NA,        X_NA,        X_NA,        X_NA,        X_NU,        &kp UNDO,    &kp CUT,     &kp COPY,    &kp PSTE,
-&kp LGUI,    &kp LALT,    &kp LCTL,    &kp LSFT,    X_NA,        &kp CLCK,    &kp LARW,    &kp DARW,    &kp UARW,    &kp RARW,
-X_NA,        &kp RALT,    X_NA,        X_NA,        X_NA,        &kp INS,     &kp HOME,    &kp PGDN,    &kp PGUP,    &kp END,
-X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp RET,     &kp BKSP,    &kp DEL,     X_NP,        X_NP
+&bootloader, X_NA,        X_NA,        X_NA,        X_NA,        &kp K_AGAIN, &kp K_UNDO,  &kp K_CUT,   &kp K_COPY,  &kp K_PASTE,
+&kp LGUI,    &kp LALT,    &kp LCTRL,   &kp LSHFT,   X_NA,        &kp CAPS,    &kp LEFT,    &kp DOWN,    &kp UP,      &kp RIGHT,
+X_NA,        &kp RALT,    X_NA,        X_NA,        X_NA,        &kp INS,     &kp HOME,    &kp PG_DN,   &kp PG_UP,   &kp END,
+X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp RET,     &kp BSPC,    &kp DEL,     X_NP,        X_NP
         )
 #endif
       >;
@@ -169,16 +169,16 @@ X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp RET,     &k
 #if defined MIRYOKU_NAV_VI
         MIRYOKU_SUBMAP(
 &bootloader, X_NA,        X_NA,        X_NA,        X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
-&kp LGUI,    &kp LALT,    &kp LCTL,    &kp LSFT,    X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
+&kp LGUI,    &kp LALT,    &kp LCTRL,   &kp LSHFT,   X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
 X_NA,        &kp RALT,    X_NA,        X_NA,        X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
-X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp A,       X_NU,        X_NU,        X_NP,        X_NP
+X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        X_NU,        X_NU,        X_NU,        X_NP,        X_NP
         )
 #else
         MIRYOKU_SUBMAP(
 &bootloader, X_NA,        X_NA,        X_NA,        X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
-&kp LGUI,    &kp LALT,    &kp LCTL,    &kp LSFT,    X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
+&kp LGUI,    &kp LALT,    &kp LCTRL,   &kp LSHFT,   X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
 X_NA,        &kp RALT,    X_NA,        X_NA,        X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
-X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp A,       X_NU,        X_NU,        X_NP,        X_NP
+X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        X_NU,        X_NU,        X_NU,        X_NP,        X_NP
         )
 #endif
       >;
@@ -187,17 +187,17 @@ X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp A,       X_
       bindings = <
 #if defined MIRYOKU_NAV_VI
         MIRYOKU_SUBMAP(
-&bootloader, X_NA,        X_NA,        X_NA,        X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
-&kp LGUI,    &kp LALT,    &kp LCTL,    &kp LSFT,    X_NA,        &kp M_PREV,  &kp VOLD,    &kp VOLU,    &kp M_NEXT,  X_NU,
+&bootloader, X_NA,        X_NA,        X_NA,        X_NA,        &rgb_ug RGB_TOG, &rgb_ug RGB_EFF, &rgb_ug RGB_HUI, &rgb_ug RGB_SAI, &rgb_ug RGB_BRI,
+&kp LGUI,    &kp LALT,    &kp LCTRL,   &kp LSHFT,   X_NA,        &kp K_PREV,  &kp K_VOL_DN, &kp K_VOL_UP, &kp K_NEXT,  X_NU,
 X_NA,        &kp RALT,    X_NA,        X_NA,        X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
-X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp M_STOP,  &kp M_PLAY,  &kp M_MUTE,  X_NP,        X_NP
+X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp K_STOP2, &kp K_PP,    &kp K_MUTE,  X_NP,        X_NP
         )
 #else
         MIRYOKU_SUBMAP(
-&bootloader, X_NA,        X_NA,        X_NA,        X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
-&kp LGUI,    &kp LALT,    &kp LCTL,    &kp LSFT,    X_NA,        X_NU,        &kp M_PREV,  &kp VOLD,    &kp VOLU,    &kp M_NEXT,
-X_NA,        &kp RALT,    X_NA,        X_NA,        X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
-X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp M_STOP,  &kp M_PLAY,  &kp M_MUTE,  X_NP,        X_NP
+&bootloader, X_NA,        X_NA,        X_NA,        X_NA,        &rgb_ug RGB_TOG, &rgb_ug RGB_EFF, &rgb_ug RGB_HUI, &rgb_ug RGB_SAI, &rgb_ug RGB_BRI,
+&kp LGUI,    &kp LALT,    &kp LCTRL,   &kp LSHFT,   X_NA,        X_NU,        &kp K_PREV,  &kp K_VOL_DN, &kp K_VOL_UP, &kp K_NEXT,
+X_NA,        &kp RALT,    X_NA,        X_NA,        X_NA,        &bt BT_CLR,  &bt BT_SEL 0, &bt BT_SEL 1, &bt BT_SEL 2, &bt BT_SEL 3,
+X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp K_STOP2, &kp K_PP,    &kp K_MUTE,  X_NP,        X_NP
         )
 #endif
       >;
@@ -206,8 +206,8 @@ X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp M_STOP,  &k
       bindings = <
         MIRYOKU_SUBMAP(
 &kp LBKT,    &kp NUM_7,   &kp NUM_8,   &kp NUM_9,   &kp RBKT,    X_NA,        X_NA,        X_NA,        X_NA,        &bootloader,
-&kp SCLN,    &kp NUM_4,   &kp NUM_5,   &kp NUM_6,   &kp EQL,     X_NA,        &kp LSFT,    &kp LCTL,    &kp LALT,    &kp LGUI,
-&kp GRAV,    &kp NUM_1,   &kp NUM_2,   &kp NUM_3,   &kp BSLH,    X_NA,        X_NA,        X_NA,        &kp RALT,    X_NA,
+&kp SEMI,    &kp NUM_4,   &kp NUM_5,   &kp NUM_6,   &kp EQL,     X_NA,        &kp LSHFT,   &kp LCTRL,   &kp LALT,    &kp LGUI,
+&kp GRAVE,   &kp NUM_1,   &kp NUM_2,   &kp NUM_3,   &kp BSLH,    X_NA,        X_NA,        X_NA,        &kp RALT,    X_NA,
 X_NP,        X_NP,        &kp DOT,     &kp NUM_0,   &kp MINUS,   X_NA,        X_NA,        X_NA,        X_NP,        X_NP
         )
       >;
@@ -215,20 +215,20 @@ X_NP,        X_NP,        &kp DOT,     &kp NUM_0,   &kp MINUS,   X_NA,        X_
     NSSL_layer {
       bindings = <
         MIRYOKU_SUBMAP(
-X_NU,        X_NU,        X_NU,        X_NU,        X_NU,        X_NA,        X_NA,        X_NA,        X_NA,        &bootloader,
-X_NU,        X_NU,        X_NU,        X_NU,        X_NU,        X_NA,        &kp LSFT,    &kp LCTL,    &kp LALT,    &kp LGUI,
-X_NU,        X_NU,        X_NU,        X_NU,        X_NU,        X_NA,        X_NA,        X_NA,        &kp RALT,    X_NA,
-X_NP,        X_NP,        X_NU,        X_NU,        X_NU,        X_NA,        X_NA,        X_NA,        X_NP,        X_NP
+&kp LBRC,    &kp AMPS,    &kp ASTRK,   &kp LPAR,    &kp RBRC,    X_NA,        X_NA,        X_NA,        X_NA,        &bootloader,
+&kp COLON,   &kp DLLR,    &kp PRCT,    &kp CRRT,    &kp PLUS,    X_NA,        &kp LSHFT,   &kp LCTRL,   &kp LALT,    &kp LGUI,
+&kp TILDE,   &kp EXCL,    &kp AT,      &kp HASH,    &kp PIPE,    X_NA,        X_NA,        X_NA,        &kp RALT,    X_NA,
+X_NP,        X_NP,        &kp LPAR,    &kp RPAR,    &kp UNDER,   X_NA,        X_NA,        X_NA,        X_NP,        X_NP
         )
       >;
     };
     FUNL_layer {
       bindings = <
         MIRYOKU_SUBMAP(
-&kp F12,     &kp F7,      &kp F8,      &kp F9,      &kp PRSC,    X_NA,        X_NA,        X_NA,        X_NA,        &bootloader,
-&kp F11,     &kp F4,      &kp F5,      &kp F6,      &kp SCLK,    X_NA,        &kp LSFT,    &kp LCTL,    &kp LALT,    &kp LGUI,
-&kp F10,     &kp F1,      &kp F2,      &kp F3,      &kp PAUS,    X_NA,        X_NA,        X_NA,        &kp RALT,    X_NA,
-X_NP,        X_NP,        X_NU,        &kp SPC,     &kp TAB,     X_NA,        X_NA,        X_NA,        X_NP,        X_NP
+&kp F12,     &kp F7,      &kp F8,      &kp F9,      &kp PSCRN,   X_NA,        X_NA,        X_NA,        X_NA,        &bootloader,
+&kp F11,     &kp F4,      &kp F5,      &kp F6,      &kp SLCK,    X_NA,        &kp LSHFT,   &kp LCTRL,   &kp LALT,    &kp LGUI,
+&kp F10,     &kp F1,      &kp F2,      &kp F3,      &kp PAUSE_BREAK, X_NA,        X_NA,        X_NA,        &kp RALT,    X_NA,
+X_NP,        X_NP,        &kp K_APP,   &kp SPC,     &kp TAB,     X_NA,        X_NA,        X_NA,        X_NP,        X_NP
         )
       >;
     };
