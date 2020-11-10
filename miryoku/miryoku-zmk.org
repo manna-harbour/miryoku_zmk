@@ -743,6 +743,11 @@ layout is mapped onto keyboards with different physical layouts as a subset.
 #+BEGIN_SRC C :noweb yes :padline no :tangle miryoku.dtsi
 // <<header>>
 
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/rgb.h>
+
 <<table-layer-defines()>>
 
 #define X_NP &none // key is not present

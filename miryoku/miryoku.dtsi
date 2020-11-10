@@ -1,5 +1,10 @@
 // generated from miryoku_zmk.org  -*- buffer-read-only: t -*-
 
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/rgb.h>
+
 #define BASE 0
 #define TAP  1
 #define MBO  2
