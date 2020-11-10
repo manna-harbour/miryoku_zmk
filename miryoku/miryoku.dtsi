@@ -146,7 +146,7 @@ X_NP,     X_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  
 &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
 &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
 &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-X_NP,     X_NP,     &trans,   &trans,   &trans,   X_NU,     X_NU,     X_NU,     X_NP,     X_NP
+X_NP,     X_NP,     &trans,   &trans,   &trans,   &kp KP_SLASH, X_NU,     X_NU,     X_NP,     X_NP
         )
       >;
     };
@@ -174,16 +174,16 @@ X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp RET,     &k
 #if defined MIRYOKU_NAV_VI
         MIRYOKU_SUBMAP(
 &bootloader, X_NA,        X_NA,        X_NA,        X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
-&kp LGUI,    &kp LALT,    &kp LCTRL,   &kp LSHFT,   X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
+&kp LGUI,    &kp LALT,    &kp LCTRL,   &kp LSHFT,   X_NA,        &kp KP_N4,   &kp KP_N2,   &kp KP_N8,   &kp KP_N6,   X_NU,
 X_NA,        &kp RALT,    X_NA,        X_NA,        X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
-X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        X_NU,        X_NU,        X_NU,        X_NP,        X_NP
+X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp KP_SLASH, X_NU,        X_NU,        X_NP,        X_NP
         )
 #else
         MIRYOKU_SUBMAP(
 &bootloader, X_NA,        X_NA,        X_NA,        X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
-&kp LGUI,    &kp LALT,    &kp LCTRL,   &kp LSHFT,   X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
+&kp LGUI,    &kp LALT,    &kp LCTRL,   &kp LSHFT,   X_NA,        X_NU,        &kp KP_N4,   &kp KP_N2,   &kp KP_N8,   &kp KP_N6,
 X_NA,        &kp RALT,    X_NA,        X_NA,        X_NA,        X_NU,        X_NU,        X_NU,        X_NU,        X_NU,
-X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        X_NU,        X_NU,        X_NU,        X_NP,        X_NP
+X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp KP_SLASH, X_NU,        X_NU,        X_NP,        X_NP
         )
 #endif
       >;

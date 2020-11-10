@@ -597,7 +597,7 @@ standard keycode to implementation equivalent
 | AT      | AT              |
 | BSLS    | BSLH            |
 | BSPC    | BSPC            |
-| BTN1    | X_NU            |
+| BTN1    | KP_SLASH        |
 | BTN2    | X_NU            |
 | BTN3    | X_NU            |
 | CAPS    |                 |
@@ -646,11 +646,11 @@ standard keycode to implementation equivalent
 | MNXT    | K_NEXT          |
 | MPLY    | K_PP            |
 | MPRV    | K_PREV          |
-| MS_D    | X_NU            |
-| MS_L    | X_NU            |
-| MS_R    | X_NU            |
+| MS_D    | KP_N2           |
+| MS_L    | KP_N4           |
+| MS_R    | KP_N6           |
 | MSTP    | K_STOP2         |
-| MS_U    | X_NU            |
+| MS_U    | KP_N8           |
 | MUTE    | K_MUTE          |
 | PAUS    | PAUSE_BREAK     |
 | PERC    | PRCT            |
