@@ -134,14 +134,15 @@ configuration.  Not activated manually.
 
 Tertiary right-hand layer is media control, with volume up / down and next /
 prev mirroring the navigation keys.  Pause, stop and mute are on thumbs.  RGB
-control is on the top row (combine with shift to invert).  Unused keys are
-available for other related functions.
+control is on the top row (combine with shift to invert).  BT control is on the
+bottom row, and USB / BT output toggle on the home row inner index.
+
 
 #+NAME: medr
-| RGB_TOG    | RGB_MOD      | RGB_HUI      | RGB_SAI      | RGB_VAI      |
-|            | MPRV         | VOLD         | VOLU         | MNXT         |
-| &bt BT_CLR | &bt BT_SEL 0 | &bt BT_SEL 1 | &bt BT_SEL 2 | &bt BT_SEL 3 |
-| MSTP       | MPLY         | MUTE         | X_NP         | X_NP         |
+| RGB_TOG      | RGB_MOD      | RGB_HUI      | RGB_SAI      | RGB_VAI      |
+| &out OUT_TOG | MPRV         | VOLD         | VOLU         | MNXT         |
+| &bt BT_CLR   | &bt BT_SEL 0 | &bt BT_SEL 1 | &bt BT_SEL 2 | &bt BT_SEL 3 |
+| MSTP         | MPLY         | MUTE         | X_NP         | X_NP         |
 
 
 *** Numerals and Symbols (~NSL~)
@@ -782,6 +783,7 @@ K20       K21       K22  K23  K24  &kp NUM_4 &kp NUM_3 K25  K26  K27  K28      K
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/rgb.h>
+#include <dt-bindings/zmk/outputs.h>
 
 <<table-layer-defines()>>
 

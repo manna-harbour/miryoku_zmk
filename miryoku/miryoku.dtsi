@@ -4,6 +4,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/rgb.h>
+#include <dt-bindings/zmk/outputs.h>
 
 #define BASE 0
 #define TAP  1
@@ -200,7 +201,7 @@ X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp K_STOP2, &k
 #else
         MIRYOKU_SUBMAP(
 &bootloader, X_NA,        X_NA,        X_NA,        X_NA,        &rgb_ug RGB_TOG, &rgb_ug RGB_EFF, &rgb_ug RGB_HUI, &rgb_ug RGB_SAI, &rgb_ug RGB_BRI,
-&kp LGUI,    &kp LALT,    &kp LCTRL,   &kp LSHFT,   X_NA,        X_NU,        &kp K_PREV,  &kp K_VOL_DN, &kp K_VOL_UP, &kp K_NEXT,
+&kp LGUI,    &kp LALT,    &kp LCTRL,   &kp LSHFT,   X_NA,        &out OUT_TOG, &kp K_PREV,  &kp K_VOL_DN, &kp K_VOL_UP, &kp K_NEXT,
 X_NA,        &kp RALT,    X_NA,        X_NA,        X_NA,        &bt BT_CLR,  &bt BT_SEL 0, &bt BT_SEL 1, &bt BT_SEL 2, &bt BT_SEL 3,
 X_NP,        X_NP,        X_NA,        X_NA,        X_NA,        &kp K_STOP2, &kp K_PP,    &kp K_MUTE,  X_NP,        X_NP
         )

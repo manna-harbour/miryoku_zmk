@@ -40,7 +40,7 @@ $(ZMK_APP_DIR)/build/planck_rev6/zephyr/zmk.uf2: planck_rev6.keymap ../miryoku/o
 zmk-%.uf2: $(ZMK_APP_DIR)/build/%/zephyr/zmk.uf2
 	cp -p $< $@
 
-$(ZMK_APP_DIR)/build/%/zephyr/zmk.uf2: # FORCE
+$(ZMK_APP_DIR)/build/%/zephyr/zmk.uf2: FORCE
 	cd $(ZMK_APP_DIR) && west build -d build/$(ZMK_TARGET) -b $(ZMK_BOARD) -- -DZMK_CONFIG=$(ZMK_CONFIG) $(ZMK_MACROS)
 
 .PHONY: FORCE
