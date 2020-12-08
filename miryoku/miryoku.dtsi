@@ -27,7 +27,8 @@
       label = "HOMEROW_MODS";
       #binding-cells = <2>;
       tapping_term_ms = <200>;
-      flavor = "tap-preferred";
+//      flavor = "tap-preferred";
+      flavor = "balanced";
       bindings = <&kp>, <&kp>;
     };
   };

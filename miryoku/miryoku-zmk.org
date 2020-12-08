@@ -798,7 +798,8 @@ K20       K21       K22  K23  K24  &kp NUM_4 &kp NUM_3 K25  K26  K27  K28      K
       label = "HOMEROW_MODS";
       #binding-cells = <2>;
       tapping_term_ms = <200>;
-      flavor = "tap-preferred";
+//      flavor = "tap-preferred";
+      flavor = "balanced";
       bindings = <&kp>, <&kp>;
     };
   };
