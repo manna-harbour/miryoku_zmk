@@ -84,10 +84,10 @@ included for prose, dot and slash for file and directory names.
 **** Hold
 
 #+NAME: hold
-| RESET | &tog TAP |      |      |      |      |      |      | &tog TAP | RESET |
-| LGUI  | LALT     | LCTL | LSFT |      |      | LSFT | LCTL | LALT     | LGUI  |
-|       | ALGR     |      |      |      |      |      |      | ALGR     |       |
-| U_NP  | U_NP     | MEDR | NAVR | MOUR | NSSL | NSL  | FUNL | U_NP     | U_NP  |
+| RESET | DF(TAP) |      |      |      |      |      |      | DF(TAP) | RESET |
+| LGUI  | LALT    | LCTL | LSFT |      |      | LSFT | LCTL | LALT    | LGUI  |
+|       | ALGR    |      |      |      |      |      |      | ALGR    |       |
+| U_NP  | U_NP    | MEDR | NAVR | MOUR | NSSL | NSL  | FUNL | U_NP    | U_NP  |
 
 
 *** Navigation (~NAVR~)
@@ -801,7 +801,7 @@ standard keycode to implementation equivalent
 | C(KC_C)    | LC(C)           |
 | C(KC_X)    | LC(X)           |
 | C(KC_Z)    | LC(Z)           |
-
+| DF(TAP)    | &tog TAP        |
 
 
 *** header
