@@ -291,10 +291,10 @@ To select, append ~MIRYOKU_NAV=VI~ to the ~make~ command line when building.
 ***** Media (MEDR)
 
 #+NAME: medr-vi
-| RGB_TOG | RGB_MOD | RGB_HUI | RGB_SAI | RGB_VAI |
-| MPRV    | VOLD    | VOLU    | MNXT    |         |
-|         |         |         |         |         |
-| MSTP    | MPLY    | MUTE    | U_NP    | U_NP    |
+| RGB_MOD      | RGB_HUI      | RGB_SAI      | RGB_VAI      | RGB_TOG      |
+| MPRV         | VOLD         | VOLU         | MNXT         | &out OUT_TOG |
+| &bt BT_SEL 0 | &bt BT_SEL 1 | &bt BT_SEL 2 | &bt BT_SEL 3 | &bt BT_CLR   |
+| MSTP         | MPLY         | MUTE         | U_NP         | U_NP         |
 
 
 
