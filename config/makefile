@@ -1,3 +1,5 @@
+# requires ZMK_APP_DIR (.../zmk/app) and ZMK_CONFIG (.../zmk-config/config)
+
 
 .PHONY: default
 default: corne
