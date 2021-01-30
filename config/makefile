@@ -37,6 +37,9 @@ planck_rev6: zmk-planck_rev6.uf2
 $(ZMK_APP_DIR)/build/planck_rev6/zephyr/zmk.uf2: planck_rev6.keymap ../miryoku/ortho_4_12.h ../miryoku/miryoku.dtsi
 
 
+.PHONY: log
+log: minicom -D /dev/ttyACM0
+
 zmk-%.uf2: $(ZMK_APP_DIR)/build/%/zephyr/zmk.uf2
 	cp -p $< $@
 
