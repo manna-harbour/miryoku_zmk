@@ -1,25 +1,37 @@
 # After making changes to code or tables call org-babel-tangle (C-c C-v t).
 
-#+Title: Miryoku (ZMK) [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/miryoku-roa-32.png]]
+#+Title: Miryoku ZMK [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/miryoku-roa-32.png]]
 
-[[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/layers/miryoku-legends_keycodes.png]]
+[[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/cover/miryoku-kle-cover.png]]
 
-Miryoku is an ergonomic, minimal, orthogonal, and universal keyboard layout.
+Miryoku is an ergonomic, minimal, orthogonal, universal keyboard layout.
 
-*This document describes miryoku for ZMK only. For the development branch, general documentation, and other implementations see
+Miryoku ZMK is the miryoku implemention for [[https://zmkfirmware.dev/][ZMK
+Firmware]], a wireless keyboard firmware built on the Zephyr RTOS.
+
+*For miryoku documentation and other implementations see
 [[https://github.com/manna-harbour/miryoku/blob/master/README.org][github.com/manna-harbour/miryoku]].*
 
 * Contents                                                              :TOC_3:
-- [[#layout][Layout]]
-  - [[#layers][Layers]]
-    - [[#base-base][Base (~BASE~)]]
-    - [[#navigation-navr][Navigation (~NAVR~)]]
-    - [[#mouse-mour][Mouse (~MOUR~)]]
-    - [[#media-medr][Media (~MEDR~)]]
-    - [[#numerals-and-symbols-nsl][Numerals and Symbols (~NSL~)]]
-    - [[#shifted-numerals-and-symbols-nssl][Shifted Numerals and Symbols (~NSSL~)]]
-    - [[#function-and-system-funl][Function and System (~FUNL~)]]
-    - [[#alternative-layouts][Alternative Layouts]]
+- [[#status][Status]]
+  - [[#todo][Todo]]
+    - [[#integrate-with-zephyr-cmake][Integrate with Zephyr CMake]]
+    - [[#add-mappings-for-all-boards--shields-in-zmk][Add mappings for all boards / shields in ZMK]]
+- [[#layers][Layers]]
+  - [[#base-base][Base (~BASE~)]]
+    - [[#tap][Tap]]
+    - [[#hold][Hold]]
+  - [[#navigation-navr][Navigation (~NAVR~)]]
+  - [[#mouse-mour][Mouse (~MOUR~)]]
+    - [[#mouse-buttons-overlay-mbo][Mouse Buttons Overlay (~MBO~)]]
+  - [[#media-medr][Media (~MEDR~)]]
+  - [[#numerals-and-symbols-nsl][Numerals and Symbols (~NSL~)]]
+  - [[#shifted-numerals-and-symbols-nssl][Shifted Numerals and Symbols (~NSSL~)]]
+  - [[#function-and-system-funl][Function and System (~FUNL~)]]
+  - [[#alternative-layouts][Alternative Layouts]]
+    - [[#base-layer-alphas][Base Layer Alphas]]
+    - [[#vi-style-navigation][vi-Style Navigation]]
+    - [[#navigation-layer-clipboard-keys][Navigation Layer Clipboard Keys]]
 - [[#code-generation][Code Generation]]
   - [[#table-conversion-scripts][Table Conversion Scripts]]
     - [[#table-map-taphold][table-map-taphold]]
@@ -44,9 +56,81 @@ Miryoku is an ergonomic, minimal, orthogonal, and universal keyboard layout.
 - [[#documentation][Documentation]]
 - [[#contact][Contact]]
 
-* Layout
+* Status
 
-** Layers
+Welcome to the alpha of miryoku ZMK!
+
+You've been added as a collaborator to the repo as it's the easiest way to give
+access.  You're not expected to contribute but contributions are welcome.  In
+that case please create a new branch and PR.  Otherwise, if you could avoid
+accidental force pushes to master that'd be great!  Please don't redistribute as
+it's only the alpha version.
+
+Just a bit of an explanation of the current status: I'm doing a miryoku
+reorganisation at the moment.  The general layout docs will move out of the QMK
+repo and get expanded.  The org stuff will also move and will generate QMK, ZMK,
+and KMonad.  At the moment the org stuff in ZMK is separate until I finalise the
+scripts and re-integrate the changes, so it's a bit of a mess right now but the
+generated keymap shouldn't change much.
+
+** Todo
+
+*** TODO Integrate with Zephyr CMake
+
+Support passing configuration options.  For now, add the equivalent ~#define~ to
+your keymap before the includes, e.g. for ~MIRYOKU_ALPHAS=QWERTY~ add ~#define
+MIRYOKU_ALPHAS_QWERTY~.
+
+*** TODO Add mappings for all boards / shields in ZMK
+
+#+TODO: TODO | DONE NA
+
+https://github.com/zmkfirmware/zmk/tree/main/app/boards/shields
+
+**** TODO bfo9000
+split_6x9
+**** NA boardsource3x4
+**** NA clueboard_california
+**** DONE corne
+split_3x6_3
+**** TODO cradio
+split_3x5_2
+**** DONE crbn
+ortho_4x12
+**** DONE eek
+split_3x5_3
+**** TODO ferris
+split_3x5_2
+**** TODO helix
+helix
+**** TODO iris
+iris
+**** TODO jian
+jian
+**** TODO jorne
+jorne
+**** TODO kyria
+kyria
+**** TODO lily58
+lily58
+**** TODO m60
+60_ansi
+**** DONE microdox
+split_3x5_3
+**** TODO nibble
+**** NA qaz
+**** TODO quefrency
+**** TODO reviung41
+**** NA romac
+**** NA romac_plus
+**** TODO sofle
+sofle
+**** TODO splitreus62
+**** TODO tg4x
+**** NA tidbit
+
+
+* Layers
 
 The layers are maintained in tables, with the thumb keys on the bottom row.
 ~U_NP~ indicates the key is not present and is used to fill in the table around
@@ -61,7 +145,7 @@ The base layer has both halves of the layout joined for convenience.  Other
 layers are specified as a single hand.
 
 
-*** Base (~BASE~)
+** Base (~BASE~)
 
 The base layer is maintained as separate tap and hold tables and are combined
 into the corresponding tap-hold keycodes for mods and layer change.  Mods (and
@@ -73,7 +157,7 @@ the right and space, tab, escape on the left.  Dot, comma and apostrophe are
 included for prose, dot and slash for file and directory names.
 
 
-**** Tap
+*** Tap
 
 #+NAME: colemakdhm
 | Q     | W     | F     | P     | B     | J     | L     | U     | Y     | '     |
@@ -82,7 +166,7 @@ included for prose, dot and slash for file and directory names.
 | U_NP  | U_NP  | ESC   | SPC   | TAB   | ENT   | BSPC  | DEL   | U_NP  | U_NP  |
 
 
-**** Hold
+*** Hold
 
 #+NAME: hold
 | RESET | DF(TAP) |      |      |      |      |      |      | DF(TAP) | RESET |
@@ -91,7 +175,7 @@ included for prose, dot and slash for file and directory names.
 | U_NP  | U_NP    | MEDR | NAVR | MOUR | NSSL | NSL  | FUNL | U_NP    | U_NP  |
 
 
-*** Navigation (~NAVR~)
+** Navigation (~NAVR~)
 
 Primary right-hand layer (left home thumb) is navigation and editing.  Cursor
 keys are on the home position, line and page movement below, clipboard above,
@@ -105,7 +189,7 @@ base layer to avoid having to layer change mid edit and to enable auto-repeat.
 | ENT   | BSPC  | DEL   | U_NP  | U_NP  |
 
 
-*** Mouse (~MOUR~)
+** Mouse (~MOUR~)
 
 Secondary right-hand layer is mouse emulation.  Mouse movement mirrors cursor
 navigation on home and wheel mirrors line / page movement below.  Buttons are on
@@ -120,7 +204,7 @@ functions.
 | BTN1 | BTN3 | BTN2 | U_NP | U_NP |
 
 
-**** Mouse Buttons Overlay (~MBO~)
+*** Mouse Buttons Overlay (~MBO~)
 
 Available for automatic activation depending on keyboard hardware and
 configuration.  Not activated manually.
@@ -132,7 +216,7 @@ configuration.  Not activated manually.
 | U_NP | U_NP |      |      |      | BTN1 | BTN3 | BTN2 | U_NP | U_NP |
 
 
-*** Media (~MEDR~)
+** Media (~MEDR~)
 
 Tertiary right-hand layer is media control, with volume up / down and next /
 prev mirroring the navigation keys.  Pause, stop and mute are on thumbs.  RGB
@@ -147,7 +231,7 @@ bottom row, and USB / BT output toggle on the home row inner index.
 | MSTP         | MPLY         | MUTE         | U_NP         | U_NP         |
 
 
-*** Numerals and Symbols (~NSL~)
+** Numerals and Symbols (~NSL~)
 
 Primary left-hand layer (right home thumb) is numerals and symbols.  Numerals
 are in the standard numpad locations with symbols in the remaining positions.
@@ -160,7 +244,7 @@ Dot is duplicated from the base layer.
 | U_NP | U_NP | DOT  | 0    | MINS |
 
 
-*** Shifted Numerals and Symbols (~NSSL~)
+** Shifted Numerals and Symbols (~NSSL~)
 
 Secondary left-hand layer has shifted symbols in the same locations to reduce
 chording when using mods with shifted symbols.  Open parenthesis is duplicated
@@ -173,7 +257,7 @@ next to close parenthesis.
 | U_NP | U_NP | (    | )    | _    |
 
 
-*** Function and System (~FUNL~)
+** Function and System (~FUNL~)
 
 Tertiary left-hand layer has function keys mirroring the numerals on the primary
 layer with extras on the pinkie column, plus system keys on the inner column.
@@ -188,19 +272,19 @@ the base layer to enable auto-repeat.
 | U_NP | U_NP | APP  | SPC  | TAB  |
 
 
-*** Alternative Layouts
+** Alternative Layouts
 
 The defaults are recommended, but alternative layouts are provided to
 accommodate existing muscle memory.
 
 
-**** Base Layer Alphas
+*** Base Layer Alphas
 
 To select, append the corresponding option to the ~make~ command line when
 building, e.g. ~MIRYOKU_ALPHAS=QWERTY~.
 
 
-***** Colemak
+**** Colemak
 
 ~MIRYOKU_ALPHAS=COLEMAK~
 
@@ -211,7 +295,7 @@ building, e.g. ~MIRYOKU_ALPHAS=QWERTY~.
 | U_NP | U_NP | ESC  | SPC  | TAB  | ENT  | BSPC | DEL  | U_NP | U_NP |
 
 
-***** Colemak Mod-DH
+**** Colemak Mod-DH
 
 ~MIRYOKU_ALPHAS=COLEMAKDH~
 
@@ -222,7 +306,7 @@ building, e.g. ~MIRYOKU_ALPHAS=QWERTY~.
 | U_NP | U_NP | ESC  | SPC  | TAB  | ENT  | BSPC | DEL  | U_NP | U_NP |
 
 
-***** Dvorak
+**** Dvorak
 
 ~MIRYOKU_ALPHAS=DVORAK~
 
@@ -233,7 +317,7 @@ building, e.g. ~MIRYOKU_ALPHAS=QWERTY~.
 | U_NP | U_NP | ESC  | SPC  | TAB  | ENT  | BSPC | DEL  | U_NP | U_NP |
 
 
-***** Halmak
+**** Halmak
 
 ~MIRYOKU_ALPHAS=HALMAK~
 
@@ -244,7 +328,7 @@ building, e.g. ~MIRYOKU_ALPHAS=QWERTY~.
 | U_NP | U_NP | ESC  | SPC  | TAB  | ENT  | BSPC | DEL  | U_NP | U_NP |
 
 
-***** Workman
+**** Workman
 
 ~MIRYOKU_ALPHAS=WORKMAN~
 
@@ -255,7 +339,7 @@ building, e.g. ~MIRYOKU_ALPHAS=QWERTY~.
 | U_NP | U_NP | ESC  | SPC  | TAB  | ENT  | BSPC | DEL  | U_NP | U_NP |
 
 
-***** QWERTY
+**** QWERTY
 
 ~MIRYOKU_ALPHAS=QWERTY~
 
@@ -266,12 +350,12 @@ building, e.g. ~MIRYOKU_ALPHAS=QWERTY~.
 | U_NP | U_NP | ESC  | SPC  | TAB  | ENT  | BSPC | DEL  | U_NP | U_NP |
 
 
-**** vi-Style Navigation
+*** vi-Style Navigation
 
 To select, append ~MIRYOKU_NAV=VI~ to the ~make~ command line when building.
 
 
-***** Navigation (NAVR)
+**** Navigation (NAVR)
 
 #+NAME: navr-vi
 | U_RDO | U_PST | U_CPY | U_CUT | U_UND |
@@ -280,7 +364,7 @@ To select, append ~MIRYOKU_NAV=VI~ to the ~make~ command line when building.
 | ENT   | BSPC  | DEL   | U_NP  | U_NP  |
 
 
-***** Mouse (MOUR)
+**** Mouse (MOUR)
 
 #+NAME: mour-vi
 |      |      |      |      |      |
@@ -289,7 +373,7 @@ To select, append ~MIRYOKU_NAV=VI~ to the ~make~ command line when building.
 | BTN1 | BTN3 | BTN2 | U_NP | U_NP |
 
 
-***** Media (MEDR)
+**** Media (MEDR)
 
 #+NAME: medr-vi
 | RGB_MOD      | RGB_HUI      | RGB_SAI      | RGB_VAI      | RGB_TOG      |
@@ -299,7 +383,7 @@ To select, append ~MIRYOKU_NAV=VI~ to the ~make~ command line when building.
 
 
 
-**** Navigation Layer Clipboard Keys
+*** Navigation Layer Clipboard Keys
 
 Keycodes are translated from those used in the Navigation layer tables according
 to the following tables.
@@ -313,7 +397,7 @@ To select, append the corresponding option to the ~make~ command line when
 building, e.g. ~MIRYOKU_CLIPBOARD=WIN~.
 
 
-***** Default
+**** Default
 
 #+NAME: clipboard
 | U_RDO | AGIN   |
@@ -323,7 +407,7 @@ building, e.g. ~MIRYOKU_CLIPBOARD=WIN~.
 | U_UND | UNDO   |
 
 
-***** Fun Cluster
+**** Fun Cluster
 
 ~MIRYOKU_CLIPBOARD=FUN~
 
@@ -335,7 +419,7 @@ building, e.g. ~MIRYOKU_CLIPBOARD=WIN~.
 | U_UND | UNDO |
 
 
-***** Mac
+**** Mac
 
 ~MIRYOKU_CLIPBOARD=MAC~
 
@@ -347,7 +431,7 @@ building, e.g. ~MIRYOKU_CLIPBOARD=WIN~.
 | U_UND | LCMD(KC_Z) |
 
 
-***** Windows
+**** Windows
 
 ~MIRYOKU_CLIPBOARD=WIN~
 
@@ -360,7 +444,7 @@ building, e.g. ~MIRYOKU_CLIPBOARD=WIN~.
 
 
 
-*** COMMENT Templates
+** COMMENT Templates
 
 #+NAME: tem
 | <l4> | <l4> | <l4> | <l4> | <l4> | <l4> | <l4> | <l4> | <l4> | <l4> |
