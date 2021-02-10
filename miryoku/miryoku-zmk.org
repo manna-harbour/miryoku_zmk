@@ -63,8 +63,9 @@ Welcome to the alpha of miryoku ZMK!
 You've been added as a collaborator to the repo as it's the easiest way to give
 access.  You're not expected to contribute but contributions are welcome.  In
 that case please create a new branch and PR.  Otherwise, if you could avoid
-accidental force pushes to master that'd be great!  Please don't redistribute as
-it's only the alpha version.
+accidental force pushes to master that'd be great!  The layout should be usable
+now but there's still some work to do before it's published, so please don't
+redistribute.  If you fork, please make the repo private.
 
 Just a bit of an explanation of the current status: I'm doing a miryoku
 reorganisation at the moment.  The general layout docs will move out of the QMK
@@ -80,6 +81,7 @@ generated keymap shouldn't change much.
 Support passing configuration options.  For now, add the equivalent ~#define~ to
 your keymap before the includes, e.g. for ~MIRYOKU_ALPHAS=QWERTY~ add ~#define
 MIRYOKU_ALPHAS_QWERTY~.
+
 
 *** TODO Add mappings for all boards / shields in ZMK
 
