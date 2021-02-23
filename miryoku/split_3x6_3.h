@@ -23,3 +23,6 @@ XXX  K20  K21  K22  K23  K24       K25  K26  K27  K28  K29  XXX \
 &kp LCTRL K10  K11  K12  K13  K14       K15  K16  K17  K18  K19 &kp RCTRL \
 &kp LSHFT K20  K21  K22  K23  K24       K25  K26  K27  K28  K29 &kp RSHFT \
                     K32  K33  K34       K35  K36  K37
+
+#define MIRYOKU_COMBO_TPSL 37 38
+#define MIRYOKU_COMBO_TPSR 39 40

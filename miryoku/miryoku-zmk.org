@@ -911,6 +911,10 @@ layout is mapped onto keyboards with different physical layouts as a subset.
 
 *** [[split_3x5_2.h]]
 
+Combos of primary and secondary thumb keys emulate the missing tertiary thumb
+key.  To enable with other subset mappings for compatibility, add ~#define
+MIRYOKU_COMBO_TPS_ENABLE~ to the keymap before the includes.
+
 #+BEGIN_SRC C :noweb yes :padline no :tangle split_3x5_2.h
 // <<header>>
 
@@ -928,6 +932,11 @@ K20  K21  K22  K23  K24       K25  K26  K27  K28  K29 \
                K33  K34       K35  K36
 
 #define MIRYOKU_SUPERMAP MIRYOKU_SUBMAP
+
+#define MIRYOKU_COMBO_TPSL 30 31
+#define MIRYOKU_COMBO_TPSR 32 33
+
+#define MIRYOKU_COMBO_TPS_ENABLE
 #+END_SRC
 
 
@@ -950,6 +959,9 @@ K20  K21  K22  K23  K24       K25  K26  K27  K28  K29 \
           K32  K33  K34       K35  K36  K37
 
 #define MIRYOKU_SUPERMAP MIRYOKU_SUBMAP
+
+#define MIRYOKU_COMBO_TPSL 33 34
+#define MIRYOKU_COMBO_TPSR 35 36
 #+END_SRC
 
 
@@ -981,6 +993,9 @@ XXX  K20  K21  K22  K23  K24       K25  K26  K27  K28  K29  XXX \
 &kp LCTRL K10  K11  K12  K13  K14       K15  K16  K17  K18  K19 &kp RCTRL \
 &kp LSHFT K20  K21  K22  K23  K24       K25  K26  K27  K28  K29 &kp RSHFT \
                     K32  K33  K34       K35  K36  K37
+
+#define MIRYOKU_COMBO_TPSL 37 38
+#define MIRYOKU_COMBO_TPSR 39 40
 #+END_SRC
 
 
@@ -1057,6 +1072,9 @@ K20       K21       K22  K23  K24  &kp NUM_4 &kp NUM_3 K25  K26  K27  K28      K
       bindings = <&kp>, <&kp>;
     };
   };
+};
+
+/ {
   keymap {
     compatible = "zmk,keymap";
     BASE_layer {
@@ -1096,32 +1114,32 @@ K20       K21       K22  K23  K24  &kp NUM_4 &kp NUM_3 K25  K26  K27  K28      K
       bindings = <
 #if defined MIRYOKU_ALPHAS_COLEMAK
         MIRYOKU_SUPERMAP(
-<<table-map-full(table=colemak)>>
-        )
+  <<table-map-full(table=colemak)>>
+          )
 #elif defined MIRYOKU_ALPHAS_COLEMAKDH
         MIRYOKU_SUPERMAP(
-<<table-map-full(table=colemakdh)>>
-        )
+  <<table-map-full(table=colemakdh)>>
+          )
 #elif defined MIRYOKU_ALPHAS_DVORAK
-         MIRYOKU_SUPERMAP(
-<<table-map-full(table=dvorak)>>
-        )
+        MIRYOKU_SUPERMAP(
+  <<table-map-full(table=dvorak)>>
+          )
 #elif defined MIRYOKU_ALPHAS_HALMAK
         MIRYOKU_SUPERMAP(
-<<table-map-full(table=halmak)>>
-        )
+  <<table-map-full(table=halmak)>>
+          )
 #elif defined MIRYOKU_ALPHAS_WORKMAN
         MIRYOKU_SUPERMAP(
-<<table-map-full(table=workman)>>
-        )
+  <<table-map-full(table=workman)>>
+          )
 #elif defined MIRYOKU_ALPHAS_QWERTY
         MIRYOKU_SUPERMAP(
-<<table-map-full(table=qwerty)>>
-        )
+  <<table-map-full(table=qwerty)>>
+          )
 #else
         MIRYOKU_SUPERMAP(
-<<table-map-full(table=colemakdhm)>>
-        )
+  <<table-map-full(table=colemakdhm)>>
+          )
 #endif
       >;
     };
@@ -1194,6 +1212,68 @@ K20       K21       K22  K23  K24  &kp NUM_4 &kp NUM_3 K25  K26  K27  K28      K
     };
   };
 };
+
+#if defined (MIRYOKU_COMBO_TPS_ENABLE) && defined (MIRYOKU_COMBO_TPSL) && defined (MIRYOKU_COMBO_TPSR)
+/ {
+  combos {
+    compatible = "zmk,combos";
+    combo_tpsl_BASE {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSL>;
+      bindings = <&lt MEDR ESC>;
+      layers = <BASE>;
+    };
+    combo_tpsr_BASE {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSR>;
+      bindings = <&lt FUNL DEL>;
+      layers = <BASE>;
+    };
+    combo_tpsr_MBO {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSR>;
+      bindings = <U_NU>;
+      layers = <MBO>;
+    };
+    combo_tpsr_NAVR {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSR>;
+      bindings = <&kp DEL>;
+      layers = <NAVR>;
+    };
+    combo_tpsr_MOUR {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSR>;
+      bindings = <U_NU>;
+      layers = <MOUR>;
+    };
+    combo_tpsr_MEDR {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSR>;
+      bindings = <&kp K_MUTE>;
+      layers = <MEDR>;
+    };
+    combo_tpsl_NSL {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSL>;
+      bindings = <&kp DOT>;
+      layers = <NSL>;
+    };
+    combo_tpsl_NSSL {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSL>;
+      bindings = <&kp LPAR>;
+      layers = <NSSL>;
+    };
+    combo_tpsl_FUNL {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSL>;
+      bindings = <&kp K_APP>;
+      layers = <FUNL>;
+    };
+  };
+};
+#endif
 #+END_SRC
 
 

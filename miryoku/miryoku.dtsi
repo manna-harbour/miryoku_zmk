@@ -58,6 +58,9 @@
       bindings = <&kp>, <&kp>;
     };
   };
+};
+
+/ {
   keymap {
     compatible = "zmk,keymap";
     BASE_layer {
@@ -118,53 +121,53 @@ U_NP,         U_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL R
       bindings = <
 #if defined MIRYOKU_ALPHAS_COLEMAK
         MIRYOKU_SUPERMAP(
-&kp Q,    &kp W,    &kp F,    &kp P,    &kp G,    &kp J,    &kp L,    &kp U,    &kp Y,    &kp SQT,
-&kp A,    &kp R,    &kp S,    &kp T,    &kp D,    &kp H,    &kp N,    &kp E,    &kp I,    &kp O,
-&kp Z,    &kp X,    &kp C,    &kp V,    &kp B,    &kp K,    &kp M,    &kp COMMA, &kp DOT,  &kp SLASH,
-U_NP,     U_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  U_NP,     U_NP
-        )
+  &kp Q,    &kp W,    &kp F,    &kp P,    &kp G,    &kp J,    &kp L,    &kp U,    &kp Y,    &kp SQT,
+  &kp A,    &kp R,    &kp S,    &kp T,    &kp D,    &kp H,    &kp N,    &kp E,    &kp I,    &kp O,
+  &kp Z,    &kp X,    &kp C,    &kp V,    &kp B,    &kp K,    &kp M,    &kp COMMA, &kp DOT,  &kp SLASH,
+  U_NP,     U_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  U_NP,     U_NP
+          )
 #elif defined MIRYOKU_ALPHAS_COLEMAKDH
         MIRYOKU_SUPERMAP(
-&kp Q,    &kp W,    &kp F,    &kp P,    &kp B,    &kp J,    &kp L,    &kp U,    &kp Y,    &kp SQT,
-&kp A,    &kp R,    &kp S,    &kp T,    &kp G,    &kp K,    &kp N,    &kp E,    &kp I,    &kp O,
-&kp Z,    &kp X,    &kp C,    &kp D,    &kp V,    &kp M,    &kp H,    &kp COMMA, &kp DOT,  &kp SLASH,
-U_NP,     U_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  U_NP,     U_NP
-        )
+  &kp Q,    &kp W,    &kp F,    &kp P,    &kp B,    &kp J,    &kp L,    &kp U,    &kp Y,    &kp SQT,
+  &kp A,    &kp R,    &kp S,    &kp T,    &kp G,    &kp K,    &kp N,    &kp E,    &kp I,    &kp O,
+  &kp Z,    &kp X,    &kp C,    &kp D,    &kp V,    &kp M,    &kp H,    &kp COMMA, &kp DOT,  &kp SLASH,
+  U_NP,     U_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  U_NP,     U_NP
+          )
 #elif defined MIRYOKU_ALPHAS_DVORAK
-         MIRYOKU_SUPERMAP(
-&kp SQT,  &kp COMMA, &kp DOT,  &kp P,    &kp Y,    &kp F,    &kp G,    &kp C,    &kp R,    &kp L,
-&kp A,    &kp O,    &kp E,    &kp U,    &kp I,    &kp D,    &kp H,    &kp T,    &kp N,    &kp S,
-&kp SLASH, &kp Q,    &kp J,    &kp K,    &kp X,    &kp B,    &kp M,    &kp W,    &kp V,    &kp Z,
-U_NP,     U_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  U_NP,     U_NP
-        )
+        MIRYOKU_SUPERMAP(
+  &kp SQT,  &kp COMMA, &kp DOT,  &kp P,    &kp Y,    &kp F,    &kp G,    &kp C,    &kp R,    &kp L,
+  &kp A,    &kp O,    &kp E,    &kp U,    &kp I,    &kp D,    &kp H,    &kp T,    &kp N,    &kp S,
+  &kp SLASH, &kp Q,    &kp J,    &kp K,    &kp X,    &kp B,    &kp M,    &kp W,    &kp V,    &kp Z,
+  U_NP,     U_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  U_NP,     U_NP
+          )
 #elif defined MIRYOKU_ALPHAS_HALMAK
         MIRYOKU_SUPERMAP(
-&kp W,    &kp L,    &kp R,    &kp B,    &kp Z,    &kp SQT,  &kp Q,    &kp U,    &kp D,    &kp J,
-&kp S,    &kp H,    &kp N,    &kp T,    &kp COMMA, &kp DOT,  &kp A,    &kp E,    &kp O,    &kp I,
-&kp F,    &kp M,    &kp V,    &kp C,    &kp SLASH, &kp G,    &kp P,    &kp X,    &kp K,    &kp Y,
-U_NP,     U_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  U_NP,     U_NP
-        )
+  &kp W,    &kp L,    &kp R,    &kp B,    &kp Z,    &kp SQT,  &kp Q,    &kp U,    &kp D,    &kp J,
+  &kp S,    &kp H,    &kp N,    &kp T,    &kp COMMA, &kp DOT,  &kp A,    &kp E,    &kp O,    &kp I,
+  &kp F,    &kp M,    &kp V,    &kp C,    &kp SLASH, &kp G,    &kp P,    &kp X,    &kp K,    &kp Y,
+  U_NP,     U_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  U_NP,     U_NP
+          )
 #elif defined MIRYOKU_ALPHAS_WORKMAN
         MIRYOKU_SUPERMAP(
-&kp Q,    &kp D,    &kp R,    &kp W,    &kp B,    &kp J,    &kp F,    &kp U,    &kp P,    &kp SQT,
-&kp A,    &kp S,    &kp H,    &kp T,    &kp G,    &kp Y,    &kp N,    &kp E,    &kp O,    &kp I,
-&kp Z,    &kp X,    &kp M,    &kp C,    &kp V,    &kp K,    &kp L,    &kp COMMA, &kp DOT,  &kp SLASH,
-U_NP,     U_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  U_NP,     U_NP
-        )
+  &kp Q,    &kp D,    &kp R,    &kp W,    &kp B,    &kp J,    &kp F,    &kp U,    &kp P,    &kp SQT,
+  &kp A,    &kp S,    &kp H,    &kp T,    &kp G,    &kp Y,    &kp N,    &kp E,    &kp O,    &kp I,
+  &kp Z,    &kp X,    &kp M,    &kp C,    &kp V,    &kp K,    &kp L,    &kp COMMA, &kp DOT,  &kp SLASH,
+  U_NP,     U_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  U_NP,     U_NP
+          )
 #elif defined MIRYOKU_ALPHAS_QWERTY
         MIRYOKU_SUPERMAP(
-&kp Q,    &kp W,    &kp E,    &kp R,    &kp T,    &kp Y,    &kp U,    &kp I,    &kp O,    &kp P,
-&kp A,    &kp S,    &kp D,    &kp F,    &kp G,    &kp H,    &kp J,    &kp K,    &kp L,    &kp SQT,
-&kp Z,    &kp X,    &kp C,    &kp V,    &kp B,    &kp N,    &kp M,    &kp COMMA, &kp DOT,  &kp SLASH,
-U_NP,     U_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  U_NP,     U_NP
-        )
+  &kp Q,    &kp W,    &kp E,    &kp R,    &kp T,    &kp Y,    &kp U,    &kp I,    &kp O,    &kp P,
+  &kp A,    &kp S,    &kp D,    &kp F,    &kp G,    &kp H,    &kp J,    &kp K,    &kp L,    &kp SQT,
+  &kp Z,    &kp X,    &kp C,    &kp V,    &kp B,    &kp N,    &kp M,    &kp COMMA, &kp DOT,  &kp SLASH,
+  U_NP,     U_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  U_NP,     U_NP
+          )
 #else
         MIRYOKU_SUPERMAP(
-&kp Q,    &kp W,    &kp F,    &kp P,    &kp B,    &kp J,    &kp L,    &kp U,    &kp Y,    &kp SQT,
-&kp A,    &kp R,    &kp S,    &kp T,    &kp G,    &kp M,    &kp N,    &kp E,    &kp I,    &kp O,
-&kp Z,    &kp X,    &kp C,    &kp D,    &kp V,    &kp K,    &kp H,    &kp COMMA, &kp DOT,  &kp SLASH,
-U_NP,     U_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  U_NP,     U_NP
-        )
+  &kp Q,    &kp W,    &kp F,    &kp P,    &kp B,    &kp J,    &kp L,    &kp U,    &kp Y,    &kp SQT,
+  &kp A,    &kp R,    &kp S,    &kp T,    &kp G,    &kp M,    &kp N,    &kp E,    &kp I,    &kp O,
+  &kp Z,    &kp X,    &kp C,    &kp D,    &kp V,    &kp K,    &kp H,    &kp COMMA, &kp DOT,  &kp SLASH,
+  U_NP,     U_NP,     &kp ESC,  &kp SPC,  &kp TAB,  &kp RET,  &kp BSPC, &kp DEL,  U_NP,     U_NP
+          )
 #endif
       >;
     };
@@ -267,3 +270,65 @@ U_NP,        U_NP,        &kp K_APP,   &kp SPC,     &kp TAB,     U_NA,        U_
     };
   };
 };
+
+#if defined (MIRYOKU_COMBO_TPS_ENABLE) && defined (MIRYOKU_COMBO_TPSL) && defined (MIRYOKU_COMBO_TPSR)
+/ {
+  combos {
+    compatible = "zmk,combos";
+    combo_tpsl_BASE {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSL>;
+      bindings = <&lt MEDR ESC>;
+      layers = <BASE>;
+    };
+    combo_tpsr_BASE {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSR>;
+      bindings = <&lt FUNL DEL>;
+      layers = <BASE>;
+    };
+    combo_tpsr_MBO {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSR>;
+      bindings = <U_NU>;
+      layers = <MBO>;
+    };
+    combo_tpsr_NAVR {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSR>;
+      bindings = <&kp DEL>;
+      layers = <NAVR>;
+    };
+    combo_tpsr_MOUR {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSR>;
+      bindings = <U_NU>;
+      layers = <MOUR>;
+    };
+    combo_tpsr_MEDR {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSR>;
+      bindings = <&kp K_MUTE>;
+      layers = <MEDR>;
+    };
+    combo_tpsl_NSL {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSL>;
+      bindings = <&kp DOT>;
+      layers = <NSL>;
+    };
+    combo_tpsl_NSSL {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSL>;
+      bindings = <&kp LPAR>;
+      layers = <NSSL>;
+    };
+    combo_tpsl_FUNL {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSL>;
+      bindings = <&kp K_APP>;
+      layers = <FUNL>;
+    };
+  };
+};
+#endif
