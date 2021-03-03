@@ -832,15 +832,15 @@ standard keycode to implementation equivalent
 | LSFT       | LSHFT           |
 | LT         |                 |
 | MINS       | MINUS           |
-| MNXT       | K_NEXT          |
-| MPLY       | K_PP            |
-| MPRV       | K_PREV          |
+| MNXT       | C_NEXT          |
+| MPLY       | C_PP            |
+| MPRV       | C_PREV          |
 | MS_D       | KP_N2           |
 | MS_L       | KP_N4           |
 | MS_R       | KP_N6           |
-| MSTP       | K_STOP2         |
+| MSTP       | C_STOP          |
 | MS_U       | KP_N8           |
-| MUTE       | K_MUTE          |
+| MUTE       | C_MUTE          |
 | PAUS       | PAUSE_BREAK     |
 | PERC       | PRCT            |
 | PGDN       | PG_DN           |
@@ -870,8 +870,8 @@ standard keycode to implementation equivalent
 | UNDO       | K_UNDO          |
 | UNDS       | UNDER           |
 | UP         |                 |
-| VOLD       | K_VOL_DN        |
-| VOLU       | K_VOL_UP        |
+| VOLD       | C_VOL_DN        |
+| VOLU       | C_VOL_UP        |
 | WH_D       | U_NU            |
 | WH_L       | U_NU            |
 | WH_R       | U_NU            |
