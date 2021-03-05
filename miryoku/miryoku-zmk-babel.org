@@ -1,164 +1,10 @@
 # After making changes to code or tables call org-babel-tangle (C-c C-v t).
 
-#+Title: Miryoku ZMK [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/miryoku-roa-32.png]]
-
-[[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/cover/miryoku-kle-cover.png]]
-
-Miryoku is an ergonomic, minimal, orthogonal, universal keyboard layout.
-
-Miryoku ZMK is the miryoku implemention for [[https://zmkfirmware.dev/][ZMK
-Firmware]], a wireless keyboard firmware built on the Zephyr RTOS.
-
-*For miryoku documentation and other implementations see
-[[https://github.com/manna-harbour/miryoku/blob/master/README.org][github.com/manna-harbour/miryoku]].*
-
-* Contents                                                              :TOC_3:
-- [[#status][Status]]
-  - [[#todo][Todo]]
-    - [[#integrate-with-zephyr-cmake][Integrate with Zephyr CMake]]
-    - [[#add-mappings-for-all-boards--shields-in-zmk][Add mappings for all boards / shields in ZMK]]
-- [[#layers][Layers]]
-  - [[#base-base][Base (~BASE~)]]
-    - [[#tap][Tap]]
-    - [[#hold][Hold]]
-  - [[#navigation-navr][Navigation (~NAVR~)]]
-  - [[#mouse-mour][Mouse (~MOUR~)]]
-    - [[#mouse-buttons-overlay-mbo][Mouse Buttons Overlay (~MBO~)]]
-  - [[#media-medr][Media (~MEDR~)]]
-  - [[#numerals-and-symbols-nsl][Numerals and Symbols (~NSL~)]]
-  - [[#shifted-numerals-and-symbols-nssl][Shifted Numerals and Symbols (~NSSL~)]]
-  - [[#function-and-system-funl][Function and System (~FUNL~)]]
-  - [[#alternative-layouts][Alternative Layouts]]
-    - [[#base-layer-alphas][Base Layer Alphas]]
-    - [[#vi-style-navigation][vi-Style Navigation]]
-    - [[#navigation-layer-clipboard-keys][Navigation Layer Clipboard Keys]]
-- [[#code-generation][Code Generation]]
-  - [[#table-conversion-scripts][Table Conversion Scripts]]
-    - [[#table-map-taphold][table-map-taphold]]
-    - [[#table-map-half][table-map-half]]
-    - [[#table-map-full][table-map-full]]
-    - [[#table-layer-defines][table-layer-defines]]
-    - [[#table-keycode-mappings][table-keycode-mappings]]
-  - [[#data][Data]]
-    - [[#layers-1][layers]]
-    - [[#symbol-names][symbol-names]]
-    - [[#mods][mods]]
-    - [[#nonkp][nonkp]]
-    - [[#keycode-translation][keycode-translation]]
-    - [[#header][header]]
-- [[#subset-mapping][Subset Mapping]]
-  - [[#mappings][mappings]]
-    - [[#split_3x5_2h][[[split_3x5_2.h]]]]
-    - [[#split_3x5_3h][[[split_3x5_3.h]]]]
-    - [[#split_3x6_3h][[[split_3x6_3.h]]]]
-    - [[#ortho_4x12h][[[ortho_4x12.h]]]]
-  - [[#miryoku-include][miryoku include]]
-    - [[#miryokudtsi][[[miryoku.dtsi]]]]
-- [[#documentation][Documentation]]
-- [[#contact][Contact]]
-
-* Status
-
-Welcome to the alpha of miryoku ZMK!
-
-You've been added as a collaborator to the repo as it's the easiest way to give
-access.  You're not expected to contribute but contributions are welcome.  In
-that case please create a new branch and PR.  Otherwise, if you could avoid
-accidental force pushes to master that'd be great!  The layout should be usable
-now but there's still some work to do before it's published, so please don't
-redistribute.  If you fork, please make the repo private.
-
-Just a bit of an explanation of the current status: I'm doing a miryoku
-reorganisation at the moment.  The general layout docs will move out of the QMK
-repo and get expanded.  The org stuff will also move and will generate QMK, ZMK,
-and KMonad.  At the moment the org stuff in ZMK is separate until I finalise the
-scripts and re-integrate the changes, so it's a bit of a mess right now but the
-generated keymap shouldn't change much.
-
-** Todo
-
-*** TODO Integrate with Zephyr CMake
-
-Support passing configuration options.  For now, add the equivalent ~#define~ to
-your keymap before the includes, e.g. for ~MIRYOKU_ALPHAS=QWERTY~ add ~#define
-MIRYOKU_ALPHAS_QWERTY~.
-
-
-*** TODO Add mappings for all boards / shields in ZMK
-
-#+TODO: TODO | DONE NA
-
-https://github.com/zmkfirmware/zmk/tree/main/app/boards/shields
-
-**** TODO bfo9000
-split_6x9
-**** NA boardsource3x4
-**** NA clueboard_california
-**** DONE corne
-split_3x6_3
-**** TODO cradio
-split_3x5_2
-**** DONE crbn
-ortho_4x12
-**** DONE eek
-split_3x5_3
-**** TODO ferris
-split_3x5_2
-**** TODO helix
-helix
-**** TODO iris
-iris
-**** TODO jian
-jian
-**** TODO jorne
-jorne
-**** TODO kyria
-kyria
-**** TODO lily58
-lily58
-**** TODO m60
-60_ansi
-**** DONE microdox
-split_3x5_3
-**** TODO nibble
-**** NA qaz
-**** TODO quefrency
-**** TODO reviung41
-**** NA romac
-**** NA romac_plus
-**** TODO sofle
-sofle
-**** TODO splitreus62
-**** TODO tg4x
-**** NA tidbit
-
+#+Title: Miryoku ZMK Babel [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/miryoku-roa-32.png]]
 
 * Layers
 
-The layers are maintained in tables, with the thumb keys on the bottom row.
-~U_NP~ indicates the key is not present and is used to fill in the table around
-the thumb keys.  The grid arrangement of the tables does not imply a particular
-physical layout.
-
-Basic keycodes are entered without the ~KC_~ prefix.  Symbols can be entered
-as-is, except for '-' (~MINS~), '.' (~DOT~), '|' (~PIPE~), and '"' (~DQUO~).
-Empty cells are unused.
-
-The base layer has both halves of the layout joined for convenience.  Other
-layers are specified as a single hand.
-
-
 ** Base (~BASE~)
-
-The base layer is maintained as separate tap and hold tables and are combined
-into the corresponding tap-hold keycodes for mods and layer change.  Mods (and
-reset) will be available on sub layers on the same hand as the layer change
-thumb key.  Unknown names are considered to be layer names.
-
-Base layer alphas are Colemak-DHm.  Thumb keys are backspace, enter, delete on
-the right and space, tab, escape on the left.  Dot, comma and apostrophe are
-included for prose, dot and slash for file and directory names.
-
 
 *** Tap
 
@@ -180,11 +26,6 @@ included for prose, dot and slash for file and directory names.
 
 ** Navigation (~NAVR~)
 
-Primary right-hand layer (left home thumb) is navigation and editing.  Cursor
-keys are on the home position, line and page movement below, clipboard above,
-caps lock and insert on the inner column.  Thumb keys are duplicated from the
-base layer to avoid having to layer change mid edit and to enable auto-repeat.
-
 #+NAME: navr
 | U_RDO | U_PST | U_CPY | U_CUT | U_UND |
 | CAPS  | LEFT  | DOWN  | UP    | RGHT  |
@@ -193,12 +34,6 @@ base layer to avoid having to layer change mid edit and to enable auto-repeat.
 
 
 ** Mouse (~MOUR~)
-
-Secondary right-hand layer is mouse emulation.  Mouse movement mirrors cursor
-navigation on home and wheel mirrors line / page movement below.  Buttons are on
-the thumbs (L, M, R).  Mouse movement, click, and drag with modifiers can be
-performed from the home position.  Unused keys are available for other related
-functions.
 
 #+NAME: mour
 |      |      |      |      |      |
@@ -209,9 +44,6 @@ functions.
 
 *** Mouse Buttons Overlay (~MBO~)
 
-Available for automatic activation depending on keyboard hardware and
-configuration.  Not activated manually.
-
 #+NAME: mbo
 |      |      |      |      |      |      |      |      |      |      |
 |      |      |      |      |      |      |      |      |      |      |
@@ -221,11 +53,8 @@ configuration.  Not activated manually.
 
 ** Media (~MEDR~)
 
-Tertiary right-hand layer is media control, with volume up / down and next /
-prev mirroring the navigation keys.  Pause, stop and mute are on thumbs.  RGB
-control is on the top row (combine with shift to invert).  BT control is on the
-bottom row, and USB / BT output toggle on the home row inner index.
-
+BT control is on the bottom row, and USB / BT output toggle on the home row
+inner index.
 
 #+NAME: medr
 | RGB_TOG      | RGB_MOD      | RGB_HUI      | RGB_SAI      | RGB_VAI      |
@@ -236,10 +65,6 @@ bottom row, and USB / BT output toggle on the home row inner index.
 
 ** Numerals and Symbols (~NSL~)
 
-Primary left-hand layer (right home thumb) is numerals and symbols.  Numerals
-are in the standard numpad locations with symbols in the remaining positions.
-Dot is duplicated from the base layer.
-
 #+NAME: nsl
 | [    | 7    | 8    | 9    | ]    |
 | ;    | 4    | 5    | 6    | =    |
@@ -248,10 +73,6 @@ Dot is duplicated from the base layer.
 
 
 ** Shifted Numerals and Symbols (~NSSL~)
-
-Secondary left-hand layer has shifted symbols in the same locations to reduce
-chording when using mods with shifted symbols.  Open parenthesis is duplicated
-next to close parenthesis.
 
 #+NAME: nssl
 | {    | &    | *    | (    | }    |
@@ -262,12 +83,6 @@ next to close parenthesis.
 
 ** Function and System (~FUNL~)
 
-Tertiary left-hand layer has function keys mirroring the numerals on the primary
-layer with extras on the pinkie column, plus system keys on the inner column.
-App (menu) is on the tertiary thumb key and other thumb keys are duplicated from
-the base layer to enable auto-repeat.
-
-
 #+NAME: funl
 | F12  | F7   | F8   | F9   | PSCR |
 | F11  | F4   | F5   | F6   | SLCK |
@@ -277,15 +92,12 @@ the base layer to enable auto-repeat.
 
 ** Alternative Layouts
 
-The defaults are recommended, but alternative layouts are provided to
-accommodate existing muscle memory.
+To select, translate the ~=~ to ~_~ and add a ~#define~ to your keymap file
+before the includes, e.g. for ~MIRYOKU_ALPHAS=QWERTY~ add ~#define
+MIRYOKU_ALPHAS_QWERTY~.
 
 
 *** Base Layer Alphas
-
-To select, append the corresponding option to the ~make~ command line when
-building, e.g. ~MIRYOKU_ALPHAS=QWERTY~.
-
 
 **** Colemak
 
@@ -355,7 +167,7 @@ building, e.g. ~MIRYOKU_ALPHAS=QWERTY~.
 
 *** vi-Style Navigation
 
-To select, append ~MIRYOKU_NAV=VI~ to the ~make~ command line when building.
+~MIRYOKU_NAV=VI~
 
 
 **** Navigation (NAVR)
@@ -387,18 +199,6 @@ To select, append ~MIRYOKU_NAV=VI~ to the ~make~ command line when building.
 
 
 *** Navigation Layer Clipboard Keys
-
-Keycodes are translated from those used in the Navigation layer tables according
-to the following tables.
-
-By default, the main clipboard keys (cut, copy, and paste) use the CUA bindings
-and should work in general unix and windows applications, emacs, and terminal
-emulators (paste only).  The additional keys (undo, redo) usually require
-rebinding in the application.
-
-To select, append the corresponding option to the ~make~ command line when
-building, e.g. ~MIRYOKU_CLIPBOARD=WIN~.
-
 
 **** Default
 
@@ -457,9 +257,6 @@ building, e.g. ~MIRYOKU_CLIPBOARD=WIN~.
 |      |      |      |      |      |      |      |      |      |      |
 | U_NP | U_NP |      |      |      |      |      |      | U_NP | U_NP |
 
-
-Duplicate base layer tap keys on thumbs rather than trans to enable auto-repeat.
-
 #+NAME: temr
 | <l4> | <l4> | <l4> | <l4> | <l4> |
 |------+------+------+------+------|
@@ -484,8 +281,6 @@ Duplicate base layer tap keys on thumbs rather than trans to enable auto-repeat.
 
 
 *** table-map-taphold
-
-Produce base layer from separate tap and hold tables.
 
 #+NAME: table-map-taphold
 #+BEGIN_SRC python :var tap_table=colemakdhm :var hold_table=hold :var symbol_names_table=symbol-names :var mods_table=mods :var nonkp_table=nonkp :var layers_table=layers :var keycode_translation_table=keycode-translation :tangle no :results verbatim
@@ -534,10 +329,6 @@ return results
 
 
 *** table-map-half
-
-Produce sub layers given layer name and corresponding table for single hand and
-incorporating mods and reset from base layer.  Layer names must end with 'R' or
-'L'.  A layer with shifted symbols can also be generated.
 
 #+NAME: table-map-half
 #+BEGIN_SRC python :var hold_table=hold :var mode="r" :var half_table=navr :var symbol_names_table=symbol-names :var mods_table=mods :var nonkp_table=nonkp :var shift="false" :var layers_table=layers :var keycode_translation_table=keycode-translation :tangle no :results verbatim
@@ -605,8 +396,6 @@ return results
 
 *** table-map-full
 
-Produce full layer from single table.  Fill for unused keys is configurable.
-
 #+NAME: table-map-full
 #+BEGIN_SRC python :var table=mbo :var fill="&trans" :var symbol_names_table=symbol-names :var nonkp_table=nonkp :var keycode_translation_table=keycode-translation :tangle no :results verbatim
 width = 10
@@ -646,8 +435,6 @@ return results
 
 
 *** table-layer-defines
-
-Produce layer defines from layer names in hold table.
 
 #+NAME: table-layer-defines
 #+BEGIN_SRC python :var layers_table=layers :tangle no
@@ -892,151 +679,13 @@ standard keycode to implementation equivalent
 | DF(TAP)    | &tog TAP        |
 
 
-*** header
-
-Header for tangled source files.
-
-#+NAME: header
-#+BEGIN_SRC C :tangle no
-generated from miryoku_zmk.org  -*- buffer-read-only: t -*-
-#+END_SRC
 
 
-* Subset Mapping
-
-The keymap, build options, and configuration are shared between keyboards.  The
-layout is mapped onto keyboards with different physical layouts as a subset.
-
-** mappings
-
-*** [[split_3x5_2.h]]
-
-Combos of primary and secondary thumb keys emulate the missing tertiary thumb
-key.  To enable with other subset mappings for compatibility, add ~#define
-MIRYOKU_COMBO_TPS_ENABLE~ to the keymap before the includes.
-
-#+BEGIN_SRC C :noweb yes :padline no :tangle split_3x5_2.h
-// <<header>>
-
-#define XXX &none
-
-#define MIRYOKU_SUBMAP(\
-K00, K01, K02, K03, K04,      K05, K06, K07, K08, K09, \
-K10, K11, K12, K13, K14,      K15, K16, K17, K18, K19, \
-K20, K21, K22, K23, K24,      K25, K26, K27, K28, K29, \
-N30, N31, K32, K33, K34,      K35, K36, K37, N38, N39\
-)\
-K00  K01  K02  K03  K04       K05  K06  K07  K08  K09 \
-K10  K11  K12  K13  K14       K15  K16  K17  K18  K19 \
-K20  K21  K22  K23  K24       K25  K26  K27  K28  K29 \
-               K33  K34       K35  K36
-
-#define MIRYOKU_SUPERMAP MIRYOKU_SUBMAP
-
-#define MIRYOKU_COMBO_TPSL 30 31
-#define MIRYOKU_COMBO_TPSR 32 33
-
-#define MIRYOKU_COMBO_TPS_ENABLE
-#+END_SRC
-
-
-*** [[split_3x5_3.h]]
-
-#+BEGIN_SRC C :noweb yes :padline no :tangle split_3x5_3.h
-// <<header>>
-
-#define XXX &none
-
-#define MIRYOKU_SUBMAP(\
-K00, K01, K02, K03, K04,      K05, K06, K07, K08, K09, \
-K10, K11, K12, K13, K14,      K15, K16, K17, K18, K19, \
-K20, K21, K22, K23, K24,      K25, K26, K27, K28, K29, \
-N30, N31, K32, K33, K34,      K35, K36, K37, N38, N39\
-)\
-K00  K01  K02  K03  K04       K05  K06  K07  K08  K09 \
-K10  K11  K12  K13  K14       K15  K16  K17  K18  K19 \
-K20  K21  K22  K23  K24       K25  K26  K27  K28  K29 \
-          K32  K33  K34       K35  K36  K37
-
-#define MIRYOKU_SUPERMAP MIRYOKU_SUBMAP
-
-#define MIRYOKU_COMBO_TPSL 33 34
-#define MIRYOKU_COMBO_TPSR 35 36
-#+END_SRC
-
-
-*** [[split_3x6_3.h]]
-
-#+BEGIN_SRC C :noweb yes :padline no :tangle split_3x6_3.h
-// <<header>>
-
-#define XXX &none
-
-#define MIRYOKU_SUBMAP(\
-     K00, K01, K02, K03, K04,      K05, K06, K07, K08, K09, \
-     K10, K11, K12, K13, K14,      K15, K16, K17, K18, K19, \
-     K20, K21, K22, K23, K24,      K25, K26, K27, K28, K29, \
-     N30, N31, K32, K33, K34,      K35, K36, K37, N38, N39\
-)\
-XXX  K00  K01  K02  K03  K04       K05  K06  K07  K08  K09  XXX \
-XXX  K10  K11  K12  K13  K14       K15  K16  K17  K18  K19  XXX \
-XXX  K20  K21  K22  K23  K24       K25  K26  K27  K28  K29  XXX \
-               K32  K33  K34       K35  K36  K37
-
-#define MIRYOKU_SUPERMAP(\
-          K00, K01, K02, K03, K04,      K05, K06, K07, K08, K09, \
-          K10, K11, K12, K13, K14,      K15, K16, K17, K18, K19, \
-          K20, K21, K22, K23, K24,      K25, K26, K27, K28, K29, \
-          N30, N31, K32, K33, K34,      K35, K36, K37, N38, N39\
-)\
-&kp LALT  K00  K01  K02  K03  K04       K05  K06  K07  K08  K09 &kp LGUI \
-&kp LCTRL K10  K11  K12  K13  K14       K15  K16  K17  K18  K19 &kp RCTRL \
-&kp LSHFT K20  K21  K22  K23  K24       K25  K26  K27  K28  K29 &kp RSHFT \
-                    K32  K33  K34       K35  K36  K37
-
-#define MIRYOKU_COMBO_TPSL 37 38
-#define MIRYOKU_COMBO_TPSR 39 40
-#+END_SRC
-
-
-*** [[ortho_4x12.h]]
-
-#+BEGIN_SRC C :noweb yes :padline no :tangle ortho_4x12.h
-// <<header>>
-
-#define XXX &none
-
-#define MIRYOKU_SUBMAP(\
-K00, K01, K02, K03, K04,           K05, K06, K07, K08, K09, \
-K10, K11, K12, K13, K14,           K15, K16, K17, K18, K19, \
-K20, K21, K22, K23, K24,           K25, K26, K27, K28, K29, \
-N30, N31, K32, K33, K34,           K35, K36, K37, N38, N39\
-)\
-K00  K01  K02  K03  K04  XXX  XXX  K05  K06  K07  K08  K09 \
-K10  K11  K12  K13  K14  XXX  XXX  K15  K16  K17  K18  K19 \
-K20  K21  K22  K23  K24  XXX  XXX  K25  K26  K27  K28  K29 \
-XXX  XXX  K32  K33  K34  XXX  XXX  K35  K36  K37  XXX  XXX
-
-#define MIRYOKU_SUPERMAP(\
-K00,      K01,      K02, K03, K04,                     K05, K06, K07, K08,     K09, \
-K10,      K11,      K12, K13, K14,                     K15, K16, K17, K18,     K19, \
-K20,      K21,      K22, K23, K24,                     K25, K26, K27, K28,     K29, \
-N30,      N31,      K32, K33, K34,                     K35, K36, K37, N38,     N39  \
-)\
-K00       K01       K02  K03  K04  &kp NUM_8 &kp NUM_7 K05  K06  K07  K08      K09 \
-K10       K11       K12  K13  K14  &kp NUM_6 &kp NUM_5 K15  K16  K17  K18      K19 \
-K20       K21       K22  K23  K24  &kp NUM_4 &kp NUM_3 K25  K26  K27  K28      K29 \
-&kp LSHFT &kp LCTRL K32  K33  K34  &kp NUM_2 &kp NUM_1 K35  K36  K37  &kp LALT &kp LGUI
-
-#+END_SRC
-
-
-** miryoku include
-
-*** [[miryoku.dtsi]]
+** [[miryoku.dtsi]]
 
 #+BEGIN_SRC C :noweb yes :padline no :tangle miryoku.dtsi
-// <<header>>
+// https://github.com/manna-harbour/miryoku-zmk/
+// -*- buffer-read-only: t -*-
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
@@ -1080,31 +729,31 @@ K20       K21       K22  K23  K24  &kp NUM_4 &kp NUM_3 K25  K26  K27  K28      K
     BASE_layer {
       bindings = <
 #if defined MIRYOKU_ALPHAS_COLEMAK
-        MIRYOKU_SUBMAP(
+        MIRYOKU_MAPPING(
 <<table-map-taphold(tap_table=colemak)>>
         )
 #elif defined MIRYOKU_ALPHAS_COLEMAKDH
-        MIRYOKU_SUBMAP(
+        MIRYOKU_MAPPING(
 <<table-map-taphold(tap_table=colemakdh)>>
         )
 #elif defined MIRYOKU_ALPHAS_DVORAK
-        MIRYOKU_SUBMAP(
+        MIRYOKU_MAPPING(
 <<table-map-taphold(tap_table=dvorak)>>
         )
 #elif defined MIRYOKU_ALPHAS_HALMAK
-        MIRYOKU_SUBMAP(
+        MIRYOKU_MAPPING(
 <<table-map-taphold(tap_table=halmak)>>
         )
 #elif defined MIRYOKU_ALPHAS_WORKMAN
-        MIRYOKU_SUBMAP(
+        MIRYOKU_MAPPING(
 <<table-map-taphold(tap_table=workman)>>
         )
 #elif defined MIRYOKU_ALPHAS_QWERTY
-        MIRYOKU_SUBMAP(
+        MIRYOKU_MAPPING(
 <<table-map-taphold(tap_table=qwerty)>>
         )
 #else
-        MIRYOKU_SUBMAP(
+        MIRYOKU_MAPPING(
 <<table-map-taphold(tap_table=colemakdhm)>>
         )
 #endif
@@ -1113,31 +762,31 @@ K20       K21       K22  K23  K24  &kp NUM_4 &kp NUM_3 K25  K26  K27  K28      K
     TAP_layer {
       bindings = <
 #if defined MIRYOKU_ALPHAS_COLEMAK
-        MIRYOKU_SUPERMAP(
+        MIRYOKU_MAPPING_TAP(
   <<table-map-full(table=colemak)>>
           )
 #elif defined MIRYOKU_ALPHAS_COLEMAKDH
-        MIRYOKU_SUPERMAP(
+        MIRYOKU_MAPPING_TAP(
   <<table-map-full(table=colemakdh)>>
           )
 #elif defined MIRYOKU_ALPHAS_DVORAK
-        MIRYOKU_SUPERMAP(
+        MIRYOKU_MAPPING_TAP(
   <<table-map-full(table=dvorak)>>
           )
 #elif defined MIRYOKU_ALPHAS_HALMAK
-        MIRYOKU_SUPERMAP(
+        MIRYOKU_MAPPING_TAP(
   <<table-map-full(table=halmak)>>
           )
 #elif defined MIRYOKU_ALPHAS_WORKMAN
-        MIRYOKU_SUPERMAP(
+        MIRYOKU_MAPPING_TAP(
   <<table-map-full(table=workman)>>
           )
 #elif defined MIRYOKU_ALPHAS_QWERTY
-        MIRYOKU_SUPERMAP(
+        MIRYOKU_MAPPING_TAP(
   <<table-map-full(table=qwerty)>>
           )
 #else
-        MIRYOKU_SUPERMAP(
+        MIRYOKU_MAPPING_TAP(
   <<table-map-full(table=colemakdhm)>>
           )
 #endif
@@ -1145,7 +794,7 @@ K20       K21       K22  K23  K24  &kp NUM_4 &kp NUM_3 K25  K26  K27  K28      K
     };
     MBO_layer {
       bindings = <
-        MIRYOKU_SUBMAP(
+        MIRYOKU_MAPPING(
 <<table-map-full(table=mbo)>>
         )
       >;
@@ -1153,11 +802,11 @@ K20       K21       K22  K23  K24  &kp NUM_4 &kp NUM_3 K25  K26  K27  K28      K
     NAVR_layer {
       bindings = <
 #if defined MIRYOKU_NAV_VI
-        MIRYOKU_SUBMAP(
+        MIRYOKU_MAPPING(
 <<table-map-half(mode="r", half_table=navr-vi)>>
         )
 #else
-        MIRYOKU_SUBMAP(
+        MIRYOKU_MAPPING(
 <<table-map-half(mode="r", half_table=navr)>>
         )
 #endif
@@ -1166,11 +815,11 @@ K20       K21       K22  K23  K24  &kp NUM_4 &kp NUM_3 K25  K26  K27  K28      K
     MOUR_layer {
       bindings = <
 #if defined MIRYOKU_NAV_VI
-        MIRYOKU_SUBMAP(
+        MIRYOKU_MAPPING(
 <<table-map-half(mode="r", half_table=mour-vi)>>
         )
 #else
-        MIRYOKU_SUBMAP(
+        MIRYOKU_MAPPING(
 <<table-map-half(mode="r", half_table=mour)>>
         )
 #endif
@@ -1179,11 +828,11 @@ K20       K21       K22  K23  K24  &kp NUM_4 &kp NUM_3 K25  K26  K27  K28      K
     MEDR_layer {
       bindings = <
 #if defined MIRYOKU_NAV_VI
-        MIRYOKU_SUBMAP(
+        MIRYOKU_MAPPING(
 <<table-map-half(mode="r", half_table=medr-vi)>>
         )
 #else
-        MIRYOKU_SUBMAP(
+        MIRYOKU_MAPPING(
 <<table-map-half(mode="r", half_table=medr)>>
         )
 #endif
@@ -1191,21 +840,21 @@ K20       K21       K22  K23  K24  &kp NUM_4 &kp NUM_3 K25  K26  K27  K28      K
     };
     NSL_layer {
       bindings = <
-        MIRYOKU_SUBMAP(
+        MIRYOKU_MAPPING(
 <<table-map-half(mode="l", half_table=nsl)>>
         )
       >;
     };
     NSSL_layer {
       bindings = <
-        MIRYOKU_SUBMAP(
+        MIRYOKU_MAPPING(
 <<table-map-half(mode="l", half_table=nssl)>>
         )
       >;
     };
     FUNL_layer {
       bindings = <
-        MIRYOKU_SUBMAP(
+        MIRYOKU_MAPPING(
 <<table-map-half(mode="l", half_table=funl)>>
         )
       >;
@@ -1277,19 +926,3 @@ K20       K21       K22  K23  K24  &kp NUM_4 &kp NUM_3 K25  K26  K27  K28      K
 #+END_SRC
 
 
-* Documentation                                                  :noexport_1:
-
-** ZMK
-
-- 
-
-** Org Mode
-
-- https://orgmode.org/
-- https://orgmode.org/manual/Tables.html
-- https://orgmode.org/manual/Working-with-Source-Code.html
-
-
-* Contact
-
-[[https://github.com/manna-harbour][https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/manna-harbour-boa-32.png]]

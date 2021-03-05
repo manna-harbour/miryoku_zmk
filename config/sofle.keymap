@@ -1,6 +1,4 @@
 // https://github.com/manna-harbour/miryoku-zmk/
 
-#define MIRYOKU_COMBO_TPS_ENABLE
-
-#include "../miryoku/mapping/split_3x6_3.h"
+#include "../miryoku/mapping/sofle.h"
 #include "../miryoku/miryoku.dtsi"

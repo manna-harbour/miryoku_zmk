@@ -1,0 +1,108 @@
+#+Title: Miryoku ZMK [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/miryoku-roa-32.png]]
+
+[[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/cover/miryoku-kle-cover.png]]
+
+[[https://github.com/manna-harbour/miryoku/][Miryoku]] is an ergonomic, minimal,
+orthogonal, universal keyboard layout.  This is the miryoku implementation for
+[[https://zmkfirmware.dev/][ZMK]].
+
+* Contents                                                              :TOC_3:
+- [[#miryoku-keymap][Miryoku Keymap]]
+- [[#configuration-options][Configuration Options]]
+- [[#mapping][Mapping]]
+  - [[#generic-layouts][Generic Layouts]]
+    - [[#jian][jian]]
+    - [[#ortho_4x12][ortho_4x12]]
+    - [[#split_3x5_2][split_3x5_2]]
+    - [[#split_3x5_3][split_3x5_3]]
+    - [[#split_3x6_3][split_3x6_3]]
+  - [[#keyboard-specific-layouts][Keyboard-Specific Layouts]]
+    - [[#kyria][kyria]]
+- [[#keyboard-keymaps][Keyboard Keymaps]]
+- [[#contact][Contact]]
+
+* Miryoku Keymap
+
+The miryoku keymap is a ZMK DT keymap file using C preprocessor macros for
+configuration options and to abstract the physical layout.  The file is
+[[./miryoku/miryoku.dtsi][miryoku/miryoku.dtsi]].  The file
+is included into the keyboard's keymap with 
+
+#+BEGIN_SRC C :tangle no
+#include "../miryoku/miryoku.dtsi"
+#+END_SRC
+
+
+* Configuration Options
+
+todo
+
+
+* Mapping
+
+The keymap is mapped onto keyboards with different physical layouts.  The keymap
+is specified in terms of the ~MIRYOKU_MAPPING~ macro.  The macro is defined in a
+C header file for each physical layout.  Unused keys are mapped to ~&none~.  The
+files are in [[./miryoku/mapping/][miryoku/mapping/]].  The
+mapping file is included into the keyboard's keymap file before the miryoku
+keymap with e.g.
+
+#+BEGIN_SRC C :tangle no
+#include "../miryoku/mapping/split_3x5_3.dtsi"
+#+END_SRC
+
+On each hand, only the main alpha block of 3 rows by 5 columns and the 3 most
+appropriate thumb keys are used.  Notes or diagrams are included where the
+selection of keys is not obvious or where options are provided.
+
+** Generic Layouts
+
+These mappings can be used by multiple keyboards with functionally identical physical layouts.
+
+*** jian 
+
+Used by:
+
+- jian
+- jorne
+
+*** [[./miryoku/mapping/ortho_4x12.h][ortho_4x12]]
+
+[[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/mapping/miryoku-kle-mapping-ortho_4x12.png]]
+
+
+*** [[./miryoku/mapping/split_3x5_2.h][split_3x5_2]]
+
+Combos of primary and secondary thumb keys emulate the missing tertiary thumb
+key.  To enable with other subset mappings for compatibility, add ~#define
+MIRYOKU_COMBO_TPS_ENABLE~ to the keymap before the includes.
+
+*** [[./miryoku/mapping/split_3x5_3.h][split_3x5_3]]
+
+
+*** [[./miryoku/mapping/split_3x6_3.h][split_3x6_3]]
+
+
+
+** Keyboard-Specific Layouts
+
+*** [[./miryoku/mapping/kyria.h][kyria]]
+
+[[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/mapping/miryoku-kle-mapping-kyria.png]]
+
+
+* Keyboard Keymaps
+
+Keymap files for many keyboards included in ZMK are provided in
+[[./config/][config/]].
+
+
+* Contact
+
+To request any of the following, please create an issue.  Pull requests are also welcome.
+
+- Additional mapping and keyboard keymap files
+- Additional mapping options (see miryoku QMK for examples)
+- Populating unused keys in ~MIRYOKU_MAPPING_TAP~ (currently skipped for some mapping files)
+
+[[https://github.com/manna-harbour][https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/manna-harbour-boa-32.png]]
