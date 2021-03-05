@@ -19,6 +19,7 @@ orthogonal, universal keyboard layout.  This is the miryoku implementation for
   - [[#keyboard-specific-layouts][Keyboard-Specific Layouts]]
     - [[#kyria][kyria]]
 - [[#keyboard-keymaps][Keyboard Keymaps]]
+- [[#prebuilt-firmware][Prebuilt Firmware]]
 - [[#contact][Contact]]
 
 * Miryoku Keymap
@@ -59,6 +60,8 @@ selection of keys is not obvious or where options are provided.
 
 These mappings can be used by multiple keyboards with functionally identical physical layouts.
 
+todo
+
 *** jian 
 
 Used by:
@@ -86,6 +89,8 @@ MIRYOKU_COMBO_TPS_ENABLE~ to the keymap before the includes.
 
 ** Keyboard-Specific Layouts
 
+todo
+
 *** [[./miryoku/mapping/kyria.h][kyria]]
 
 [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/mapping/miryoku-kle-mapping-kyria.png]]
@@ -97,9 +102,19 @@ Keymap files for many keyboards included in ZMK are provided in
 [[./config/][config/]].
 
 
+* Prebuilt Firmware
+
+Prebuilt firmware for supported keyboards, built with the default configuration
+options, can be downloaded from the repo.  From the
+[[https://github.com/manna-harbour/miryoku-zmk/actions][Actions]] tab select the
+latest successful workflow run, then select the keyboard in the Artifacts
+section.
+
 * Contact
 
-To request any of the following, please create an issue.  Pull requests are also welcome.
+For issues with the code, including requests for any of the following, please
+[[https://github.com/manna-harbour/miryoku-zmk/issues/new][create an issue]].
+Pull requests are also welcome.
 
 - Additional mapping and keyboard keymap files
 - Additional mapping options (see miryoku QMK for examples)
