@@ -3,25 +3,13 @@
 [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/cover/miryoku-kle-cover.png]]
 
 [[https://github.com/manna-harbour/miryoku/][Miryoku]] is an ergonomic, minimal,
-orthogonal, universal keyboard layout.  This is the miryoku implementation for
-[[https://zmkfirmware.dev/][ZMK]].
+orthogonal, and universal keyboard layout.  This is the miryoku implementation
+for [[https://zmkfirmware.dev/][ZMK]].
 
-* Contents                                                              :TOC_3:
+* Contents                                                              :TOC_1:
 - [[#miryoku-keymap][Miryoku Keymap]]
 - [[#configuration-options][Configuration Options]]
 - [[#mapping][Mapping]]
-  - [[#layouts][Layouts]]
-    - [[#34-ferris][34-ferris]]
-    - [[#36-minidox][36-minidox]]
-    - [[#42-corne][42-corne]]
-    - [[#44-jian][44-jian]]
-    - [[#48-planck][48-planck]]
-    - [[#50-kyria][50-kyria]]
-    - [[#56-iris][56-iris]]
-    - [[#58-lily58][58-lily58]]
-    - [[#60-sofle][60-sofle]]
-    - [[#62-atreus62][62-atreus62]]
-    - [[#64-helix][64-helix]]
 - [[#keyboard-keymaps][Keyboard Keymaps]]
 - [[#prebuilt-firmware][Prebuilt Firmware]]
 - [[#contact][Contact]]
@@ -97,8 +85,8 @@ Keymap files for many keyboards included in ZMK are provided in
 
 * Prebuilt Firmware
 
-Prebuilt firmware for supported keyboards, built with the default configuration
-options, can be downloaded from the repo.  From the
+Prebuilt firmware for supported keyboards can be downloaded from the repo when
+logged in.  From the
 [[https://github.com/manna-harbour/miryoku-zmk/actions][Actions]] tab select the
 latest successful workflow run, then select the keyboard in the Artifacts
 section.
