@@ -1,4 +1,4 @@
 // https://github.com/manna-harbour/miryoku-zmk/
 
-#include "../miryoku/mapping/jian.h"
+#include "../miryoku/mapping/44-jian.h"
 #include "../miryoku/miryoku.dtsi"

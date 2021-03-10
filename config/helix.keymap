@@ -1,4 +1,4 @@
 // https://github.com/manna-harbour/miryoku-zmk/
 
-#include "../miryoku/mapping/helix.h"
+#include "../miryoku/mapping/64-helix.h"
 #include "../miryoku/miryoku.dtsi"

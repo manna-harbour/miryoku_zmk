@@ -1,5 +1,5 @@
 // https://github.com/manna-harbour/miryoku-zmk/
 
-#include "../miryoku/mapping/ortho_4x12.h"
+#include "../miryoku/mapping/48-planck.h"
 #include "../miryoku/miryoku.dtsi"
 

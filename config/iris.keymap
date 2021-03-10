@@ -1,4 +1,4 @@
 // https://github.com/manna-harbour/miryoku-zmk/
 
-#include "../miryoku/mapping/iris.h"
+#include "../miryoku/mapping/56-iris.h"
 #include "../miryoku/miryoku.dtsi"

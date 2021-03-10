@@ -1,4 +1,4 @@
 // https://github.com/manna-harbour/miryoku-zmk/
 
-#include "../miryoku/mapping/lily58.h"
+#include "../miryoku/mapping/58-lily58.h"
 #include "../miryoku/miryoku.dtsi"

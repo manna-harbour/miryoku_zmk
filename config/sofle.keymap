@@ -1,4 +1,4 @@
 // https://github.com/manna-harbour/miryoku-zmk/
 
-#include "../miryoku/mapping/sofle.h"
+#include "../miryoku/mapping/60-sofle.h"
 #include "../miryoku/miryoku.dtsi"

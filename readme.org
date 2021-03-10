@@ -10,14 +10,18 @@ orthogonal, universal keyboard layout.  This is the miryoku implementation for
 - [[#miryoku-keymap][Miryoku Keymap]]
 - [[#configuration-options][Configuration Options]]
 - [[#mapping][Mapping]]
-  - [[#generic-layouts][Generic Layouts]]
-    - [[#jian][jian]]
-    - [[#ortho_4x12][ortho_4x12]]
-    - [[#split_3x5_2][split_3x5_2]]
-    - [[#split_3x5_3][split_3x5_3]]
-    - [[#split_3x6_3][split_3x6_3]]
-  - [[#keyboard-specific-layouts][Keyboard-Specific Layouts]]
-    - [[#kyria][kyria]]
+  - [[#layouts][Layouts]]
+    - [[#34-ferris][34-ferris]]
+    - [[#36-minidox][36-minidox]]
+    - [[#42-corne][42-corne]]
+    - [[#44-jian][44-jian]]
+    - [[#48-planck][48-planck]]
+    - [[#50-kyria][50-kyria]]
+    - [[#56-iris][56-iris]]
+    - [[#58-lily58][58-lily58]]
+    - [[#60-sofle][60-sofle]]
+    - [[#62-atreus62][62-atreus62]]
+    - [[#64-helix][64-helix]]
 - [[#keyboard-keymaps][Keyboard Keymaps]]
 - [[#prebuilt-firmware][Prebuilt Firmware]]
 - [[#contact][Contact]]
@@ -49,58 +53,47 @@ mapping file is included into the keyboard's keymap file before the miryoku
 keymap with e.g.
 
 #+BEGIN_SRC C :tangle no
-#include "../miryoku/mapping/split_3x5_3.dtsi"
+#include "../miryoku/mapping/36-minidox.h"
 #+END_SRC
 
 On each hand, only the main alpha block of 3 rows by 5 columns and the 3 most
 appropriate thumb keys are used.  Notes or diagrams are included where the
 selection of keys is not obvious or where options are provided.
 
-** Generic Layouts
+** Layouts
 
-These mappings can be used by multiple keyboards with functionally identical physical layouts.
-
-todo
-
-*** jian 
-
-Used by:
-
-- jian
-- jorne
-
-*** [[./miryoku/mapping/ortho_4x12.h][ortho_4x12]]
-
-[[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/mapping/miryoku-kle-mapping-ortho_4x12.png]]
-
-
-*** [[./miryoku/mapping/split_3x5_2.h][split_3x5_2]]
+*** 34-ferris
 
 Combos of primary and secondary thumb keys emulate the missing tertiary thumb
 key.  To enable with other subset mappings for compatibility, add ~#define
 MIRYOKU_COMBO_TPS_ENABLE~ to the keymap before the includes.
 
-*** [[./miryoku/mapping/split_3x5_3.h][split_3x5_3]]
+*** 36-minidox
 
+*** 42-corne
 
-*** [[./miryoku/mapping/split_3x6_3.h][split_3x6_3]]
+*** 44-jian
 
+*** 48-planck
 
-
-** Keyboard-Specific Layouts
-
-todo
-
-*** [[./miryoku/mapping/kyria.h][kyria]]
+*** 50-kyria
 
 [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/mapping/miryoku-kle-mapping-kyria.png]]
 
+*** 56-iris
+
+*** 58-lily58
+
+*** 60-sofle
+
+*** 62-atreus62
+
+*** 64-helix
 
 * Keyboard Keymaps
 
 Keymap files for many keyboards included in ZMK are provided in
 [[./config/][config/]].
-
 
 * Prebuilt Firmware
 

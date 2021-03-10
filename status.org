@@ -27,7 +27,7 @@ MIRYOKU_ALPHAS_QWERTY~.
 
 *** TODO Add mappings for all boards / shields in ZMK
 
-#+TODO: TODO | DONE NA MACROPAD ROWSTAGGER
+#+TODO: TODO | DONE NA MACROPAD ROWSTAGGER ONEOFF
 
 **** https://github.com/zmkfirmware/zmk/tree/main/app/boards/shields
 
@@ -77,6 +77,39 @@ can be built as 60_ansi, default in zmk is not
 ***** DONE planck
 ***** NA proton_c
 
+
+**** PRs
+
+***** ONEOFF andante
+https://github.com/zmkfirmware/zmk/pull/654/files
+***** TODO bastyl
+https://github.com/zmkfirmware/zmk/pull/604/files
+***** TODO contra
+https://github.com/zmkfirmware/zmk/pull/633
+***** MACROPAD duckboard
+***** TODO ergodash
+https://github.com/zmkfirmware/zmk/pull/572
+***** TODO helix_r
+https://github.com/zmkfirmware/zmk/pull/585
+***** TODO ferris_rev02
+https://github.com/zmkfirmware/zmk/pull/642/files
+***** TODO levinson
+https://github.com/zmkfirmware/zmk/pull/566
+***** TODO naked60
+https://github.com/zmkfirmware/zmk/pull/681/files
+***** TODO preonic_rev3 (board)
+https://github.com/zmkfirmware/zmk/pull/228
+***** TODO pockettype
+https://github.com/zmkfirmware/zmk/pull/672/files
+***** ONEOFF polilla
+https://github.com/zmkfirmware/zmk/pull/612
+***** TODO rebound
+https://github.com/zmkfirmware/zmk/pull/546
+***** TODO reviung39
+https://github.com/zmkfirmware/zmk/pull/695/files
+https://github.com/zmkfirmware/zmk/pull/622
+***** TODO ut47
+https://github.com/zmkfirmware/zmk/pull/641
 
 **** external
 
