@@ -38,7 +38,7 @@
 #+NAME: mour
 |      |      |      |      |      |
 |      | MS_L | MS_D | MS_U | MS_R |
-|      | WH_L | WH_D | WH_U | WH_R |
+| U_MT | WH_L | WH_D | WH_U | WH_R |
 | BTN1 | BTN3 | BTN2 | U_NP | U_NP |
 
 
@@ -573,7 +573,7 @@ standard keycode to implementation equivalent
 | AT         | AT              |
 | BSLS       | BSLH            |
 | BSPC       | BSPC            |
-| BTN1       | KP_SLASH        |
+| BTN1       | KP_N5           |
 | BTN2       | U_NU            |
 | BTN3       | U_NU            |
 | CAPS       |                 |
@@ -677,6 +677,9 @@ standard keycode to implementation equivalent
 | C(KC_X)    | LC(X)           |
 | C(KC_Z)    | LC(Z)           |
 | DF(TAP)    | &tog TAP        |
+| U_MT       | LS(LNLCK)       |
+
+
 
 
 

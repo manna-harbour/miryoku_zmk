@@ -178,7 +178,7 @@ U_NP,         U_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL R
 &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
 &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
 &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-U_NP,     U_NP,     &trans,   &trans,   &trans,   &kp KP_SLASH, U_NU,     U_NU,     U_NP,     U_NP
+U_NP,     U_NP,     &trans,   &trans,   &trans,   &kp KP_N5, U_NU,     U_NU,     U_NP,     U_NP
         )
       >;
     };
@@ -208,14 +208,14 @@ U_NP,        U_NP,        U_NA,        U_NA,        U_NA,        &kp RET,     &k
 &bootloader, &tog TAP,    U_NA,        U_NA,        U_NA,        U_NU,        U_NU,        U_NU,        U_NU,        U_NU,
 &kp LGUI,    &kp LALT,    &kp LCTRL,   &kp LSHFT,   U_NA,        &kp KP_N4,   &kp KP_N2,   &kp KP_N8,   &kp KP_N6,   U_NU,
 U_NA,        &kp RALT,    U_NA,        U_NA,        U_NA,        U_NU,        U_NU,        U_NU,        U_NU,        U_NU,
-U_NP,        U_NP,        U_NA,        U_NA,        U_NA,        &kp KP_SLASH, U_NU,        U_NU,        U_NP,        U_NP
+U_NP,        U_NP,        U_NA,        U_NA,        U_NA,        &kp KP_N5,   U_NU,        U_NU,        U_NP,        U_NP
         )
 #else
         MIRYOKU_MAPPING(
 &bootloader, &tog TAP,    U_NA,        U_NA,        U_NA,        U_NU,        U_NU,        U_NU,        U_NU,        U_NU,
 &kp LGUI,    &kp LALT,    &kp LCTRL,   &kp LSHFT,   U_NA,        U_NU,        &kp KP_N4,   &kp KP_N2,   &kp KP_N8,   &kp KP_N6,
-U_NA,        &kp RALT,    U_NA,        U_NA,        U_NA,        U_NU,        U_NU,        U_NU,        U_NU,        U_NU,
-U_NP,        U_NP,        U_NA,        U_NA,        U_NA,        &kp KP_SLASH, U_NU,        U_NU,        U_NP,        U_NP
+U_NA,        &kp RALT,    U_NA,        U_NA,        U_NA,        &kp LS(LNLCK), U_NU,        U_NU,        U_NU,        U_NU,
+U_NP,        U_NP,        U_NA,        U_NA,        U_NA,        &kp KP_N5,   U_NU,        U_NU,        U_NP,        U_NP
         )
 #endif
       >;
