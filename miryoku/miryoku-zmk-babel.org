@@ -666,11 +666,11 @@ standard keycode to implementation equivalent
 | S(KC_INS)  | LS(INS)         |
 | C(KC_INS)  | LC(INS)         |
 | S(KC_DEL)  | LS(DEL)         |
-| SCMD(KC_Z) | LS(LCMD(Z))     |
-| LCMD(KC_V) | LCMD(V)         |
-| LCMD(KC_C) | LCMD(C)         |
-| LCMD(KC_X) | LCMD(X)         |
-| LCMD(KC_Z) | LCMD(Z)         |
+| SCMD(KC_Z) | LS(LG(Z))     |
+| LCMD(KC_V) | LG(V)         |
+| LCMD(KC_C) | LG(C)         |
+| LCMD(KC_X) | LG(X)         |
+| LCMD(KC_Z) | LG(Z)         |
 | C(KC_Y)    | LC(Y)           |
 | C(KC_V)    | LC(V)           |
 | C(KC_C)    | LC(C)           |
