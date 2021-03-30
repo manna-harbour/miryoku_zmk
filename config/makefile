@@ -25,7 +25,7 @@ corne_right: ZMK_TARGET = $(ZMK_BOARD)-$(ZMK_SHIELD)
 corne_right: ZMK_MACROS += -DSHIELD=$(ZMK_SHIELD)
 corne_right: zmk-nice_nano-corne_right.uf2
 
-$(ZMK_APP_DIR)/build/nice_nano-corne_*/zephyr/zmk.uf2: corne.conf corne.keymap ../miryoku/split_3x6_3.h ../miryoku/miryoku.dtsi
+$(ZMK_APP_DIR)/build/nice_nano-corne_*/zephyr/zmk.uf2: corne.keymap ../miryoku/mapping/42-corne.h ../miryoku/miryoku.dtsi
 
 
 .PHONY: planck
@@ -36,7 +36,7 @@ planck_rev6: ZMK_BOARD = planck_rev6
 planck_rev6: ZMK_TARGET = $(ZMK_BOARD)
 planck_rev6: zmk-planck_rev6.uf2
 
-$(ZMK_APP_DIR)/build/planck_rev6/zephyr/zmk.uf2: planck_rev6.keymap ../miryoku/ortho_4_12.h ../miryoku/miryoku.dtsi
+$(ZMK_APP_DIR)/build/planck_rev6/zephyr/zmk.uf2: planck_rev6.keymap ../miryoku/mapping/48-planck.h ../miryoku/miryoku.dtsi
 
 
 .PHONY: log
