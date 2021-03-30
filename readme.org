@@ -9,6 +9,7 @@ for [[https://zmkfirmware.dev/][ZMK]].
 * Contents                                                              :TOC_1:
 - [[#miryoku-keymap][Miryoku Keymap]]
 - [[#configuration-options][Configuration Options]]
+- [[#example-keyboard-keymap][Example Keyboard Keymap]]
 - [[#mapping][Mapping]]
 - [[#keyboard-keymaps][Keyboard Keymaps]]
 - [[#prebuilt-firmware][Prebuilt Firmware]]
@@ -17,9 +18,9 @@ for [[https://zmkfirmware.dev/][ZMK]].
 * Miryoku Keymap
 
 The miryoku keymap is a ZMK DT keymap file using C preprocessor macros for
-configuration options and to abstract the physical layout.  The file is
-[[./miryoku/miryoku.dtsi][miryoku/miryoku.dtsi]].  The file
-is included into the keyboard's keymap with 
+[[#configuration-options][configuration options]] and to abstract the physical
+layout.  The file is [[./miryoku/miryoku.dtsi][miryoku/miryoku.dtsi]].  The file
+is included into the [[#keyboard-keymaps][keyboard's keymap]] with
 
 #+BEGIN_SRC C :tangle no
 #include "../miryoku/miryoku.dtsi"
@@ -28,7 +29,38 @@ is included into the keyboard's keymap with
 
 * Configuration Options
 
-todo
+[[https://github.com/manna-harbour/miryoku/blob/master/src/babel/readme.org#keymap-configuration-options][Keymap
+configuration options]] and [[#mapping][mapping]] configuration options are
+given in the documentation in the form ~option=value~.  To use configuration
+options in Miryoku ZMK, convert to the form ~#define option_value~ and add to
+the [[#keyboard-keymaps][keyboard keymap]] file before the [[#mapping][mapping]]
+or [[#miryoku-keymap][miryoku keymap]] includes.  See the
+[[#example-keyboard-keymap][example keyboard keymap]].
+
+
+* Example Keyboard Keymap
+
+Below is an example [[#keyboard-keymaps][keyboard keymap file]] for the ~kyria~
+shield using the ~50-kyria~ [[#mapping][mapping]] with
+~MIRYOKU_MAPPING=EXTENDED_THUMBS~ mapping
+[[#configuration-options][configuration option]] and the following layout
+[[#configuration-options][configuration options]]:
+
+- ~MIRYOKU_ALPHAS=QWERTY~
+- ~MIRYOKU_NAV=VI~
+- ~MIRYOKU_CLIPBOARD=WIN~
+
+#+BEGIN_SRC C :tangle nos
+// https://github.com/manna-harbour/miryoku-zmk/
+
+#define MIRYOKU_MAPPING_EXTENDED_THUMBS
+#define MIRYOKU_ALPHAS_QWERTY
+#define MIRYOKU_NAV_VI
+#define MIRYOKU_CLIPBOARD_WIN
+
+#include "../miryoku/mapping/50-kyria.h"
+#include "../miryoku/miryoku.dtsi"
+#+END_SRC
 
 
 * Mapping
@@ -48,13 +80,21 @@ On each hand, only the main alpha block of 3 rows by 5 columns and the 3 most
 appropriate thumb keys are used.  Notes or diagrams are included where the
 selection of keys is not obvious or where options are provided.
 
+Configuration options
+
 ** Layouts
 
 *** 34-ferris
 
+**** Combo TPS
+
+~MIRYOKU_COMBO_TPS=ENABLE~
+
 Combos of primary and secondary thumb keys emulate the missing tertiary thumb
-key.  To enable with other subset mappings for compatibility, add ~#define
-MIRYOKU_COMBO_TPS_ENABLE~ to the keymap before the includes.
+key.  This [[#configuration-options][configuration option]] is enabled
+automatically for this mapping and can be enabled on other mappings for
+compatibility
+
 
 *** 36-minidox
 
@@ -66,22 +106,37 @@ MIRYOKU_COMBO_TPS_ENABLE~ to the keymap before the includes.
 
 *** 50-kyria
 
+**** Default
+
 [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/mapping/miryoku-kle-mapping-kyria.png]]
+
+**** Extend Thumbs
+
+~MIRYOKU_MAPPING=EXTENDED_THUMBS~
+
+[[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/mapping/miryoku-kle-mapping-kyria-extended_thumbs.png]]
+
 
 *** 56-iris
 
+
 *** 58-lily58
+
 
 *** 60-sofle
 
+
 *** 62-atreus62
 
+
 *** 64-helix
+
 
 * Keyboard Keymaps
 
 Keymap files for many keyboards included in ZMK are provided in
 [[./config/][config/]].
+
 
 * Prebuilt Firmware
 
@@ -90,6 +145,7 @@ logged in.  From the
 [[https://github.com/manna-harbour/miryoku-zmk/actions][Actions]] tab select the
 latest successful workflow run, then select the keyboard in the Artifacts
 section.
+
 
 * Contact
 
