@@ -13,6 +13,10 @@ jobs:
       matrix:
         include:
 
+
+#          - shield: absolem
+#            board: nice_nano
+
 #          -board: ahokore
 
 #          - shield: bfo9000_left
@@ -29,6 +33,21 @@ jobs:
             board: nice_nano
           - shield: cradio_right
             board: nice_nano
+
+#          - shield: cradio36_left
+#            board: nice_nano
+#          - shield: cradio36_right
+#            board: nice_nano
+
+#          - shield: cradios_left
+#            board: nice_nano
+#          - shield: cradios_right
+#            board: nice_nano
+
+#          - shield: cradioz_left
+#            board: nice_nano
+#          - shield: cradioz_right
+#            board: nice_nano
 
           - shield: crbn
             board: nice_nano
