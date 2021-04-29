@@ -1,0 +1,86 @@
+# https://github.com/manna-harbour/miryoku-zmk/
+
+menu "Miryoku"
+
+  choice USER_MIRYOKU_ALPHAS
+    prompt "Alphas"
+    default USER_MIRYOKU_ALPHAS_COLEMAKDH
+
+    config USER_MIRYOKU_ALPHAS_COLEMAK
+      bool "Colemak"
+
+    config USER_MIRYOKU_ALPHAS_COLEMAKDH
+      bool "Colemak Mod-DH"
+
+    config USER_MIRYOKU_ALPHAS_COLEMAKDHK
+      bool "Colemak Mod-DHk"
+
+    config USER_MIRYOKU_ALPHAS_DVORAK
+      bool "Dvorak"
+
+    config USER_MIRYOKU_ALPHAS_HALMAK
+      bool "Halmak"
+
+    config USER_MIRYOKU_ALPHAS_WORKMAN
+      bool "Workman"
+
+    config USER_MIRYOKU_ALPHAS_QWERTY
+      bool "QWERTY"
+
+  endchoice
+
+  choice USER_MIRYOKU_NAV
+    prompt "Nav"
+    default USER_MIRYOKU_NAV_LINE
+
+    config USER_MIRYOKU_NAV_LINE
+      bool "Line"
+
+    config USER_MIRYOKU_NAV_VI
+      bool "vi-style"
+      depends on USER_MIRYOKU_LAYERS_STANDARD
+
+    config USER_MIRYOKU_NAV_INVERTEDT
+      bool "Inverted-T"
+      help
+        ESDF
+      depends on USER_MIRYOKU_LAYERS_FLIP
+
+  endchoice
+
+  choice USER_MIRYOKU_CLIPBOARD
+    prompt "Clipboard"
+    default USER_MIRYOKU_CLIPBOARD_CUA
+
+    config USER_MIRYOKU_CLIPBOARD_CUA
+      bool "CUA"
+
+    config USER_MIRYOKU_CLIPBOARD_FUN
+      bool "Fun Cluster"
+
+    config USER_MIRYOKU_CLIPBOARD_MAC
+      bool "Mac"
+
+    config USER_MIRYOKU_CLIPBOARD_WIN
+      bool "Windows"
+
+  endchoice
+
+  choice USER_MIRYOKU_LAYERS
+    prompt "Layers"
+    default USER_MIRYOKU_LAYERS_STANDARD
+
+    config USER_MIRYOKU_LAYERS_STANDARD
+      bool "Standard"
+      help
+        left hand numpad, right hand nav
+
+    config USER_MIRYOKU_LAYERS_FLIP
+      bool "Flip"
+      help
+        left hand nav, right hand numpad
+
+  endchoice
+
+
+endmenu
