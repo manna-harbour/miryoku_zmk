@@ -11,98 +11,75 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        config:
+          - ""
+        board:
+          - nice_nano
+        shield:
+
+#          - bfo9000_left
+#          - bfo9000_right
+
+          - corne_left
+          - corne_right
+
+          - cradio_left
+          - cradio_right
+
+#          - cradio36_left
+#          - cradio36_right
+
+#          - cradios_left
+#          - cradios_right
+
+#          - cradioz_left
+#          - cradioz_right
+
+          - crbn
+
+          - eek
+
+          - helix_left
+          - helix_right
+
+          - iris_left
+          - iris_right
+
+          - jian_left
+          - jian_right
+
+          - jorne_left
+          - jorne_right
+
+          - kyria_left
+          - kyria_right
+
+          - lily58_left
+          - lily58_right
+
+          - microdox_left
+          - microdox_right
+
+          - sofle_left
+          - sofle_right
+
+          - splitreus62_left
+          - splitreus62_right
+
         include:
 
-
 #          - shield: absolem
-#            board: nice_nano
+#            board: 
 
-#          -board: ahokore
+#          - board: ahokore
 
-#          - shield: bfo9000_left
-#            board: nice_nano
-#          - shield: bfo9000_right
-#            board: nice_nano
-
-          - shield: corne_left
-            board: nice_nano
-          - shield: corne_right
-            board: nice_nano
-
-          - shield: cradio_left
-            board: nice_nano
-          - shield: cradio_right
-            board: nice_nano
-
-#          - shield: cradio36_left
-#            board: nice_nano
-#          - shield: cradio36_right
-#            board: nice_nano
-
-#          - shield: cradios_left
-#            board: nice_nano
-#          - shield: cradios_right
-#            board: nice_nano
-
-#          - shield: cradioz_left
-#            board: nice_nano
-#          - shield: cradioz_right
-#            board: nice_nano
-
-          - shield: crbn
-            board: nice_nano
-
-          - shield: eek
-            board: nice_nano
-
-#          -board: ferris
-
-          - shield: helix_left
-            board: nice_nano
-          - shield: helix_right
-            board: nice_nano
-
-          - shield: iris_left
-            board: nice_nano
-          - shield: iris_right
-            board: nice_nano
-
-          - shield: jian_left
-            board: nice_nano
-          - shield: jian_right
-            board: nice_nano
-
-          - shield: jorne_left
-            board: nice_nano
-          - shield: jorne_right
-            board: nice_nano
-
-          - shield: kyria_left
-            board: nice_nano
-          - shield: kyria_right
-            board: nice_nano
-
-          - shield: lily58_left
-            board: nice_nano
-          - shield: lily58_right
-            board: nice_nano
-
-          - shield: microdox_left
-            board: nice_nano
-          - shield: microdox_right
-            board: nice_nano
+#          - board: ferris
 
           - board: planck_rev6
 
-          - shield: sofle_left
+          - config: clipboard_mac
             board: nice_nano
-          - shield: sofle_right
-            board: nice_nano
-
-          - shield: splitreus62_left
-            board: nice_nano
-          - shield: splitreus62_right
-            board: nice_nano
+            shield: corne_left
 
     steps:
       - name: Checkout
@@ -134,27 +111,54 @@ jobs:
       - name: Prepare variables
         id: variables
         run: |
+          ARTIFACT_NAME="Miryoku-ZMK"
           if [ -n "${{ matrix.shield }}" ]; then
             SHIELD_ARG="-DSHIELD=${{ matrix.shield }}"
-            ARTIFACT_NAME="${{ matrix.shield }}-${{ matrix.board }}-zmk"
+            ARTIFACT_NAME="$ARTIFACT_NAME-${{ matrix.shield }}-${{ matrix.board }}"
           else
             SHIELD_ARG=
-            ARTIFACT_NAME="${{ matrix.board }}-zmk"
+            ARTIFACT_NAME="$ARTIFACT_NAME-${{ matrix.board }}"
           fi
-
+          if [ -n "${{ matrix.config }}" ]; then
+            ARTIFACT_NAME="$ARTIFACT_NAME-${{ matrix.config }}"
+          fi
           echo ::set-output name=shield-arg::${SHIELD_ARG}
           echo ::set-output name=artifact-name::${ARTIFACT_NAME}
+          ARTIFACTS_DIR=artifacts
+          echo "::set-output name=artifacts-dir::$ARTIFACTS_DIR"
+      - name: Copy config file
+        run: |
+          if [ -n "${{ matrix.config }}" ]; then
+            cp "${GITHUB_WORKSPACE}/miryoku/configs/${{ matrix.config }}.h" "${GITHUB_WORKSPACE}/miryoku/config.h"
+          fi
       - name: Build (west build)
         run: west build -s zmk/app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }}
           -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
-      - name: Generated DTS file
-        if: always()
-        run: cat -n build/zephyr/${{ matrix.board }}.dts.pre.tmp
+      - name: Prepare artifacts
+        run: |
+          mkdir ${{ steps.variables.outputs.artifacts-dir }}
+          if [ -n "${{ matrix.config }}" ]; then
+            cp "${GITHUB_WORKSPACE}/miryoku/config.h" ${{ steps.variables.outputs.artifacts-dir }}
+          fi
+          basename="build/zephyr/zmk"
+          for extension in "hex" "uf2"
+          do
+            file="$basename.$extension"
+            if [ -f "$file" ]
+            then
+              cp "$file" "${{ steps.variables.outputs.artifacts-dir }}/${{ steps.variables.outputs.artifact-name }}.$extension"
+            fi
+          done
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.variables.outputs.artifact-name }}
           path: |
-            build/zephyr/zmk.hex
-            build/zephyr/zmk.uf2
+             ${{ steps.variables.outputs.artifacts-dir }}
         continue-on-error: true
+
+
+
+# todo: 
+# remove _left and _right from artifact dir and put at the end of artifact filename
+# fix Array

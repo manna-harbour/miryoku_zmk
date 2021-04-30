@@ -695,6 +695,7 @@ standard keycode to implementation equivalent
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/outputs.h>
+#include "config.h"
 
 <<table-layer-defines()>>
 
