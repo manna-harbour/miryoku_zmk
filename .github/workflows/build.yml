@@ -115,45 +115,26 @@ jobs:
           if [ -n "${{ matrix.shield }}" ]
           then
             SHIELD_ARG="-DSHIELD=${{ matrix.shield }}"
-            KEYBOARD_BUILD_NAME="${{ matrix.shield }}-${{ matrix.board }}"
-            KEYBOARD_GENERIC_NAME=`echo "${{ matrix.shield }}" | sed 's/_\(left\|right\)$//'`"-${{ matrix.board }}"
-          else
-            SHIELD_ARG=
-            KEYBOARD_BUILD_NAME="${{ matrix.board }}"
-            KEYBOARD_GENERIC_NAME=`echo "${{ matrix.board }}" | sed 's/_\(left\|right\)$//'`
           fi
-          FIRMWARE_NAME="Miryoku-ZMK"
-          if [ -n "${{ matrix.config }}" ]
-          then
-            ARTIFACT_BUILD_NAME="$FIRMWARE_NAME-$KEYBOARD_BUILD_NAME-${{ matrix.config }}"
-            ARTIFACT_GENERIC_NAME="$FIRMWARE_NAME-$KEYBOARD_GENERIC_NAME-${{ matrix.config }}"
-          else
-            ARTIFACT_BUILD_NAME="$FIRMWARE_NAME-$KEYBOARD_BUILD_NAME"
-            ARTIFACT_GENERIC_NAME="$FIRMWARE_NAME-$KEYBOARD_GENERIC_NAME"
-          fi
-          TMPDIR=artifacts
           echo "::set-output name=shield-arg::${SHIELD_ARG}"
-          echo "::set-output name=artifact-build-name::${ARTIFACT_BUILD_NAME}"
-          echo "::set-output name=artifact-generic-name::${ARTIFACT_GENERIC_NAME}"
-          echo "::set-output name=tmpdir::$TMPDIR"
+          artifact_build_name=`echo miryoku-zmk ${{ matrix.shield }} ${{ matrix.board }} ${{ matrix.config }} | tr ' ' '-'`
+          echo "::set-output name=artifact-build-name::$artifact_build_name"
+          echo "::set-output name=artifact-generic-name::"`echo "$artifact_build_name" | sed 's/_\(left\|right\)//'`
+          echo "::set-output name=tmpdir::artifacts"
       - name: Copy config file
         run: |
           if [ -n "${{ matrix.config }}" ]; then
             cp "${GITHUB_WORKSPACE}/miryoku/configs/${{ matrix.config }}.h" "${GITHUB_WORKSPACE}/miryoku/config.h"
           fi
       - name: Build (west build)
-        run: west build -s zmk/app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }}
-          -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+        run: west build -s zmk/app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
       - name: Prepare artifacts
         run: |
           mkdir ${{ steps.variables.outputs.tmpdir }}
-          if [ -n "${{ matrix.config }}" ]; then
-            cp "${GITHUB_WORKSPACE}/miryoku/config.h" ${{ steps.variables.outputs.tmpdir }}
-          fi
-          basename="build/zephyr/zmk"
+          cp "${GITHUB_WORKSPACE}/miryoku/config.h" ${{ steps.variables.outputs.tmpdir }}
           for extension in "hex" "uf2"
           do
-            file="$basename.$extension"
+            file="build/zephyr/zmk.$extension"
             if [ -f "$file" ]
             then
               cp "$file" "${{ steps.variables.outputs.tmpdir }}/${{ steps.variables.outputs.artifact-build-name }}.$extension"
@@ -163,6 +144,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.variables.outputs.artifact-generic-name }}
-          path: |
-             ${{ steps.variables.outputs.tmpdir }}
+          path: ${{ steps.variables.outputs.tmpdir }}
         continue-on-error: true
