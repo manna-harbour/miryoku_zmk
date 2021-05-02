@@ -64,8 +64,11 @@ jobs:
 
         board:
           - nice_nano
-        config:
-          - ""
+        alphas: [""]
+        nav: [""]
+        clipboard: [""]
+        layers: [""]
+        mapping: [""]
 
         include:
 
@@ -80,7 +83,9 @@ jobs:
 
           - shield: corne_left
             board: nice_nano
-            config: clipboard_mac
+            alphas: qwerty
+            nav: vi
+            clipboard: win
 
     steps:
       - name: Checkout
@@ -109,7 +114,7 @@ jobs:
         run: west update
       - name: Export Zephyr CMake package (west zephyr-export)
         run: west zephyr-export
-      - name: Prepare variables
+      - name: Process matrix
         id: variables
         run: |
           if [ -n "${{ matrix.shield }}" ]
@@ -117,21 +122,48 @@ jobs:
             SHIELD_ARG="-DSHIELD=${{ matrix.shield }}"
           fi
           echo "::set-output name=shield-arg::${SHIELD_ARG}"
-          artifact_build_name=`echo miryoku-zmk ${{ matrix.shield }} ${{ matrix.board }} ${{ matrix.config }} | tr ' ' '-'`
+
+          configfile="${GITHUB_WORKSPACE}/miryoku/config.h"
+          echo "::set-output name=configfile::$configfile"
+          add_config()
+          {
+            echo "#define MIRYOKU_"`echo "$1" | tr 'a-z' 'A-Z'` >> "$configfile"
+          }
+          if [ -n "${{ matrix.alphas }}" ]
+          then
+            alphas="alphas_${{ matrix.alphas }}"
+            add_config "$alphas"
+          fi
+          if [ -n "${{ matrix.nav }}" ]
+          then
+            nav="nav_${{ matrix.nav }}"
+            add_config "$nav"
+          fi
+          if [ -n "${{ matrix.clipboard }}" ]
+          then
+            clipboard="clipboard_${{ matrix.clipboard }}"
+            add_config "$clipboard"
+          fi
+          if [ -n "${{ matrix.layers }}" ]
+          then
+            layers="layers_${{ matrix.layers }}"
+            add_config "$layers"
+          fi
+          if [ -n "${{ matrix.mapping }}" ]
+          then
+            mapping="mapping_${{ matrix.mapping }}"
+            add_config "$mapping"
+          fi
+          artifact_build_name=`echo miryoku-zmk ${{ matrix.shield }} ${{ matrix.board }} $alphas $nav $clipboard $layers $mapping | tr ' ' '-'`
           echo "::set-output name=artifact-build-name::$artifact_build_name"
           echo "::set-output name=artifact-generic-name::"`echo "$artifact_build_name" | sed 's/_\(left\|right\)//'`
           echo "::set-output name=tmpdir::artifacts"
-      - name: Copy config file
-        run: |
-          if [ -n "${{ matrix.config }}" ]; then
-            cp "${GITHUB_WORKSPACE}/miryoku/configs/${{ matrix.config }}.h" "${GITHUB_WORKSPACE}/miryoku/config.h"
-          fi
       - name: Build (west build)
         run: west build -s zmk/app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
       - name: Prepare artifacts
         run: |
           mkdir ${{ steps.variables.outputs.tmpdir }}
-          cp "${GITHUB_WORKSPACE}/miryoku/config.h" ${{ steps.variables.outputs.tmpdir }}
+          cp "${{ steps.variables.outputs.configfile }}" "${{ steps.variables.outputs.tmpdir }}"
           for extension in "hex" "uf2"
           do
             file="build/zephyr/zmk.$extension"
