@@ -1,7 +1,5 @@
-name: Build
+name: 'Build all keyboards'
 on:
-  - push
-  - pull_request
   - workflow_dispatch
 jobs:
   build:
@@ -12,56 +10,30 @@ jobs:
       fail-fast: false
       matrix:
         shield:
-
-#          - bfo9000_left
-#          - bfo9000_right
-
           - corne_left
           - corne_right
-
           - cradio_left
           - cradio_right
-
-#          - cradio36_left
-#          - cradio36_right
-
-#          - cradios_left
-#          - cradios_right
-
-#          - cradioz_left
-#          - cradioz_right
-
           - crbn
-
           - eek
-
           - helix_left
           - helix_right
-
           - iris_left
           - iris_right
-
           - jian_left
           - jian_right
-
           - jorne_left
           - jorne_right
-
           - kyria_left
           - kyria_right
-
           - lily58_left
           - lily58_right
-
           - microdox_left
           - microdox_right
-
           - sofle_left
           - sofle_right
-
           - splitreus62_left
           - splitreus62_right
-
         board:
           - nice_nano
         alphas: [""]
@@ -69,24 +41,8 @@ jobs:
         clipboard: [""]
         layers: [""]
         mapping: [""]
-
         include:
-
-#          - shield: absolem
-#            board: 
-
-#          - board: ahokore
-
-#          - board: ferris
-
           - board: planck_rev6
-
-          - shield: corne_left
-            board: nice_nano
-            alphas: qwerty
-            nav: vi
-            clipboard: win
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -125,56 +81,39 @@ jobs:
 
           configfile="${GITHUB_WORKSPACE}/miryoku/config.h"
           echo "::set-output name=configfile::$configfile"
-          add_config()
-          {
-            echo "#define MIRYOKU_"`echo "$1" | tr 'a-z' 'A-Z'` >> "$configfile"
-          }
-          if [ -n "${{ matrix.alphas }}" ]
-          then
-            alphas="alphas_${{ matrix.alphas }}"
-            add_config "$alphas"
-          fi
-          if [ -n "${{ matrix.nav }}" ]
-          then
-            nav="nav_${{ matrix.nav }}"
-            add_config "$nav"
-          fi
-          if [ -n "${{ matrix.clipboard }}" ]
-          then
-            clipboard="clipboard_${{ matrix.clipboard }}"
-            add_config "$clipboard"
-          fi
-          if [ -n "${{ matrix.layers }}" ]
-          then
-            layers="layers_${{ matrix.layers }}"
-            add_config "$layers"
-          fi
-          if [ -n "${{ matrix.mapping }}" ]
-          then
-            mapping="mapping_${{ matrix.mapping }}"
-            add_config "$mapping"
-          fi
-          artifact_build_name=`echo miryoku-zmk ${{ matrix.shield }} ${{ matrix.board }} $alphas $nav $clipboard $layers $mapping | tr ' ' '-'`
+
+          artifact_build_name="miryoku_zmk ${{ matrix.shield }} ${{ matrix.board }}"
+          for option in "alphas_${{ matrix.alphas }}" "nav_${{ matrix.nav }}" "clipboard_${{ matrix.clipboard }}" "layers_${{ matrix.layers }}" "mapping_${{ matrix.mapping }}"
+          do
+            case "$option" in
+              *_ ) ;;
+              * )
+                artifact_build_name="$artifact_build_name $option"
+                echo "#define MIRYOKU_"`echo "$option" | tr 'a-z' 'A-Z'` >> "$configfile"
+                ;;
+            esac
+          done
+          artifact_build_name=`echo $artifact_build_name | tr ' ' '-'`
           echo "::set-output name=artifact-build-name::$artifact_build_name"
           echo "::set-output name=artifact-generic-name::"`echo "$artifact_build_name" | sed 's/_\(left\|right\)//'`
-          echo "::set-output name=tmpdir::artifacts"
+          echo "::set-output name=artifact-dir::artifacts"
       - name: Build (west build)
         run: west build -s zmk/app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
       - name: Prepare artifacts
         run: |
-          mkdir ${{ steps.variables.outputs.tmpdir }}
-          cp "${{ steps.variables.outputs.configfile }}" "${{ steps.variables.outputs.tmpdir }}"
+          mkdir ${{ steps.variables.outputs.artifact-dir }}
+          cp "${{ steps.variables.outputs.configfile }}" "${{ steps.variables.outputs.artifact-dir }}"
           for extension in "hex" "uf2"
           do
             file="build/zephyr/zmk.$extension"
             if [ -f "$file" ]
             then
-              cp "$file" "${{ steps.variables.outputs.tmpdir }}/${{ steps.variables.outputs.artifact-build-name }}.$extension"
+              cp "$file" "${{ steps.variables.outputs.artifact-dir }}/${{ steps.variables.outputs.artifact-build-name }}.$extension"
             fi
           done
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
           name: ${{ steps.variables.outputs.artifact-generic-name }}
-          path: ${{ steps.variables.outputs.tmpdir }}
+          path: ${{ steps.variables.outputs.artifact-dir }}
         continue-on-error: true
