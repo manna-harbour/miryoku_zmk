@@ -78,10 +78,9 @@ jobs:
             SHIELD_ARG="-DSHIELD=${{ matrix.shield }}"
           fi
           echo "::set-output name=shield-arg::${SHIELD_ARG}"
-
           configfile="${GITHUB_WORKSPACE}/miryoku/config.h"
+          echo '// https://github.com/manna-harbour/miryoku-zmk/' > "$configfile"
           echo "::set-output name=configfile::$configfile"
-
           artifact_build_name="miryoku_zmk ${{ matrix.shield }} ${{ matrix.board }}"
           for option in "alphas_${{ matrix.alphas }}" "nav_${{ matrix.nav }}" "clipboard_${{ matrix.clipboard }}" "layers_${{ matrix.layers }}" "mapping_${{ matrix.mapping }}"
           do
