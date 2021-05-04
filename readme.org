@@ -2,14 +2,13 @@
 
 [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/cover/miryoku-kle-cover.png]]
 
-[[https://github.com/manna-harbour/miryoku/][Miryoku]] is an ergonomic, minimal,
-orthogonal, and universal keyboard layout.  This is the miryoku implementation
-for [[https://zmkfirmware.dev/][ZMK]].
+[[https://github.com/manna-harbour/miryoku/][Miryoku]] is an ergonomic, minimal, orthogonal, and universal keyboard layout.  This is the miryoku implementation for [[https://zmkfirmware.dev/][ZMK]].
 
 * Contents                                                              :TOC_1:
 - [[#miryoku-keymap][Miryoku Keymap]]
 - [[#configuration-options][Configuration Options]]
-- [[#example-keyboard-keymap][Example Keyboard Keymap]]
+- [[#config-file][Config File]]
+- [[#example-config-file][Example Config File]]
 - [[#mapping][Mapping]]
 - [[#keyboard-keymaps][Keyboard Keymaps]]
 - [[#prebuilt-firmware][Prebuilt Firmware]]
@@ -17,10 +16,7 @@ for [[https://zmkfirmware.dev/][ZMK]].
 
 * Miryoku Keymap
 
-The miryoku keymap is a ZMK DT keymap file using C preprocessor macros for
-[[#configuration-options][configuration options]] and to abstract the physical
-layout.  The file is [[./miryoku/miryoku.dtsi][miryoku/miryoku.dtsi]].  The file
-is included into the [[#keyboard-keymaps][keyboard's keymap]] with
+The miryoku keymap is a ZMK DT keymap file using C preprocessor macros for [[#configuration-options][configuration options]] and to abstract the physical layout.  The file is [[./miryoku/miryoku.dtsi][miryoku/miryoku.dtsi]].  The file is included into the [[#keyboard-keymaps][keyboard's keymap]] with
 
 #+BEGIN_SRC C :tangle no
 #include "../miryoku/miryoku.dtsi"
@@ -29,22 +25,17 @@ is included into the [[#keyboard-keymaps][keyboard's keymap]] with
 
 * Configuration Options
 
-[[https://github.com/manna-harbour/miryoku/blob/master/src/babel/readme.org#keymap-configuration-options][Keymap
-configuration options]] and [[#mapping][mapping]] configuration options are
-given in the documentation in the form ~option=value~.  To use configuration
-options in Miryoku ZMK, convert to the form ~#define option_value~ and add to
-the [[#keyboard-keymaps][keyboard keymap]] file before the [[#mapping][mapping]]
-or [[#miryoku-keymap][miryoku keymap]] includes.  See the
-[[#example-keyboard-keymap][example keyboard keymap]].
+[[https://github.com/manna-harbour/miryoku/blob/master/src/babel/readme.org#keymap-configuration-options][Keymap configuration options]] and [[#mapping][mapping]] configuration options are given in the documentation in the form ~option=value~.  To use configuration options in Miryoku ZMK, convert to the form ~#define option_value~.  To apply the configuration options to all builds add them to the [[#config-file][config file]].  To apply configuration options to a single keyboard, add them to the [[#keyboard-keymaps][keyboard keymap]] file before any ~#include~ lines.
 
 
-* Example Keyboard Keymap
+* Config File
 
-Below is an example [[#keyboard-keymaps][keyboard keymap file]] for the ~kyria~
-shield using the ~50-kyria~ [[#mapping][mapping]] with
-~MIRYOKU_MAPPING=EXTENDED_THUMBS~ mapping
-[[#configuration-options][configuration option]] and the following layout
-[[#configuration-options][configuration options]]:
+The config file can be used to provide [[#configuration-options][configuration options]] for all keyboard builds.  The file is [[./miryoku/config.h][miryoku/config.h]].  See the [[#example-config-file][example config file]].
+
+
+* Example Config File
+
+Below is an example [[#config-file][config file]] with the following keymap [[#configuration-options][configuration options]]:
 
 - ~MIRYOKU_ALPHAS=QWERTY~
 - ~MIRYOKU_NAV=VI~
@@ -53,38 +44,28 @@ shield using the ~50-kyria~ [[#mapping][mapping]] with
 #+BEGIN_SRC C :tangle nos
 // https://github.com/manna-harbour/miryoku-zmk/
 
-#define MIRYOKU_MAPPING_EXTENDED_THUMBS
 #define MIRYOKU_ALPHAS_QWERTY
 #define MIRYOKU_NAV_VI
 #define MIRYOKU_CLIPBOARD_WIN
-
-#include "../miryoku/mapping/50-kyria.h"
-#include "../miryoku/miryoku.dtsi"
 #+END_SRC
 
 
 * Mapping
 
-The keymap is mapped onto keyboards with different physical layouts.  The keymap
-is specified in terms of the ~MIRYOKU_MAPPING~ macro.  The macro is defined in a
-C header file for each physical layout.  Unused keys are mapped to ~&none~.  The
-files are in [[./miryoku/mapping/][miryoku/mapping/]].  The
-mapping file is included into the keyboard's keymap file before the miryoku
-keymap with e.g.
+The keymap is mapped onto keyboards with different physical layouts.  The keymap is specified in terms of the ~MIRYOKU_MAPPING~ macro.  The macro is defined in a C header file for each physical layout.  Unused keys are mapped to ~&none~.  The files are in [[./miryoku/mapping/][miryoku/mapping/]].  The mapping file is included into the keyboard's keymap file before the miryoku keymap with e.g.
 
 #+BEGIN_SRC C :tangle no
 #include "../miryoku/mapping/36-minidox.h"
 #+END_SRC
 
-On each hand, only the main alpha block of 3 rows by 5 columns and the 3 most
-appropriate thumb keys are used.  Notes or diagrams are included where the
-selection of keys is not obvious or where options are provided.
+On each hand, only the main alpha block of 3 rows by 5 columns and the 3 most appropriate thumb keys are used.  Notes or diagrams are included where the selection of keys is not obvious or where alternatives are provided via mapping [[#configuration-options][configuration options]].
 
-Configuration options
 
 ** Layouts
 
+
 *** 34-ferris
+
 
 **** Combo TPS
 
@@ -98,17 +79,23 @@ compatibility
 
 *** 36-minidox
 
+
 *** 42-corne
+
 
 *** 44-jian
 
+
 *** 48-planck
 
+
 *** 50-kyria
+
 
 **** Default
 
 [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/mapping/miryoku-kle-mapping-kyria.png]]
+
 
 **** Extend Thumbs
 
@@ -134,27 +121,20 @@ compatibility
 
 * Keyboard Keymaps
 
-Keymap files for many keyboards included in ZMK are provided in
-[[./config/][config/]].
+Keymap files for many keyboards included in ZMK are provided in [[./config/][config/]].
 
 
 * Prebuilt Firmware
 
-Prebuilt firmware for supported keyboards can be downloaded from the repo when
-logged in.  From the
-[[https://github.com/manna-harbour/miryoku-zmk/actions][Actions]] tab select the
-latest successful workflow run, then select the keyboard in the Artifacts
-section.
+Prebuilt firmware can be downloaded from the repo.  Log in to GitHub, visit the [[https://github.com/manna-harbour/miryoku-zmk/actions][Actions]] tab, select the appropriate workflow, select the latest successful workflow run, select the desired artifact, and unzip the downloaded zip file.
 
 
 * Contact
 
-For issues with the code, including requests for any of the following, please
-[[https://github.com/manna-harbour/miryoku-zmk/issues/new][create an issue]].
-Pull requests are also welcome.
+For issues with the code, including requests for any of the following, please [[https://github.com/manna-harbour/miryoku-zmk/issues/new][create an issue]]. Pull requests are also welcome.
 
 - Additional mapping and keyboard keymap files
-- Additional mapping options (see miryoku QMK for examples)
+- Additional mapping configuration options (see miryoku QMK for examples)
 - Populating unused keys in ~MIRYOKU_MAPPING_TAP~ (currently skipped for some mapping files)
 
 [[https://github.com/manna-harbour][https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/manna-harbour-boa-32.png]]
