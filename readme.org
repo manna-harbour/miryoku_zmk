@@ -89,6 +89,19 @@ compatibility
 *** 48-planck
 
 
+**** Default
+
+
+[[https://raw.githubusercontent.com/manna-harbour/miryoku/master/kle-miryoku-mapping-ortho_4x12.png]]
+
+**** Extended Thumbs
+
+
+~MIRYOKU_MAPPING=EXTENDED_THUMBS~
+
+[[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/mapping/miryoku-kle-mapping-ortho_4x12-extended_thumbs.png]]
+
+
 *** 50-kyria
 
 
