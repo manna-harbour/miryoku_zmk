@@ -1,3 +1,4 @@
+
 # After making changes to code or tables call org-babel-tangle (C-c C-v t).
 
 #+Title: Miryoku ZMK Babel [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/miryoku-roa-32.png]]
@@ -297,8 +298,8 @@ for standard, local in keycode_translation_table:
   if local != '':
     keycode_translation_dict[standard] = local
 results = ''
-for tap_row, hold_row in map(None, tap_table, hold_table):
-  for tap, hold in map(None, tap_row, hold_row):
+for tap_row, hold_row in zip(tap_table, hold_table):
+  for tap, hold in zip(tap_row, hold_row):
     if tap == '':
       code = 'U_NU'
     elif tap in symbol_names_dict:
@@ -348,7 +349,7 @@ for standard, local in keycode_translation_table:
     keycode_translation_dict[standard] = local
 length = len(half_table[0])
 results = ''
-for half_row, hold_row in map(None, half_table, hold_table):
+for half_row, hold_row in zip(half_table, hold_table):
   hold_row_l, hold_row_r = hold_row[:length], hold_row[length:]
   for lr, hold_row_lr in ('l', hold_row_l), ('r', hold_row_r):
     if lr == mode:
