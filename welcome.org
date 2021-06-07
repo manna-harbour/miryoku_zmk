@@ -1,0 +1,25 @@
+* Welcome
+
+Welcome to the Miryoku ZMK alpha!
+
+There's still some work to do before it's published, so please don't
+redistribute.  If you fork, please make the fork private.
+
+You've been added as a collaborator to the repo as it's the easiest way to give
+access.  If you could avoid accidental force pushes to master that'd be great!
+You're not expected to contribute but contributions are of course welcome.  In
+that case please create a new branch and PR.
+
+Just a bit of an explanation of the current status: I'm doing a Miryoku
+reorganisation at the moment.  The general layout docs will move out of the QMK
+repo and get expanded.  The org stuff will also move and will generate QMK, ZMK,
+and more.  At the moment the org stuff in ZMK is separate until I finalise the
+scripts and re-integrate the changes, so it's a bit of a mess right now but the
+generated keymap shouldn't change much and is fine to use now.
+
+Please see https://github.com/manna-harbour/zmk-config/.
+The docs are still being written but should cover how it's set up.  Please let
+me know if you have any issues.
+
+
+
