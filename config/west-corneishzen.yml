@@ -1,0 +1,13 @@
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    - name: corne-ish_zen
+      url-base: https://github.com/Darryldh
+  projects:
+    - name: zmk
+      remote: corne-ish_zen
+      revision: Add-new-Board-Corne-ish-Zen
+      import: app/west.yml
+  self:
+    path: config
