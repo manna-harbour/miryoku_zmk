@@ -1,0 +1,13 @@
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    - name: dezlidezlidezli
+      url-base: https://github.com/dezlidezlidezli
+  projects:
+    - name: zmk
+      remote: dezlidezlidezli
+      revision: ahokorev2
+      import: app/west.yml
+  self:
+    path: config
