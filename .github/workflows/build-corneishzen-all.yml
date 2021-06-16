@@ -1,4 +1,4 @@
-name: 'Build all keyboards'
+name: 'Build corne-ish_zen with all options'
 on:
   - workflow_dispatch
 jobs:
@@ -10,39 +10,31 @@ jobs:
       fail-fast: false
       matrix:
         shield:
-          - corne_left
-          - corne_right
-          - cradio_left
-          - cradio_right
-          - crbn
-          - eek
-          - helix_left
-          - helix_right
-          - iris_left
-          - iris_right
-          - jian_left
-          - jian_right
-          - jorne_left
-          - jorne_right
-          - kyria_left
-          - kyria_right
-          - lily58_left
-          - lily58_right
-          - microdox_left
-          - microdox_right
-          - sofle_left
-          - sofle_right
-          - splitreus62_left
-          - splitreus62_right
+          - ""
         board:
-          - nice_nano
-        alphas: [""]
-        nav: [""]
-        clipboard: [""]
-        layers: [""]
-        mapping: [""]
+          - corne-ish_zen_left
+        alphas:
+          - ""
+          - colemak
+          - colemakdhk
+          - dvorak
+          - halmak
+          - workman
+          - qwerty
+        nav:
+          - ""
+          - vi
+        clipboard:
+          - ""
+          - fun
+          - mac
+          - win
+        layers:
+          - ""
+        mapping:
+          - ""
         include:
-          - board: planck_rev6
+          - board: corne-ish_zen_right
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -57,7 +49,7 @@ jobs:
             tools/
             zephyr/
             zmk/
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('config/west.yml') }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('config/west-corneishzen.yml') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
@@ -65,7 +57,7 @@ jobs:
         timeout-minutes: 2
         continue-on-error: true
       - name: Initialize workspace (west init)
-        run: west init -l config
+        run: west init -l config --mf west-corneishzen.yml
       - name: Update modules (west update)
         run: west update
       - name: Export Zephyr CMake package (west zephyr-export)
@@ -94,7 +86,7 @@ jobs:
           done
           artifact_build_name=`echo $artifact_build_name | tr ' ' '-'`
           echo "::set-output name=artifact-build-name::$artifact_build_name"
-          echo "::set-output name=artifact-generic-name::"`echo "$artifact_build_name" | sed 's/_\(left\|right\)//'`
+          echo "::set-output name=artifact-generic-name::$artifact_build_name"
           echo "::set-output name=artifact-dir::artifacts"
       - name: Build (west build)
         run: west build -s zmk/app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"

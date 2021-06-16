@@ -1,4 +1,4 @@
-name: 'Build corne-ish_zen with all options'
+name: 'Build all keyboards with default options'
 on:
   - workflow_dispatch
 jobs:
@@ -10,31 +10,39 @@ jobs:
       fail-fast: false
       matrix:
         shield:
-          - ""
+          - corne_left
+          - corne_right
+          - cradio_left
+          - cradio_right
+          - crbn
+          - eek
+          - helix_left
+          - helix_right
+          - iris_left
+          - iris_right
+          - jian_left
+          - jian_right
+          - jorne_left
+          - jorne_right
+          - kyria_left
+          - kyria_right
+          - lily58_left
+          - lily58_right
+          - microdox_left
+          - microdox_right
+          - sofle_left
+          - sofle_right
+          - splitreus62_left
+          - splitreus62_right
         board:
-          - corne-ish_zen_left
-        alphas:
-          - ""
-          - colemak
-          - colemakdhk
-          - dvorak
-          - halmak
-          - workman
-          - qwerty
-        nav:
-          - ""
-          - vi
-        clipboard:
-          - ""
-          - fun
-          - mac
-          - win
-        layers:
-          - ""
-        mapping:
-          - ""
+          - nice_nano
+        alphas: [""]
+        nav: [""]
+        clipboard: [""]
+        layers: [""]
+        mapping: [""]
         include:
-          - board: corne-ish_zen_right
+          - board: planck_rev6
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -49,7 +57,7 @@ jobs:
             tools/
             zephyr/
             zmk/
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('config/west-corneishzen.yml') }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('config/west.yml') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
@@ -57,7 +65,7 @@ jobs:
         timeout-minutes: 2
         continue-on-error: true
       - name: Initialize workspace (west init)
-        run: west init -l config --mf west-corneishzen.yml
+        run: west init -l config
       - name: Update modules (west update)
         run: west update
       - name: Export Zephyr CMake package (west zephyr-export)

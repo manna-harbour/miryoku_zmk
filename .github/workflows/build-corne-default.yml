@@ -1,4 +1,4 @@
-name: 'Build corne'
+name: 'Build corne with default options'
 on:
   - push
   - pull_request
