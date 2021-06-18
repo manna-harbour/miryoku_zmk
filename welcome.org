@@ -2,24 +2,44 @@
 
 Welcome to the Miryoku ZMK alpha!
 
-There's still some work to do before it's published, so please don't
-redistribute.  If you fork, please make the fork private.
+*Please don't redistribute.  If you fork, please make the fork private.*
 
 You've been added as a collaborator to the repo as it's the easiest way to give
 access.  If you could avoid accidental force pushes to master that'd be great!
 You're not expected to contribute but contributions are of course welcome.  In
 that case please create a new branch and PR.
 
-Just a bit of an explanation of the current status: I'm doing a Miryoku
-reorganisation at the moment.  The general layout docs will move out of the QMK
-repo and get expanded.  The org stuff will also move and will generate QMK, ZMK,
-and more.  At the moment the org stuff in ZMK is separate until I finalise the
-scripts and re-integrate the changes, so it's a bit of a mess right now but the
-generated keymap shouldn't change much and is fine to use now.
+See the Todo section below, then see
+https://github.com/manna-harbour/zmk-config/.
 
-Please see https://github.com/manna-harbour/zmk-config/.
-The docs are still being written but should cover how it's set up.  Please let
-me know if you have any issues.
+Please let me know if you have any issues.
 
+** Todo
 
+The keymap can be used now, but there's still some work needed before release.
+
+*** Miryoku reorganisation
+
+Docs and code generation are being moved from the Miryoku QMK repo to the Miryoku repo.
+
+At the moment some links in the Miryoku ZMK docs will be broken as they are
+using future post-reorganisation URLs.
+
+*** Generate Miryoku ZMK from Miryoku Babel
+
+At the moment the Miryoku ZMK keymap is generated from
+[[miryoku/miryoku-zmk-babel.org]].
+
+*** Add new keyboard control layers
+
+At the moment bluetooth is in the media layer.  See
+[[miryoku/miryoku-zmk-babel.org#media-medr]].
+
+*** Add ZMK mouse keys
+
+At the moment the mouse layer is using mouse keys on the host.
+
+- X11: https://en.wikipedia.org/wiki/Mouse_keys
+- Windows: https://support.microsoft.com/en-us/windows/use-mouse-keys-to-move-the-mouse-pointer-9e0c72c8-b882-7918-8e7b-391fd62adf33
+- Mac: https://support.apple.com/en-au/guide/mac-help/mh27469/mac
 
