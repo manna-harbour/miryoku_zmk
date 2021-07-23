@@ -5,14 +5,53 @@
 [[https://github.com/manna-harbour/miryoku/][Miryoku]] is an ergonomic, minimal, orthogonal, and universal keyboard layout.  This is the miryoku implementation for [[https://zmkfirmware.dev/][ZMK]].
 
 * Contents                                                              :TOC_1:
+- [[#building][Building]]
 - [[#miryoku-keymap][Miryoku Keymap]]
 - [[#configuration-options][Configuration Options]]
 - [[#config-file][Config File]]
 - [[#example-config-file][Example Config File]]
 - [[#mapping][Mapping]]
 - [[#keyboard-keymaps][Keyboard Keymaps]]
-- [[#prebuilt-firmware][Prebuilt Firmware]]
 - [[#contact][Contact]]
+
+* Building
+
+
+** Supported Keyboards
+
+
+*** Board Only
+
+Any [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/arm][board supported by ZMK]] with a [[#keyboard-keymaps][keymap in Miryoku ZMK]].
+
+
+*** Board / Shield Combination
+
+Any compatible combination of [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/arm][board supported by ZMK]] and [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/shields][shield supported by ZMK]] with a [[#keyboard-keymaps][keymap in Miryoku ZMK]].
+
+
+** Local Builds
+
+Clone this repo and use for [[https://zmk.dev/docs/development/build-flash#building-from-zmk-config-folder][ZMK_CONFIG]].
+
+
+** GitHub Actions Workflows
+
+
+*** Prebuilt Firmware
+
+Some prebuilt firmware can be downloaded from the repo.  Log in to GitHub, visit the [[https://github.com/manna-harbour/zmk-config/actions][Actions]] tab, select the appropriate workflow, select the latest successful workflow run, select the desired artifact, and unzip the downloaded zip file.
+
+
+*** Inputs
+
+Fork this repo, select the [[https://github.com/manna-harbour/zmk-config/actions/workflows/build-with-inputs.yml][Build with inputs]] workflow action, select Run workflow, fill out the form with a [[#Supported-Keyboards][supported keyboard]] and [[#configuration-options][configuration options]], activate Run workflow, wait for successful completion, select the workflow run, select the Artifacts, and unzip the downloaded zip file.
+
+
+*** Customise Workflow Files
+
+Fork this repo and edit the included workflow files with [[#Supported-Keyboards][supported keyboards]] and [[#configuration-options][configuration options]].
+
 
 * Miryoku Keymap
 
@@ -25,12 +64,23 @@ The miryoku keymap is a ZMK DT keymap file using C preprocessor macros for [[#co
 
 * Configuration Options
 
-[[https://github.com/manna-harbour/miryoku/blob/master/src/babel/readme.org#keymap-configuration-options][Keymap configuration options]] and [[#mapping][mapping]] configuration options are given in the documentation in the form ~option=value~.  To use configuration options in Miryoku ZMK, convert to the form ~#define option_value~.  To apply the configuration options to all builds add them to the [[#config-file][config file]].  To apply configuration options to a single keyboard, add them to the [[#keyboard-keymaps][keyboard keymap]] file before any ~#include~ lines.
+[[https://github.com/manna-harbour/miryoku/blob/master/src/babel/readme.org#keymap-configuration-options][Keymap configuration options]] and [[#mapping][mapping]] configuration options are given in the documentation in the form ~option=value~.
+
+
+** Configuration Options in Config File
+
+Convert to the form ~#define option_value~.  To apply the configuration options to all builds add them to the [[#config-file][config file]].  To apply configuration options to a single keyboard, add them to the [[#keyboard-keymaps][keyboard keymap]] file before any ~#include~ lines.
+
+
+** Configuration Options in GitHub Actions Workflows
+
+
+Convert to the form ~value~ (uppercase or lowercase) and use with the corresponding ~option~ [[#Customise-Workflow-Files][matrix variable]] or [[#Inputs][input]].  Empty fields will use the default value.
 
 
 * Config File
 
-The config file can be used to provide [[#configuration-options][configuration options]] for all keyboard builds.  The file is [[./miryoku/config.h][miryoku/config.h]].  See the [[#example-config-file][example config file]].
+The config file can be used to provide [[#configuration-options][configuration options]] for all [[#Local-Builds][local builds]].  The file is [[./miryoku/config.h][miryoku/config.h]].  See the [[#example-config-file][example config file]].
 
 
 * Example Config File
@@ -99,8 +149,6 @@ compatibility
 
 ~MIRYOKU_MAPPING=EXTENDED_THUMBS~
 
-[[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/mapping/miryoku-kle-mapping-ortho_4x12-extended_thumbs.png]]
-
 
 *** 50-kyria
 
@@ -136,18 +184,11 @@ compatibility
 
 Keymap files for many keyboards included in ZMK are provided in [[./config/][config/]].
 
-
-* Prebuilt Firmware
-
-Prebuilt firmware can be downloaded from the repo.  Log in to GitHub, visit the [[https://github.com/manna-harbour/miryoku-zmk/actions][Actions]] tab, select the appropriate workflow, select the latest successful workflow run, select the desired artifact, and unzip the downloaded zip file.
-
-
 * Contact
 
-For issues with the code, including requests for any of the following, please [[https://github.com/manna-harbour/miryoku-zmk/issues/new][create an issue]]. Pull requests are also welcome.
+For feature requests or issues with code or documentation please
+[[https://github.com/manna-harbour/zmk-config/issues/new][open an issue]].
 
-- Additional mapping and keyboard keymap files
-- Additional mapping configuration options (see miryoku QMK for examples)
-- Populating unused keys in ~MIRYOKU_MAPPING_TAP~ (currently skipped for some mapping files)
+For more general discussion please [[https://github.com/manna-harbour/manna-harbour/tree/main/contact][contact Manna Harbour]].
 
 [[https://github.com/manna-harbour][https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/manna-harbour-boa-32.png]]
