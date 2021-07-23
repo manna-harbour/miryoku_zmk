@@ -1,10 +1,13 @@
-name: 'Build corne with default options'
+name: 'Build corne_left with default options'
 on:
-  - push
-  - pull_request
-  - workflow_dispatch
+  push:
+    branches:
+    - master
+  pull_request:
+  workflow_dispatch:
 jobs:
   build:
+    if: github.repository == 'manna-harbour/zmk-config'
     runs-on: ubuntu-latest
     container:
       image: zmkfirmware/zmk-build-arm:2.4
@@ -13,7 +16,6 @@ jobs:
       matrix:
         shield:
           - corne_left
-          - corne_right
         board:
           - nice_nano
         alphas: [""]
