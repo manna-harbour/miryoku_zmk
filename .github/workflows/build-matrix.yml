@@ -1,4 +1,4 @@
-name: 'Build matrix'
+name: 'Build Matrix'
 on:
   - workflow_dispatch
 jobs:

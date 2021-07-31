@@ -1,4 +1,4 @@
-name: 'Build inputs'
+name: 'Build Inputs'
 on:
   workflow_dispatch:
     inputs:
