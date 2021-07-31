@@ -1,0 +1,206 @@
+name: 'Test Configs'
+on:
+  - workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: zmkfirmware/zmk-build-arm:2.5
+    strategy:
+      fail-fast: false
+      matrix:
+        shield:
+# with shield:
+          # - absolem # out
+          # - bastyl_left # out
+          # - bastyl_right # out
+          - corne_left # in
+          # - corne_right # in
+          # - cradio36_left # TODO
+          # - cradio36_right # TODO
+          # - cradio_left # in
+          # - cradio_right # in
+          # - cradios_left # TODO
+          # - cradios_right # TODO
+          # - cradioz_left # TODO
+          # - cradioz_right # TODO
+          # - crbn # in
+          # - eek # in
+          # - helix_left # in
+          # - helix_right # in
+          # - iris_left # in
+          # - iris_right # in
+          # - jian_left # in
+          # - jian_right # in
+          # - jorne_left # in
+          # - jorne_right # in
+          # - kyria_left # in
+          # - kyria_right # in
+          # - lily58_left # in
+          # - lily58_right # in
+          # - microdox_left # in
+          # - microdox_right # in
+          # - pteron36_left # out
+          # - pteron36_right # out
+          # - sofle_left # in
+          # - sofle_right # in
+          # - splitreus62_left # in
+          # - splitreus62_right # in
+# without shield:
+          # - ""
+        board:
+# with shield:
+          # - bluemicro840
+          - nice_nano
+          # - nice_nano_v2
+          # - nrfmicro
+          # - proton_c
+# without shield:
+          # - ahokore # out
+          # - corne-ish_zen_left # TODO
+          # - corne-ish_zen_right # TODO
+          # - ferris_rev02_left # WIP
+          # - ferris_rev02_right # WIP
+          # - planck_rev6 # in
+          # - zaphod # out
+        alphas:
+          - ""
+          - colemak
+          - colemakdhk
+          - dvorak
+          - halmak
+          - workman
+          - qwerty
+        nav:
+          - ""
+          - vi
+          - invertedt
+        clipboard:
+          - ""
+          - fun
+          - mac
+          - win
+        layers:
+          - ""
+          # - flip
+        mapping:
+          - ""
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Process inputs
+        id: inputs
+        run: |
+          echo "::set-output name=board::${{ matrix.board }}"
+          echo "::set-output name=shield::${{ matrix.shield }}"
+          echo "::set-output name=alphas::${{ matrix.alphas }}"
+          echo "::set-output name=nav::${{ matrix.nav }}"
+          echo "::set-output name=clipboard::${{ matrix.clipboard }}"
+          echo "::set-output name=layers::${{ matrix.layers }}"
+          echo "::set-output name=mapping::${{ matrix.mapping }}"
+      - name: Process variables
+        id: variables
+        run: |
+          keyboard=${{ steps.inputs.outputs.board }}
+          if [ -n "${{ steps.inputs.outputs.shield }}" ]
+          then
+            SHIELD_ARG="-DSHIELD=${{ steps.inputs.outputs.shield }}"
+            keyboard=${{ steps.inputs.outputs.shield }}
+          fi
+          echo "::set-output name=shield-arg::${SHIELD_ARG}"
+          keyboard=`echo "$keyboard" | sed 's/_\(left\|right\)//'`
+
+          configfile="${GITHUB_WORKSPACE}/miryoku/config.h"
+          echo '// https://github.com/manna-harbour/miryoku-zmk/' > "$configfile"
+          echo "::set-output name=configfile::$configfile"
+
+          artifact_build_name="miryoku_zmk ${{ steps.inputs.outputs.shield }} ${{ steps.inputs.outputs.board }}"
+          for option in "alphas_${{ steps.inputs.outputs.alphas }}" "nav_${{ steps.inputs.outputs.nav }}" "clipboard_${{ steps.inputs.outputs.clipboard }}" "layers_${{ steps.inputs.outputs.layers }}" "mapping_${{ steps.inputs.outputs.mapping }}"
+          do
+            case "$option" in
+              *_ ) ;;
+              * )
+                artifact_build_name="$artifact_build_name $option"
+                echo "#define MIRYOKU_"`echo "$option" | tr 'a-z' 'A-Z'` >> "$configfile"
+                ;;
+            esac
+          done
+          artifact_build_name=`echo $artifact_build_name | tr ' ' '-'`
+          echo "::set-output name=artifact-build-name::$artifact_build_name"
+          echo "::set-output name=artifact-generic-name::"`echo "$artifact_build_name" | sed 's/_\(left\|right\)//'`
+          echo "::set-output name=artifact-dir::artifacts"
+
+          manifests="manifests"
+          manifest="$manifests/west-$keyboard.yml"
+          if  [ ! -f "config/$manifest" ]
+          then
+            manifest="west.yml"
+          fi
+          echo "::set-output name=manifest::$manifest"
+
+          echo "::set-output name=board-config::board-config"
+
+          env_file="config/board-configs/$keyboard.env"
+          if [ -f "$env_file" ]
+          then
+            cat "$env_file" >> $GITHUB_ENV
+            echo "::set-output name=has_board_config::true"
+          fi
+      - name: Checkout board-config
+        if: ${{ steps.variables.outputs.has_board_config == 'true' }}
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ env.board_config_repository }}
+          ref: ${{ env.board_config_ref }}
+          path: ${{ steps.variables.outputs.board-config }}
+      - name: Use board-config
+        if: ${{ steps.variables.outputs.has_board_config == 'true' }}
+        run: |
+          mkdir -p `dirname "config/${{ env.board_config_to }}"`
+          ln -sr ${{ steps.variables.outputs.board-config }}/${{ env.board_config_from }} config/${{ env.board_config_to }}
+          if [ -n "${{ env.board_config_manifestdir }}" ]
+          then
+            cp ${{ steps.variables.outputs.board-config }}/${{ env.board_config_manifestdir }}/west.yml config/
+            cat config/west.yml
+          fi
+      - name: Cache west modules
+        uses: actions/cache@v2
+        env:
+          cache-name: zephyr
+        with:
+          path: |
+            bootloader/
+            modules/
+            tools/
+            zephyr/
+            zmk/
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles(format('config/{0}', steps.variables.outputs.manifest)) }}
+          restore-keys: ${{ runner.os }}-${{ env.cache-name }}
+        timeout-minutes: 2
+        continue-on-error: true
+      - name: Initialize workspace (west init)
+        run: west init -l config --mf ${{ steps.variables.outputs.manifest }}
+      - name: Update modules (west update)
+        run: west update
+      - name: Export Zephyr CMake package (west zephyr-export)
+        run: west zephyr-export
+      - name: Build (west build)
+        run: west build -s zmk/app -b ${{ steps.inputs.outputs.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+      - name: Prepare artifacts
+        run: |
+          mkdir ${{ steps.variables.outputs.artifact-dir }}
+          cp "${{ steps.variables.outputs.configfile }}" "${{ steps.variables.outputs.artifact-dir }}"
+          for extension in "hex" "uf2"
+          do
+            file="build/zephyr/zmk.$extension"
+            if [ -f "$file" ]
+            then
+              cp "$file" "${{ steps.variables.outputs.artifact-dir }}/${{ steps.variables.outputs.artifact-build-name }}.$extension"
+            fi
+          done
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.variables.outputs.artifact-generic-name }}
+          path: ${{ steps.variables.outputs.artifact-dir }}
+        continue-on-error: true

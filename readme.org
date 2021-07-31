@@ -37,6 +37,7 @@ Clone this repo and use for [[https://zmk.dev/docs/development/build-flash#build
 
 ** GitHub Actions Workflows
 
+Some out of tree boards and shields are automatically supported in the included workflows.  See [[./config/board-configs/]].
 
 *** Prebuilt Firmware
 
@@ -45,12 +46,12 @@ Some prebuilt firmware can be downloaded from the repo.  Log in to GitHub, visit
 
 *** Inputs
 
-Fork this repo, select the [[https://github.com/manna-harbour/zmk-config/actions/workflows/build-with-inputs.yml][Build with inputs]] workflow action, select Run workflow, fill out the form with a [[#Supported-Keyboards][supported keyboard]] and [[#configuration-options][configuration options]], activate Run workflow, wait for successful completion, select the workflow run, select the Artifacts, and unzip the downloaded zip file.
+Fork this repo, select the [[https://github.com/manna-harbour/zmk-config/actions/workflows/build-inputs.yml][Build Inputs]] workflow action, select Run workflow, fill out the form with a [[#Supported-Keyboards][supported keyboard]] and [[#configuration-options][configuration options]], activate Run workflow, wait for successful completion, select the workflow run, select the Artifacts, and unzip the downloaded zip file.
 
 
 *** Customise Workflow Files
 
-Fork this repo and edit the included workflow files with [[#Supported-Keyboards][supported keyboards]] and [[#configuration-options][configuration options]].
+Fork this repo, copy, and edit the included [[https://github.com/manna-harbour/zmk-config/actions/workflows/build-matrix.yml][Build Matrix]] workflow files with [[#Supported-Keyboards][supported keyboards]] and [[#configuration-options][configuration options]].
 
 
 * Miryoku Keymap

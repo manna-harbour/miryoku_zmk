@@ -1,0 +1,158 @@
+name: 'Build inputs'
+on:
+  workflow_dispatch:
+    inputs:
+      board:
+        description: 'Board'
+        required: true
+        default: 'nice_nano'
+      shield:
+        description: 'Shield'
+        required: false
+        default: 'corne_left'
+      alphas:
+        description: 'Miryoku Alphas'
+        required: false
+        default: ''
+      nav:
+        description: 'Miryoku Nav'
+        required: false
+        default: ''
+      clipboard:
+        description: 'Miryoku Clipboard'
+        required: false
+        default: ''
+      layers:
+        description: 'Miryoku Layers'
+        required: false
+        default: ''
+      mapping:
+        description: 'Miryoku Mapping'
+        required: false
+        default: ''
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: zmkfirmware/zmk-build-arm:2.5
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Process inputs
+        id: inputs
+        run: |
+          echo "::set-output name=board::${{ github.event.inputs.board }}"
+          echo "::set-output name=shield::${{ github.event.inputs.shield }}"
+          echo "::set-output name=alphas::${{ github.event.inputs.alphas }}"
+          echo "::set-output name=nav::${{ github.event.inputs.nav }}"
+          echo "::set-output name=clipboard::${{ github.event.inputs.clipboard }}"
+          echo "::set-output name=layers::${{ github.event.inputs.layers }}"
+          echo "::set-output name=mapping::${{ github.event.inputs.mapping }}"
+      - name: Process variables
+        id: variables
+        run: |
+          keyboard=${{ steps.inputs.outputs.board }}
+          if [ -n "${{ steps.inputs.outputs.shield }}" ]
+          then
+            SHIELD_ARG="-DSHIELD=${{ steps.inputs.outputs.shield }}"
+            keyboard=${{ steps.inputs.outputs.shield }}
+          fi
+          echo "::set-output name=shield-arg::${SHIELD_ARG}"
+          keyboard=`echo "$keyboard" | sed 's/_\(left\|right\)//'`
+
+          configfile="${GITHUB_WORKSPACE}/miryoku/config.h"
+          echo '// https://github.com/manna-harbour/miryoku-zmk/' > "$configfile"
+          echo "::set-output name=configfile::$configfile"
+
+          artifact_build_name="miryoku_zmk ${{ steps.inputs.outputs.shield }} ${{ steps.inputs.outputs.board }}"
+          for option in "alphas_${{ steps.inputs.outputs.alphas }}" "nav_${{ steps.inputs.outputs.nav }}" "clipboard_${{ steps.inputs.outputs.clipboard }}" "layers_${{ steps.inputs.outputs.layers }}" "mapping_${{ steps.inputs.outputs.mapping }}"
+          do
+            case "$option" in
+              *_ ) ;;
+              * )
+                artifact_build_name="$artifact_build_name $option"
+                echo "#define MIRYOKU_"`echo "$option" | tr 'a-z' 'A-Z'` >> "$configfile"
+                ;;
+            esac
+          done
+          artifact_build_name=`echo $artifact_build_name | tr ' ' '-'`
+          echo "::set-output name=artifact-build-name::$artifact_build_name"
+          echo "::set-output name=artifact-generic-name::"`echo "$artifact_build_name" | sed 's/_\(left\|right\)//'`
+          echo "::set-output name=artifact-dir::artifacts"
+
+          manifests="manifests"
+          manifest="$manifests/west-$keyboard.yml"
+          if  [ ! -f "config/$manifest" ]
+          then
+            manifest="west.yml"
+          fi
+          echo "::set-output name=manifest::$manifest"
+
+          echo "::set-output name=board-config::board-config"
+
+          env_file="config/board-configs/$keyboard.env"
+          if [ -f "$env_file" ]
+          then
+            cat "$env_file" >> $GITHUB_ENV
+            echo "::set-output name=has_board_config::true"
+          fi
+      - name: Checkout board-config
+        if: ${{ steps.variables.outputs.has_board_config == 'true' }}
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ env.board_config_repository }}
+          ref: ${{ env.board_config_ref }}
+          path: ${{ steps.variables.outputs.board-config }}
+      - name: Use board-config
+        if: ${{ steps.variables.outputs.has_board_config == 'true' }}
+        run: |
+          mkdir -p `dirname "config/${{ env.board_config_to }}"`
+          ln -sr ${{ steps.variables.outputs.board-config }}/${{ env.board_config_from }} config/${{ env.board_config_to }}
+          if [ -n "${{ env.board_config_manifestdir }}" ]
+          then
+            cp ${{ steps.variables.outputs.board-config }}/${{ env.board_config_manifestdir }}/west.yml config/
+            cat config/west.yml
+          fi
+      - name: Cache west modules
+        uses: actions/cache@v2
+        env:
+          cache-name: zephyr
+        with:
+          path: |
+            bootloader/
+            modules/
+            tools/
+            zephyr/
+            zmk/
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles(format('config/{0}', steps.variables.outputs.manifest)) }}
+          restore-keys: ${{ runner.os }}-${{ env.cache-name }}
+        timeout-minutes: 2
+        continue-on-error: true
+      - name: Initialize workspace (west init)
+        run: west init -l config --mf ${{ steps.variables.outputs.manifest }}
+      - name: Update modules (west update)
+        run: west update
+      - name: Export Zephyr CMake package (west zephyr-export)
+        run: west zephyr-export
+      - name: Build (west build)
+        run: west build -s zmk/app -b ${{ steps.inputs.outputs.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+      - name: Prepare artifacts
+        run: |
+          mkdir ${{ steps.variables.outputs.artifact-dir }}
+          cp "${{ steps.variables.outputs.configfile }}" "${{ steps.variables.outputs.artifact-dir }}"
+          for extension in "hex" "uf2"
+          do
+            file="build/zephyr/zmk.$extension"
+            if [ -f "$file" ]
+            then
+              cp "$file" "${{ steps.variables.outputs.artifact-dir }}/${{ steps.variables.outputs.artifact-build-name }}.$extension"
+            fi
+          done
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ steps.variables.outputs.artifact-generic-name }}
+          path: ${{ steps.variables.outputs.artifact-dir }}
+        continue-on-error: true
