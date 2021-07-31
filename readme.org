@@ -29,6 +29,10 @@ Any [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/arm][board support
 
 Any compatible combination of [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/arm][board supported by ZMK]] and [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/shields][shield supported by ZMK]] with a [[#keyboard-keymaps][keymap in Miryoku ZMK]].
 
+*** Out of Tree Boards and Shields
+
+Additionally, some out of tree boards and shields are automatically supported by the included GitHub Actions workflows.  See [[./config/board-configs/]].
+
 
 ** Local Builds
 
@@ -37,7 +41,6 @@ Clone this repo and use for [[https://zmk.dev/docs/development/build-flash#build
 
 ** GitHub Actions Workflows
 
-Some out of tree boards and shields are automatically supported in the included workflows.  See [[./config/board-configs/]].
 
 *** Prebuilt Firmware
 
@@ -49,9 +52,9 @@ Some prebuilt firmware can be downloaded from the repo.  Log in to GitHub, visit
 Fork this repo, select the [[https://github.com/manna-harbour/zmk-config/actions/workflows/build-inputs.yml][Build Inputs]] workflow action, select Run workflow, fill out the form with a [[#Supported-Keyboards][supported keyboard]] and [[#configuration-options][configuration options]], activate Run workflow, wait for successful completion, select the workflow run, select the Artifacts, and unzip the downloaded zip file.
 
 
-*** Customise Workflow Files
+*** Build Matrix
 
-Fork this repo, copy, and edit the included [[https://github.com/manna-harbour/zmk-config/actions/workflows/build-matrix.yml][Build Matrix]] workflow files with [[#Supported-Keyboards][supported keyboards]] and [[#configuration-options][configuration options]].
+Fork this repo, copy, rename, and edit the included [[https://github.com/manna-harbour/zmk-config/actions/workflows/build-matrix.yml][Build Matrix workflow]] by commenting and uncommenting the included matrix elements for [[#Supported-Keyboards][supported keyboards]] and [[#configuration-options][configuration options]].  Enable elements from only one of the with shield or without shield sections per file.
 
 
 * Miryoku Keymap
@@ -74,7 +77,6 @@ Convert to the form ~#define option_value~.  To apply the configuration options 
 
 
 ** Configuration Options in GitHub Actions Workflows
-
 
 Convert to the form ~value~ (uppercase or lowercase) and use with the corresponding ~option~ [[#Customise-Workflow-Files][matrix variable]] or [[#Inputs][input]].  Empty fields will use the default value.
 
@@ -145,6 +147,7 @@ compatibility
 
 [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/kle-miryoku-mapping-ortho_4x12.png]]
 
+
 **** Extended Thumbs
 
 
@@ -184,6 +187,7 @@ compatibility
 * Keyboard Keymaps
 
 Keymap files for many keyboards included in ZMK are provided in [[./config/][config/]].
+
 
 * Contact
 

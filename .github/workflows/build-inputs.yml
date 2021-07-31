@@ -5,11 +5,10 @@ on:
       board:
         description: 'Board'
         required: true
-        default: 'nice_nano'
       shield:
         description: 'Shield'
         required: false
-        default: 'corne_left'
+        default: ''
       alphas:
         description: 'Miryoku Alphas'
         required: false

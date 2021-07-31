@@ -14,8 +14,8 @@ jobs:
           # - absolem # out
           # - bastyl_left # out
           # - bastyl_right # out
-          # - corne_left # in
-          # - corne_right # in
+          - corne_left # in
+          - corne_right # in
           # - cradio36_left # TODO
           # - cradio36_right # TODO
           # - cradio_left # in
@@ -47,14 +47,15 @@ jobs:
           # - splitreus62_left # in
           # - splitreus62_right # in
 # without shield:
-          - ""
+          # - ""
         board:
 # with shield:
-          # - bluemicro840
-          # - nice_nano
-          # - nice_nano_v2
-          # - nrfmicro
-          # - proton_c
+          # - bluemicro840_v1 # in
+          - nice_nano # in
+          # - nice_nano_v2 # in
+          # - nrfmicro_11 # in
+          # - nrfmicro_13 # in
+          # - proton_c # in
 # without shield:
           # - ahokore # out
           # - corne-ish_zen_left # TODO
@@ -62,7 +63,7 @@ jobs:
           # - ferris_rev02_left # WIP
           # - ferris_rev02_right # WIP
           # - planck_rev6 # in
-          - zaphod # out
+          # - zaphod # out
         alphas:
           - ""
           # - colemak
@@ -74,7 +75,7 @@ jobs:
         nav:
           - ""
           # - vi
-          # - invertedt
+          # - invertedt # TODO
         clipboard:
           - ""
           # - fun
@@ -82,7 +83,7 @@ jobs:
           # - win
         layers:
           - ""
-          # - flip
+          # - flip # TODO
         mapping:
           - ""
     steps:
