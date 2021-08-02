@@ -1,4 +1,4 @@
 // https://github.com/manna-harbour/miryoku-zmk/
 
-#include "../miryoku/mapping/58-bastyl.h"
+#include "../miryoku/mapping/42-corne.h"
 #include "../miryoku/miryoku.dtsi"

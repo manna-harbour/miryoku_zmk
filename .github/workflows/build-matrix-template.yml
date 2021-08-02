@@ -16,14 +16,14 @@ jobs:
           # - bastyl_right # out
           # - corne_left # in
           # - corne_right # in
-          # - cradio36_left # TODO
-          # - cradio36_right # TODO
+          # - cradio36_left # out
+          # - cradio36_right # out
           # - cradio_left # in
           # - cradio_right # in
-          # - cradios_left # TODO
-          # - cradios_right # TODO
-          # - cradioz_left # TODO
-          # - cradioz_right # TODO
+          # - cradios_left # out
+          # - cradios_right # out
+          # - cradioz_left # out TODO
+          # - cradioz_right # out TODO
           # - crbn # in
           # - eek # in
           # - helix_left # in
@@ -44,8 +44,12 @@ jobs:
           # - pteron36_right # out
           # - sofle_left # in
           # - sofle_right # in
+          # - sweepv2_left # out
+          # - sweepv2_right # out
           # - splitreus62_left # in
           # - splitreus62_right # in
+          # - tbkmini_left # out
+          # - tbkmini_right # out
 # without shield:
           # - ""
         board:
@@ -58,10 +62,9 @@ jobs:
           # - proton_c # in
 # without shield:
           # - ahokore # out
-          # - corne-ish_zen_left # TODO
-          # - corne-ish_zen_right # TODO
-          # - ferris_rev02_left # TODO
-          # - ferris_rev02_right # TODO
+          # - corne-ish_zen_left # out broken
+          # - corne-ish_zen_right # out broken
+          # - ferris_rev02 # out broken
           # - planck_rev6 # in
           # - zaphod # out
         alphas:

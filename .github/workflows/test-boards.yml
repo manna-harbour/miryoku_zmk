@@ -13,10 +13,9 @@ jobs:
           - ""
         board:
           - ahokore # out
-          # - corne-ish_zen_left # TODO
-          # - corne-ish_zen_right # TODO
-          # - ferris_rev02_left # TODO
-          # - ferris_rev02_right # TODO
+          # - corne-ish_zen_left # out broken
+          # - corne-ish_zen_right # out broken
+          # - ferris_rev02 out broken
           - planck_rev6 # in
           - zaphod # out
         alphas:
