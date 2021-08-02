@@ -31,7 +31,7 @@ Any compatible combination of [[https://github.com/zmkfirmware/zmk/tree/main/app
 
 *** Out of Tree Boards and Shields
 
-Additionally, some out of tree boards and shields are automatically supported by the included GitHub Actions workflows.  See [[./config/board-configs/]].
+Additionally, some out of tree boards and shields are automatically supported by the included GitHub Actions workflows.  See [[./config/outboards/]] for supported out of tree boards and shields.
 
 
 ** Local Builds
@@ -42,19 +42,19 @@ Clone this repo and use for [[https://zmk.dev/docs/development/build-flash#build
 ** GitHub Actions Workflows
 
 
-*** Prebuilt Firmware
-
-Some prebuilt firmware can be downloaded from the repo.  Log in to GitHub, visit the [[https://github.com/manna-harbour/zmk-config/actions][Actions]] tab, select the appropriate workflow, select the latest successful workflow run, select the desired artifact, and unzip the downloaded zip file.
-
-
 *** Inputs
 
 Fork this repo, select the [[https://github.com/manna-harbour/zmk-config/actions/workflows/build-inputs.yml][Build Inputs]] workflow action, select Run workflow, fill out the form with a [[#Supported-Keyboards][supported keyboard]] and [[#configuration-options][configuration options]], activate Run workflow, wait for successful completion, select the workflow run, select the Artifacts, and unzip the downloaded zip file.
 
 
-*** Build Matrix
+*** Build Matrix Template
 
-Fork this repo, copy, rename, and edit the included [[https://github.com/manna-harbour/zmk-config/actions/workflows/build-matrix.yml][Build Matrix workflow]] by commenting and uncommenting the included matrix elements for [[#Supported-Keyboards][supported keyboards]] and [[#configuration-options][configuration options]].  Enable elements from only one of the with shield or without shield sections per file.
+Fork this repo, copy, rename, and edit the included [[https://github.com/manna-harbour/zmk-config/actions/workflows/build-matrix-template.yml][Build Matrix Template workflow]] by uncommenting the included matrix elements for the required [[#Supported-Keyboards][supported keyboards]] and [[#configuration-options][configuration options]].
+
+
+*** Prebuilt Firmware
+
+Some prebuilt firmware can be downloaded from the repo.  Log in to GitHub, visit the [[https://github.com/manna-harbour/zmk-config/actions][Actions]] tab, select the appropriate workflow, select the latest successful workflow run, select the desired artifact, and unzip the downloaded zip file.
 
 
 * Miryoku Keymap

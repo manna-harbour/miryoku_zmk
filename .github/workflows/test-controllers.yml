@@ -81,29 +81,29 @@ jobs:
           fi
           echo "::set-output name=manifest::$manifest"
 
-          echo "::set-output name=board-config::board-config"
+          echo "::set-output name=outboard::outboard"
 
-          env_file="config/board-configs/$keyboard.env"
+          env_file="config/outboards/$keyboard.env"
           if [ -f "$env_file" ]
           then
             cat "$env_file" >> $GITHUB_ENV
-            echo "::set-output name=has_board_config::true"
+            echo "::set-output name=has_outboard::true"
           fi
-      - name: Checkout board-config
-        if: ${{ steps.variables.outputs.has_board_config == 'true' }}
+      - name: Checkout outboard
+        if: ${{ steps.variables.outputs.has_outboard == 'true' }}
         uses: actions/checkout@v2
         with:
-          repository: ${{ env.board_config_repository }}
-          ref: ${{ env.board_config_ref }}
-          path: ${{ steps.variables.outputs.board-config }}
-      - name: Use board-config
-        if: ${{ steps.variables.outputs.has_board_config == 'true' }}
+          repository: ${{ env.outboard_repository }}
+          ref: ${{ env.outboard_ref }}
+          path: ${{ steps.variables.outputs.outboard }}
+      - name: Use outboard
+        if: ${{ steps.variables.outputs.has_outboard == 'true' }}
         run: |
-          mkdir -p `dirname "config/${{ env.board_config_to }}"`
-          ln -sr ${{ steps.variables.outputs.board-config }}/${{ env.board_config_from }} config/${{ env.board_config_to }}
-          if [ -n "${{ env.board_config_manifestdir }}" ]
+          mkdir -p `dirname "config/${{ env.outboard_to }}"`
+          ln -sr ${{ steps.variables.outputs.outboard }}/${{ env.outboard_from }} config/${{ env.outboard_to }}
+          if [ -n "${{ env.outboard_manifestdir }}" ]
           then
-            cp ${{ steps.variables.outputs.board-config }}/${{ env.board_config_manifestdir }}/west.yml config/
+            cp ${{ steps.variables.outputs.outboard }}/${{ env.outboard_manifestdir }}/west.yml config/
             cat config/west.yml
           fi
       - name: Cache west modules
