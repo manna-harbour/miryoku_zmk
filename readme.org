@@ -49,7 +49,7 @@ Fork this repo, select the [[https://github.com/manna-harbour/zmk-config/actions
 
 *** Build Matrix Template
 
-Fork this repo, copy, rename, and edit the included [[https://github.com/manna-harbour/zmk-config/actions/workflows/build-matrix-template.yml][Build Matrix Template workflow]] by uncommenting the included matrix elements for the required [[#Supported-Keyboards][supported keyboards]] and [[#configuration-options][configuration options]].
+Fork this repo, copy the included [[.github/workflows/build-matrix-template.yml][Build Matrix Template workflow file]], edit the ~name~ value, and uncomment the included matrix values for the required [[#Supported-Keyboards][supported keyboards]] and [[#configuration-options][configuration options]].
 
 
 *** Prebuilt Firmware

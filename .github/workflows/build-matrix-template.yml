@@ -80,7 +80,7 @@ jobs:
           # - vi
           # - invertedt # TODO
         clipboard:
-          - ""
+          # - ""
           # - fun
           # - mac
           # - win
