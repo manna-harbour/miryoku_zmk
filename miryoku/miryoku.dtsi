@@ -71,49 +71,49 @@
         MIRYOKU_MAPPING(
 &kp Q,        &kp W,        &kp F,        &kp P,        &kp G,        &kp J,        &kp L,        &kp U,        &kp Y,        &kp SQT,
 &hm LGUI A,   &hm LALT R,   &hm LCTRL S,  &hm LSHFT T,  &kp D,        &kp H,        &hm LSHFT N,  &hm LCTRL E,  &hm LALT I,   &hm LGUI O,
-&kp Z,        &hm RALT X,   &kp C,        &kp V,        &kp B,        &kp K,        &kp M,        &kp COMMA,    &hm RALT DOT, &kp SLASH,
+&lt MBO Z,    &hm RALT X,   &kp C,        &kp V,        &kp B,        &kp K,        &kp M,        &kp COMMA,    &hm RALT DOT, &lt MBO SLASH,
 U_NP,         U_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BSPC, &lt FUNL DEL, U_NP,         U_NP
         )
 #elif defined MIRYOKU_ALPHAS_COLEMAKDH
         MIRYOKU_MAPPING(
 &kp Q,        &kp W,        &kp F,        &kp P,        &kp B,        &kp J,        &kp L,        &kp U,        &kp Y,        &kp SQT,
 &hm LGUI A,   &hm LALT R,   &hm LCTRL S,  &hm LSHFT T,  &kp G,        &kp K,        &hm LSHFT N,  &hm LCTRL E,  &hm LALT I,   &hm LGUI O,
-&kp Z,        &hm RALT X,   &kp C,        &kp D,        &kp V,        &kp M,        &kp H,        &kp COMMA,    &hm RALT DOT, &kp SLASH,
+&lt MBO Z,    &hm RALT X,   &kp C,        &kp D,        &kp V,        &kp M,        &kp H,        &kp COMMA,    &hm RALT DOT, &lt MBO SLASH,
 U_NP,         U_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BSPC, &lt FUNL DEL, U_NP,         U_NP
         )
 #elif defined MIRYOKU_ALPHAS_DVORAK
         MIRYOKU_MAPPING(
 &kp SQT,      &kp COMMA,    &kp DOT,      &kp P,        &kp Y,        &kp F,        &kp G,        &kp C,        &kp R,        &kp L,
 &hm LGUI A,   &hm LALT O,   &hm LCTRL E,  &hm LSHFT U,  &kp I,        &kp D,        &hm LSHFT H,  &hm LCTRL T,  &hm LALT N,   &hm LGUI S,
-&kp SLASH,    &hm RALT Q,   &kp J,        &kp K,        &kp X,        &kp B,        &kp M,        &kp W,        &hm RALT V,   &kp Z,
+&lt MBO SLASH, &hm RALT Q,   &kp J,        &kp K,        &kp X,        &kp B,        &kp M,        &kp W,        &hm RALT V,   &lt MBO Z,
 U_NP,         U_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BSPC, &lt FUNL DEL, U_NP,         U_NP
         )
 #elif defined MIRYOKU_ALPHAS_HALMAK
         MIRYOKU_MAPPING(
 &kp W,        &kp L,        &kp R,        &kp B,        &kp Z,        &kp SQT,      &kp Q,        &kp U,        &kp D,        &kp J,
 &hm LGUI S,   &hm LALT H,   &hm LCTRL N,  &hm LSHFT T,  &kp COMMA,    &kp DOT,      &hm LSHFT A,  &hm LCTRL E,  &hm LALT O,   &hm LGUI I,
-&kp F,        &hm RALT M,   &kp V,        &kp C,        &kp SLASH,    &kp G,        &kp P,        &kp X,        &hm RALT K,   &kp Y,
+&lt MBO F,    &hm RALT M,   &kp V,        &kp C,        &kp SLASH,    &kp G,        &kp P,        &kp X,        &hm RALT K,   &lt MBO Y,
 U_NP,         U_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BSPC, &lt FUNL DEL, U_NP,         U_NP
         )
 #elif defined MIRYOKU_ALPHAS_WORKMAN
         MIRYOKU_MAPPING(
 &kp Q,        &kp D,        &kp R,        &kp W,        &kp B,        &kp J,        &kp F,        &kp U,        &kp P,        &kp SQT,
 &hm LGUI A,   &hm LALT S,   &hm LCTRL H,  &hm LSHFT T,  &kp G,        &kp Y,        &hm LSHFT N,  &hm LCTRL E,  &hm LALT O,   &hm LGUI I,
-&kp Z,        &hm RALT X,   &kp M,        &kp C,        &kp V,        &kp K,        &kp L,        &kp COMMA,    &hm RALT DOT, &kp SLASH,
+&lt MBO Z,    &hm RALT X,   &kp M,        &kp C,        &kp V,        &kp K,        &kp L,        &kp COMMA,    &hm RALT DOT, &lt MBO SLASH,
 U_NP,         U_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BSPC, &lt FUNL DEL, U_NP,         U_NP
         )
 #elif defined MIRYOKU_ALPHAS_QWERTY
         MIRYOKU_MAPPING(
 &kp Q,        &kp W,        &kp E,        &kp R,        &kp T,        &kp Y,        &kp U,        &kp I,        &kp O,        &kp P,
 &hm LGUI A,   &hm LALT S,   &hm LCTRL D,  &hm LSHFT F,  &kp G,        &kp H,        &hm LSHFT J,  &hm LCTRL K,  &hm LALT L,   &hm LGUI SQT,
-&kp Z,        &hm RALT X,   &kp C,        &kp V,        &kp B,        &kp N,        &kp M,        &kp COMMA,    &hm RALT DOT, &kp SLASH,
+&lt MBO Z,    &hm RALT X,   &kp C,        &kp V,        &kp B,        &kp N,        &kp M,        &kp COMMA,    &hm RALT DOT, &lt MBO SLASH,
 U_NP,         U_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BSPC, &lt FUNL DEL, U_NP,         U_NP
         )
 #else
         MIRYOKU_MAPPING(
 &kp Q,        &kp W,        &kp F,        &kp P,        &kp B,        &kp J,        &kp L,        &kp U,        &kp Y,        &kp SQT,
 &hm LGUI A,   &hm LALT R,   &hm LCTRL S,  &hm LSHFT T,  &kp G,        &kp M,        &hm LSHFT N,  &hm LCTRL E,  &hm LALT I,   &hm LGUI O,
-&kp Z,        &hm RALT X,   &kp C,        &kp D,        &kp V,        &kp K,        &kp H,        &kp COMMA,    &hm RALT DOT, &kp SLASH,
+&lt MBO Z,    &hm RALT X,   &kp C,        &kp D,        &kp V,        &kp K,        &kp H,        &kp COMMA,    &hm RALT DOT, &lt MBO SLASH,
 U_NP,         U_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL RET, &lt NSL BSPC, &lt FUNL DEL, U_NP,         U_NP
         )
 #endif
@@ -176,10 +176,10 @@ U_NP,         U_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL R
     MBO_layer {
       bindings = <
         MIRYOKU_MAPPING(
+U_RDO,    U_PST,    U_CPY,    U_CUT,    U_UND,    U_RDO,    U_PST,    U_CPY,    U_CUT,    U_UND,
+&kp LGUI, &kp LALT, &kp LCTRL, &kp LSHFT, &trans,   &trans,   &kp LSHFT, &kp LCTRL, &kp LALT, &kp LGUI,
 &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-&trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-&trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,   &trans,
-U_NP,     U_NP,     &trans,   &trans,   &trans,   &kp KP_N5, U_NU,     U_NU,     U_NP,     U_NP
+U_NP,     U_NP,     U_NU,     U_NU,     &kp KP_N5, &kp KP_N5, U_NU,     U_NU,     U_NP,     U_NP
         )
       >;
     };

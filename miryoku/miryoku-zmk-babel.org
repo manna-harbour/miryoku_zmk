@@ -21,7 +21,7 @@
 #+NAME: hold
 | RESET | DF(TAP) |      |      |      |      |      |      | DF(TAP) | RESET |
 | LGUI  | LALT    | LCTL | LSFT |      |      | LSFT | LCTL | LALT    | LGUI  |
-|       | ALGR    |      |      |      |      |      |      | ALGR    |       |
+| MBO   | ALGR    |      |      |      |      |      |      | ALGR    | MBO   |
 | U_NP  | U_NP    | MEDR | NAVR | MOUR | NSSL | NSL  | FUNL | U_NP    | U_NP  |
 
 
@@ -46,10 +46,10 @@
 *** Mouse Buttons Overlay (~MBO~)
 
 #+NAME: mbo
-|      |      |      |      |      |      |      |      |      |      |
-|      |      |      |      |      |      |      |      |      |      |
-|      |      |      |      |      |      |      |      |      |      |
-| U_NP | U_NP |      |      |      | BTN1 | BTN3 | BTN2 | U_NP | U_NP |
+| U_RDO | U_PST | U_CPY | U_CUT | U_UND | U_RDO | U_PST | U_CPY | U_CUT | U_UND |
+| LGUI  | LALT  | LCTL  | LSFT  |       |       | LSFT  | LCTL  | LALT  | LGUI  |
+|       |       |       |       |       |       |       |       |       |       |
+| U_NP  | U_NP  | BTN2  | BTN3  | BTN1  | BTN1  | BTN3  | BTN2  | U_NP  | U_NP  |
 
 
 ** Media (~MEDR~)
