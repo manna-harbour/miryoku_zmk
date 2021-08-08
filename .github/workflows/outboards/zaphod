@@ -2,4 +2,4 @@ outboard_repository=petejohanson/zaphod-config
 outboard_ref=main
 outboard_from=boards/arm/zaphod
 outboard_to=boards/arm/zaphod
-outboard_manifestdir=.
+outboard_manifest=west.yml

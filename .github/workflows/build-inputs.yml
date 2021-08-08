@@ -1,3 +1,6 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+# generated -*- buffer-read-only: t -*-
 name: 'Build Inputs'
 on:
   workflow_dispatch:
@@ -8,55 +11,84 @@ on:
       shield:
         description: 'Shield'
         required: false
-        default: ''
+        default: 'default'
       alphas:
         description: 'Miryoku Alphas'
         required: false
-        default: ''
+        default: 'default'
       nav:
         description: 'Miryoku Nav'
         required: false
-        default: ''
+        default: 'default'
       clipboard:
         description: 'Miryoku Clipboard'
         required: false
-        default: ''
+        default: 'default'
       layers:
         description: 'Miryoku Layers'
         required: false
-        default: ''
+        default: 'default'
       mapping:
         description: 'Miryoku Mapping'
         required: false
-        default: ''
+        default: 'default'
 jobs:
+  process-inputs:
+    runs-on: ubuntu-latest
+    outputs:
+      board: ${{ steps.process-inputs.outputs.board }}
+      shield: ${{ steps.process-inputs.outputs.shield }}
+      alphas: ${{ steps.process-inputs.outputs.alphas }}
+      nav: ${{ steps.process-inputs.outputs.nav }}
+      clipboard: ${{ steps.process-inputs.outputs.clipboard }}
+      layers: ${{ steps.process-inputs.outputs.layers }}
+      mapping: ${{ steps.process-inputs.outputs.mapping }}
+    steps:
+      - name: Process inputs
+        id: process-inputs
+        run: |
+          set-output()
+          {
+            json=`echo "$2" | jq -cnR 'inputs | split("(,| )+";"")'`
+            echo "::set-output name=$1::$json"
+          }
+          set-output "board" "${{ github.event.inputs.board }}"
+          set-output "shield" "${{ github.event.inputs.shield }}"
+          set-output "alphas" "${{ github.event.inputs.alphas }}"
+          set-output "nav" "${{ github.event.inputs.nav }}"
+          set-output "clipboard" "${{ github.event.inputs.clipboard }}"
+          set-output "layers" "${{ github.event.inputs.layers }}"
+          set-output "mapping" "${{ github.event.inputs.mapping }}"
   build:
     runs-on: ubuntu-latest
     container:
       image: zmkfirmware/zmk-build-arm:2.5
+    needs: process-inputs
     strategy:
       fail-fast: false
+      matrix:
+        board: ${{ fromJSON(needs.process-inputs.outputs.board) }}
+        shield: ${{ fromJSON(needs.process-inputs.outputs.shield) }}
+        alphas: ${{ fromJSON(needs.process-inputs.outputs.alphas) }}
+        nav: ${{ fromJSON(needs.process-inputs.outputs.nav) }}
+        clipboard: ${{ fromJSON(needs.process-inputs.outputs.clipboard) }}
+        layers: ${{ fromJSON(needs.process-inputs.outputs.layers) }}
+        mapping: ${{ fromJSON(needs.process-inputs.outputs.mapping) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Process inputs
-        id: inputs
-        run: |
-          echo "::set-output name=board::${{ github.event.inputs.board }}"
-          echo "::set-output name=shield::${{ github.event.inputs.shield }}"
-          echo "::set-output name=alphas::${{ github.event.inputs.alphas }}"
-          echo "::set-output name=nav::${{ github.event.inputs.nav }}"
-          echo "::set-output name=clipboard::${{ github.event.inputs.clipboard }}"
-          echo "::set-output name=layers::${{ github.event.inputs.layers }}"
-          echo "::set-output name=mapping::${{ github.event.inputs.mapping }}"
       - name: Process variables
         id: variables
         run: |
-          keyboard=${{ steps.inputs.outputs.board }}
-          if [ -n "${{ steps.inputs.outputs.shield }}" ]
+          if [ -n "${{ matrix.shield }}" -a "${{ matrix.shield }}" != "default" ]
+
           then
-            SHIELD_ARG="-DSHIELD=${{ steps.inputs.outputs.shield }}"
-            keyboard=${{ steps.inputs.outputs.shield }}
+            SHIELD_ARG="-DSHIELD=${{ matrix.shield }}"
+            keyboard=${{ matrix.shield }}
+            shield=${{ matrix.shield }}
+          else
+            keyboard=${{ matrix.board }}
+            shield=""
           fi
           echo "::set-output name=shield-arg::${SHIELD_ARG}"
           keyboard=`echo "$keyboard" | sed 's/_\(left\|right\)//'`
@@ -65,11 +97,12 @@ jobs:
           echo '// https://github.com/manna-harbour/miryoku-zmk/' > "$configfile"
           echo "::set-output name=configfile::$configfile"
 
-          artifact_build_name="miryoku_zmk ${{ steps.inputs.outputs.shield }} ${{ steps.inputs.outputs.board }}"
-          for option in "alphas_${{ steps.inputs.outputs.alphas }}" "nav_${{ steps.inputs.outputs.nav }}" "clipboard_${{ steps.inputs.outputs.clipboard }}" "layers_${{ steps.inputs.outputs.layers }}" "mapping_${{ steps.inputs.outputs.mapping }}"
+          artifact_build_name="miryoku_zmk $shield ${{ matrix.board }}"
+          for option in "alphas_${{ matrix.alphas }}" "nav_${{ matrix.nav }}" "clipboard_${{ matrix.clipboard }}" "layers_${{ matrix.layers }}" "mapping_${{ matrix.mapping }}"
           do
             case "$option" in
               *_ ) ;;
+              *_default ) ;;
               * )
                 artifact_build_name="$artifact_build_name $option"
                 echo "#define MIRYOKU_"`echo "$option" | tr 'a-z' 'A-Z'` >> "$configfile"
@@ -81,39 +114,34 @@ jobs:
           echo "::set-output name=artifact-generic-name::"`echo "$artifact_build_name" | sed 's/_\(left\|right\)//'`
           echo "::set-output name=artifact-dir::artifacts"
 
-          manifests="manifests"
-          manifest="$manifests/west-$keyboard.yml"
-          if  [ ! -f "config/$manifest" ]
+          outboard_file=".github/workflows/outboards/$keyboard"
+          if [ -f "$outboard_file" ]
           then
-            manifest="west.yml"
+            cat "$outboard_file" >> $GITHUB_ENV
           fi
-          echo "::set-output name=manifest::$manifest"
-
-          echo "::set-output name=outboard::outboard"
-
-          env_file="config/outboards/$keyboard.env"
-          if [ -f "$env_file" ]
-          then
-            cat "$env_file" >> $GITHUB_ENV
-            echo "::set-output name=has_outboard::true"
-          fi
+          echo "::set-output name=outboard_dir::outboard"
       - name: Checkout outboard
-        if: ${{ steps.variables.outputs.has_outboard == 'true' }}
+        if: ${{ env.outboard_repository != '' && env.outboard_ref != '' }}
         uses: actions/checkout@v2
         with:
           repository: ${{ env.outboard_repository }}
           ref: ${{ env.outboard_ref }}
-          path: ${{ steps.variables.outputs.outboard }}
-      - name: Use outboard
-        if: ${{ steps.variables.outputs.has_outboard == 'true' }}
+          path: ${{ steps.variables.outputs.outboard_dir }}
+      - name: Link outboard
+        if: ${{ env.outboard_from != '' && env.outboard_to != '' }}
         run: |
           mkdir -p `dirname "config/${{ env.outboard_to }}"`
-          ln -sr ${{ steps.variables.outputs.outboard }}/${{ env.outboard_from }} config/${{ env.outboard_to }}
-          if [ -n "${{ env.outboard_manifestdir }}" ]
-          then
-            cp ${{ steps.variables.outputs.outboard }}/${{ env.outboard_manifestdir }}/west.yml config/
-            cat config/west.yml
-          fi
+          ln -sr ${{ steps.variables.outputs.outboard_dir }}/${{ env.outboard_from }} config/${{ env.outboard_to }}
+      - name: Generate outboard manifest
+        if: ${{ env.outboard_url_base != '' && env.outboard_revision != '' }}
+        run: |
+          echo "manifest:\n  remotes:\n    - name: outboard\n      url-base: ${{ env.outboard_url_base }}\n  projects:\n    - name: zmk\n      remote: outboard\n      revision: ${{ env.outboard_revision }}\n      import: app/west.yml\n  self:\n    path: config" > config/west.yml
+          cat config/west.yml
+      - name: Copy outboard manifest
+        if: ${{ env.outboard_manifest != '' }}
+        run: |
+          cp ${{ steps.variables.outputs.outboard_dir }}/${{ env.outboard_manifest }} config/west.yml
+          cat config/west.yml
       - name: Cache west modules
         uses: actions/cache@v2
         env:
@@ -125,18 +153,18 @@ jobs:
             tools/
             zephyr/
             zmk/
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles(format('config/{0}', steps.variables.outputs.manifest)) }}
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('config/west.yml') }}
           restore-keys: ${{ runner.os }}-${{ env.cache-name }}
         timeout-minutes: 2
         continue-on-error: true
       - name: Initialize workspace (west init)
-        run: west init -l config --mf ${{ steps.variables.outputs.manifest }}
+        run: west init -l config
       - name: Update modules (west update)
         run: west update
       - name: Export Zephyr CMake package (west zephyr-export)
         run: west zephyr-export
       - name: Build (west build)
-        run: west build -s zmk/app -b ${{ steps.inputs.outputs.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+        run: west build -s zmk/app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
       - name: Prepare artifacts
         run: |
           mkdir ${{ steps.variables.outputs.artifact-dir }}

@@ -31,7 +31,7 @@ Any compatible combination of [[https://github.com/zmkfirmware/zmk/tree/main/app
 
 *** Out of Tree Boards and Shields
 
-Additionally, some out of tree boards and shields are automatically supported by the included GitHub Actions workflows.  See [[./config/outboards/]] for supported out of tree boards and shields.
+Additionally, some out of tree boards and shields are automatically supported by the included GitHub Actions workflows.  See [[./.github/workflows/outboards/]] for supported out of tree boards and shields.
 
 
 ** Local Builds
@@ -44,12 +44,12 @@ Clone this repo and use for [[https://zmk.dev/docs/development/build-flash#build
 
 *** Inputs
 
-Fork this repo, select the [[https://github.com/manna-harbour/zmk-config/actions/workflows/build-inputs.yml][Build Inputs]] workflow action, select Run workflow, fill out the form with a [[#Supported-Keyboards][supported keyboard]] and [[#configuration-options][configuration options]], activate Run workflow, wait for successful completion, select the workflow run, select the Artifacts, and unzip the downloaded zip file.
+Fork this repo, select the [[https://github.com/manna-harbour/zmk-config/actions/workflows/build-inputs.yml][Build Inputs]] workflow action, select Run workflow, fill out the form with a [[#Supported-Keyboards][supported keyboard]] and [[#configuration-options][configuration options]], activate Run workflow, wait for successful completion, select the workflow run, select the Artifacts, and unzip the downloaded zip file.  Multiple (comma and / or space separated) values can be entered in each field.  See the [[#build-matrix-template][Build Matrix Template]] workflow file for examples of supported values.
 
 
 *** Build Matrix Template
 
-Fork this repo, copy the included [[.github/workflows/build-matrix-template.yml][Build Matrix Template workflow file]], edit the ~name~ value, and uncomment the included matrix values for the required [[#Supported-Keyboards][supported keyboards]] and [[#configuration-options][configuration options]].
+Fork this repo, copy the included [[.github/workflows/build-matrix-template.yml][Build Matrix Template workflow file]], edit the ~name~ value, and uncomment the included values for the desired [[#Supported-Keyboards][supported keyboards]] and [[#configuration-options][configuration options]].  See the included Build Example workflows for examples.
 
 
 *** Prebuilt Firmware
