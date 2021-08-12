@@ -7,6 +7,7 @@ m4_include(include/jobs-build.yml.m4)m4_dnl
           - ""
         board:
           - ahokore # outboard
+          - ble_chiffre # outboard
           - corne-ish_zen_left # outboard
           - corne-ish_zen_right # outboard
           - ferris_rev02 # outboard

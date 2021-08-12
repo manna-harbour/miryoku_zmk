@@ -17,6 +17,7 @@ jobs:
           - ""
         board:
           - ahokore # outboard
+          - ble_chiffre # outboard
           - corne-ish_zen_left # outboard
           - corne-ish_zen_right # outboard
           - ferris_rev02 # outboard

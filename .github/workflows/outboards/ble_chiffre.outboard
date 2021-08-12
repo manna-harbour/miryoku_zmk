@@ -1,0 +1,7 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=tominabox1/zmk-config2
+outboard_ref=master
+outboard_from=config/boards/arm/ble_chiffre
+outboard_to=boards/arm/ble_chiffre
