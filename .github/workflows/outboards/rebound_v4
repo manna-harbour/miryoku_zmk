@@ -1,0 +1,7 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=PippinW/zmk
+outboard_ref=rebound4
+outboard_from=app/boards/shields/rebound
+outboard_to=boards/shields/rebound

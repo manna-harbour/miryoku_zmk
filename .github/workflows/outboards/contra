@@ -1,0 +1,8 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=iangus/zmk
+outboard_ref=main
+outboard_from=app/boards/shields/contra
+outboard_to=boards/shields/contra
+

@@ -4,10 +4,10 @@
 name: 'Build Example tbkmini nice_nano_v2'
 m4_include(include/jobs-build.yml.m4)m4_dnl
         shield:
-          - tbkmini_left # out
-          - tbkmini_right # out
+          - tbkmini_left # outboard
+          - tbkmini_right # outboard
         board:
-          - nice_nano_v2 # in
+          - nice_nano_v2
         alphas:
           - default
         nav:

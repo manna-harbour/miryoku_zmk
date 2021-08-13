@@ -14,10 +14,10 @@ jobs:
       fail-fast: false
       matrix:
         shield:
-          - corne_left # in
-          - corne_right # in
+          - corne_left
+          - corne_right
         board:
-          - nice_nano # in
+          - nice_nano
         alphas:
           - default
         nav:

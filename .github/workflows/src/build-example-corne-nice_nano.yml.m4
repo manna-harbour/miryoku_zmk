@@ -4,10 +4,10 @@
 name: 'Build Example corne nice_nano'
 m4_include(include/jobs-build.yml.m4)m4_dnl
         shield:
-          - corne_left # in
-          - corne_right # in
+          - corne_left
+          - corne_right
         board:
-          - nice_nano # in
+          - nice_nano
         alphas:
           - default
         nav:

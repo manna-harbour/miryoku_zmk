@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         shield:
-          - corne_left # in
+          - corne_left
         board:
           - nice_nano
         alphas:

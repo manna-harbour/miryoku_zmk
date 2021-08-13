@@ -4,7 +4,7 @@
 name: 'Test Configs'
 m4_include(include/jobs-build.yml.m4)m4_dnl
         shield:
-          - corne_left # in
+          - corne_left
         board:
           - nice_nano
         alphas:

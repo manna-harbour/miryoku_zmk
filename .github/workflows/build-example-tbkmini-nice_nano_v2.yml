@@ -14,10 +14,10 @@ jobs:
       fail-fast: false
       matrix:
         shield:
-          - tbkmini_left # out
-          - tbkmini_right # out
+          - tbkmini_left # outboard
+          - tbkmini_right # outboard
         board:
-          - nice_nano_v2 # in
+          - nice_nano_v2
         alphas:
           - default
         nav:

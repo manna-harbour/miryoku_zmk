@@ -1,0 +1,7 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=Eyenseo/zmk
+outboard_ref=main
+outboard_from=app/boards/shields/ergodash
+outboard_to=boards/shields/ergodash

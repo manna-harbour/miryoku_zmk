@@ -1,0 +1,8 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=TheRealFenrir/zmk
+outboard_ref=main
+outboard_from=app/boards/shields/viterbi
+outboard_to=boards/shields/viterbi
+

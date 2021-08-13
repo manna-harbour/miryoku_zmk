@@ -6,12 +6,13 @@ m4_include(include/jobs-build.yml.m4)m4_dnl
         shield:
           - ""
         board:
-          - ahokore # out
-          # - corne-ish_zen_left # out broken
-          # - corne-ish_zen_right # out broken
-          # - ferris_rev02 out broken
-          - planck_rev6 # in
-          - zaphod # out
+          - ahokore # outboard
+          - corne-ish_zen_left # outboard
+          - corne-ish_zen_right # outboard
+          - ferris_rev02 # outboard
+          - planck_rev6
+          - preonic_rev3 # outboard
+          - zaphod # outboard
         alphas:
           - default
         nav:

@@ -4,14 +4,14 @@
 name: 'Test Controllers'
 m4_include(include/jobs-build.yml.m4)m4_dnl
         shield:
-          - corne_left # in
+          - corne_left
         board:
-          - bluemicro840_v1 # in
-          - nice_nano # in
-          - nice_nano_v2 # in
-          - nrfmicro_11 # in
-          - nrfmicro_13 # in
-          - proton_c # in
+          - bluemicro840_v1
+          - nice_nano
+          - nice_nano_v2
+          - nrfmicro_11
+          - nrfmicro_13
+          - proton_c
         alphas:
           - default
         nav:
