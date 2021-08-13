@@ -1,6 +1,7 @@
+# generated -*- buffer-read-only: t -*-
 # Copyright 2021 Manna Harbour
 # https://github.com/manna-harbour/miryoku
-# generated -*- buffer-read-only: t -*-
+
 name: 'Test Build'
 on:
   push:
@@ -51,7 +52,7 @@ jobs:
           keyboard=`echo "$keyboard" | sed 's/_\(left\|right\)//'`
 
           configfile="${GITHUB_WORKSPACE}/miryoku/config.h"
-          echo '// https://github.com/manna-harbour/miryoku-zmk/' > "$configfile"
+          echo '// Copyright 2021 Manna Harbour\n// https://github.com/manna-harbour/miryoku' > "$configfile"
           echo "::set-output name=configfile::$configfile"
 
           artifact_build_name="miryoku_zmk $shield ${{ matrix.board }}"
@@ -74,7 +75,7 @@ jobs:
           outboard_file=".github/workflows/outboards/$keyboard"
           if [ -f "$outboard_file" ]
           then
-            cat "$outboard_file" >> $GITHUB_ENV
+            grep -v '^#' "$outboard_file" >> $GITHUB_ENV
           fi
           echo "::set-output name=outboard_dir::outboard"
       - name: Checkout outboard

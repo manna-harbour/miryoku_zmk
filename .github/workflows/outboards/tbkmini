@@ -1,3 +1,6 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
 outboard_repository=cwebster2/zmk-config
 outboard_ref=main
 outboard_from=config/boards/shields/tbkmini

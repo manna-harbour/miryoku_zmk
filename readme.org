@@ -1,3 +1,6 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
 #+Title: Miryoku ZMK [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/miryoku-roa-32.png]]
 
 [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/cover/miryoku-kle-cover.png]]
@@ -94,8 +97,9 @@ Below is an example [[#config-file][config file]] with the following keymap [[#c
 - ~MIRYOKU_NAV=VI~
 - ~MIRYOKU_CLIPBOARD=WIN~
 
-#+BEGIN_SRC C :tangle nos
-// https://github.com/manna-harbour/miryoku-zmk/
+#+BEGIN_SRC C :tangle no
+// Copyright 2021 Manna Harbour
+// https://github.com/manna-harbour/miryoku
 
 #define MIRYOKU_ALPHAS_QWERTY
 #define MIRYOKU_NAV_VI

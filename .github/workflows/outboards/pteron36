@@ -1,3 +1,6 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
 outboard_repository=harshitgoel96/zmk
 outboard_ref=pteron36
 outboard_from=app/boards/shields/pteron36

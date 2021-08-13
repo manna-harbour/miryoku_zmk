@@ -1,4 +1,5 @@
-// https://github.com/manna-harbour/miryoku-zmk/
+// Copyright 2021 Manna Harbour
+// https://github.com/manna-harbour/miryoku
 
 #include "../miryoku/mapping/58-lily58.h"
 #include "../miryoku/miryoku.dtsi"

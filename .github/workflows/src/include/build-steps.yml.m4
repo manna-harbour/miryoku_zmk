@@ -18,7 +18,7 @@
           keyboard=`echo "$keyboard" | sed 's/_\(left\|right\)//'`
 
           configfile="${GITHUB_WORKSPACE}/miryoku/config.h"
-          echo '// https://github.com/manna-harbour/miryoku-zmk/' > "$configfile"
+          echo '// Copyright 2021 Manna Harbour\n// https://github.com/manna-harbour/miryoku' > "$configfile"
           echo "::set-output name=configfile::$configfile"
 
           artifact_build_name="miryoku_zmk $shield ${{ matrix.board }}"
@@ -41,7 +41,7 @@
           outboard_file=".github/workflows/outboards/$keyboard"
           if [ -f "$outboard_file" ]
           then
-            cat "$outboard_file" >> $GITHUB_ENV
+            grep -v '^#' "$outboard_file" >> $GITHUB_ENV
           fi
           echo "::set-output name=outboard_dir::outboard"
       - name: Checkout outboard

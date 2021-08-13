@@ -1,2 +1,5 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
 outboard_url_base=https://github.com/petejohanson
 outboard_revision=boards/ferris-02-bling-basics

@@ -1,5 +1,6 @@
-// https://github.com/manna-harbour/miryoku-zmk/
-// -*- buffer-read-only: t -*-
+// Copyright 2021 Manna Harbour
+// https://github.com/manna-harbour/miryoku
+// generated -*- buffer-read-only: t -*-
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>

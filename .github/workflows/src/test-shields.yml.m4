@@ -1,3 +1,6 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
 name: 'Test Shields'
 m4_include(include/jobs-build.yml.m4)m4_dnl
         shield:

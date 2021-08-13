@@ -1,3 +1,6 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
 name: 'Build Example tbkmini nice_nano_v2'
 m4_include(include/jobs-build.yml.m4)m4_dnl
         shield:
