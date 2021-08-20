@@ -67,6 +67,7 @@
   keymap {
     compatible = "zmk,keymap";
     BASE_layer {
+      label = "Base";
       bindings = <
 #if defined MIRYOKU_ALPHAS_COLEMAK
         MIRYOKU_MAPPING(
@@ -121,6 +122,7 @@ U_NP,         U_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL R
       >;
     };
     TAP_layer {
+      label = "Tap";
       bindings = <
 #if defined MIRYOKU_ALPHAS_COLEMAK
         MIRYOKU_MAPPING_TAP(
@@ -175,6 +177,7 @@ U_NP,         U_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL R
       >;
     };
     MBO_layer {
+      label = "Buttons";
       bindings = <
         MIRYOKU_MAPPING(
 U_RDO,    U_PST,    U_CPY,    U_CUT,    U_UND,    U_RDO,    U_PST,    U_CPY,    U_CUT,    U_UND,
@@ -185,6 +188,7 @@ U_NP,     U_NP,     U_NU,     U_NU,     &kp KP_N5, &kp KP_N5, U_NU,     U_NU,   
       >;
     };
     NAVR_layer {
+      label = "Nav";
       bindings = <
 #if defined MIRYOKU_NAV_VI
         MIRYOKU_MAPPING(
@@ -204,6 +208,7 @@ U_NP,        U_NP,        U_NA,        U_NA,        U_NA,        &kp RET,     &k
       >;
     };
     MOUR_layer {
+      label = "Mouse";
       bindings = <
 #if defined MIRYOKU_NAV_VI
         MIRYOKU_MAPPING(
@@ -223,6 +228,7 @@ U_NP,        U_NP,        U_NA,        U_NA,        U_NA,        &kp KP_N5,   U_
       >;
     };
     MEDR_layer {
+      label = "Media";
       bindings = <
 #if defined MIRYOKU_NAV_VI
         MIRYOKU_MAPPING(
@@ -242,6 +248,7 @@ U_NP,        U_NP,        U_NA,        U_NA,        U_NA,        &kp C_STOP,  &k
       >;
     };
     NSL_layer {
+      label = "Num";
       bindings = <
         MIRYOKU_MAPPING(
 &kp LBKT,    &kp NUM_7,   &kp NUM_8,   &kp NUM_9,   &kp RBKT,    U_NA,        U_NA,        U_NA,        &tog TAP,    &bootloader,
@@ -252,6 +259,7 @@ U_NP,        U_NP,        &kp DOT,     &kp NUM_0,   &kp MINUS,   U_NA,        U_
       >;
     };
     NSSL_layer {
+      label = "Sym";
       bindings = <
         MIRYOKU_MAPPING(
 &kp LBRC,    &kp AMPS,    &kp ASTRK,   &kp LPAR,    &kp RBRC,    U_NA,        U_NA,        U_NA,        &tog TAP,    &bootloader,
@@ -262,6 +270,7 @@ U_NP,        U_NP,        &kp LPAR,    &kp RPAR,    &kp UNDER,   U_NA,        U_
       >;
     };
     FUNL_layer {
+      label = "Fun";
       bindings = <
         MIRYOKU_MAPPING(
 &kp F12,     &kp F7,      &kp F8,      &kp F9,      &kp PSCRN,   U_NA,        U_NA,        U_NA,        &tog TAP,    &bootloader,

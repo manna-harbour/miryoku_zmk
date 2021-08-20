@@ -733,6 +733,7 @@ standard keycode to implementation equivalent
   keymap {
     compatible = "zmk,keymap";
     BASE_layer {
+      label = "Base";
       bindings = <
 #if defined MIRYOKU_ALPHAS_COLEMAK
         MIRYOKU_MAPPING(
@@ -766,6 +767,7 @@ standard keycode to implementation equivalent
       >;
     };
     TAP_layer {
+      label = "Tap";
       bindings = <
 #if defined MIRYOKU_ALPHAS_COLEMAK
         MIRYOKU_MAPPING_TAP(
@@ -799,6 +801,7 @@ standard keycode to implementation equivalent
       >;
     };
     MBO_layer {
+      label = "Buttons";
       bindings = <
         MIRYOKU_MAPPING(
 <<table-map-full(table=mbo)>>
@@ -806,6 +809,7 @@ standard keycode to implementation equivalent
       >;
     };
     NAVR_layer {
+      label = "Nav";
       bindings = <
 #if defined MIRYOKU_NAV_VI
         MIRYOKU_MAPPING(
@@ -819,6 +823,7 @@ standard keycode to implementation equivalent
       >;
     };
     MOUR_layer {
+      label = "Mouse";
       bindings = <
 #if defined MIRYOKU_NAV_VI
         MIRYOKU_MAPPING(
@@ -832,6 +837,7 @@ standard keycode to implementation equivalent
       >;
     };
     MEDR_layer {
+      label = "Media";
       bindings = <
 #if defined MIRYOKU_NAV_VI
         MIRYOKU_MAPPING(
@@ -845,6 +851,7 @@ standard keycode to implementation equivalent
       >;
     };
     NSL_layer {
+      label = "Num";
       bindings = <
         MIRYOKU_MAPPING(
 <<table-map-half(mode="l", half_table=nsl)>>
@@ -852,6 +859,7 @@ standard keycode to implementation equivalent
       >;
     };
     NSSL_layer {
+      label = "Sym";
       bindings = <
         MIRYOKU_MAPPING(
 <<table-map-half(mode="l", half_table=nssl)>>
@@ -859,6 +867,7 @@ standard keycode to implementation equivalent
       >;
     };
     FUNL_layer {
+      label = "Fun";
       bindings = <
         MIRYOKU_MAPPING(
 <<table-map-half(mode="l", half_table=funl)>>
