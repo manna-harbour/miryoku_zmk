@@ -31,4 +31,6 @@ jobs:
           - default
         mapping:
           - default
+        kconfig:
+          - default
 m4_include(include/build-steps.yml.m4)m4_dnl

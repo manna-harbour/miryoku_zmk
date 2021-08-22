@@ -5,7 +5,7 @@
 
 [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/cover/miryoku-kle-cover.png]]
 
-[[https://github.com/manna-harbour/miryoku/][Miryoku]] is an ergonomic, minimal, orthogonal, and universal keyboard layout.  This is the miryoku implementation for [[https://zmkfirmware.dev/][ZMK]].
+[[https://github.com/manna-harbour/miryoku/][Miryoku]] is an ergonomic, minimal, orthogonal, and universal keyboard layout.  This is the Miryoku implementation for [[https://zmkfirmware.dev/][ZMK]].
 
 * Contents                                                              :TOC_1:
 - [[#building][Building]]
@@ -49,15 +49,19 @@ Clone this repo and use for [[https://zmk.dev/docs/development/build-flash#build
 
 Workflow files are in [[.github/workflows]].  To access a workflow, log in to GitHub, visit the [[https://github.com/manna-harbour/zmk-config/actions][Actions]] tab, and select the workflow.  To download the firmware from a workflow run, select the workflow, select the workflow run, select the desired Artifacts, and unzip the downloaded zip file.
 
+[[#Supported-Keyboards][Supported keyboards]] and [[#configuration-options][configuration options]] can be used as values for the corresponding [[#build-examples][matrix]] or [[#build-inputs][inputs]] options.
 
-*** Build Inputs
-
-Fork this repo, select the [[https://github.com/manna-harbour/zmk-config/actions/workflows/build-inputs.yml][Build Inputs]] workflow, select Run workflow, fill out the form with [[#Supported-Keyboards][supported keyboards]] and [[#configuration-options][configuration options]], activate Run workflow, wait for successful completion.  Multiple (comma and / or space separated) values can be entered in each field.
+The ~kconfig~ option can be used to generate a ~keyboard.conf~.  Join multiple lines with ~\n~.
 
 
 *** Build Examples
 
-Fork this repo, copy one the included Build Example workflow files, edit the ~name~ value, and edit the values for the desired [[#Supported-Keyboards][supported keyboards]] and [[#configuration-options][configuration options]].
+Fork this repo, copy one of the included Build Example workflow files, edit the ~name~ value, and edit the values for each matrix option as desired.
+
+
+*** Build Inputs
+
+Fork this repo, select the [[https://github.com/manna-harbour/zmk-config/actions/workflows/build-inputs.yml][Build Inputs]] workflow, select Run workflow, and fill out the form as desired.  Multiple (comma and / or space separated) values can be entered in each field.  Activate Run workflow, and wait for successful completion.
 
 
 *** Prebuilt Firmware
@@ -67,7 +71,7 @@ Some prebuilt firmware is available from previous workflow runs.
 
 * Miryoku Keymap
 
-The miryoku keymap is a ZMK DT keymap file using C preprocessor macros for [[#configuration-options][configuration options]] and to abstract the physical layout.  The file is [[miryoku/miryoku.dtsi]].  The file is included into the [[#keyboard-keymaps][keyboard's keymap]] with
+The Miryoku keymap is a ZMK DT keymap file using C preprocessor macros for [[#configuration-options][configuration options]] and to abstract the physical layout.  The file is [[miryoku/miryoku.dtsi]].  The file is included into the [[#keyboard-keymaps][keyboard's keymap]] with
 
 #+BEGIN_SRC C :tangle no
 #include "../miryoku/miryoku.dtsi"
@@ -114,7 +118,7 @@ Below is an example [[#config-file][config file]] with the following keymap [[#c
 
 * Mapping
 
-The keymap is mapped onto keyboards with different physical layouts.  The keymap is specified in terms of the ~MIRYOKU_MAPPING~ macro.  The macro is defined in a C header file for each physical layout.  Unused keys are mapped to ~&none~.  The files are in [[miryoku/mapping/]].  The mapping file is included into the keyboard's keymap file before the miryoku keymap with e.g.
+The keymap is mapped onto keyboards with different physical layouts.  The keymap is specified in terms of the ~MIRYOKU_MAPPING~ macro.  The macro is defined in a C header file for each physical layout.  Unused keys are mapped to ~&none~.  The files are in [[miryoku/mapping/]].  The mapping file is included into the keyboard's keymap file before the Miryoku keymap with e.g.
 
 #+BEGIN_SRC C :tangle no
 #include "../miryoku/mapping/36-minidox.h"

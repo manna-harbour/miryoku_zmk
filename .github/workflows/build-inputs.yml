@@ -33,6 +33,10 @@ on:
         description: 'Miryoku Mapping'
         required: false
         default: 'default'
+      kconfig:
+        description: 'Kconfig'
+        required: false
+        default: 'default'
 jobs:
   process-inputs:
     runs-on: ubuntu-latest
@@ -44,6 +48,7 @@ jobs:
       clipboard: ${{ steps.process-inputs.outputs.clipboard }}
       layers: ${{ steps.process-inputs.outputs.layers }}
       mapping: ${{ steps.process-inputs.outputs.mapping }}
+      kconfig: ${{ steps.process-inputs.outputs.kconfig }}
     steps:
       - name: Process inputs
         id: process-inputs
@@ -60,6 +65,7 @@ jobs:
           set-output "clipboard" "${{ github.event.inputs.clipboard }}"
           set-output "layers" "${{ github.event.inputs.layers }}"
           set-output "mapping" "${{ github.event.inputs.mapping }}"
+          set-output "kconfig" "${{ github.event.inputs.kconfig }}"
   build:
     runs-on: ubuntu-latest
     container:
@@ -75,6 +81,7 @@ jobs:
         clipboard: ${{ fromJSON(needs.process-inputs.outputs.clipboard) }}
         layers: ${{ fromJSON(needs.process-inputs.outputs.layers) }}
         mapping: ${{ fromJSON(needs.process-inputs.outputs.mapping) }}
+        kconfig: ${{ fromJSON(needs.process-inputs.outputs.kconfig) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -82,7 +89,6 @@ jobs:
         id: variables
         run: |
           if [ -n "${{ matrix.shield }}" -a "${{ matrix.shield }}" != "default" ]
-
           then
             SHIELD_ARG="-DSHIELD=${{ matrix.shield }}"
             keyboard=${{ matrix.shield }}
@@ -110,17 +116,34 @@ jobs:
                 ;;
             esac
           done
-          artifact_build_name=`echo $artifact_build_name | tr ' ' '-'`
-          echo "::set-output name=artifact-build-name::$artifact_build_name"
-          echo "::set-output name=artifact-generic-name::"`echo "$artifact_build_name" | sed 's/_\(left\|right\)//'`
-          echo "::set-output name=artifact-dir::artifacts"
 
-          outboard_file=".github/workflows/outboards/$keyboard"
+          artifacts_dir="artifacts"
+          echo "::set-output name=artifact-dir::$artifacts_dir"
+          mkdir "$artifacts_dir"
+          cp "$configfile" "$artifacts_dir"
+
+          if [ -n "${{ matrix.kconfig }}" -a "${{ matrix.kconfig }}" != 'default' ]
+          then
+            kconfig_file="config/$keyboard.conf"
+            echo "${{ matrix.kconfig }}" > "$kconfig_file"
+            cat "$kconfig_file"
+            cp "$kconfig_file" "$artifacts_dir"
+            artifact_build_name="$artifact_build_name kconfig_"`echo "${{ matrix.kconfig }}" | md5sum | cut -d ' ' -f 1`
+          fi
+
+          outboard_file=".github/workflows/outboards/$keyboard.outboard"
           if [ -f "$outboard_file" ]
           then
             grep -v '^#' "$outboard_file" >> $GITHUB_ENV
+            cat "$outboard_file"
+            cp "$outboard_file" "$artifacts_dir"
           fi
           echo "::set-output name=outboard_dir::outboard"
+
+          artifact_build_name=`echo $artifact_build_name | tr ' ' '-'`
+          echo "::set-output name=artifact-build-name::$artifact_build_name"
+          echo "::set-output name=artifact-generic-name::"`echo "$artifact_build_name" | sed 's/_\(left\|right\)//'`
+
       - name: Checkout outboard
         if: ${{ env.outboard_repository != '' && env.outboard_ref != '' }}
         uses: actions/checkout@v2
@@ -166,10 +189,8 @@ jobs:
         run: west zephyr-export
       - name: Build (west build)
         run: west build -s zmk/app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
-      - name: Prepare artifacts
+      - name: Prepare firmware artifacts
         run: |
-          mkdir ${{ steps.variables.outputs.artifact-dir }}
-          cp "${{ steps.variables.outputs.configfile }}" "${{ steps.variables.outputs.artifact-dir }}"
           for extension in "hex" "uf2"
           do
             file="build/zephyr/zmk.$extension"

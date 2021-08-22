@@ -29,4 +29,6 @@ m4_include(include/jobs-build.yml.m4)m4_dnl
           # - flip # TODO
         mapping:
           - default
+        kconfig:
+          - default
 m4_include(include/build-steps.yml.m4)m4_dnl

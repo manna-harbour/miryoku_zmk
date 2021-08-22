@@ -32,6 +32,10 @@ on:
         description: 'Miryoku Mapping'
         required: false
         default: 'default'
+      kconfig:
+        description: 'Kconfig'
+        required: false
+        default: 'default'
 jobs:
   process-inputs:
     runs-on: ubuntu-latest
@@ -43,6 +47,7 @@ jobs:
       clipboard: ${{ steps.process-inputs.outputs.clipboard }}
       layers: ${{ steps.process-inputs.outputs.layers }}
       mapping: ${{ steps.process-inputs.outputs.mapping }}
+      kconfig: ${{ steps.process-inputs.outputs.kconfig }}
     steps:
       - name: Process inputs
         id: process-inputs
@@ -59,6 +64,7 @@ jobs:
           set-output "clipboard" "${{ github.event.inputs.clipboard }}"
           set-output "layers" "${{ github.event.inputs.layers }}"
           set-output "mapping" "${{ github.event.inputs.mapping }}"
+          set-output "kconfig" "${{ github.event.inputs.kconfig }}"
   build:
     runs-on: ubuntu-latest
     container:
@@ -74,4 +80,5 @@ jobs:
         clipboard: ${{ fromJSON(needs.process-inputs.outputs.clipboard) }}
         layers: ${{ fromJSON(needs.process-inputs.outputs.layers) }}
         mapping: ${{ fromJSON(needs.process-inputs.outputs.mapping) }}
+        kconfig: ${{ fromJSON(needs.process-inputs.outputs.kconfig) }}
 m4_include(include/build-steps.yml.m4)m4_dnl
