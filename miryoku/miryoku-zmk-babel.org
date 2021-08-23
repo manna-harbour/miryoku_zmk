@@ -46,9 +46,9 @@
 *** Mouse Buttons Overlay (~MBO~)
 
 #+NAME: mbo
-| U_RDO | U_PST | U_CPY | U_CUT | U_UND | U_RDO | U_PST | U_CPY | U_CUT | U_UND |
+| U_UND | U_CUT | U_CPY | U_PST | U_RDO | U_RDO | U_PST | U_CPY | U_CUT | U_UND |
 | LGUI  | LALT  | LCTL  | LSFT  |       |       | LSFT  | LCTL  | LALT  | LGUI  |
-| U_RDO | U_PST | U_CPY | U_CUT | U_UND | U_RDO | U_PST | U_CPY | U_CUT | U_UND |
+| U_UND | U_CUT | U_CPY | U_PST | U_RDO | U_RDO | U_PST | U_CPY | U_CUT | U_UND |
 | U_NP  | U_NP  | BTN2  | BTN3  | BTN1  | BTN1  | BTN3  | BTN2  | U_NP  | U_NP  |
 
 

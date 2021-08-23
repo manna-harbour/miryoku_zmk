@@ -180,9 +180,9 @@ U_NP,         U_NP,         &lt MEDR ESC, &lt NAVR SPC, &lt MOUR TAB, &lt NSSL R
       label = "Buttons";
       bindings = <
         MIRYOKU_MAPPING(
-U_RDO,    U_PST,    U_CPY,    U_CUT,    U_UND,    U_RDO,    U_PST,    U_CPY,    U_CUT,    U_UND,
+U_UND,    U_CUT,    U_CPY,    U_PST,    U_RDO,    U_RDO,    U_PST,    U_CPY,    U_CUT,    U_UND,
 &kp LGUI, &kp LALT, &kp LCTRL, &kp LSHFT, &trans,   &trans,   &kp LSHFT, &kp LCTRL, &kp LALT, &kp LGUI,
-U_RDO,    U_PST,    U_CPY,    U_CUT,    U_UND,    U_RDO,    U_PST,    U_CPY,    U_CUT,    U_UND,
+U_UND,    U_CUT,    U_CPY,    U_PST,    U_RDO,    U_RDO,    U_PST,    U_CPY,    U_CUT,    U_UND,
 U_NP,     U_NP,     U_NU,     U_NU,     &kp KP_N5, &kp KP_N5, U_NU,     U_NU,     U_NP,     U_NP
         )
       >;
