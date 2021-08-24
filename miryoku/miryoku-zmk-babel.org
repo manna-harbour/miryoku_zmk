@@ -715,6 +715,9 @@ standard keycode to implementation equivalent
 <<table-keycode-mappings(table=clipboard)>>
 #endif
 
+#ifndef MIRYOKU_MAPPING_TAP
+  #define MIRYOKU_MAPPING_TAP MIRYOKU_MAPPING
+#endif
 
 / {
   behaviors {

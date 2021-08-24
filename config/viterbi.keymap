@@ -3,4 +3,3 @@
 
 #include "../miryoku/mapping/70-viterbi.h"
 #include "../miryoku/miryoku.dtsi"
-
