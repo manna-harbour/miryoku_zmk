@@ -5,6 +5,8 @@ name: 'Test Shields'
 m4_include(include/jobs-build.yml.m4)m4_dnl
         shield:
           - absolem # outboard
+          - architeuthis_dux_left # outboard
+          - architeuthis_dux_right # outboard
           - bastyl_left # outboard
           - bastyl_right # outboard
           - boardsource5x12 # outboard
