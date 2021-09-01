@@ -93,10 +93,6 @@ inner index.
 
 ** Alternative Layouts
 
-To select, translate the ~=~ to ~_~ and add a ~#define~ to your keymap file
-before the includes, e.g. for ~MIRYOKU_ALPHAS=QWERTY~ add ~#define
-MIRYOKU_ALPHAS_QWERTY~.
-
 
 *** Base Layer Alphas
 
