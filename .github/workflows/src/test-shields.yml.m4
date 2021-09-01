@@ -54,6 +54,8 @@ m4_include(include/jobs-build.yml.m4)m4_dnl
           - sweepv2_right # outboard
           - tbkmini_left # outboard
           - tbkmini_right # outboard
+          - tightyl_left # outboard
+          - tightyl_right # outboard
           - viterbi_left # outboard
           - viterbi_right # outboard
         board:
