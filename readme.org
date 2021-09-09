@@ -71,7 +71,7 @@ Some prebuilt firmware is available from previous workflow runs.
 
 * Miryoku Keymap
 
-The Miryoku keymap is a ZMK DT keymap file using C preprocessor macros for [[#configuration-options][configuration options]] and to abstract the physical layout.  The file is [[miryoku/miryoku.dtsi]].  The file is included into the [[#keyboard-keymaps][keyboard's keymap]] with
+The Miryoku keymap is a ZMK DT keymap file using C preprocessor macros for [[#configuration-options][configuration options]] and to abstract the physical layout.  The file is [[miryoku/miryoku.dtsi]].  The file is included into the [[#keyboard-keymaps][keyboard's keymap]] after the config file and mapping with:
 
 #+BEGIN_SRC C :tangle no
 #include "../miryoku/miryoku.dtsi"
@@ -83,20 +83,23 @@ The Miryoku keymap is a ZMK DT keymap file using C preprocessor macros for [[#co
 [[https://github.com/manna-harbour/qmk_firmware/blob/miryoku/users/manna-harbour_miryoku/miryoku.org#alternative-layouts][Keymap configuration options]] and [[#mapping][mapping]] configuration options are given in the documentation in the form ~option=value~.
 
 
-** in Config File
+** Use in Local Builds
 
-Convert to the form ~#define option_value~.  To apply the configuration options to all builds add them to the [[#config-file][config file]].  To apply configuration options to a single keyboard, add them to the [[#keyboard-keymaps][keyboard keymap]] file before any ~#include~ lines.
+Convert to the form ~#define option_value~ and add to the [[#config-file][config file]].
 
 
-** in Workflows
+** Use in Workflow Builds
 
 Convert to the form ~value~ (uppercase or lowercase) and use with the corresponding ~option~.  Use ~default~ to represent the default value.
 
 
 * Config File
 
-The config file can be used to provide [[#configuration-options][configuration options]] for all [[#Local-Builds][local builds]].  The file is [[miryoku/config.h]].  See the [[#example-config-file][example config file]].
+The config file can be used to provide [[#configuration-options][configuration options]] for all [[#Local-Builds][local builds]].  The file is [[miryoku/config.h]].  See the [[#example-config-file][example config file]].  The config file is included into the keyboard's keymap file before the mapping with:
 
+#+BEGIN_SRC C :tangle no
+#include "../miryoku/config.h"
+#+END_SRC
 
 * Example Config File
 

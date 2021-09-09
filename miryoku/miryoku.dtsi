@@ -7,7 +7,6 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/outputs.h>
-#include "config.h"
 
 #define BASE 0
 #define TAP  1
