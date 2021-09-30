@@ -1,7 +1,0 @@
-# Copyright 2021 Manna Harbour
-# https://github.com/manna-harbour/miryoku
-
-outboard_repository=dxmh/zmk-architeuthis-dux
-outboard_ref=main
-outboard_from=config/boards/shields/architeuthis_dux
-outboard_to=boards/shields/architeuthis_dux
