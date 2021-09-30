@@ -60,8 +60,6 @@ jobs:
           - sofle_right
           - splitreus62_left
           - splitreus62_right
-          - sweepv2_left # outboard
-          - sweepv2_right # outboard
           - tbkmini_left # outboard
           - tbkmini_right # outboard
           - tightyl_left # outboard

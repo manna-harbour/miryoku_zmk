@@ -50,8 +50,6 @@ m4_include(include/jobs-build.yml.m4)m4_dnl
           - sofle_right
           - splitreus62_left
           - splitreus62_right
-          - sweepv2_left # outboard
-          - sweepv2_right # outboard
           - tbkmini_left # outboard
           - tbkmini_right # outboard
           - tightyl_left # outboard
