@@ -40,7 +40,9 @@ At the moment bluetooth is in the media layer.  See
 
 *** Add ZMK mouse keys
 
-At the moment the mouse layer is using mouse keys on the host.
+There is a `mousekeys` branch with the mousekeys PR enabled and configured.
+
+In the default branch the mouse layer is using mouse keys on the host.
 
 - X11: https://en.wikipedia.org/wiki/Mouse_keys
 - Windows: https://support.microsoft.com/en-us/windows/use-mouse-keys-to-move-the-mouse-pointer-9e0c72c8-b882-7918-8e7b-391fd62adf33
