@@ -39,6 +39,8 @@ m4_include(include/jobs-build.yml.m4)m4_dnl
           - lily58_right
           - microdox_left
           - microdox_right
+          - microdox_mod_left # outboard
+          - microdox_mod_right # outboard
           - naked60 # outboard
           - pockettype # outboard
           - pteron36_left # outboard

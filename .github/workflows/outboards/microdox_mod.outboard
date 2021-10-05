@@ -1,0 +1,9 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+# use with included board sparkfun_nrf52840_mini
+
+outboard_repository=abondis/zmk-config
+outboard_ref=main
+outboard_from=config/boards
+outboard_to=boards
