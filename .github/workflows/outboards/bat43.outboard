@@ -1,0 +1,7 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=dnaq/zmk
+outboard_ref=bat43-keymap
+outboard_from=app/boards/shields/bat43
+outboard_to=boards/shields/bat43

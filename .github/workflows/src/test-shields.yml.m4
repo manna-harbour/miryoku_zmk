@@ -9,6 +9,7 @@ m4_include(include/jobs-build.yml.m4)m4_dnl
           - a_dux_right
           - bastyl_left # outboard
           - bastyl_right # outboard
+          - bat43 # outboard
           - boardsource5x12 # outboard
           - contra # outboard
           - corne_left
