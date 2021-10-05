@@ -68,6 +68,8 @@ jobs:
           - tightyl_right # outboard
           - viterbi_left # outboard
           - viterbi_right # outboard
+          - zodiark_left # outboard
+          - zodiark_right # outboard
         board:
           - nice_nano
         alphas:

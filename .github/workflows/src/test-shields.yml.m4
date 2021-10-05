@@ -58,6 +58,8 @@ m4_include(include/jobs-build.yml.m4)m4_dnl
           - tightyl_right # outboard
           - viterbi_left # outboard
           - viterbi_right # outboard
+          - zodiark_left # outboard
+          - zodiark_right # outboard
         board:
           - nice_nano
         alphas:
