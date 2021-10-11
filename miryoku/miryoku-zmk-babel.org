@@ -683,7 +683,7 @@ standard keycode to implementation equivalent
 
 ** [[miryoku.dtsi]]
 
-#+BEGIN_SRC C :noweb yes :padline no :tangle miryoku.dtsi
+#+BEGIN_SRC C :main no :noweb yes :padline no :tangle miryoku.dtsi
 // Copyright 2021 Manna Harbour
 // https://github.com/manna-harbour/miryoku
 // generated -*- buffer-read-only: t -*-
