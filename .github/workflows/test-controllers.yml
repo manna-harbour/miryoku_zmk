@@ -83,14 +83,24 @@ jobs:
             artifact_build_name="$artifact_build_name kconfig_"`echo "${{ matrix.kconfig }}" | md5sum | cut -d ' ' -f 1`
           fi
 
-          outboard_file=".github/workflows/outboards/$keyboard.outboard"
+          outboard_dir=".github/workflows/outboards"
+          if [ -n "$shield" ]
+          then
+            outboard_file="$outboard_dir/$keyboard.shield.outboard"
+          else
+            outboard_file="$outboard_dir/$keyboard.board.outboard"
+          fi
+          if [ ! -f "$outboard_file" ]
+          then
+            outboard_file="$outboard_dir/$keyboard.outboard"
+          fi
           if [ -f "$outboard_file" ]
           then
             grep -v '^#' "$outboard_file" >> $GITHUB_ENV
             cat "$outboard_file"
             cp "$outboard_file" "$artifacts_dir"
           fi
-          echo "::set-output name=outboard_dir::outboard"
+          echo "::set-output name=outboard_chekout_dir::outboard"
 
           artifact_build_name=`echo $artifact_build_name | tr ' ' '-'`
           echo "::set-output name=artifact-build-name::$artifact_build_name"
@@ -102,12 +112,12 @@ jobs:
         with:
           repository: ${{ env.outboard_repository }}
           ref: ${{ env.outboard_ref }}
-          path: ${{ steps.variables.outputs.outboard_dir }}
+          path: ${{ steps.variables.outputs.outboard_chekout_dir }}
       - name: Link outboard
         if: ${{ env.outboard_from != '' && env.outboard_to != '' }}
         run: |
           mkdir -p `dirname "config/${{ env.outboard_to }}"`
-          ln -sr ${{ steps.variables.outputs.outboard_dir }}/${{ env.outboard_from }} config/${{ env.outboard_to }}
+          ln -sr ${{ steps.variables.outputs.outboard_chekout_dir }}/${{ env.outboard_from }} config/${{ env.outboard_to }}
       - name: Generate outboard manifest
         if: ${{ env.outboard_url_base != '' && env.outboard_revision != '' }}
         run: |
@@ -116,7 +126,7 @@ jobs:
       - name: Copy outboard manifest
         if: ${{ env.outboard_manifest != '' }}
         run: |
-          cp ${{ steps.variables.outputs.outboard_dir }}/${{ env.outboard_manifest }} config/west.yml
+          cp ${{ steps.variables.outputs.outboard_chekout_dir }}/${{ env.outboard_manifest }} config/west.yml
           cat config/west.yml
       - name: Cache west modules
         uses: actions/cache@v2

@@ -1,0 +1,9 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+# ahokore v1 (shield)
+
+outboard_repository=dezlidezlidezli/zmk-config
+outboard_ref=master
+outboard_from=config/boards/shields/ahokore
+outboard_to=boards/shields/ahokore

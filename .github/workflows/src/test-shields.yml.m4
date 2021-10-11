@@ -7,6 +7,7 @@ m4_include(include/jobs-build.yml.m4)m4_dnl
           - absolem # outboard
           - a_dux_left
           - a_dux_right
+          - ahokore # outboard
           - bastyl_left # outboard
           - bastyl_right # outboard
           - bat43 # outboard
