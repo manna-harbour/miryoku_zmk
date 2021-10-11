@@ -7,13 +7,9 @@ Welcome to the Miryoku ZMK alpha!
 
 *Please don't redistribute.  If you fork, please make the fork private.*
 
-You've been added as a collaborator to the repo as it's the easiest way to give
-access.  If you could avoid accidental force pushes to master that'd be great!
-You're not expected to contribute but contributions are of course welcome.  In
-that case please create a new branch and PR.
+You've been added as a collaborator to the repo as it's the easiest way to give access.  If you could avoid accidental force pushes to master that'd be great!  You're not expected to contribute but contributions are of course welcome.  In that case please create a new branch and PR.
 
-See the Todo section below, then see
-https://github.com/manna-harbour/zmk-config/.
+See the Todo section below, then see https://github.com/manna-harbour/zmk-config/.
 
 Please let me know if you have any issues.
 
@@ -21,26 +17,21 @@ Please let me know if you have any issues.
 
 The keymap can be used now, but there's still some work needed before release.
 
-*** Miryoku reorganisation
+*** Miryoku documentation
 
-Docs and code generation are being moved from the Miryoku QMK repo to the Miryoku repo.
+Miryoku documentation is being moved from the Miryoku QMK repo to the Miryoku repo.  For now, refer to the documentation in Miryoku QMK.
 
-At the moment some links in the Miryoku ZMK docs will be broken as they are
-using future post-reorganisation URLs.
+*** Miyroku Babel
 
-*** Generate Miryoku ZMK from Miryoku Babel
-
-At the moment the Miryoku ZMK keymap is generated from
-[[miryoku/miryoku-zmk-babel.org]].
+Code generation in Miryoku QMK and Miryoku ZMK is being combined into Miryoku Babel.  At the moment the Miryoku ZMK keymap is generated from [[miryoku/miryoku-zmk-babel.org]].  Refer to the documentation in Miryoku QMK.
 
 *** Add new keyboard control layers
 
-At the moment bluetooth is in the media layer.  See
-[[miryoku/miryoku-zmk-babel.org#media-medr]].
+At the moment bluetooth is in the media layer.  See [[miryoku/miryoku-zmk-babel.org#media-medr]].
 
 *** Add ZMK mouse keys
 
-There is a `mousekeys` branch with the mousekeys PR enabled and configured.
+There is a ~mousekeys~ branch with the [[https://github.com/zmkfirmware/zmk/pull/778][mousekeys PR]] enabled and configured.  Use ~CONFIG_ZMK_MOUSE=y~ in Kconfig [[https://github.com/zmkfirmware/zmk/blob/e91fb88eadc8593f430ea04c5f4e11102176eb94/docs/docs/behaviors/mouse-emulation.md][as described]].
 
 In the default branch the mouse layer is using mouse keys on the host.
 
