@@ -17,13 +17,17 @@ Please let me know if you have any issues.
 
 The keymap can be used now, but there's still some work needed before release.
 
-*** Miryoku documentation
+*** +Miryoku documentation+
 
-Miryoku documentation is being moved from the Miryoku QMK repo to the Miryoku repo.  For now, refer to the documentation in Miryoku QMK.
++Miryoku documentation is being moved from the Miryoku QMK repo to the Miryoku repo.  For now, refer to the documentation in Miryoku QMK.+
 
-*** Miyroku Babel
+Miryoku documentation is now at https://github.com/manna-harbour/miryoku.
 
-Code generation in Miryoku QMK and Miryoku ZMK is being combined into Miryoku Babel.  At the moment the Miryoku ZMK keymap is generated from [[miryoku/miryoku-zmk-babel.org]].  Refer to the documentation in Miryoku QMK.
+*** +Miyroku Babel+
+
++Code generation in Miryoku QMK and Miryoku ZMK is being combined into Miryoku Babel.  At the moment the Miryoku ZMK keymap is generated from [[miryoku/miryoku-zmk-babel.org]].  Refer to the documentation in Miryoku QMK.+
+
+Miryoku Babel is now being used.
 
 *** Add new keyboard control layers
 

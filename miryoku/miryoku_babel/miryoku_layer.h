@@ -1,9 +1,10 @@
 // Copyright 2021 Manna Harbour
 // https://github.com/manna-harbour/miryoku
+// generated -*- buffer-read-only: t -*-
 
 #pragma once
 
-#include "babel/alternatives.h"
+#include "miryoku_alternatives.h"
 
 #if !defined(MIRYOKU_LAYER_BASE)
   #if defined (MIRYOKU_LAYERS_FLIP)
