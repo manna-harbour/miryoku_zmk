@@ -1,0 +1,9 @@
+#define BASE 0
+#define TAP  1
+#define MBO  2
+#define NAVR 3
+#define MOUR 4
+#define MEDR 5
+#define NSL  6
+#define NSSL 7
+#define FUNL 8
