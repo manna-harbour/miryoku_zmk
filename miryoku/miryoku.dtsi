@@ -8,16 +8,40 @@
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/outputs.h>
 
-#include "babel/layers.h"
+#include "babel/layer_names.h"
+
+#include "layer.h"
+
+#define U_EXPAND(macro, ...) macro(__VA_ARGS__)
 
 #define U_NP &none // key is not present
 #define U_NA &none // present but not available for use
 #define U_NU &none // available but not used
 
-#include "babel/clipboard.h"
-
-#ifndef MIRYOKU_MAPPING_TAP
-  #define MIRYOKU_MAPPING_TAP MIRYOKU_MAPPING
+#if defined MIRYOKU_CLIPBOARD_FUN
+#define U_RDO &kp K_AGAIN
+#define U_PST &kp K_PASTE
+#define U_CPY &kp K_COPY
+#define U_CUT &kp K_CUT
+#define U_UND &kp K_UNDO
+#elif defined MIRYOKU_CLIPBOARD_MAC
+#define U_RDO &kp LS(LG(Z))
+#define U_PST &kp LG(V)
+#define U_CPY &kp LG(C)
+#define U_CUT &kp LG(X)
+#define U_UND &kp LG(Z)
+#elif defined MIRYOKU_CLIPBOARD_WIN
+#define U_RDO &kp LC(Y)
+#define U_PST &kp LC(V)
+#define U_CPY &kp LC(C)
+#define U_CUT &kp LC(X)
+#define U_UND &kp LC(Z)
+#else
+#define U_RDO &kp K_AGAIN
+#define U_PST &kp LS(INS)
+#define U_CPY &kp LC(INS)
+#define U_CUT &kp LS(DEL)
+#define U_UND &kp K_UNDO
 #endif
 
 / {
@@ -33,5 +57,103 @@
   };
 };
 
+/ {
+  keymap {
+    compatible = "zmk,keymap";
+    BASE_layer {
+      label = "Base";
+      bindings = < U_EXPAND(MIRYOKU_MAPPING, MIRYOKU_LAYER_BASE) >;
+    };
+    BUTTON_layer {
+      label = "Button";
+      bindings = < U_EXPAND(MIRYOKU_MAPPING, MIRYOKU_LAYER_BUTTON) >;
+    };
+    NAV_layer {
+      label = "Nav";
+      bindings = < U_EXPAND(MIRYOKU_MAPPING, MIRYOKU_LAYER_NAV) >;
+    };
+    MOUSE_layer {
+      label = "Mouse";
+      bindings = < U_EXPAND(MIRYOKU_MAPPING, MIRYOKU_LAYER_MOUSE) >;
+    };
+    MEDIA_layer {
+      label = "Media";
+      bindings = < U_EXPAND(MIRYOKU_MAPPING, MIRYOKU_LAYER_MEDIA) >;
+    };
+    NUM_layer {
+      label = "Num";
+      bindings = < U_EXPAND(MIRYOKU_MAPPING, MIRYOKU_LAYER_NUM) >;
+    };
+    SYM_layer {
+      label = "Sym";
+      bindings = < U_EXPAND(MIRYOKU_MAPPING, MIRYOKU_LAYER_SYM) >;
+    };
+    FUN_layer {
+      label = "Fun";
+      bindings = < U_EXPAND(MIRYOKU_MAPPING, MIRYOKU_LAYER_FUN) >;
+    };
+  };
+};
 
-#include "babel/keymap.dtsi"
+#if defined (MIRYOKU_COMBO_TPS_ENABLE) && defined (MIRYOKU_COMBO_TPSL) && defined (MIRYOKU_COMBO_TPSR)
+/ {
+  combos {
+    compatible = "zmk,combos";
+    combo_tpsl_BASE {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSL>;
+      bindings = <&lt MEDIA ESC>;
+      layers = <BASE>;
+    };
+    combo_tpsr_BASE {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSR>;
+      bindings = <&lt FUN DEL>;
+      layers = <BASE>;
+    };
+    combo_tpsr_BUTTON {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSR>;
+      bindings = <U_NU>;
+      layers = <BUTTON>;
+    };
+    combo_tpsr_NAV {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSR>;
+      bindings = <&kp DEL>;
+      layers = <NAV>;
+    };
+    combo_tpsr_MOUSE {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSR>;
+      bindings = <U_NU>;
+      layers = <MOUSE>;
+    };
+    combo_tpsr_MEDIA {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSR>;
+      bindings = <&kp K_MUTE>;
+      layers = <MEDIA>;
+    };
+    combo_tpsl_NUM {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSL>;
+      bindings = <&kp DOT>;
+      layers = <NUM>;
+    };
+    combo_tpsl_SYM {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSL>;
+      bindings = <&kp LPAR>;
+      layers = <SYM>;
+    };
+    combo_tpsl_FUN {
+      timeout-ms = <200>;
+      key-positions = <MIRYOKU_COMBO_TPSL>;
+      bindings = <&kp K_APP>;
+      layers = <FUN>;
+    };
+  };
+};
+#endif
+
