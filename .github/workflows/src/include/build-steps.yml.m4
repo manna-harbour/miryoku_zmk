@@ -14,7 +14,8 @@
             shield=""
           fi
           echo "::set-output name=shield-arg::${SHIELD_ARG}"
-          keyboard=`echo "$keyboard" | sed 's/_\(left\|right\)//'`
+          keyboard_split="$keyboard"
+          keyboard_base=`echo "$keyboard" | sed 's/_\(left\|right\)//'`
 
           configfile="${GITHUB_WORKSPACE}/miryoku/config.h"
           echo '// Copyright 2021 Manna Harbour\n// https://github.com/manna-harbour/miryoku' > "$configfile"
@@ -40,7 +41,7 @@
 
           if [ -n "${{ matrix.kconfig }}" -a "${{ matrix.kconfig }}" != 'default' ]
           then
-            kconfig_file="config/$keyboard.conf"
+            kconfig_file="config/$keyboard_split.conf"
             echo "${{ matrix.kconfig }}" > "$kconfig_file"
             cat "$kconfig_file"
             cp "$kconfig_file" "$artifacts_dir"
@@ -50,13 +51,13 @@
           outboard_dir=".github/workflows/outboards"
           if [ -n "$shield" ]
           then
-            outboard_file="$outboard_dir/$keyboard.shield.outboard"
+            outboard_file="$outboard_dir/$keyboard_base.shield.outboard"
           else
-            outboard_file="$outboard_dir/$keyboard.board.outboard"
+            outboard_file="$outboard_dir/$keyboard_base.board.outboard"
           fi
           if [ ! -f "$outboard_file" ]
           then
-            outboard_file="$outboard_dir/$keyboard.outboard"
+            outboard_file="$outboard_dir/$keyboard_base.outboard"
           fi
           if [ -f "$outboard_file" ]
           then
