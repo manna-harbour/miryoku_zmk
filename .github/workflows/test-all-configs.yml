@@ -1,11 +1,9 @@
 # Copyright 2021 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-name: 'Test Build'
+name: 'Test All Configs'
 on:
-  push:
-  pull_request:
-  workflow_dispatch:
+  - workflow_dispatch
 jobs:
   build:
     if: github.repository_owner == 'manna-harbour'
@@ -13,3 +11,7 @@ jobs:
     with:
       board: '["nice_nano"]'
       shield: '["corne_left"]'
+      alphas: '["default","azerty","colemak","colemakdhk","dvorak","halmak","workman","qwerty","qwertz"]'
+      nav: '["default","vi","invertedt"]'
+      clipboard: '["default","fun","mac","win"]'
+      layers: '["default","flip"]'

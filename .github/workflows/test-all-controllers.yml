@@ -1,15 +1,13 @@
 # Copyright 2021 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-name: 'Test Build'
+name: 'Test All Controllers'
 on:
-  push:
-  pull_request:
-  workflow_dispatch:
+  - workflow_dispatch
 jobs:
   build:
     if: github.repository_owner == 'manna-harbour'
     uses: manna-harbour/zmk-config/.github/workflows/main.yml@master
     with:
-      board: '["nice_nano"]'
+      board: '["bluemicro840_v1","nice_nano","nice_nano_v2","nrfmicro_11","nrfmicro_13","proton_c"]'
       shield: '["corne_left"]'

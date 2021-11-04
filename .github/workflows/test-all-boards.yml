@@ -1,15 +1,13 @@
 # Copyright 2021 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-name: 'Test Build'
+name: 'Test All Boards'
 on:
-  push:
-  pull_request:
-  workflow_dispatch:
+  - workflow_dispatch
 jobs:
   build:
     if: github.repository_owner == 'manna-harbour'
     uses: manna-harbour/zmk-config/.github/workflows/main.yml@master
     with:
-      board: '["nice_nano"]'
-      shield: '["corne_left"]'
+      board: '["ahokore","ble_chiffre","corne-ish_zen_left","corne-ish_zen_right","ferris_rev02","planck_rev6","preonic_rev3","zaphod"]'
+

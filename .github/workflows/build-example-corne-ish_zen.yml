@@ -1,12 +1,11 @@
 # Copyright 2021 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-name: 'Build Example tbkmini nice_nano_v2'
+name: 'Build Example corne-ish_zen'
 on:
   - workflow_dispatch
 jobs:
   build:
     uses: manna-harbour/zmk-config/.github/workflows/main.yml@master
     with:
-      board: '["nice_nano_v2"]'
-      shield: '["tbkmini_left","tbkmini_right"]'
+      board: '["corne-ish_zen_left","corne-ish_zen_right"]'

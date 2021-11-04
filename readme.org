@@ -5,73 +5,82 @@
 
 [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/cover/miryoku-kle-cover.png]]
 
-[[https://github.com/manna-harbour/miryoku/][Miryoku]] is an ergonomic, minimal, orthogonal, and universal keyboard layout.  This is the Miryoku implementation for [[https://zmkfirmware.dev/][ZMK]].
+[[https://github.com/manna-harbour/miryoku/][Miryoku]] is an ergonomic, minimal, orthogonal, and universal keyboard layout.  [[https://github.com/manna-harbour/miryoku_zmk][Miryoku ZMK]] is the Miryoku implementation for [[https://zmkfirmware.dev/][ZMK]].
 
 
 ** Building
 
 
-*** Supported Keyboards
-
-See the various Test [[#github-actions-workflows][workflow]] files for lists of supported keyboards.
-
-
-**** Board Only
-
-Any [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/arm][board supported by ZMK]] with a [[#keyboard-keymaps][keymap in Miryoku ZMK]].
-
-
-**** Board / Shield Combination
-
-Any compatible combination of [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/arm][board supported by ZMK]] and [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/shields][shield supported by ZMK]] with a [[#keyboard-keymaps][keymap in Miryoku ZMK]].
-
-
-**** Out of Tree Boards and Shields
-
-Additionally, some out of tree boards and shields are automatically supported by the included [[#github-actions-workflows][workflows]].  See [[.github/workflows/outboards]].
-
-
 *** Local Builds
 
-Clone this repo and use for [[https://zmk.dev/docs/development/build-flash#building-from-zmk-config-folder][ZMK_CONFIG]].
+Clone this repository and use for [[https://zmk.dev/docs/development/build-flash#building-from-zmk-config-folder][ZMK_CONFIG]].
 
 
 *** GitHub Actions Workflows
 
-Workflow files are in [[.github/workflows]].  To access a workflow, log in to GitHub, visit the [[https://github.com/manna-harbour/zmk-config/actions][Actions]] tab, and select the workflow.  To download the firmware from a workflow run, select the workflow, select the workflow run, select the desired Artifacts, and unzip the downloaded zip file.
+First log in to GitHub and fork the Miryoku ZMK repository.
 
-[[#Supported-Keyboards][Supported keyboards]] and [[#configuration-options][configuration options]] can be used as values for the corresponding [[#build-examples][matrix]] or [[#build-inputs][inputs]] options.
+To access a workflow, visit the Actions tab and select the workflow.  To download the firmware from a workflow run, select the workflow, select the workflow run, select the desired Artifacts, and unzip the downloaded zip file.
 
-The ~kconfig~ option can be used to generate a ~keyboard.conf~.  Join multiple lines with ~\n~.
+Workflow files are in [[.github/workflows]].
 
 
 **** Build Examples
 
-Fork this repo, copy one of the included Build Example workflow files, edit the ~name~ value, and edit the values for each matrix option as desired.
+Copy one of the included Build Example workflow files, edit the ~name~ value, and edit and add options and values as desired.  Select Run workflow, select the Branch if desired, and activate Run workflow.
+
+Options are specified in the ~with~ section and are of the following form.
+: option: '["value"]'
+
+For multiple values per option use the following form, and a matrix build will be performed for each combination of values across all options.
+: option: '["value1","value2"]'
+
+The ~board~ option specifies the ZMK ~board~ and is required.  All other options are optional.  The ~shield~ option specifies the ZMK ~shield~.
+
+The ~alphas~, ~nav~, ~clipboard~, and ~layers~ options correspond to the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] options.   The ~mapping~ option corresponds to the alternative [[#mapping][mapping]] options.  Values for these five options are case-insensitive.
+
+The ~kconfig~ option can be used to generate a ~keyboard.conf~.  Join multiple lines with ~\n~.
+
+See the Test All workflow files for all supported values for each option.
 
 
 **** Build Inputs
 
-Fork this repo, select the [[https://github.com/manna-harbour/zmk-config/actions/workflows/build-inputs.yml][Build Inputs]] workflow, select Run workflow, and fill out the form as desired.  Multiple (comma and / or space separated) values can be entered in each field.  Activate Run workflow, and wait for successful completion.
+The Build Inputs workflow can be used without editing workflow files.  Select Run workflow, select the Branch and fill out the form as desired, and activate Run workflow.
+
+Options are specified by entering values directly in the corresponding field.  Multiple comma separated values can be entered per option and a matrix build will be performed for each combination of values across all options.
+
+The ~Board~ option specifies the ZMK ~board~ and is required.  All other options are optional.  The ~Shield~ option specifies the ZMK ~shield~.
+
+The ~Miryoku Alphas~, ~Miryoku Nav~, ~Miryoku Clipboard~, and ~Miryoku Layers~ options correspond to the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] options.  The ~Miryoku Mapping~ option corresponds to the alternative [[#mapping][mapping]] options.  Values for these five options are case-insensitive.
+
+The ~Kconfig~ option can be used to generate a ~keyboard.conf~.  Join multiple lines with ~\n~.
 
 
-**** Prebuilt Firmware
+** Supported Keyboards
 
-Some prebuilt firmware is available from previous workflow runs.
+See the Test All [[#github-actions-workflows][workflow]] files for lists of supported keyboards.
 
 
-** Miryoku Keymap
+*** Board Only
 
-The Miryoku keymap is a ZMK DT keymap file using C preprocessor macros for [[#configuration-options][configuration options]] and to abstract the physical layout.  The file is [[miryoku/miryoku.dtsi]].  The file is included into the [[#keyboard-keymaps][keyboard's keymap]] after the config file and mapping with:
+Any [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/arm][board supported by ZMK]] with a [[#keyboard-keymaps][keymap in Miryoku ZMK]].
 
-#+BEGIN_SRC C :tangle no
-#include "../miryoku/miryoku.dtsi"
-#+END_SRC
+
+*** Board / Shield Combination
+
+Any compatible combination of [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/arm][board supported by ZMK]] and [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/shields][shield supported by ZMK]] with a [[#keyboard-keymaps][keymap in Miryoku ZMK]].
+
+
+*** Out of Tree Boards and Shields
+
+Additionally, some out of tree boards and shields are automatically supported by the included [[#github-actions-workflows][workflows]].  See [[.github/workflows/outboards]].
+
 
 
 ** Configuration Options
 
-[[https://github.com/manna-harbour/qmk_firmware/blob/miryoku/users/manna-harbour_miryoku/miryoku.org#alternative-layouts][Keymap configuration options]] and [[#mapping][mapping]] configuration options are given in the documentation in the form ~option=value~.
+[[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][Keymap configuration options]] and [[#mapping][mapping]] configuration options are given in the documentation in the form ~option=value~.
 
 
 *** Use in Local Builds
@@ -93,7 +102,7 @@ The config file can be used to provide [[#configuration-options][configuration o
 #+END_SRC
 
 
-** Example Config File
+*** Example Config File
 
 Below is an example [[#config-file][config file]] with the following keymap [[#configuration-options][configuration options]]:
 
@@ -109,6 +118,17 @@ Below is an example [[#config-file][config file]] with the following keymap [[#c
 #define MIRYOKU_NAV_VI
 #define MIRYOKU_CLIPBOARD_WIN
 #+END_SRC
+
+
+** Miryoku Keymap
+
+The Miryoku keymap is a ZMK DT keymap file using C preprocessor macros for [[#configuration-options][configuration options]] and to abstract the physical layout.  The Miryoku keymap file is [[miryoku/miryoku.dtsi]].  The file is included into the [[#keyboard-keymaps][keyboard's keymap]] after the config file and mapping with:
+
+#+BEGIN_SRC C :tangle no
+#include "../miryoku/miryoku.dtsi"
+#+END_SRC
+
+Macros are included from [[miryoku/miryoku.h]].  Layer data is generated by [[https://github.com/manna-harbour/miryoku_babel][Miryoku Babel]] and is included from files in the [[miryoku/miryoku_babel]] directory.
 
 
 ** Mapping

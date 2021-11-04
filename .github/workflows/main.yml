@@ -1,46 +1,50 @@
-# generated -*- buffer-read-only: t -*-
 # Copyright 2021 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-name: 'Test Configs'
+name: 'Main'
 on:
-  - workflow_dispatch
+  workflow_call:
+    inputs:
+      board:
+        type: string
+        default: '["default"]'
+      shield:
+        type: string
+        default: '["default"]'
+      alphas:
+        type: string
+        default: '["default"]'
+      nav:
+        type: string
+        default: '["default"]'
+      clipboard:
+        type: string
+        default: '["default"]'
+      layers:
+        type: string
+        default: '["default"]'
+      mapping:
+        type: string
+        default: '["default"]'
+      kconfig:
+        type: string
+        default: '["default"]'
 jobs:
-  build:
+  main:
     runs-on: ubuntu-latest
     container:
       image: zmkfirmware/zmk-build-arm:2.5
     strategy:
       fail-fast: false
       matrix:
-        shield:
-          - corne_left
-        board:
-          - nice_nano
-        alphas:
-          - default
-          - colemak
-          - colemakdhk
-          - dvorak
-          - halmak
-          - workman
-          - qwerty
-        nav:
-          - default
-          - vi
-          # - invertedt # TODO
-        clipboard:
-          - default
-          - fun
-          - mac
-          - win
-        layers:
-          - default
-          # - flip # TODO
-        mapping:
-          - default
-        kconfig:
-          - default
+        board: ${{ fromJSON(inputs.board) }}
+        shield: ${{ fromJSON(inputs.shield) }}
+        alphas: ${{ fromJSON(inputs.alphas) }}
+        nav: ${{ fromJSON(inputs.nav) }}
+        clipboard: ${{ fromJSON(inputs.clipboard) }}
+        layers: ${{ fromJSON(inputs.layers) }}
+        mapping: ${{ fromJSON(inputs.mapping) }}
+        kconfig: ${{ fromJSON(inputs.kconfig) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
