@@ -6,21 +6,11 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/outputs.h>
+#if defined (MIRYOKU_KLUDGE_MOUSEKEYSPR)
+  #include <dt-bindings/zmk/mouse.h>
+#endif
 
 #include "miryoku.h"
-
-/ {
-  behaviors {
-    hm: homerow_mods {
-      compatible = "zmk,behavior-hold-tap";
-      label = "HOMEROW_MODS";
-      #binding-cells = <2>;
-      tapping_term_ms = <200>;
-      flavor = "tap-preferred";
-      bindings = <&kp>, <&kp>;
-    };
-  };
-};
 
 / {
   keymap {
@@ -59,6 +49,34 @@
     };
   };
 };
+
+/ {
+  behaviors {
+    hm: homerow_mods {
+      compatible = "zmk,behavior-hold-tap";
+      label = "HOMEROW_MODS";
+      #binding-cells = <2>;
+      tapping_term_ms = <U_TAPPING_TERM>;
+      flavor = "tap-preferred";
+      bindings = <&kp>, <&kp>;
+    };
+  };
+};
+
+#if defined (MIRYOKU_KLUDGE_MOUSEKEYSPR)
+&mmv {
+  acceleration-exponent = <U_MOUSE_MOVE_EXPONENT>;
+  time-to-max-speed-ms = <U_MOUSE_MOVE_TIME>;
+  delay-ms = <U_MOUSE_MOVE_DELAY>;
+};
+/*
+&mwh {
+  acceleration-exponent = <U_MOUSE_SCROLL_EXPONENT>;
+  time-to-max-speed-ms = <U_MOUSE_SCROLL_TIME>;
+  delay-ms = <U_MOUSE_SCROLL_DELAY>;
+};
+*/
+#endif
 
 #if defined (MIRYOKU_COMBO_TPS_ENABLE) && defined (MIRYOKU_COMBO_TPSL) && defined (MIRYOKU_COMBO_TPSR)
 / {
@@ -121,4 +139,3 @@
   };
 };
 #endif
-
