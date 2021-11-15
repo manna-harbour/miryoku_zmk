@@ -1,0 +1,7 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=freya-irl/zmk
+outboard_ref=main
+outboard_from=app/boards/shields/gatoraid40
+outboard_to=boards/shields/gatoraid40
