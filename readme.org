@@ -13,12 +13,16 @@
 
 *** Local Builds
 
-Clone this repository and use for [[https://zmk.dev/docs/development/build-flash#building-from-zmk-config-folder][ZMK_CONFIG]].
+First [[https://zmk.dev/docs/development/setup][set up the ZMK build environment]] and [[https://zmk.dev/docs/development/build-flash][build and flash the default keymap for your keyboard]].
+
+Clone this repository and set [[https://zmk.dev/docs/development/build-flash#building-from-zmk-config-folder][ZMK_CONFIG]] to the absolute path of the [[config]] subdirectory.  Use the [[#config-file][config file]] to select alternative layout and mapping options.
 
 
-*** GitHub Actions Workflows
+*** Workflow Builds
 
-First log in to GitHub and fork the Miryoku ZMK repository.
+Firmware can be built via GitHub Actions workflows without use of a local build environment.
+
+First log in to GitHub, fork the Miryoku ZMK repository, and enable workflows.
 
 To access a workflow, visit the Actions tab and select the workflow.  To download the firmware from a workflow run, select the workflow, select the workflow run, select the desired Artifacts, and unzip the downloaded zip file.
 
@@ -35,9 +39,11 @@ Options are specified in the ~with~ section and are of the following form.
 For multiple values per option use the following form, and a matrix build will be performed for each combination of values across all options.
 : option: '["value1","value2"]'
 
-The ~board~ option specifies the ZMK ~board~ and is required.  All other options are optional.  The ~shield~ option specifies the ZMK ~shield~.
+The ~board~ option specifies the ZMK board and is required.  All other options are optional.
 
-The ~alphas~, ~nav~, ~clipboard~, and ~layers~ options correspond to the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] options.   The ~mapping~ option corresponds to the alternative [[#mapping][mapping]] options.  Values for these five options are case-insensitive.
+The ~shield~ option specifies the ZMK shield.
+
+The ~alphas~, ~nav~, ~clipboard~, and ~layers~ options correspond to the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] options.   The ~mapping~ option corresponds to the alternative [[#mapping][mapping]] options.  Alternative layout and mapping options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  To use here, convert to the form specified above.  Use ~default~ to represent the default value.  Values for these five options are case-insensitive.
 
 The ~kconfig~ option can be used to generate a ~keyboard.conf~.  Join multiple lines with ~\n~.
 
@@ -50,16 +56,18 @@ The Build Inputs workflow can be used without editing workflow files.  Select Ru
 
 Options are specified by entering values directly in the corresponding field.  Multiple comma separated values can be entered per option and a matrix build will be performed for each combination of values across all options.
 
-The ~Board~ option specifies the ZMK ~board~ and is required.  All other options are optional.  The ~Shield~ option specifies the ZMK ~shield~.
+The ~Board~ option specifies the ZMK board and is required.  All other options are optional.
 
-The ~Miryoku Alphas~, ~Miryoku Nav~, ~Miryoku Clipboard~, and ~Miryoku Layers~ options correspond to the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] options.  The ~Miryoku Mapping~ option corresponds to the alternative [[#mapping][mapping]] options.  Values for these five options are case-insensitive.
+The ~Shield~ option specifies the ZMK shield.
+
+The ~Miryoku Alphas~, ~Miryoku Nav~, ~Miryoku Clipboard~, and ~Miryoku Layers~ options correspond to the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] options.  The ~Miryoku Mapping~ option corresponds to the alternative [[#mapping][mapping]] options.  Alternative layout and mapping options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  To use here, enter the ~value~ in the corresponding ~Miryoku Option~ field.  Use ~default~ to represent the default value.  Values for these five options are case-insensitive.
 
 The ~Kconfig~ option can be used to generate a ~keyboard.conf~.  Join multiple lines with ~\n~.
 
 
 ** Supported Keyboards
 
-See the Test All [[#github-actions-workflows][workflow]] files for lists of supported keyboards.
+See the Test All [[#workflow-builds][workflow]] files for lists of supported keyboards.
 
 
 *** Board Only
@@ -74,28 +82,14 @@ Any compatible combination of [[https://github.com/zmkfirmware/zmk/tree/main/app
 
 *** Out of Tree Boards and Shields
 
-Additionally, some out of tree boards and shields are automatically supported by the included [[#github-actions-workflows][workflows]].  See [[.github/workflows/outboards]].
-
-
-
-** Configuration Options
-
-[[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][Keymap configuration options]] and [[#mapping][mapping]] configuration options are given in the documentation in the form ~option=value~.
-
-
-*** Use in Local Builds
-
-Convert to the form ~#define option_value~ and add to the [[#config-file][config file]].
-
-
-*** Use in Workflow Builds
-
-Convert to the form ~value~ (uppercase or lowercase) and use with the corresponding ~option~.  Use ~default~ to represent the default value.
+Additionally, some out of tree boards and shields are automatically supported by the included [[#workflow-builds][workflows]].  See [[.github/workflows/outboards]].
 
 
 ** Config File
 
-The config file can be used to provide [[#configuration-options][configuration options]] for all [[#Local-Builds][local builds]].  The file is [[miryoku/config.h]].  See the [[#example-config-file][example config file]].  The config file is included into the keyboard's keymap file before the mapping with:
+The config file specifies [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] and [[#mapping][mapping]] options for all [[#Local-Builds][local builds]].  The config file is not used in [[#workflow-builds][workflow builds]].
+
+Options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  Convert to the form ~#define MIRYOKU_OPTION_VALUE~ and add to the config file.  The file is [[miryoku/config.h]].  See the [[#example-config-file][example config file]].  The config file is included into the keyboard's keymap file before the mapping with:
 
 #+BEGIN_SRC C :tangle no
 #include "../miryoku/config.h"
@@ -104,25 +98,29 @@ The config file can be used to provide [[#configuration-options][configuration o
 
 *** Example Config File
 
-Below is an example [[#config-file][config file]] with the following keymap [[#configuration-options][configuration options]]:
+Below is an example [[#config-file][config file]] with the following configuration options:
 
 - ~MIRYOKU_ALPHAS=QWERTY~
-- ~MIRYOKU_NAV=VI~
+- ~MIRYOKU_NAV=INVERTEDT~
 - ~MIRYOKU_CLIPBOARD=WIN~
+- ~MIRYOKU_LAYERS=FLIP~
+- ~MIRYOKU_MAPPING=EXTENDED_THUMBS~
 
 #+BEGIN_SRC C :tangle no
 // Copyright 2021 Manna Harbour
 // https://github.com/manna-harbour/miryoku
 
 #define MIRYOKU_ALPHAS_QWERTY
-#define MIRYOKU_NAV_VI
+#define MIRYOKU_NAV_INVERTEDT
 #define MIRYOKU_CLIPBOARD_WIN
+#define MIRYOKU_LAYERS_FLIP
+#define MIRYOKU_MAPPING_EXTENDED_THUMBS
 #+END_SRC
 
 
 ** Miryoku Keymap
 
-The Miryoku keymap is a ZMK DT keymap file using C preprocessor macros for [[#configuration-options][configuration options]] and to abstract the physical layout.  The Miryoku keymap file is [[miryoku/miryoku.dtsi]].  The file is included into the [[#keyboard-keymaps][keyboard's keymap]] after the config file and mapping with:
+The Miryoku keymap is a ZMK DT keymap file using C preprocessor macros for [[#config-file][configuration options]] and to abstract the physical layout.  The Miryoku keymap file is [[miryoku/miryoku.dtsi]].  The file is included into the [[#keyboard-keymaps][keyboard's keymap]] after the config file and mapping with:
 
 #+BEGIN_SRC C :tangle no
 #include "../miryoku/miryoku.dtsi"
@@ -144,14 +142,14 @@ On each hand, only the main alpha block of 3 rows by 5 columns and the 3 most ap
 
 *** Notes
 
-Notes or diagrams are included where the selection of keys is not obvious or where alternatives are provided via mapping [[#configuration-options][configuration options]].
+Notes or diagrams are provided below where the selection of keys is not obvious or where alternatives are provided via mapping configuration options.
 
 
 **** 34-ferris
 
 ~MIRYOKU_COMBO_TPS=ENABLE~
 
-Combos of primary and secondary thumb keys emulate the missing tertiary thumb key.  This [[#configuration-options][configuration option]] is enabled automatically for this mapping and can be enabled on other mappings for compatibility.
+Combos of primary and secondary thumb keys emulate the missing tertiary thumb key.  This [[#config-file][configuration option]] is enabled automatically for this mapping and can be enabled on other mappings for compatibility.
 
 
 **** 48-planck
