@@ -1,0 +1,8 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=gregghz/zmk-config
+outboard_ref=master
+outboard_from=config/boards/shields/sofle_rgb
+outboard_to=boards/shields/sofle_rgb
+
