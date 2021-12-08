@@ -1,0 +1,7 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=brickbots/chocV
+outboard_ref=main
+outboard_from=zmk_config/boards/shields/chocv
+outboard_to=boards/shields/chocv

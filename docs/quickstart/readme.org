@@ -51,7 +51,7 @@ For keyboards with an integrated controller, enter the keyboard name, e.g. ~ahok
 
 **** Shield
 
-For keyboards with a separate controller, enter the keyboard name, e.g. ~absolem~, ~bat43~, ~eek~, ~osprette~.  For split keyboards with a separate controller on each side, enter both keyboard side names separated by a comma, e.g. ~corne_left,corne_right~, ~cradio_left,cradio_right~, ~kyria_left,kyria_right~, ~tbkmini_left,tbkmini_right~.  See [[../../.github/workflows/test-all-shields.yml][here]] for a list of all supported keyboards with separate controllers.
+For keyboards with a separate controller, enter the keyboard name, e.g. ~absolem~, ~chocv~, ~eek~, ~osprette~.  For split keyboards with a separate controller on each side, enter both keyboard side names separated by a comma, e.g. ~corne_left,corne_right~, ~cradio_left,cradio_right~, ~pteron36_left,pteron36_right~, ~tbkmini_left,tbkmini_right~.  See [[../../.github/workflows/test-all-shields.yml][here]] for a list of all supported keyboards with separate controllers.
 
 For keyboards with an integrated controller, leave as ~default~.
 
