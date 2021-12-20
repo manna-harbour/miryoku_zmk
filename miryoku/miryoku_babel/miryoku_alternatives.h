@@ -11,6 +11,12 @@
 &lt BUTTON W,      &hm RALT X,        &kp C,             &kp V,             &kp B,             &kp N,             &kp COMMA,         &kp DOT,           &hm RALT SLASH,    &lt BUTTON SQT,    \
 U_NP,              U_NP,              &lt FUN DEL,       &lt NUM BSPC,      &lt SYM RET,       &lt MOUSE TAB,     &lt NAV SPC,       &lt MEDIA ESC,     U_NP,              U_NP
 
+#define MIRYOKU_ALTERNATIVES_BASE_BEAKL15_FLIP \
+&kp Q,             &kp H,             &kp O,             &kp U,             &kp X,             &kp G,             &kp C,             &kp R,             &kp F,             &kp Z,             \
+&hm LGUI Y,        &hm LALT I,        &hm LCTRL E,       &hm LSHFT A,       &kp DOT,           &kp D,             &hm LSHFT S,       &hm LCTRL T,       &hm LALT N,        &hm LGUI B,        \
+&lt BUTTON J,      &hm RALT SLASH,    &kp COMMA,         &kp K,             &kp SQT,           &kp W,             &kp M,             &kp L,             &hm RALT P,        &lt BUTTON V,      \
+U_NP,              U_NP,              &lt FUN DEL,       &lt NUM BSPC,      &lt SYM RET,       &lt MOUSE TAB,     &lt NAV SPC,       &lt MEDIA ESC,     U_NP,              U_NP
+
 #define MIRYOKU_ALTERNATIVES_BASE_COLEMAK_FLIP \
 &kp Q,             &kp W,             &kp F,             &kp P,             &kp G,             &kp J,             &kp L,             &kp U,             &kp Y,             &kp SQT,           \
 &hm LGUI A,        &hm LALT R,        &hm LCTRL S,       &hm LSHFT T,       &kp D,             &kp H,             &hm LSHFT N,       &hm LCTRL E,       &hm LALT I,        &hm LGUI O,        \
@@ -63,6 +69,12 @@ U_NP,              U_NP,              &lt FUN DEL,       &lt NUM BSPC,      &lt 
 &kp A,             &kp Z,             &kp E,             &kp R,             &kp T,             &kp Y,             &kp U,             &kp I,             &kp O,             &kp P,             \
 &hm LGUI Q,        &hm LALT S,        &hm LCTRL D,       &hm LSHFT F,       &kp G,             &kp H,             &hm LSHFT J,       &hm LCTRL K,       &hm LALT L,        &hm LGUI M,        \
 &lt BUTTON W,      &hm RALT X,        &kp C,             &kp V,             &kp B,             &kp N,             &kp COMMA,         &kp DOT,           &hm RALT SLASH,    &lt BUTTON SQT,    \
+U_NP,              U_NP,              &lt MEDIA ESC,     &lt NAV SPC,       &lt MOUSE TAB,     &lt SYM RET,       &lt NUM BSPC,      &lt FUN DEL,       U_NP,              U_NP
+
+#define MIRYOKU_ALTERNATIVES_BASE_BEAKL15 \
+&kp Q,             &kp H,             &kp O,             &kp U,             &kp X,             &kp G,             &kp C,             &kp R,             &kp F,             &kp Z,             \
+&hm LGUI Y,        &hm LALT I,        &hm LCTRL E,       &hm LSHFT A,       &kp DOT,           &kp D,             &hm LSHFT S,       &hm LCTRL T,       &hm LALT N,        &hm LGUI B,        \
+&lt BUTTON J,      &hm RALT SLASH,    &kp COMMA,         &kp K,             &kp SQT,           &kp W,             &kp M,             &kp L,             &hm RALT P,        &lt BUTTON V,      \
 U_NP,              U_NP,              &lt MEDIA ESC,     &lt NAV SPC,       &lt MOUSE TAB,     &lt SYM RET,       &lt NUM BSPC,      &lt FUN DEL,       U_NP,              U_NP
 
 #define MIRYOKU_ALTERNATIVES_BASE_COLEMAK \
