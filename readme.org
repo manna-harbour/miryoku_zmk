@@ -9,6 +9,7 @@
 
 This document describes Miryoku ZMK only.  For Miryoku documentation, implementations, and discussions and support, see [[https://github.com/manna-harbour/miryoku/][Miryoku]].
 
+See the [[docs/quickstart][Miryoku ZMK Quickstart Guide]] to have a personalised build running on your keyboard in a few minutes without installing any software or editing any files.
 
 ** Overview
 

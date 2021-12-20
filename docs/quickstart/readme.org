@@ -1,0 +1,115 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+* Miryoku ZMK Quickstart Guide [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/miryoku-roa-32.png]]
+
+[[https://github.com/manna-harbour/miryoku_zmk][Miryoku ZMK]] can be [[#fields][personalised]], [[#build][built]], [[#download][downloaded]], and [[#flash][flashed]] onto your keyboard in a few minutes without installing any software or editing any files.
+
+
+** Initial Setup
+
+- [[https://github.com/signup][Create a GitHub account]].
+- [[https://github.com/login][Login to GitHub]].
+- Visit https://github.com/manna-harbour/miryoku_zmk.
+- Press the ~Fork~ button in the top right.
+#+html: <img src="https://docs.github.com/assets/cb-6294/images/help/repository/fork_button.jpg"  width="640"/>
+- Visit https://github.com/?q=miryoku_zmk.
+- Select your fork of ~miryoku_zmk~ from the list on the left.
+- Select the ~Actions~ tab.
+#+html: <img src="https://docs.github.com/assets/cb-13492/images/help/repository/actions-tab.png"  width="640"/>
+- Press the ~I understand my workflows, go ahead and enable them~ button.
+
+
+** Build
+
+Start here to build new firmware after completing the [[#initial-setup][initial setup]].
+
+- Visit https://github.com/?q=miryoku_zmk.
+- Select your fork of ~miryoku_zmk~ from the list on the left.
+- Press the ~Fetch upstream~ button in the top right.
+#+html: <img src="https://docs.github.com/assets/cb-33284/images/help/repository/fetch-upstream-drop-down.png" width="640"/>
+- Press the ~Fetch and merge~ button in the popup if it is enabled.
+#+html: <img src="https://docs.github.com/assets/cb-128489/images/help/repository/fetch-and-merge-button.png" width="640"/>
+- Select the ~Actions~ tab.
+#+html: <img src="https://docs.github.com/assets/cb-13492/images/help/repository/actions-tab.png" width="640"/>
+- Select ~Build Inputs~ from the ~Workflows~ list on the left.
+- Press the ~Run workflow~ button on the right.
+#+html: <img src="https://docs.github.com/assets/cb-57703/images/actions-workflow-dispatch.png" width="640"/>
+- Fill out the [[#fields][fields]] in the popup as described below.
+- Press the ~Run workflow~ button at the bottom of the popup.
+#+html: <img src="https://docs.github.com/assets/cb-22055/images/actions-manually-run-workflow.png" width="640"/>
+- Wait for the workflow run to complete.
+
+
+*** Fields
+
+**** Board
+
+For keyboards with a separate controller, enter the controller name, e.g. ~bluemicro840_v1~, ~nice_nano~, ~nice_nano_v2~, ~nrfmicro_13~.  See [[../../.github/workflows/test-all-controllers.yml][here]] for a list of all supported controllers.
+
+For keyboards with an integrated controller, enter the keyboard name, e.g. ~ahokore~, ~ble_chiffre~, ~ferris_rev02~, ~zaphod~.  For split keyboards with an integrated controller on each side, enter both keyboard side names separated by a comma, e.g. ~corne-ish_zen_left,corne-ish_zen_right~.  See [[../../.github/workflows/test-all-boards.yml][here]] for a list of all supported keyboards with an integrated controller.
+
+**** Shield
+
+For keyboards with a separate controller, enter the keyboard name, e.g. ~absolem~, ~bat43~, ~eek~, ~osprette~.  For split keyboards with a separate controller on each side, enter both keyboard side names separated by a comma, e.g. ~corne_left,corne_right~, ~cradio_left,cradio_right~, ~kyria_left,kyria_right~, ~tbkmini_left,tbkmini_right~.  See [[../../.github/workflows/test-all-shields.yml][here]] for a list of all supported keyboards with separate controllers.
+
+For keyboards with an integrated controller, leave as ~default~.
+
+**** Miryoku Alphas
+
+Select an alternative alphas layout, e.g. ~colemak~, ~dvorak~, ~halmak~, ~qwerty~,   See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alphas][here]] for a list of all supported alphas.  For Colemak Mod-DH, leave as ~default~.
+
+**** Miryoku Nav
+
+Select an alternative Nav layout, e.g. ~invertedt~, ~vi~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#nav-1][here]] for details.  For home position line nav, leave as ~default~.
+
+**** Miryoku Clipboard
+
+Select an alternative clipboard type, e.g. ~mac~, ~win~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#clipboard][here]] for details.  For CUA bindings, leave as ~default~.
+
+**** Miryoku Layers
+
+Select an alternative layers layout, e.g. ~flip~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#layers-1][here]] for details.  For right hand Nav, leave as ~default~.
+
+
+**** Miryoku Mapping
+
+Select an alternative mapping, e.g. ~extended_thumbs~, ~pinkie_stagger~.  See [[../../../../#mapping][here]] for details.  For the default mapping, leave as ~default~.
+
+
+**** Kconfig
+
+Set keyboard configuration options, e.g. ~CONFIG_ZMK_SLEEP=y~, ~CONFIG_ZMK_DISPLAY=y~, ~CONFIG_BT_CTLR_TX_PWR_PLUS_8=y~.  See [[https://deploy-preview-722--zmk.netlify.app/docs/config/index][here]] for details.  For the default configuration, leave as ~default~.
+
+
+** Download
+
+Start here to download previously [[#build][built]] firmware.
+
+- Visit https://github.com/?q=miryoku_zmk.
+- Select your fork of ~miryoku_zmk~ from the list on the left.
+- Select the ~Actions~ tab.
+#+html: <img src=https://docs.github.com/assets/cb-13492/images/help/repository/actions-tab.png width=640/>
+- Select the workflow run from the list.
+#+html: <img src=https://docs.github.com/assets/cb-106784/images/help/repository/run-name.png width=640/>
+- Select the artifact at the bottom.
+#+html: <img src=https://docs.github.com/assets/cb-19656/images/help/repository/artifact-drop-down-updated.png width=640/>
+- Wait for the download to complete.
+- Unzip the downloaded zip file.
+
+
+** Flash
+
+Start here to flash previously [[#download][downloaded]] firmware.
+
+The downloaded zip will contain a ~uf2~ firmware file.  For split keyboards the zip will contain separate firmware files for the left and right sides, and the following steps should be performed for each side.
+
+- Connect the keyboard to the computer with a USB cable.
+- Double tap the reset button rapidly (two presses within half a second).  The keyboard will appear to the computer as a USB mass storage device.
+- Copy the firmware file to the device.  The keyboard will reset and the device will be removed.
+
+
+** 
+
+[[https://github.com/manna-harbour][https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/manna-harbour-boa-32.png]]
+
