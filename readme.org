@@ -7,6 +7,17 @@
 
 [[https://github.com/manna-harbour/miryoku/][Miryoku]] is an ergonomic, minimal, orthogonal, and universal keyboard layout.  [[https://github.com/manna-harbour/miryoku_zmk][Miryoku ZMK]] is the Miryoku implementation for [[https://zmkfirmware.dev/][ZMK]].
 
+This document describes Miryoku ZMK only.  For Miryoku documentation, implementations, and discussions and support, see [[https://github.com/manna-harbour/miryoku/][Miryoku]].
+
+
+** Overview
+
+[[#building][Building]] can be performed [[#local-builds][locally]], or via GitHub Actions [[#workflow-builds][workflows]] without use of a local build environment.    Many keyboards are [[#supported-keyboards][supported]], and building [[#out-of-tree-boards-and-shields][out of tree keyboards]] is automatically supported by the workflows.
+
+Workflow builds can be customised by editing one of the [[#build-examples][examples]], or by filling out a [[#build-inputs][form]].  Local builds can be customised by editing a [[#config-file][config file]], and an [[#example-config-file][example]] is included.
+
+The [[#keyboard-keymaps][keyboard keymap]] includes the config file, the [[#miryoku-keymap][Miryoku keymap]], and a [[#mapping][mapping]] for the physical layout.
+
 
 ** Building
 
@@ -67,22 +78,22 @@ The ~Kconfig~ option can be used to generate a ~keyboard.conf~.  Join multiple l
 
 ** Supported Keyboards
 
-See the Test All [[#workflow-builds][workflow]] files for lists of supported keyboards.
-
 
 *** Board Only
 
-Any [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/arm][board supported by ZMK]] with a [[#keyboard-keymaps][keymap in Miryoku ZMK]].
+Any [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/arm][board supported by ZMK]] with a [[#keyboard-keymaps][keymap in Miryoku ZMK]].  See the [[.github/workflows/test-all-boards.yml][Test All Boards workflow file]] for a list of all supported boards (including [[#out-of-tree-boards-and-shields][outboards]]).
 
 
 *** Board / Shield Combination
 
-Any compatible combination of [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/arm][board supported by ZMK]] and [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/shields][shield supported by ZMK]] with a [[#keyboard-keymaps][keymap in Miryoku ZMK]].
+Any compatible combination of [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/arm][board supported by ZMK]] and [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/shields][shield supported by ZMK]] with a [[#keyboard-keymaps][keymap in Miryoku ZMK]].  See the [[.github/workflows/test-all-shields.yml][Test All Shields workflow file]] for a list of all supported shields (including [[#out-of-tree-boards-and-shields][outboards]]).
 
 
 *** Out of Tree Boards and Shields
 
-Additionally, some out of tree boards and shields are automatically supported by the included [[#workflow-builds][workflows]].  See [[.github/workflows/outboards]].
+Additionally, building some out of tree boards and shields is automatically supported by the included [[#workflow-builds][workflows]].  See [[.github/workflows/outboards]].
+
+For local builds, copy the board or shield definition to the appropriate location under [[config]].
 
 
 ** Config File
@@ -199,7 +210,7 @@ Combos of primary and secondary thumb keys emulate the missing tertiary thumb ke
 
 ** Keyboard Keymaps
 
-Keymap files for many keyboards included in ZMK are provided in [[config/]].
+Keymap files for many keyboards included in ZMK are provided in [[config]].
 
 
 
