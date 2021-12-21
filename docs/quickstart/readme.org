@@ -47,7 +47,7 @@ Start here to build new firmware after completing the [[#initial-setup][initial 
 
 For keyboards with a separate controller, enter the controller name, e.g. ~bluemicro840_v1~, ~nice_nano~, ~nice_nano_v2~, ~nrfmicro_13~.  See [[../../.github/workflows/test-all-controllers.yml][here]] for a list of all supported controllers.
 
-For keyboards with an integrated controller, enter the keyboard name, e.g. ~ahokore~, ~ble_chiffre~, ~ferris_rev02~, ~zaphod~.  For split keyboards with an integrated controller on each side, enter both keyboard side names separated by a comma, e.g. ~corne-ish_zen_left,corne-ish_zen_right~.  See [[../../.github/workflows/test-all-boards.yml][here]] for a list of all supported keyboards with an integrated controller.
+For keyboards with an integrated controller, enter the keyboard name, e.g. ~ahokore~, ~ble_chiffre~, ~technikable~, ~zaphod~.  For split keyboards with an integrated controller on each side, enter both keyboard side names separated by a comma, e.g. ~corne-ish_zen_left,corne-ish_zen_right~.  See [[../../.github/workflows/test-all-boards.yml][here]] for a list of all supported keyboards with an integrated controller.
 
 **** Shield
 

@@ -9,5 +9,5 @@ jobs:
     if: github.repository_owner == 'manna-harbour'
     uses: manna-harbour/zmk-config/.github/workflows/main.yml@master
     with:
-      board: '["ahokore","ble_chiffre","corne-ish_zen_left","corne-ish_zen_right","ferris_rev02","planck_rev6","preonic_rev3","zaphod"]'
+      board: '["ahokore","ble_chiffre","corne-ish_zen_left","corne-ish_zen_right","ferris_rev02","planck_rev6","preonic_rev3","technikable","zaphod"]'
 
