@@ -13,7 +13,7 @@ See the [[docs/quickstart][Miryoku ZMK Quickstart Guide]] to have a personalised
 
 ** Overview
 
-[[#building][Building]] can be performed [[#local-builds][locally]], or via GitHub Actions [[#workflow-builds][workflows]] without use of a local build environment.    Many keyboards are [[#supported-keyboards][supported]], and building [[#out-of-tree-boards-and-shields][out of tree keyboards]] is automatically supported by the workflows.
+[[#building][Building]] can be performed [[#local-builds][locally]], or via GitHub Actions [[#workflow-builds][workflows]] without use of a local build environment.  Many keyboards are [[#supported-keyboards][supported]], and building [[#out-of-tree-boards-and-shields][out of tree keyboards]] is automatically supported by the workflows.
 
 Workflow builds can be customised by editing one of the [[#build-examples][examples]], or by filling out a [[#build-inputs][form]].  Local builds can be customised by editing a [[#config-file][config file]], and an [[#example-config-file][example]] is included.
 
@@ -55,7 +55,7 @@ The ~board~ option specifies the ZMK board and is required.  All other options a
 
 The ~shield~ option specifies the ZMK shield.
 
-The ~alphas~, ~nav~, ~clipboard~, and ~layers~ options correspond to the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] options.   The ~mapping~ option corresponds to the alternative [[#mapping][mapping]] options.  Alternative layout and mapping options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  To use here, convert to the form specified above.  Use ~default~ to represent the default value.  Values for these five options are case-insensitive.
+The ~alphas~, ~nav~, ~clipboard~, and ~layers~ options correspond to the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] options.  The ~mapping~ option corresponds to the alternative [[#mapping][mapping]] options.  Alternative layout and mapping options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  To use here, convert to the form specified above.  Use ~default~ to represent the default value.  Values for these five options are case-insensitive.
 
 The ~kconfig~ option can be used to generate a ~keyboard.conf~.  Join multiple lines with ~\n~.
 
@@ -163,6 +163,7 @@ Notes or diagrams are provided below where the selection of keys is not obvious 
 
 Combos of primary and secondary thumb keys emulate the missing tertiary thumb key.  This [[#config-file][configuration option]] is enabled automatically for this mapping and can be enabled on other mappings for compatibility.
 
+
 **** 44-technikable
 
 The middle 2 columns are unused.
@@ -184,7 +185,7 @@ Supports 2x2u configuration.
 
 ~MIRYOKU_MAPPING=EXTENDED_THUMBS~
 
-The thumb keys are moved 1u to extend the thumbs.  Supports grid configuration.
+The thumb keys are moved 1u to extend the thumbs.  Supports ortho configuration.
 
 
 **** 48-planck
@@ -234,8 +235,7 @@ The thumb keys are moved 1u to extend the thumbs.  Supports grid configuration.
 
 ** Keyboard Keymaps
 
-Keymap files for many keyboards included in ZMK are provided in [[config]].
-
+Keymap files for many keyboards are provided in [[config]].
 
 
 ** 

@@ -57,7 +57,7 @@ For keyboards with an integrated controller, leave as ~default~.
 
 **** Miryoku Alphas
 
-Select an alternative alphas layout, e.g. ~colemak~, ~dvorak~, ~halmak~, ~qwerty~,   See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alphas][here]] for a list of all supported alphas.  For Colemak Mod-DH, leave as ~default~.
+Select an alternative alphas layout, e.g. ~colemak~, ~dvorak~, ~halmak~, ~qwerty~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alphas][here]] for a list of all supported alphas.  For Colemak Mod-DH, leave as ~default~.
 
 **** Miryoku Nav
 
