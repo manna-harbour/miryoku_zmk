@@ -19,7 +19,7 @@ Workflow builds can be customised by editing one of the [[#build-examples][examp
 
 The [[#keyboard-keymaps][keyboard keymap]] includes the config file, the [[#miryoku-keymap][Miryoku keymap]], and a [[#mapping][mapping]] for the physical layout.
 
-[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#mouse-keys][mouse keys on the host]]
+[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#mouse-keys][mouse keys on the host]] and [[#thumb-combos][thumb combos]].
 
 
 ** Building
@@ -161,9 +161,7 @@ Notes or diagrams are provided below where the selection of keys is not obvious 
 
 **** 34-ferris
 
-~MIRYOKU_COMBO_TPS=ENABLE~
-
-Combos of primary and secondary thumb keys emulate the missing tertiary thumb key.  This [[#config-file][configuration option]] is enabled automatically for this mapping and can be enabled on other mappings for compatibility.
+[[#thumb-combos][Thumb combos]] are enabled.
 
 
 **** 44-technikable
@@ -245,11 +243,16 @@ Keymap files for many keyboards are provided in [[config]].
 
 *** Mouse Keys
 
-The Mouse and Button layer use [[https://en.wikipedia.org/wiki/Mouse_keys][mouse keys on the host]].  Middle button, right button, and scroll are not supported.
+The Mouse and Button layers use [[https://en.wikipedia.org/wiki/Mouse_keys][mouse keys on the host]].  Middle button, right button, and scroll are not supported.
 
 - [[https://linuxreviews.org/HOWTO_use_the_numeric_keyboard_keys_as_mouse_in_XOrg][X11]]
 - [[https://support.apple.com/en-au/guide/mac-help/mh27469/mac][Mac]]
 - [[https://support.microsoft.com/en-us/windows/use-mouse-keys-to-move-the-mouse-pointer-9e0c72c8-b882-7918-8e7b-391fd62adf33][Windows]]
+
+
+*** Thumb Combos
+
+Combo the primary and secondary thumb keys to emulate the tertiary thumb key.  Can be used on keyboards with missing or hard to reach tertiary thumb keys or for compatibility with same.  Requires suitable keycaps to enable the thumb to press both keys simultaneously.
 
 
 ** 
