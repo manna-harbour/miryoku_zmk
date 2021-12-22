@@ -163,6 +163,14 @@ jobs:
         run: west zephyr-export
       - name: Build (west build)
         run: west build -s zmk/app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+      - name: Show dts.pre.tmp
+        if: ${{ failure() }}
+        run: |
+          dts="build/zephyr/${{ matrix.board }}.dts.pre.tmp"
+          if [ -f "$dts" ]
+          then
+            cat -n "$dts"
+          fi
       - name: Prepare firmware artifacts
         run: |
           for extension in "hex" "uf2"
