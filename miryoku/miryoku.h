@@ -65,6 +65,9 @@
   #define SCROLL_DOWN SCROLL_VERT(-U_MOUSE_SCROLL_MAX)
   #define SCROLL_LEFT SCROLL_HOR(-U_MOUSE_SCROLL_MAX)
   #define SCROLL_RIGHT SCROLL_HOR(U_MOUSE_SCROLL_MAX)
+#endif
+
+#if defined (MIRYOKU_KLUDGE_MOUSEKEYSPR)
   #define U_BTN1 &mkp MB1
   #define U_BTN2 &mkp MB2
   #define U_BTN3 &mkp MB3
@@ -88,4 +91,15 @@
   #define U_WH_L U_NU
   #define U_WH_R U_NU
   #define U_WH_U U_NU
+#endif
+
+#if defined (MIRYOKU_KLUDGE_THUMBCOMBOS)
+  #define MIRYOKU_KLUDGE_THUMBCOMBOS_TERM 200
+  #define MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(layer, side, binding) \
+thumbcombos_ ## layer ## _ ## side { \
+  layers = <layer>; \
+  key-positions = <MIRYOKU_KLUDGE_THUMBCOMBOS_ ## side>; \
+  bindings = <binding>; \
+  timeout-ms = <MIRYOKU_KLUDGE_THUMBCOMBOS_TERM>; \
+};
 #endif

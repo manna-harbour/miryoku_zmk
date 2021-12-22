@@ -78,64 +78,33 @@
 */
 #endif
 
-#if defined (MIRYOKU_COMBO_TPS_ENABLE) && defined (MIRYOKU_COMBO_TPSL) && defined (MIRYOKU_COMBO_TPSR)
+#if defined (MIRYOKU_KLUDGE_THUMBCOMBOS)
 / {
   combos {
     compatible = "zmk,combos";
-    combo_tpsl_BASE {
-      timeout-ms = <200>;
-      key-positions = <MIRYOKU_COMBO_TPSL>;
-      bindings = <&lt MEDIA ESC>;
-      layers = <BASE>;
-    };
-    combo_tpsr_BASE {
-      timeout-ms = <200>;
-      key-positions = <MIRYOKU_COMBO_TPSR>;
-      bindings = <&lt FUN DEL>;
-      layers = <BASE>;
-    };
-    combo_tpsr_BUTTON {
-      timeout-ms = <200>;
-      key-positions = <MIRYOKU_COMBO_TPSR>;
-      bindings = <U_NU>;
-      layers = <BUTTON>;
-    };
-    combo_tpsr_NAV {
-      timeout-ms = <200>;
-      key-positions = <MIRYOKU_COMBO_TPSR>;
-      bindings = <&kp DEL>;
-      layers = <NAV>;
-    };
-    combo_tpsr_MOUSE {
-      timeout-ms = <200>;
-      key-positions = <MIRYOKU_COMBO_TPSR>;
-      bindings = <U_NU>;
-      layers = <MOUSE>;
-    };
-    combo_tpsr_MEDIA {
-      timeout-ms = <200>;
-      key-positions = <MIRYOKU_COMBO_TPSR>;
-      bindings = <&kp K_MUTE>;
-      layers = <MEDIA>;
-    };
-    combo_tpsl_NUM {
-      timeout-ms = <200>;
-      key-positions = <MIRYOKU_COMBO_TPSL>;
-      bindings = <&kp DOT>;
-      layers = <NUM>;
-    };
-    combo_tpsl_SYM {
-      timeout-ms = <200>;
-      key-positions = <MIRYOKU_COMBO_TPSL>;
-      bindings = <&kp LPAR>;
-      layers = <SYM>;
-    };
-    combo_tpsl_FUN {
-      timeout-ms = <200>;
-      key-positions = <MIRYOKU_COMBO_TPSL>;
-      bindings = <&kp K_APP>;
-      layers = <FUN>;
-    };
+  #if defined (MIRYOKU_LAYERS_FLIP)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(BASE, RIGHT, &lt MEDIA ESC)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(BASE, LEFT, &lt FUN DEL)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(BUTTON, RIGHT, U_BTN2)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(BUTTON, LEFT, U_BTN2)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(NAV, LEFT, &kp DEL)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(MOUSE, LEFT, U_BTN2)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(MEDIA, LEFT, &kp K_MUTE)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(NUM, RIGHT, &kp DOT)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(SYM, RIGHT, &kp RPAR)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(FUN, RIGHT, &kp K_APP)
+  #else
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(BASE, LEFT, &lt MEDIA ESC)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(BASE, RIGHT, &lt FUN DEL)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(BUTTON, LEFT, U_BTN2)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(BUTTON, RIGHT, U_BTN2)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(NAV, RIGHT, &kp DEL)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(MOUSE, RIGHT, U_BTN2)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(MEDIA, RIGHT, &kp K_MUTE)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(NUM, LEFT, &kp DOT)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(SYM, LEFT, &kp LPAR)
+    MIRYOKU_KLUDGE_THUMBCOMBOS_MACRO(FUN, LEFT, &kp K_APP)
+  #endif
   };
 };
 #endif

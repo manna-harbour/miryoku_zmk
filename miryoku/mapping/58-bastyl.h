@@ -16,5 +16,5 @@ XXX  K20  K21  K22  K23  K24                 K25  K26  K27  K28  K29  XXX \
                K32  K33  K34                 K35  K36  K37 \
                     XXX  XXX                 XXX  XXX
 
-#define MIRYOKU_COMBO_TPSL 49 50
-#define MIRYOKU_COMBO_TPSR 51 52
+#define MIRYOKU_KLUDGE_THUMBCOMBOS_LEFT 49 50
+#define MIRYOKU_KLUDGE_THUMBCOMBOS_RIGHT 51 52
