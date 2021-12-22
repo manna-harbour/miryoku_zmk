@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     if: github.repository_owner == 'manna-harbour'
-    uses: manna-harbour/zmk-config/.github/workflows/main.yml@master
+    uses: manna-harbour/zmk-config/.github/workflows/main.yml@c1fb5932a1ac35205300b55a3ab96990a3c8eed5
     with:
       board: '["nice_nano"]'
       shield: '["corne_left"]'
