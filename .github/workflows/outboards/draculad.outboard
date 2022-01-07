@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=MangoIV/zmk
+outboard_ref=draculad
+outboard_from=app/boards/shields/draculad
+outboard_to=boards/shields/draculad
