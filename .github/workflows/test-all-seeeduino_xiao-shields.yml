@@ -1,0 +1,13 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+name: 'Test All Seeeduino Xiao Shields
+on:
+  - workflow_dispatch
+jobs:
+  build:
+    if: github.repository_owner == 'manna-harbour'
+    uses: manna-harbour/zmk-config/.github/workflows/main.yml@ce28dc6609bff042dfcf68e03c9a0c201129cbce
+    with:
+      board: '["seeeduino_xiao"]'
+      shield: '["hummingbird"]'

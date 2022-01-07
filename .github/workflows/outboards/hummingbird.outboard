@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=jcmkk3/hummingbird-zmk-config
+outboard_ref=main
+outboard_from=config/boards/shields/hummingbird
+outboard_to=boards/shields/hummingbird
