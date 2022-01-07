@@ -1,4 +1,4 @@
-# Copyright 2021 Manna Harbour
+# Copyright 2022 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
 * Miryoku ZMK [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/miryoku-roa-32.png]]
@@ -19,7 +19,7 @@ Workflow builds can be customised by editing one of the [[#build-examples][examp
 
 The [[#keyboard-keymaps][keyboard keymap]] includes the config file, the [[#miryoku-keymap][Miryoku keymap]], and a [[#mapping][mapping]] for the physical layout.
 
-[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#mouse-keys][mouse keys on the host]] and [[#thumb-combos][thumb combos]].
+[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#mouse-keys][mouse keys on the host]] and [[#key-emulation-combos][key emulation combos]].
 
 
 ** Building
@@ -59,7 +59,7 @@ The ~shield~ option specifies the ZMK shield.
 
 The ~alphas~, ~nav~, ~clipboard~, and ~layers~ options correspond to the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] options.  The ~mapping~ option corresponds to the alternative [[#mapping][mapping]] options.  Alternative layout and mapping options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  To use here, convert to the form specified above.  Use ~default~ to represent the default value.  Values for these five options are case-insensitive.
 
-The ~kconfig~ option can be used to generate a ~keyboard.conf~.  Join multiple lines with ~\n~.
+The ~kconfig~ option can be used to for [[#kconfig-configuration][Kconfig configuration]].  Join multiple lines with ~\n~.
 
 See the Test All workflow files for all supported values for each option.
 
@@ -76,7 +76,7 @@ The ~Shield~ option specifies the ZMK shield.
 
 The ~Miryoku Alphas~, ~Miryoku Nav~, ~Miryoku Clipboard~, and ~Miryoku Layers~ options correspond to the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] options.  The ~Miryoku Mapping~ option corresponds to the alternative [[#mapping][mapping]] options.  Alternative layout and mapping options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  To use here, enter the ~value~ in the corresponding ~Miryoku Option~ field.  Use ~default~ to represent the default value.  Values for these five options are case-insensitive.
 
-The ~Kconfig~ option can be used to generate a ~keyboard.conf~.  Join multiple lines with ~\n~.
+The ~Kconfig~ option can be used to for [[#kconfig-configuration][Kconfig configuration]].  Join multiple lines with ~\n~.
 
 
 ** Supported Keyboards
@@ -238,6 +238,13 @@ The thumb keys are moved 1u to extend the thumbs.  Supports ortho configuration.
 Keymap files for many keyboards are provided in [[config]].
 
 
+** Kconfig Configuration
+
+Kconfig configuration can be set in ~config/<keyboard>.conf~ for [[#local-builds][local]] and [[#workflow-builds][workflow]] builds, or in the ~kconfig~ / ~Kconfig~ option for workflow builds.
+
+Additional Kconfig documentation is available at [[https://deploy-preview-722--zmk.netlify.app/docs/config/index/]].
+
+
 ** Additional and Experimental Features
 
 
@@ -250,9 +257,23 @@ The Mouse and Button layers use [[https://en.wikipedia.org/wiki/Mouse_keys][mous
 - [[https://support.microsoft.com/en-us/windows/use-mouse-keys-to-move-the-mouse-pointer-9e0c72c8-b882-7918-8e7b-391fd62adf33][Windows]]
 
 
-*** Thumb Combos
+*** Key Emulation Combos
 
-Combo the primary and secondary thumb keys to emulate the tertiary thumb key.  Can be used on keyboards with missing or hard to reach tertiary thumb keys or for compatibility with same.  Requires suitable keycaps to enable the thumb to press both keys simultaneously.
+Emulate a key with a combo of two other keys.  Enabled automatically on keyboards with a missing key.  Can be enabled on other keyboards for use with hard to reach keys, or for compatibility.
+
+See https://github.com/manna-harbour/miryoku/issues/56.
+
+
+**** Thumb Combos
+
+On each hand, combo the primary and secondary thumb keys to emulate the tertiary thumb key.  Requires suitable keycaps to enable the thumb to press both keys simultaneously.
+
+
+**** Bottom Row Combos
+
+On the bottom row on each hand, combo the ring and middle finger keys to emulate the pinkie key, and combo the middle and index finger keys to emulate the inner index key.
+
+Requires ~CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY=16~ [[#kconfig-configuration][Kconfig configuration]].
 
 
 ** 
