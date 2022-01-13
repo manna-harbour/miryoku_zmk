@@ -171,6 +171,15 @@ jobs:
           then
             cat -n "$dts"
           fi
+      - name: Convert seeeduino_xiao bin to uf2
+        if: ${{ matrix.board == 'seeeduino_xiao' }}
+        run: |
+          bin='build/zephyr/zmk.bin'
+          uf2='build/zephyr/zmk.uf2'
+          if [ -f "$bin" -a ! -f "$uf2" ]
+          then
+            python3 ./tools/uf2/utils/uf2conv.py -c -f SAMD21 -o "$uf2" "$bin"
+          fi
       - name: Prepare firmware artifacts
         run: |
           for extension in "hex" "uf2"
