@@ -71,6 +71,10 @@
   #include "miryoku_kludge_thumbcombos.dtsi"
 #endif
 
+#if defined (MIRYOKU_KLUDGE_TOPROWCOMBOS)
+  #include "miryoku_kludge_toprowcombos.dtsi"
+#endif
+
 #if defined (MIRYOKU_KLUDGE_BOTTOMROWCOMBOS)
   #include "miryoku_kludge_bottomrowcombos.dtsi"
 #endif
