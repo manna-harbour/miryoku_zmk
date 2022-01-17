@@ -1,7 +1,7 @@
 # Copyright 2022 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-name: 'Test All Seeeduino Xiao Shields
+name: 'Test All Seeeduino Xiao Shields'
 on:
   - workflow_dispatch
 jobs:
