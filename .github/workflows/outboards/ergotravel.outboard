@@ -1,0 +1,12 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+#outboard_repository=codeincontext/zmk-config
+#outboard_ref=master
+#outboard_from=config/boards/shields/ergotravel
+#outboard_to=boards/shields/ergotravel
+
+outboard_repository=jchenVT/zmk_ergotravel
+outboard_ref=main
+outboard_from=config/boards/shields/ergotravel
+outboard_to=boards/shields/ergotravel
