@@ -2,6 +2,6 @@
 # https://github.com/manna-harbour/miryoku
 
 outboard_repository=okke-formsma/zmk-config
-outboard_ref=master
+outboard_ref=arch36
 outboard_from=config/boards/shields/arch36
 outboard_to=boards/shields/arch36
