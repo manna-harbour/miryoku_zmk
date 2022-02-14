@@ -29,6 +29,10 @@ on:
       kconfig:
         type: string
         default: '["default"]'
+      merge:
+        type: string
+        default: '["default"]'
+
 jobs:
   main:
     runs-on: ubuntu-latest
@@ -45,6 +49,7 @@ jobs:
         layers: ${{ fromJSON(inputs.layers) }}
         mapping: ${{ fromJSON(inputs.mapping) }}
         kconfig: ${{ fromJSON(inputs.kconfig) }}
+        merge: ${{ fromJSON(inputs.merge) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -95,6 +100,11 @@ jobs:
             artifact_build_name="$artifact_build_name kconfig_"`echo "${{ matrix.kconfig }}" | md5sum | cut -d ' ' -f 1`
           fi
 
+          if [ -n "${{ matrix.merge }}" -a "${{ matrix.merge }}" != 'default' ]
+          then
+            artifact_build_name="$artifact_build_name merge_"`echo "${{ matrix.merge }}" | md5sum | cut -d ' ' -f 1`
+          fi
+
           outboard_dir=".github/workflows/outboards"
           if [ -n "$shield" ]
           then
@@ -140,10 +150,9 @@ jobs:
         run: |
           cp ${{ steps.variables.outputs.outboard_chekout_dir }}/${{ env.outboard_manifest }} config/west.yml
           cat config/west.yml
-      - name: Cache west modules
+      - name: Cache
+        if: true
         uses: actions/cache@v2
-        env:
-          cache-name: zephyr
         with:
           path: |
             bootloader/
@@ -151,17 +160,35 @@ jobs:
             tools/
             zephyr/
             zmk/
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('config/west.yml') }}
-          restore-keys: ${{ runner.os }}-${{ env.cache-name }}
+          key: ${{ runner.os }} ${{ hashFiles('config/west.yml') }} ${{ matrix.merge }}
         timeout-minutes: 2
         continue-on-error: true
-      - name: Initialize workspace (west init)
+      - name: Initialize west workspace
         run: west init -l config
-      - name: Update modules (west update)
+      - name: Update west projects
         run: west update
-      - name: Export Zephyr CMake package (west zephyr-export)
+      - name: Merge branches and update
+        if: ${{ matrix.merge != '' && matrix.merge != 'default' }}
+        run: |
+          cd zmk
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          for merge in ${{ matrix.merge }}
+          do
+            user=`echo "$merge" | cut -f 1 -d '/'`
+            repo=`echo "$merge" | cut -f 2 -d '/'`
+            branch=`echo "$merge" | cut -f 3- -d '/'`
+            remote="$user-$repo"
+            git remote add "$remote" "https://github.com/$user/$repo.git"
+            git fetch "$remote" "$branch"
+            git merge "$remote/$branch"
+            git remote remove "$remote"
+            git status
+          done
+          west update
+      - name: Export Zephyr CMake package
         run: west zephyr-export
-      - name: Build (west build)
+      - name: Build
         run: west build -s zmk/app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
       - name: Show dts.pre.tmp
         if: ${{ failure() }}

@@ -59,9 +59,11 @@ The ~shield~ option specifies the ZMK shield.
 
 The ~alphas~, ~nav~, ~clipboard~, and ~layers~ options correspond to the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] options.  The ~mapping~ option corresponds to the alternative [[#mapping][mapping]] options.  Alternative layout and mapping options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  To use here, convert to the form specified above.  Use ~default~ to represent the default value.  Values for these five options are case-insensitive.
 
+See the Test All workflow files for all supported values for each option.
+
 The ~kconfig~ option can be used to for [[#kconfig-configuration][Kconfig configuration]].  Join multiple lines with ~\n~.
 
-See the Test All workflow files for all supported values for each option.
+The ~merge~ option can be used to merge branches into ZMK at build time.  Branches are specified as ~<user>/<repo>/<branch>~.  To merge multiple branches, separate with space.
 
 
 **** Build Inputs
@@ -77,6 +79,8 @@ The ~Shield~ option specifies the ZMK shield.
 The ~Miryoku Alphas~, ~Miryoku Nav~, ~Miryoku Clipboard~, and ~Miryoku Layers~ options correspond to the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] options.  The ~Miryoku Mapping~ option corresponds to the alternative [[#mapping][mapping]] options.  Alternative layout and mapping options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  To use here, enter the ~value~ in the corresponding ~Miryoku Option~ field.  Use ~default~ to represent the default value.  Values for these five options are case-insensitive.
 
 The ~Kconfig~ option can be used to for [[#kconfig-configuration][Kconfig configuration]].  Join multiple lines with ~\n~.
+
+The ~ZMK Merge~ option can be used to merge branches into ZMK at build time.  Branches are specified as ~<user>/<repo>/<branch>~.  To merge multiple branches, separate with space.
 
 
 ** Supported Keyboards
