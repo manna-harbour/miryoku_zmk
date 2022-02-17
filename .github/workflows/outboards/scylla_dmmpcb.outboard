@@ -1,0 +1,8 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=meln1k/zmk-config
+outboard_ref=master
+outboard_from=config/boards/shields/scylla_dmmpcb
+outboard_to=boards/shields/scylla_dmmpcb
+
