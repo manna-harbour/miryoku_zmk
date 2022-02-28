@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=petejohanson/zaphod-config
+outboard_ref=zaphod-lite
+outboard_from=boards/shields/zaphod_lite
+outboard_to=boards/shields/zaphod_lite
