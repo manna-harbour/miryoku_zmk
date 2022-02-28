@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=jcmkk3/zmk-config
+outboard_ref=main
+outboard_from=config/boards/shields/berylline
+outboard_to=boards/shields/berylline
