@@ -9,5 +9,5 @@ jobs:
     if: github.repository_owner == 'manna-harbour'
     uses: manna-harbour/zmk-config/.github/workflows/main.yml@ce28dc6609bff042dfcf68e03c9a0c201129cbce
     with:
-      board: '["bluemicro840_v1","nice_nano","nice_nano_v2","nrfmicro_11","nrfmicro_13","proton_c"]'
+      board: '["bluemicro840_v1","mikoto_520","nice_nano","nice_nano_v2","nrfmicro_11","nrfmicro_13","proton_c"]'
       shield: '["corne_left"]'
