@@ -66,7 +66,7 @@ jobs:
           set-output "mapping" "${{ github.event.inputs.mapping }}"
           set-output "kconfig" "${{ github.event.inputs.kconfig }}"
   build:
-    uses: manna-harbour/zmk-config/.github/workflows/main.yml@ce28dc6609bff042dfcf68e03c9a0c201129cbce
+    uses: manna-harbour/zmk-config/.github/workflows/main.yml@82f608118a663f0cb02a3cfa4330e21d58b52a4f
     needs: process-inputs
     with:
       board: ${{ needs.process-inputs.outputs.board }}
