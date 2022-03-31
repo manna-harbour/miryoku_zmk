@@ -72,7 +72,7 @@ jobs:
           set-output "kconfig" "${{ github.event.inputs.kconfig }}"
           set-output "merge" "${{ github.event.inputs.merge }}"
   build:
-    uses: manna-harbour/zmk-config/.github/workflows/main.yml@82f608118a663f0cb02a3cfa4330e21d58b52a4f
+    uses: manna-harbour/zmk-config/.github/workflows/main.yml@31a649e5571b4572d7010561dd3f191922cd9410
     needs: process-inputs
     with:
       board: ${{ needs.process-inputs.outputs.board }}
