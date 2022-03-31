@@ -36,8 +36,12 @@ on:
         description: 'Kconfig'
         required: false
         default: 'default'
+      zmk:
+        description: 'ZMK'
+        required: false
+        default: 'default'
       merge:
-        description: 'ZMK Merge'
+        description: 'Merge'
         required: false
         default: 'default'
 jobs:
@@ -52,6 +56,7 @@ jobs:
       layers: ${{ steps.process-inputs.outputs.layers }}
       mapping: ${{ steps.process-inputs.outputs.mapping }}
       kconfig: ${{ steps.process-inputs.outputs.kconfig }}
+      zmk: ${{ steps.process-inputs.outputs.zmk }}
       merge: ${{ steps.process-inputs.outputs.merge }}
     steps:
       - name: Process inputs
@@ -70,6 +75,7 @@ jobs:
           set-output "layers" "${{ github.event.inputs.layers }}"
           set-output "mapping" "${{ github.event.inputs.mapping }}"
           set-output "kconfig" "${{ github.event.inputs.kconfig }}"
+          set-output "zmk" "${{ github.event.inputs.zmk }}"
           set-output "merge" "${{ github.event.inputs.merge }}"
   build:
     uses: manna-harbour/zmk-config/.github/workflows/main.yml@31a649e5571b4572d7010561dd3f191922cd9410
@@ -83,4 +89,5 @@ jobs:
       layers: ${{ needs.process-inputs.outputs.layers }}
       mapping: ${{ needs.process-inputs.outputs.mapping }}
       kconfig: ${{ needs.process-inputs.outputs.kconfig }}
+      zmk: ${{ needs.process-inputs.outputs.zmk }}
       merge: ${{ needs.process-inputs.outputs.merge }}

@@ -29,6 +29,9 @@ on:
       kconfig:
         type: string
         default: '["default"]'
+      zmk:
+        type: string
+        default: '["default"]'
       merge:
         type: string
         default: '["default"]'
@@ -49,6 +52,7 @@ jobs:
         layers: ${{ fromJSON(inputs.layers) }}
         mapping: ${{ fromJSON(inputs.mapping) }}
         kconfig: ${{ fromJSON(inputs.kconfig) }}
+        zmk: ${{ fromJSON(inputs.zmk) }}
         merge: ${{ fromJSON(inputs.merge) }}
     steps:
       - name: Checkout
@@ -140,15 +144,24 @@ jobs:
         run: |
           mkdir -p `dirname "config/${{ env.outboard_to }}"`
           ln -sr ${{ steps.variables.outputs.outboard_chekout_dir }}/${{ env.outboard_from }} config/${{ env.outboard_to }}
-      - name: Generate outboard manifest
+      - name: Generate manifest from outboard
         if: ${{ env.outboard_url_base != '' && env.outboard_revision != '' }}
         run: |
           echo "manifest:\n  remotes:\n    - name: outboard\n      url-base: ${{ env.outboard_url_base }}\n  projects:\n    - name: zmk\n      remote: outboard\n      revision: ${{ env.outboard_revision }}\n      import: app/west.yml\n  self:\n    path: config" > config/west.yml
           cat config/west.yml
-      - name: Copy outboard manifest
+      - name: Copy manifest from outboard
         if: ${{ env.outboard_manifest != '' }}
         run: |
           cp ${{ steps.variables.outputs.outboard_chekout_dir }}/${{ env.outboard_manifest }} config/west.yml
+          cat config/west.yml
+      - name: Generate manifest from zmk field
+        if: ${{ matrix.zmk != '' && matrix.zmk != 'default' }}
+        run: |
+          user=`echo ${{ matrix.zmk }} | cut -f 1 -d '/'`
+          repo=`echo ${{ matrix.zmk }} | cut -f 2 -d '/'`
+          branch=`echo ${{ matrix.zmk }} | cut -f 3- -d '/'`
+          remote="$user-$repo"
+          echo "manifest:\n  remotes:\n    - name: $remote\n      url-base: https://github.com/$user\n  projects:\n    - name: zmk\n      remote: $remote\n      repo-path: $repo\n      revision: $branch\n      import: app/west.yml\n  self:\n    path: config" > config/west.yml
           cat config/west.yml
       - name: Cache
         if: true
