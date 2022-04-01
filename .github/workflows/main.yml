@@ -26,6 +26,9 @@ on:
       mapping:
         type: string
         default: '["default"]'
+      config:
+        type: string
+        default: '["default"]'
       kconfig:
         type: string
         default: '["default"]'
@@ -51,6 +54,7 @@ jobs:
         clipboard: ${{ fromJSON(inputs.clipboard) }}
         layers: ${{ fromJSON(inputs.layers) }}
         mapping: ${{ fromJSON(inputs.mapping) }}
+        config: ${{ fromJSON(inputs.config) }}
         kconfig: ${{ fromJSON(inputs.kconfig) }}
         zmk: ${{ fromJSON(inputs.zmk) }}
         merge: ${{ fromJSON(inputs.merge) }}
@@ -77,6 +81,13 @@ jobs:
           echo "::set-output name=configfile::$configfile"
 
           artifact_build_name="miryoku_zmk $shield ${{ matrix.board }}"
+
+          if [ -n "${{ matrix.config }}" -a "${{ matrix.config }}" != 'default' ]
+          then
+            echo "${{ matrix.config }}" >> "$configfile"
+            artifact_build_name="$artifact_build_name config_"`echo "${{ matrix.config }}" | md5sum | cut -d ' ' -f 1`
+          fi
+
           for option in "alphas_${{ matrix.alphas }}" "nav_${{ matrix.nav }}" "clipboard_${{ matrix.clipboard }}" "layers_${{ matrix.layers }}" "mapping_${{ matrix.mapping }}"
           do
             case "$option" in
@@ -92,14 +103,16 @@ jobs:
           artifacts_dir="artifacts"
           echo "::set-output name=artifact-dir::$artifacts_dir"
           mkdir "$artifacts_dir"
+
           cp "$configfile" "$artifacts_dir"
+          cat "$configfile"
 
           if [ -n "${{ matrix.kconfig }}" -a "${{ matrix.kconfig }}" != 'default' ]
           then
             kconfig_file="config/$keyboard_split.conf"
-            echo "${{ matrix.kconfig }}" > "$kconfig_file"
-            cat "$kconfig_file"
+            echo "${{ matrix.kconfig }}" >> "$kconfig_file"
             cp "$kconfig_file" "$artifacts_dir"
+            cat "$kconfig_file"
             artifact_build_name="$artifact_build_name kconfig_"`echo "${{ matrix.kconfig }}" | md5sum | cut -d ' ' -f 1`
           fi
 

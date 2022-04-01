@@ -32,6 +32,10 @@ on:
         description: 'Miryoku Mapping'
         required: false
         default: 'default'
+      config:
+        description: 'Custom Config'
+        required: false
+        default: 'default'
       kconfig:
         description: 'Kconfig'
         required: false
@@ -55,6 +59,7 @@ jobs:
       clipboard: ${{ steps.process-inputs.outputs.clipboard }}
       layers: ${{ steps.process-inputs.outputs.layers }}
       mapping: ${{ steps.process-inputs.outputs.mapping }}
+      config: ${{ steps.process-inputs.outputs.config }}
       kconfig: ${{ steps.process-inputs.outputs.kconfig }}
       zmk: ${{ steps.process-inputs.outputs.zmk }}
       merge: ${{ steps.process-inputs.outputs.merge }}
@@ -74,6 +79,7 @@ jobs:
           set-output "clipboard" "${{ github.event.inputs.clipboard }}"
           set-output "layers" "${{ github.event.inputs.layers }}"
           set-output "mapping" "${{ github.event.inputs.mapping }}"
+          set-output "config" "${{ github.event.inputs.config }}"
           set-output "kconfig" "${{ github.event.inputs.kconfig }}"
           set-output "zmk" "${{ github.event.inputs.zmk }}"
           set-output "merge" "${{ github.event.inputs.merge }}"
@@ -88,6 +94,7 @@ jobs:
       clipboard: ${{ needs.process-inputs.outputs.clipboard }}
       layers: ${{ needs.process-inputs.outputs.layers }}
       mapping: ${{ needs.process-inputs.outputs.mapping }}
+      config: ${{ needs.process-inputs.outputs.config }}
       kconfig: ${{ needs.process-inputs.outputs.kconfig }}
       zmk: ${{ needs.process-inputs.outputs.zmk }}
       merge: ${{ needs.process-inputs.outputs.merge }}
