@@ -111,10 +111,10 @@ For local builds, copy the board or shield definition to the appropriate locatio
 
 The config file specifies [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] and [[#mapping][mapping]] options for all [[#Local-Builds][local builds]].  The config file is not used in [[#workflow-builds][workflow builds]].
 
-Options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  Convert to the form ~#define MIRYOKU_OPTION_VALUE~ and add to the config file.  The file is [[miryoku/config.h]].  See the [[#example-config-file][example config file]].  The config file is included into the keyboard's keymap file before the mapping with:
+Options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  Convert to the form ~#define MIRYOKU_OPTION_VALUE~ and add to the config file.  The file is [[miryoku/custom_config.h]].  See the [[#example-config-file][example config file]].  The config file is included into the keyboard's keymap file before the mapping with:
 
 #+BEGIN_SRC C :tangle no
-#include "../miryoku/config.h"
+#include "../miryoku/custom_config.h"
 #+END_SRC
 
 

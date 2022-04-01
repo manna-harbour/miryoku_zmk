@@ -1,6 +1,6 @@
 // Copyright 2022 Manna Harbour
 // https://github.com/manna-harbour/miryoku
 
-#include "../miryoku/config.h"
+#include "../miryoku/custom_config.h"
 #include "../miryoku/mapping/42-elephant.h"
 #include "../miryoku/miryoku.dtsi"

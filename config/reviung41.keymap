@@ -1,6 +1,6 @@
 // Copyright 2021 Manna Harbour
 // https://github.com/manna-harbour/miryoku
 
-#include "../miryoku/config.h"
+#include "../miryoku/custom_config.h"
 #include "../miryoku/mapping/41-reviung.h"
 #include "../miryoku/miryoku.dtsi"

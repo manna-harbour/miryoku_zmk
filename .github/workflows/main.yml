@@ -73,7 +73,7 @@ jobs:
           keyboard_split="$keyboard"
           keyboard_base=`echo "$keyboard" | sed 's/_\(left\|right\)//'`
 
-          configfile="${GITHUB_WORKSPACE}/miryoku/config.h"
+          configfile="${GITHUB_WORKSPACE}/miryoku/custom_config.h"
           echo '// Copyright 2021 Manna Harbour\n// https://github.com/manna-harbour/miryoku' > "$configfile"
           echo "::set-output name=configfile::$configfile"
 
