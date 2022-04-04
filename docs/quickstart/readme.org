@@ -3,7 +3,7 @@
 
 * Miryoku ZMK Quickstart Guide [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/miryoku-roa-32.png]]
 
-[[https://github.com/manna-harbour/miryoku_zmk][Miryoku ZMK]] can be [[#fields][personalised]], [[#build][built]], [[#download][downloaded]], and [[#flash][flashed]] onto your keyboard in a few minutes without installing any software or editing any files.
+A personalised build of [[https://github.com/manna-harbour/miryoku_zmk][Miryoku ZMK]] can be [[#initial-setup][set up]], [[#build][built]], [[#download][downloaded]], and [[#flash][flashed]] onto your keyboard in a few minutes without installing any software or editing any files.
 
 
 ** Initial Setup
@@ -35,51 +35,10 @@ Start here to build new firmware after completing the [[#initial-setup][initial 
 - Select ~Build Inputs~ from the ~Workflows~ list on the left.
 - Press the ~Run workflow~ button on the right.
 #+html: <img src="https://docs.github.com/assets/cb-57703/images/actions-workflow-dispatch.png" width="640"/>
-- Fill out the [[#fields][fields]] in the popup as described below.
+- Fill out the fields in the popup as [[https://github.com/manna-harbour/miryoku_zmk#fields--options][described]].
 - Press the ~Run workflow~ button at the bottom of the popup.
 #+html: <img src="https://docs.github.com/assets/cb-22055/images/actions-manually-run-workflow.png" width="640"/>
 - Wait for the workflow run to complete.
-
-
-*** Fields
-
-**** Board
-
-For keyboards with a separate controller, enter the controller name, e.g. ~bluemicro840_v1~, ~nice_nano~, ~nice_nano_v2~, ~nrfmicro_13~.  See [[../../.github/workflows/test-all-controllers.yml][here]] for a list of all supported controllers.
-
-For keyboards with an integrated controller, enter the keyboard name, e.g. ~ahokore~, ~ble_chiffre~, ~technikable~, ~zaphod~.  For split keyboards with an integrated controller on each side, enter both keyboard side names separated by a comma, e.g. ~corne-ish_zen_left,corne-ish_zen_right~.  See [[../../.github/workflows/test-all-boards.yml][here]] for a list of all supported keyboards with an integrated controller.
-
-**** Shield
-
-For keyboards with a separate controller, enter the keyboard name, e.g. ~absolem~, ~chocv~, ~eek~, ~osprette~.  For split keyboards with a separate controller on each side, enter both keyboard side names separated by a comma, e.g. ~corne_left,corne_right~, ~cradio_left,cradio_right~, ~pteron36_left,pteron36_right~, ~tbkmini_left,tbkmini_right~.  See [[../../.github/workflows/test-all-shields.yml][here]] for a list of all supported keyboards with separate controllers.
-
-For keyboards with an integrated controller, leave as ~default~.
-
-**** Miryoku Alphas
-
-Select an alternative alphas layout, e.g. ~colemak~, ~dvorak~, ~halmak~, ~qwerty~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alphas][here]] for a list of all supported alphas.  For Colemak Mod-DH, leave as ~default~.
-
-**** Miryoku Nav
-
-Select an alternative Nav layout, e.g. ~invertedt~, ~vi~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#nav-1][here]] for details.  For home position line nav, leave as ~default~.
-
-**** Miryoku Clipboard
-
-Select an alternative clipboard type, e.g. ~mac~, ~win~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#clipboard][here]] for details.  For CUA bindings, leave as ~default~.
-
-**** Miryoku Layers
-
-Select an alternative layers layout, e.g. ~flip~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#layers-1][here]] for details.  For right hand Nav, leave as ~default~.
-
-
-**** Miryoku Mapping
-
-Select an alternative mapping, e.g. ~extended_thumbs~, ~pinkie_stagger~.  See [[../../../../#mapping][here]] for details.  For the default mapping, leave as ~default~.
-
-
-**** Kconfig
-
-Set keyboard configuration options, e.g. ~CONFIG_ZMK_SLEEP=y~, ~CONFIG_ZMK_DISPLAY=y~, ~CONFIG_BT_CTLR_TX_PWR_PLUS_8=y~.  See [[https://deploy-preview-722--zmk.netlify.app/docs/config/index][here]] for details.  For the default configuration, leave as ~default~.
 
 
 ** Download

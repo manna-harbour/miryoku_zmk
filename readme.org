@@ -45,7 +45,7 @@ Workflow files are in [[.github/workflows]].
 
 **** Build Examples
 
-Copy one of the included Build Example workflow files, edit the ~name~ value, and edit and add options and values as desired.  Select Run workflow, select the Branch if desired, and activate Run workflow.
+Copy one of the included Build Example workflow files, edit the ~name~ value, edit and add options and values as desired, and push changes.  Select Run workflow, select the Branch if desired, and activate Run workflow.
 
 Options are specified in the ~with~ section and are of the following form.
 : option: '["value"]'
@@ -53,19 +53,9 @@ Options are specified in the ~with~ section and are of the following form.
 For multiple values per option use the following form, and a matrix build will be performed for each combination of values across all options.
 : option: '["value1","value2"]'
 
-The ~board~ option specifies the ZMK board and is required.  All other options are optional.
-
-The ~shield~ option specifies the ZMK shield.
-
-The ~alphas~, ~nav~, ~clipboard~, and ~layers~ options correspond to the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] options.  The ~mapping~ option corresponds to the alternative [[#mapping][mapping]] options.  Alternative layout and mapping options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  To use here, convert to the form specified above.  Use ~default~ to represent the default value.  Values for these five options are case-insensitive.
-
 See the Test All workflow files for all supported values for each option.
 
-The ~kconfig~ option can be used to for [[#kconfig-configuration][Kconfig configuration]].  Join multiple lines with ~\n~.
-
-The ~zmk~ option can be used to build from an alternative ZMK branch.  The branch is specified as ~<user>/<repo>/<branch>~.
-
-The ~merge~ option can be used to merge branches into ZMK at build time.  Branches are specified as ~<user>/<repo>/<branch>~.  To merge multiple branches, separate with space.
+See [[#fields--options][Fields / Options]] below for a description of each option.
 
 
 **** Build Inputs
@@ -74,17 +64,89 @@ The Build Inputs workflow can be used without editing workflow files.  Select Ru
 
 Options are specified by entering values directly in the corresponding field.  Multiple comma separated values can be entered per option and a matrix build will be performed for each combination of values across all options.
 
-The ~Board~ option specifies the ZMK board and is required.  All other options are optional.
+See [[#fields--options][Fields / Options]] below for a description of each option.
 
-The ~Shield~ option specifies the ZMK shield.
 
-The ~Miryoku Alphas~, ~Miryoku Nav~, ~Miryoku Clipboard~, and ~Miryoku Layers~ options correspond to the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] options.  The ~Miryoku Mapping~ option corresponds to the alternative [[#mapping][mapping]] options.  Alternative layout and mapping options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  To use here, enter the ~value~ in the corresponding ~Miryoku Option~ field.  Use ~default~ to represent the default value.  Values for these five options are case-insensitive.
+**** Fields / Options
 
-The ~Kconfig~ option can be used to for [[#kconfig-configuration][Kconfig configuration]].  Join multiple lines with ~\n~.
+All [[#build-inputs][Build Inputs]] fields and corresponding [[#build-examples][workflow]] options are described below.
 
-The ~ZMK~ option can be used to build from an alternative ZMK branch.  The branch is specified as ~<user>/<repo>/<branch>~.
+The [[#board--board][board]] option is required and all others are optional.
 
-The ~Merge~ option can be used to merge branches into ZMK at build time.  Branches are specified as ~<user>/<repo>/<branch>~.  To merge multiple branches, separate with space.
+
+***** Keyboard Selection
+
+
+****** Board / board
+
+Specifies the ZMK board.
+
+For keyboards with a separate controller, enter the controller name, e.g. ~bluemicro840_v1~, ~nice_nano~, ~nice_nano_v2~, ~nrfmicro_13~.  See [[.github/workflows/test-all-controllers.yml][here]] for a list of all supported controllers.
+
+For keyboards with an integrated controller, enter the keyboard name, e.g. ~ahokore~, ~ble_chiffre~, ~technikable~, ~zaphod~.  For split keyboards with an integrated controller on each side, enter both keyboard side names separated by a comma to build both sides in the same run, e.g. ~corne-ish_zen_left,corne-ish_zen_right~.  See [[.github/workflows/test-all-boards.yml][here]] for a list of all supported keyboards with an integrated controller.
+
+
+****** Shield / shield
+
+Specifies the ZMK shield.
+
+For keyboards with a separate controller, enter the keyboard name, e.g. ~absolem~, ~chocv~, ~eek~, ~osprette~.  For split keyboards with a separate controller on each side, enter both keyboard side names separated by a comma to build both sides in the same run, e.g. ~corne_left,corne_right~, ~cradio_left,cradio_right~, ~pteron36_left,pteron36_right~, ~tbkmini_left,tbkmini_right~.  See [[.github/workflows/test-all-shields.yml][here]] for a list of all supported keyboards with separate controllers.
+
+For keyboards with an integrated controller, leave as ~default~.
+
+
+***** Miryoku Alternative Layout and Mapping Options
+
+
+The ~alphas~, ~nav~, ~clipboard~, and ~layers~ options correspond to the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] options.  The ~mapping~ option corresponds to the alternative [[#mapping][mapping]] options.  Alternative layout and mapping options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~, e.g. ~MIRYOKU_ALPHAS=QWERTY~.  To use here, use the value with the corresponding option.  Use ~default~ to represent the default value.  Values for these five options are case-insensitive.
+
+
+****** Miryoku Alphas / alphas
+
+Select an alternative alphas layout, e.g. ~colemak~, ~dvorak~, ~halmak~, ~qwerty~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alphas][here]] for a list of all supported alphas.  For Colemak Mod-DH, leave as ~default~.
+
+
+****** Miryoku Nav / nav
+
+Select an alternative Nav layout, e.g. ~invertedt~, ~vi~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#nav-1][here]] for details.  For home position line nav, leave as ~default~.
+
+
+****** Miryoku Clipboard / clipboard
+
+Select an alternative clipboard type, e.g. ~mac~, ~win~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#clipboard][here]] for details.  For CUA bindings, leave as ~default~.
+
+
+****** Miryoku Layers / layers
+
+Select an alternative layers layout, e.g. ~flip~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#layers-1][here]] for details.  For right hand Nav, leave as ~default~.
+
+
+****** Miryoku Mapping / mapping
+
+Select an alternative mapping, e.g. ~extended_thumbs~, ~pinkie_stagger~.  See [[#mapping][here]] for details.  For the default mapping, leave as ~default~.
+
+
+***** Custom Config / config
+
+Appends to the [[#config-file][config]] file.  Join multiple lines with ~\n~.  For no additional config, leave as ~default~.
+
+
+***** ZMK Options
+
+
+****** Kconfig / kconfig
+
+Appends to [[#kconfig-configuration][Kconfig configuration]].  Join multiple lines with ~\n~.  For no additonal config, leave as ~default~.
+
+
+****** ZMK Fork / zmk
+
+Used to build from an alternative ZMK fork.  The branch is specified as ~<user>/<repo>/<branch>~.  For the default ZMK branch, leave as ~default~.
+
+
+****** Merge ZMK Branches / merge
+
+Used to merge branches into ZMK at build time.  Branches are specified as ~<user>/<repo>/<branch>~.  To merge multiple branches, separate with space.  For no merges, leave as ~default~.
 
 
 ** Supported Keyboards
@@ -109,9 +171,13 @@ For local builds, copy the board or shield definition to the appropriate locatio
 
 ** Config File
 
-The config file specifies [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] and [[#mapping][mapping]] options for all [[#Local-Builds][local builds]].  The config file is not used in [[#workflow-builds][workflow builds]].
+The config file is used to specify [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] and [[#mapping][mapping]] options for [[#Local-Builds][local builds]].  Options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  Convert to the form ~#define MIRYOKU_OPTION_VALUE~ and add to the config file.
 
-Options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  Convert to the form ~#define MIRYOKU_OPTION_VALUE~ and add to the config file.  The file is [[miryoku/custom_config.h]].  See the [[#example-config-file][example config file]].  The config file is included into the keyboard's keymap file before the mapping with:
+The config file can also be used to set default alternative layout and mapping options for [[#workflow-builds][workflow builds]], as an alternative to using the corresponding [[#miryoku-alternative-layout-and-mapping-options][alternative layout and mapping workflow options]].  In this case setting different values for the same option in the config file and in the workflow options may lead to undefined behaviour.
+
+The config file can also be used to set other Miryoku ZMK configuration options for local and workflow builds.
+
+The file is [[miryoku/custom_config.h]].  See the [[#example-config-file][example config file]].  The config file is included into the keyboard's keymap file before the mapping with:
 
 #+BEGIN_SRC C :tangle no
 #include "../miryoku/custom_config.h"
@@ -120,7 +186,7 @@ Options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  Conv
 
 *** Example Config File
 
-Below is an example [[#config-file][config file]] with the following configuration options:
+Below is an example [[#config-file][config file]] with the following alternative layout and mapping options:
 
 - ~MIRYOKU_ALPHAS=QWERTY~
 - ~MIRYOKU_NAV=INVERTEDT~
@@ -253,9 +319,11 @@ Keymap files for many keyboards are provided in [[config]].
 
 ** Kconfig Configuration
 
-Kconfig configuration can be set in ~config/<keyboard>.conf~ for [[#local-builds][local]] and [[#workflow-builds][workflow]] builds, or in the ~kconfig~ / ~Kconfig~ option for workflow builds.
+Kconfig keyboard configuration options can be set in ~config/<keyboard>.conf~ for [[#local-builds][local]] and [[#workflow-builds][workflow]] builds.
 
-Additional Kconfig documentation is available at [[https://deploy-preview-722--zmk.netlify.app/docs/config/index/]].
+Kconfig configuration can also be specified in the [[#kconfig--kconfig][kconfig option]] for workflow builds.
+
+Examples include ~CONFIG_ZMK_SLEEP=y~, ~CONFIG_ZMK_DISPLAY=y~, ~CONFIG_BT_CTLR_TX_PWR_PLUS_8=y~.  Additional documentation is available at [[https://deploy-preview-722--zmk.netlify.app/docs/config/index/]].
 
 
 ** Additional and Experimental Features
