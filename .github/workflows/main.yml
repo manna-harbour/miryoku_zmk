@@ -32,9 +32,6 @@ on:
       kconfig:
         type: string
         default: '["default"]'
-      zmk:
-        type: string
-        default: '["default"]'
       merge:
         type: string
         default: '["default"]'
@@ -56,7 +53,6 @@ jobs:
         mapping: ${{ fromJSON(inputs.mapping) }}
         config: ${{ fromJSON(inputs.config) }}
         kconfig: ${{ fromJSON(inputs.kconfig) }}
-        zmk: ${{ fromJSON(inputs.zmk) }}
         merge: ${{ fromJSON(inputs.merge) }}
     steps:
       - name: Checkout
@@ -119,7 +115,18 @@ jobs:
           if [ -n "${{ matrix.merge }}" -a "${{ matrix.merge }}" != 'default' ]
           then
             artifact_build_name="$artifact_build_name merge_"`echo "${{ matrix.merge }}" | md5sum | cut -d ' ' -f 1`
+            for branch in ${{ matrix.merge }}
+            do
+              if [ `echo "$branch" | cut -c1` = '=' ]
+              then
+                zmk=`echo "$branch" | cut -c2-`
+              else
+                merge="$merge $branch"
+              fi
+            done
           fi
+          echo "::set-output name=merge::$merge"
+          echo "::set-output name=zmk::$zmk"
 
           outboard_dir=".github/workflows/outboards"
           if [ -n "$shield" ]
@@ -166,12 +173,12 @@ jobs:
         run: |
           cp ${{ steps.variables.outputs.outboard_chekout_dir }}/${{ env.outboard_manifest }} config/west.yml
           cat config/west.yml
-      - name: Generate manifest from zmk field
-        if: ${{ matrix.zmk != '' && matrix.zmk != 'default' }}
+      - name: Generate manifest from merge field
+        if: ${{ steps.variables.outputs.zmk != '' }}
         run: |
-          user=`echo ${{ matrix.zmk }} | cut -f 1 -d '/'`
-          repo=`echo ${{ matrix.zmk }} | cut -f 2 -d '/'`
-          branch=`echo ${{ matrix.zmk }} | cut -f 3- -d '/'`
+          user=`echo ${{ steps.variables.outputs.zmk }} | cut -f 1 -d '/'`
+          repo=`echo ${{ steps.variables.outputs.zmk }} | cut -f 2 -d '/'`
+          branch=`echo ${{ steps.variables.outputs.zmk }} | cut -f 3- -d '/'`
           remote="$user-$repo"
           echo "manifest:\n  remotes:\n    - name: $remote\n      url-base: https://github.com/$user\n  projects:\n    - name: zmk\n      remote: $remote\n      repo-path: $repo\n      revision: $branch\n      import: app/west.yml\n  self:\n    path: config" > config/west.yml
           cat config/west.yml
@@ -193,12 +200,12 @@ jobs:
       - name: Update west projects
         run: west update
       - name: Merge branches and update
-        if: ${{ matrix.merge != '' && matrix.merge != 'default' }}
+        if: ${{ steps.variables.outputs.merge != '' }}
         run: |
           cd zmk
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          for merge in ${{ matrix.merge }}
+          for merge in ${{ steps.variables.outputs.merge }}
           do
             user=`echo "$merge" | cut -f 1 -d '/'`
             repo=`echo "$merge" | cut -f 2 -d '/'`

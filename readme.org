@@ -139,14 +139,15 @@ Appends to the [[#config-file][config]] file.  Join multiple lines with ~\n~.  F
 Appends to [[#kconfig-configuration][Kconfig configuration]].  Join multiple lines with ~\n~.  For no additonal config, leave as ~default~.
 
 
-****** ZMK Fork / zmk
+****** ZMK Branches / merge
 
-Used to build from an alternative ZMK fork.  The branch is specified as ~<user>/<repo>/<branch>~.  For the default ZMK branch, leave as ~default~.
+Used to select an alternative ZMK branch for building, and to merge branches into ZMK at build time.
 
+An alternative ZMK branch for building is specified as ~=<user>/<repo>/<branch>~, i.e. with a leading ~=~.  E.g. the default ZMK branch would be specified as ~=zmkfirmware/zmk/main~.
 
-****** Merge ZMK Branches / merge
+Branches for merging are specified as ~<user>/<repo>/<branch>~, i.e. with no leading ~=~.  E.g. the default ZMK branch would be specified as ~zmkfirmware/zmk/main~.
 
-Used to merge branches into ZMK at build time.  Branches are specified as ~<user>/<repo>/<branch>~.  To merge multiple branches, separate with space.  For no merges, leave as ~default~.
+To specify multiple branches, separate with space.  For no changes, leave as ~default~.
 
 
 ** Supported Keyboards
