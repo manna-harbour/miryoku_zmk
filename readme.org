@@ -167,6 +167,7 @@ Additionally, building out of tree keyboards is automatically supported by the i
 
 See the Test All Controllers, Boards, and Shields [[.github/workflows/][workflow files]] for lists of supported keyboards.
 
+
 ** Config File
 
 The config file is used to specify [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] and [[#mapping][mapping]] options for [[#Local-Builds][local builds]].  Options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  Convert to the form ~#define MIRYOKU_OPTION_VALUE~ and add to the config file.
@@ -174,6 +175,8 @@ The config file is used to specify [[https://github.com/manna-harbour/miryoku/tr
 The config file can also be used to set default alternative layout and mapping options for [[#workflow-builds][workflow builds]], as an alternative to using the corresponding [[#miryoku-alternative-layout-and-mapping-options][alternative layout and mapping workflow options]].  In this case setting different values for the same option in the config file and in the workflow options may lead to undefined behaviour.
 
 The config file can also be used to set other Miryoku ZMK configuration options for local and workflow builds.
+
+Config file entries can also be specified in the [[#custom-config--config][config]] option for workflow builds.
 
 The file is [[miryoku/custom_config.h]].  See the [[#example-config-file][example config file]].  The config file is included into the keyboard's keymap file before the mapping with:
 
@@ -329,11 +332,31 @@ Examples include ~CONFIG_ZMK_SLEEP=y~, ~CONFIG_ZMK_DISPLAY=y~, ~CONFIG_BT_CTLR_T
 
 *** Mouse Keys
 
+
+**** Mouse Keys on Host
+
 The Mouse and Button layers use [[https://en.wikipedia.org/wiki/Mouse_keys][mouse keys on the host]].  Middle button, right button, and scroll are not supported.
 
 - [[https://linuxreviews.org/HOWTO_use_the_numeric_keyboard_keys_as_mouse_in_XOrg][X11]]
 - [[https://support.apple.com/en-au/guide/mac-help/mh27469/mac][Mac]]
 - [[https://support.microsoft.com/en-us/windows/use-mouse-keys-to-move-the-mouse-pointer-9e0c72c8-b882-7918-8e7b-391fd62adf33][Windows]]
+
+
+**** Mousekeys PR
+
+Support for the [[https://github.com/zmkfirmware/zmk/pull/778][mousekeys PR]] is also included.
+
+Add ~#define MIRYOKU_KLUDEGE_MOUSEKEYSPR~ to the [[#config-file][config file]].
+
+Add ~CONFIG_ZMK_MOUSE=y~ to the [[#kconfig-configuration][Kconfig configuration]].
+
+[[#zmk-branches--merge][Merge or build]] from the mousekeys PR branch ~krikun98/zmk/mouse-pr~
+
+For [[#workflow-builds][workflow builds]], the [[#build-inputs][Build Inputs]] workflow can be used, or for [[#build-examples][Build Examlpe]] workflows see the [[./github/workflows/build-example-corne-nice_nano-mousekeyspr.yml][Build Example corne nice_nano mousekeyspr]] workflow.
+
+For local builds, make the changes to the local files.
+
+If the PR hasn't been rebased recently the automatic merge may fail.  In that case merge manually or build directly from the branch.
 
 
 *** Key Emulation Combos
