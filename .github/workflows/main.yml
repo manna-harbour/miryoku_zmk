@@ -182,24 +182,20 @@ jobs:
           remote="$user-$repo"
           echo "manifest:\n  remotes:\n    - name: $remote\n      url-base: https://github.com/$user\n  projects:\n    - name: zmk\n      remote: $remote\n      repo-path: $repo\n      revision: $branch\n      import: app/west.yml\n  self:\n    path: config" > config/west.yml
           cat config/west.yml
-      - name: Cache
+      - name: Cache zmk
         if: true
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
-            bootloader/
-            modules/
-            tools/
-            zephyr/
             zmk/
-          key: ${{ runner.os }} ${{ hashFiles('config/west.yml') }} ${{ matrix.merge }}
+          key: zmk ${{ hashFiles('config/west.yml') }} ${{ matrix.merge }}
         timeout-minutes: 2
         continue-on-error: true
-      - name: Initialize west workspace
+      - name: West init
         run: west init -l config
-      - name: Update west projects
-        run: west update
-      - name: Merge branches and update
+      - name: West update zmk
+        run: west update zmk
+      - name: Merge branches
         if: ${{ steps.variables.outputs.merge != '' }}
         run: |
           cd zmk
@@ -217,7 +213,26 @@ jobs:
             git remote remove "$remote"
             git status
           done
-          west update
+          cd ..
+          cp -a zmk zmk.merged
+      - name: Cache zephyr
+        if: true
+        uses: actions/cache@v3
+        with:
+          path: |
+            modules/
+            tools/
+            zephyr/
+          key: zephyr ${{ runner.os }} ${{ hashFiles('zmk/app/west.yml') }}
+        timeout-minutes: 2
+        continue-on-error: true
+      - name: West update
+        run: west update
+      - name: Restore merge
+        if: ${{ steps.variables.outputs.merge != '' }}
+        run: |
+          mv zmk zmk.default
+          mv zmk.merged zmk
       - name: Export Zephyr CMake package
         run: west zephyr-export
       - name: Build
