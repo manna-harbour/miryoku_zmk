@@ -1,7 +1,7 @@
 # Copyright 2022 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-name: 'Test All Shields'
+name: 'Test All Promicro Shields'
 on:
   - workflow_dispatch
 jobs:

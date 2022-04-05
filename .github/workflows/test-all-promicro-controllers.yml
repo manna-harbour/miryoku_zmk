@@ -1,7 +1,7 @@
-# Copyright 2022 Manna Harbour
+# Copyright 2021 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-name: 'Test All Seeeduino Xiao Shields'
+name: 'Test All Promicro Controllers'
 on:
   - workflow_dispatch
 jobs:
@@ -9,5 +9,5 @@ jobs:
     if: github.repository_owner == 'manna-harbour'
     uses: manna-harbour/zmk-config/.github/workflows/main.yml@31a649e5571b4572d7010561dd3f191922cd9410
     with:
-      board: '["seeeduino_xiao","seeeduino_xiao_ble"]'
-      shield: '["hummingbird","zaphod_lite"]'
+      board: '["bluemicro840_v1","mikoto_520","nice_nano","nice_nano_v2","nrfmicro_11","nrfmicro_13","proton_c"]'
+      shield: '["corne_left"]'

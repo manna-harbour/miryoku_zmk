@@ -13,11 +13,11 @@ See the [[docs/quickstart][Miryoku ZMK Quickstart Guide]] to have a personalised
 
 ** Overview
 
-[[#building][Building]] can be performed [[#local-builds][locally]], or via GitHub Actions [[#workflow-builds][workflows]] without use of a local build environment.  Many keyboards are [[#supported-keyboards][supported]], and building [[#out-of-tree-boards-and-shields][out of tree keyboards]] is automatically supported by the workflows.
+[[#building][Building]] can be performed [[#local-builds][locally]], or via GitHub Actions [[#workflow-builds][workflows]] without use of a local build environment.  Many keyboards are [[#supported-keyboards][supported]], and building out of tree keyboards is automatically supported by the workflows.
 
-Workflow builds can be customised by editing one of the [[#build-examples][examples]], or by filling out a [[#build-inputs][form]].  Local builds can be customised by editing a [[#config-file][config file]], and an [[#example-config-file][example]] is included.
+Workflow builds can be customised by editing one of the [[#build-examples][examples]], or by filling out a [[#build-inputs][form]].  Local and workflow builds can be customised by editing a [[#config-file][config file]], and an [[#example-config-file][example]] is included.
 
-The [[#keyboard-keymaps][keyboard keymap]] includes the config file, the [[#miryoku-keymap][Miryoku keymap]], and a [[#mapping][mapping]] for the physical layout.
+The [[#keyboard-keymaps][keyboard keymaps]] include the config file, a [[#mapping][mapping]] for the physical layout, and the [[#miryoku-keymap][Miryoku keymap]].
 
 [[#additional-and-experimental-features][Additional and Experimental Features]] include [[#mouse-keys][mouse keys on the host]] and [[#key-emulation-combos][key emulation combos]].
 
@@ -53,8 +53,6 @@ Options are specified in the ~with~ section and are of the following form.
 For multiple values per option use the following form, and a matrix build will be performed for each combination of values across all options.
 : option: '["value1","value2"]'
 
-See the Test All workflow files for all supported values for each option.
-
 See [[#fields--options][Fields / Options]] below for a description of each option.
 
 
@@ -81,29 +79,40 @@ The [[#board--board][board]] option is required and all others are optional.
 
 Specifies the ZMK board.
 
-For keyboards with a separate controller, enter the controller name, e.g. ~bluemicro840_v1~, ~nice_nano~, ~nice_nano_v2~, ~nrfmicro_13~.  See [[.github/workflows/test-all-controllers.yml][here]] for a list of all supported controllers.
+For keyboards with a separate controller, enter the controller name, e.g. ~nice_nano~, ~nice_nano_v2~, ~seeeduino_xiao~, ~seeeduino_xiao_ble~.  Also specify the [[#shield--shield][shield]].
 
-For keyboards with an integrated controller, enter the keyboard name, e.g. ~ahokore~, ~ble_chiffre~, ~technikable~, ~zaphod~.  For split keyboards with an integrated controller on each side, enter both keyboard side names separated by a comma to build both sides in the same run, e.g. ~corne-ish_zen_left,corne-ish_zen_right~.  See [[.github/workflows/test-all-boards.yml][here]] for a list of all supported keyboards with an integrated controller.
+See the [[.github/workflows/test-all-promicro-controllers.yml][Test All Promicro Controllers]] and [[.github/workflows/test-all-xiao-controllers.yml][Test All Xiao Controllers]] workflow files for a list of all supported controllers.
+
+For keyboards with an integrated controller, enter the keyboard name, e.g. ~ahokore~, ~ble_chiffre~, ~technikable~, ~zaphod~.
+
+For split keyboards with an integrated controller on each side, enter the keyboard side name, e.g. ~corne-ish_zen_left~, ~corne-ish_zen_right~.  To build both sides in the same run, enter both keyboard side names separated by a comma, e.g. ~corne-ish_zen_left,corne-ish_zen_right~.
+
+See the [[.github/workflows/test-all-boards.yml][Test All Boards]] workflow files for a list of all supported keyboards with an integrated controller.
 
 
 ****** Shield / shield
 
 Specifies the ZMK shield.
 
-For keyboards with a separate controller, enter the keyboard name, e.g. ~absolem~, ~chocv~, ~eek~, ~osprette~.  For split keyboards with a separate controller on each side, enter both keyboard side names separated by a comma to build both sides in the same run, e.g. ~corne_left,corne_right~, ~cradio_left,cradio_right~, ~pteron36_left,pteron36_right~, ~tbkmini_left,tbkmini_right~.  See [[.github/workflows/test-all-shields.yml][here]] for a list of all supported keyboards with separate controllers.
+For keyboards with a separate controller, enter the keyboard name, e.g. ~absolem~, ~chocv~, ~eek~, ~osprette~.
+
+For split keyboards with a separate controller on each side, enter the keyboard side name, e.g. ~corne_left~, ~corne_right~, ~cradio_left~, ~cradio_right~.  To build both sides in the same run, enter both keyboard side names separated by a comma, e.g. ~corne_left,corne_right~, ~cradio_left,cradio_right~.
+
+See the [[.github/workflows/test-all-promicro-shields.yml][Test All Promicro Shields]] and [[.github/workflows/test-all-xiao-shields.yml][Test All Xiao Shields]] workflow files for a list of all supported keyboards with separate controllers.
 
 For keyboards with an integrated controller, leave as ~default~.
 
 
 ***** Miryoku Alternative Layout and Mapping Options
 
-
 The ~alphas~, ~nav~, ~clipboard~, and ~layers~ options correspond to the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] options.  The ~mapping~ option corresponds to the alternative [[#mapping][mapping]] options.  Alternative layout and mapping options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~, e.g. ~MIRYOKU_ALPHAS=QWERTY~.  To use here, use the value with the corresponding option.  Use ~default~ to represent the default value.  Values for these five options are case-insensitive.
+
+See the [[.github/workflows/test-all-configs.yml][Test All Configs]] workflow file for a list of all supported values for the ~alphas~, ~nav~, ~clipboard~, and ~layers~ options.
 
 
 ****** Miryoku Alphas / alphas
 
-Select an alternative alphas layout, e.g. ~colemak~, ~dvorak~, ~halmak~, ~qwerty~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alphas][here]] for a list of all supported alphas.  For Colemak Mod-DH, leave as ~default~.
+Select an alternative alphas layout, e.g. ~colemak~, ~dvorak~, ~halmak~, ~qwerty~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alphas][here]] for details.  For Colemak Mod-DH, leave as ~default~.
 
 
 ****** Miryoku Nav / nav
@@ -152,23 +161,11 @@ To specify multiple branches, separate with space.  For no changes, leave as ~de
 
 ** Supported Keyboards
 
+Supported keyboards are those with a [[#keyboard-keymaps][keymap in Miryoku ZMK]] and a [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/][board supported by ZMK]] or combination of board and [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/shields][shield supported by ZMK]].
 
-*** Board Only
+Additionally, building out of tree keyboards is automatically supported by the included [[#workflow-builds][workflows]].  For a list of supported out of tree keyboards, see [[.github/workflows/outboards]].  For local builds of out of tree keyboards, checkout and copy or link the board or shield definition to the appropriate location under [[config]].
 
-Any [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/arm][board supported by ZMK]] with a [[#keyboard-keymaps][keymap in Miryoku ZMK]].  See the [[.github/workflows/test-all-boards.yml][Test All Boards workflow file]] for a list of all supported boards (including [[#out-of-tree-boards-and-shields][outboards]]).
-
-
-*** Board / Shield Combination
-
-Any compatible combination of [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/arm][board supported by ZMK]] and [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/shields][shield supported by ZMK]] with a [[#keyboard-keymaps][keymap in Miryoku ZMK]].  See the [[.github/workflows/test-all-shields.yml][Test All Shields workflow file]] for a list of all supported shields (including [[#out-of-tree-boards-and-shields][outboards]]).
-
-
-*** Out of Tree Boards and Shields
-
-Additionally, building some out of tree boards and shields is automatically supported by the included [[#workflow-builds][workflows]].  See [[.github/workflows/outboards]].
-
-For local builds, copy the board or shield definition to the appropriate location under [[config]].
-
+See the Test All Controllers, Boards, and Shields [[.github/workflows/][workflow files]] for lists of supported keyboards.
 
 ** Config File
 
@@ -315,7 +312,7 @@ The thumb keys are moved 1u to extend the thumbs.  Supports ortho configuration.
 
 ** Keyboard Keymaps
 
-Keymap files for many keyboards are provided in [[config]].
+The keyboard keymaps include the [[#config-file][config file]], a [[#mapping][mapping]] for the physical layout, and the [[#miryoku-keymap][Miryoku keymap]].  Keyboard keymap files are in [[config]].
 
 
 ** Kconfig Configuration
