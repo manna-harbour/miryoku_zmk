@@ -3,5 +3,5 @@
 
 outboard_repository=mmccoyd/zmk-config
 outboard_ref=master
-outboard_from=config/boards/shields/hillside
-outboard_to=boards/shields/hillside
+outboard_from=config/boards/shields/hillside48
+outboard_to=boards/shields/hillside48
