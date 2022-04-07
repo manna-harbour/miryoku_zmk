@@ -32,7 +32,7 @@ on:
       kconfig:
         type: string
         default: '["default"]'
-      merge:
+      branches:
         type: string
         default: '["default"]'
 
@@ -53,11 +53,13 @@ jobs:
         mapping: ${{ fromJSON(inputs.mapping) }}
         config: ${{ fromJSON(inputs.config) }}
         kconfig: ${{ fromJSON(inputs.kconfig) }}
-        merge: ${{ fromJSON(inputs.merge) }}
+        branches: ${{ fromJSON(inputs.branches) }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Process variables
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          path: 'miryoku_zmk'
+      - name: main
         id: variables
         run: |
           if [ -n "${{ matrix.shield }}" -a "${{ matrix.shield }}" != "default" ]
@@ -73,7 +75,7 @@ jobs:
           keyboard_split="$keyboard"
           keyboard_base=`echo "$keyboard" | sed 's/_\(left\|right\)//'`
 
-          configfile="${GITHUB_WORKSPACE}/miryoku/custom_config.h"
+          configfile="${GITHUB_WORKSPACE}/miryoku_zmk/miryoku/custom_config.h"
           echo "::set-output name=configfile::$configfile"
 
           artifact_build_name="miryoku_zmk $shield ${{ matrix.board }}"
@@ -96,160 +98,119 @@ jobs:
             esac
           done
 
-          artifacts_dir="artifacts"
+          artifacts_dir="${GITHUB_WORKSPACE}/artifacts"
           echo "::set-output name=artifact-dir::$artifacts_dir"
           mkdir "$artifacts_dir"
 
           cp "$configfile" "$artifacts_dir"
-          cat "$configfile"
 
           if [ -n "${{ matrix.kconfig }}" -a "${{ matrix.kconfig }}" != 'default' ]
           then
-            kconfig_file="config/$keyboard_split.conf"
+            kconfig_file="${GITHUB_WORKSPACE}/miryoku_zmk/config/$keyboard_split.conf"
             echo "${{ matrix.kconfig }}" >> "$kconfig_file"
             cp "$kconfig_file" "$artifacts_dir"
-            cat "$kconfig_file"
             artifact_build_name="$artifact_build_name kconfig_"`echo "${{ matrix.kconfig }}" | md5sum | cut -d ' ' -f 1`
           fi
 
-          if [ -n "${{ matrix.merge }}" -a "${{ matrix.merge }}" != 'default' ]
-          then
-            artifact_build_name="$artifact_build_name merge_"`echo "${{ matrix.merge }}" | md5sum | cut -d ' ' -f 1`
-            for branch in ${{ matrix.merge }}
-            do
-              if [ `echo "$branch" | cut -c1` = '=' ]
-              then
-                zmk=`echo "$branch" | cut -c2-`
-              else
-                merge="$merge $branch"
-              fi
-            done
-          fi
-          echo "::set-output name=merge::$merge"
-          echo "::set-output name=zmk::$zmk"
+          . "${GITHUB_WORKSPACE}/miryoku_zmk/.github/workflows/zmk"
 
-          outboard_dir=".github/workflows/outboards"
           if [ -n "$shield" ]
           then
-            outboard_file="$outboard_dir/$keyboard_base.shield.outboard"
+            outboards="shields/$keyboard_base boards/${{ matrix.board }}"
           else
-            outboard_file="$outboard_dir/$keyboard_base.board.outboard"
+            outboards="boards/$keyboard_base"
           fi
-          if [ ! -f "$outboard_file" ]
+          for outboard in $outboards
+          do
+            outboard_file="${GITHUB_WORKSPACE}/miryoku_zmk/.github/workflows/outboards/$outboard"
+            if [ -f "$outboard_file" ]
+            then
+              cp "$outboard_file" "$artifacts_dir"
+              . "$outboard_file"
+              outboard_dir="${GITHUB_WORKSPACE}/outboards/$outboard"
+              if [ -n "$outboard_repository" -a -n "$outboard_ref" ]
+              then
+                git clone -b "$outboard_ref" --depth 1 "https://github.com/$outboard_repository.git" "$outboard_dir"
+                if [ -n "$outboard_from" -a -n "$outboard_to" ]
+                then
+                  to="${GITHUB_WORKSPACE}/miryoku_zmk/config/$outboard_to"
+                  mkdir -p `dirname "$to"`
+                  ln -sr "$outboard_dir/$outboard_from" "$to"
+                fi
+              fi
+              outboard_repository=''
+              outboard_ref=''
+              outboard_from=''
+              outboard_to=''
+            fi
+          done
+
+          if [ -n "${{ matrix.branches }}" -a "${{ matrix.branches }}" != 'default' ]
           then
-            outboard_file="$outboard_dir/$keyboard_base.outboard"
+            artifact_build_name="$artifact_build_name branches_"`echo "${{ matrix.branches }}" | md5sum | cut -d ' ' -f 1`
+            zmk=`echo "${{ matrix.branches }}" | cut -d ' ' -f 1`
+            merges=`echo "${{ matrix.branches }}" | cut -d ' ' -f 2- -s`
           fi
-          if [ -f "$outboard_file" ]
-          then
-            grep -v '^#' "$outboard_file" >> $GITHUB_ENV
-            cat "$outboard_file"
-            cp "$outboard_file" "$artifacts_dir"
-          fi
-          echo "::set-output name=outboard_chekout_dir::outboard"
 
           artifact_build_name=`echo $artifact_build_name | tr ' ' '-'`
           echo "::set-output name=artifact-build-name::$artifact_build_name"
           echo "::set-output name=artifact-generic-name::"`echo "$artifact_build_name" | sed 's/_\(left\|right\)//'`
 
-      - name: Checkout outboard
-        if: ${{ env.outboard_repository != '' && env.outboard_ref != '' }}
-        uses: actions/checkout@v2
-        with:
-          repository: ${{ env.outboard_repository }}
-          ref: ${{ env.outboard_ref }}
-          path: ${{ steps.variables.outputs.outboard_chekout_dir }}
-      - name: Link outboard
-        if: ${{ env.outboard_from != '' && env.outboard_to != '' }}
-        run: |
-          mkdir -p `dirname "config/${{ env.outboard_to }}"`
-          ln -sr ${{ steps.variables.outputs.outboard_chekout_dir }}/${{ env.outboard_from }} config/${{ env.outboard_to }}
-      - name: Generate manifest from outboard
-        if: ${{ env.outboard_url_base != '' && env.outboard_revision != '' }}
-        run: |
-          echo "manifest:\n  remotes:\n    - name: outboard\n      url-base: ${{ env.outboard_url_base }}\n  projects:\n    - name: zmk\n      remote: outboard\n      revision: ${{ env.outboard_revision }}\n      import: app/west.yml\n  self:\n    path: config" > config/west.yml
-          cat config/west.yml
-      - name: Copy manifest from outboard
-        if: ${{ env.outboard_manifest != '' }}
-        run: |
-          cp ${{ steps.variables.outputs.outboard_chekout_dir }}/${{ env.outboard_manifest }} config/west.yml
-          cat config/west.yml
-      - name: Generate manifest from merge field
-        if: ${{ steps.variables.outputs.zmk != '' }}
-        run: |
-          user=`echo ${{ steps.variables.outputs.zmk }} | cut -f 1 -d '/'`
-          repo=`echo ${{ steps.variables.outputs.zmk }} | cut -f 2 -d '/'`
-          branch=`echo ${{ steps.variables.outputs.zmk }} | cut -f 3- -d '/'`
-          remote="$user-$repo"
-          echo "manifest:\n  remotes:\n    - name: $remote\n      url-base: https://github.com/$user\n  projects:\n    - name: zmk\n      remote: $remote\n      repo-path: $repo\n      revision: $branch\n      import: app/west.yml\n  self:\n    path: config" > config/west.yml
-          cat config/west.yml
-      - name: Cache zmk
+          user=`echo "$zmk" | cut -f 1 -d '/'`
+          repo=`echo "$zmk" | cut -f 2 -d '/'`
+          branch=`echo "$zmk" | cut -f 3- -d '/'`
+          git clone -b "$branch" --depth 1 "https://github.com/$user/$repo.git" 'zmk'
+
+          if [ -n "$merges" ]
+          then
+            cd "${GITHUB_WORKSPACE}/zmk"
+            git config user.name "${GITHUB_ACTOR}"
+            git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+            git fetch --unshallow
+            for merge in "$merges"
+            do
+              user=`echo "$merge" | cut -f 1 -d '/'`
+              repo=`echo "$merge" | cut -f 2 -d '/'`
+              branch=`echo "$merge" | cut -f 3- -d '/'`
+              remote="$user-$repo"
+              git remote add "$remote" "https://github.com/$user/$repo.git"
+              git fetch "$remote" "$branch"
+              git merge "$remote/$branch"
+              git remote remove "$remote"
+              git status
+            done
+          fi
+      - name: cache
         if: true
         uses: actions/cache@v3
         with:
           path: |
-            zmk/
-          key: zmk ${{ hashFiles('config/west.yml') }} ${{ matrix.merge }}
-        timeout-minutes: 2
-        continue-on-error: true
-      - name: West init
-        run: west init -l config
-      - name: West update zmk
-        run: west update zmk
-      - name: Merge branches
-        if: ${{ steps.variables.outputs.merge != '' }}
-        run: |
-          cd zmk
-          git config user.name "${GITHUB_ACTOR}"
-          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          for merge in ${{ steps.variables.outputs.merge }}
-          do
-            user=`echo "$merge" | cut -f 1 -d '/'`
-            repo=`echo "$merge" | cut -f 2 -d '/'`
-            branch=`echo "$merge" | cut -f 3- -d '/'`
-            remote="$user-$repo"
-            git remote add "$remote" "https://github.com/$user/$repo.git"
-            git fetch "$remote" "$branch"
-            git merge "$remote/$branch"
-            git remote remove "$remote"
-            git status
-          done
-          cd ..
-          cp -a zmk zmk.merged
-      - name: Cache zephyr
-        if: true
-        uses: actions/cache@v3
-        with:
-          path: |
-            modules/
-            tools/
-            zephyr/
+            zmk/modules/
+            zmk/zephyr/
           key: zephyr ${{ runner.os }} ${{ hashFiles('zmk/app/west.yml') }}
         timeout-minutes: 2
         continue-on-error: true
-      - name: West update
-        run: west update
-      - name: Restore merge
-        if: ${{ steps.variables.outputs.merge != '' }}
+      - name: build
         run: |
-          mv zmk zmk.default
-          mv zmk.merged zmk
-      - name: Export Zephyr CMake package
-        run: west zephyr-export
-      - name: Build
-        run: west build -s zmk/app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
-      - name: Prepare firmware artifacts
-        run: |
-          for extension in "hex" "uf2"
+          cd "${GITHUB_WORKSPACE}/zmk"
+          west init -l app
+          west update
+          west zephyr-export
+
+          cd "${GITHUB_WORKSPACE}/zmk/app"
+          west build -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/miryoku_zmk/config"
+
+          for extension in "uf2"
           do
-            file="build/zephyr/zmk.$extension"
+            file="${GITHUB_WORKSPACE}/zmk/app/build/zephyr/zmk.$extension"
             if [ -f "$file" ]
             then
               cp "$file" "${{ steps.variables.outputs.artifact-dir }}/${{ steps.variables.outputs.artifact-build-name }}.$extension"
             fi
           done
-      - name: Archive artifacts
-        uses: actions/upload-artifact@v2
+      - name: upload
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.variables.outputs.artifact-generic-name }}
           path: ${{ steps.variables.outputs.artifact-dir }}
-        continue-on-error: true
+

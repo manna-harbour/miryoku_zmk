@@ -1,0 +1,9 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+# use with shield microdox_mod
+
+outboard_repository=abondis/zmk-config
+outboard_ref=main
+outboard_from=config/boards/arm/sparkfun_nrf52840_mini
+outboard_to=boards/arm/sparkfun_nrf52840_mini

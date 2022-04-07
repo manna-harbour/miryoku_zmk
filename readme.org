@@ -148,15 +148,15 @@ Appends to the [[#config-file][config]] file.  Join multiple lines with ~\n~.  F
 Appends to [[#kconfig-configuration][Kconfig configuration]].  Join multiple lines with ~\n~.  For no additonal config, leave as ~default~.
 
 
-****** ZMK Branches / merge
+****** ZMK Branches / branches
 
 Used to select an alternative ZMK branch for building, and to merge branches into ZMK at build time.
 
-An alternative ZMK branch for building is specified as ~=<user>/<repo>/<branch>~, i.e. with a leading ~=~.  E.g. the default ZMK branch would be specified as ~=zmkfirmware/zmk/main~.
+Branches are specified in the form ~<user>/<repo>/<branch>~.  E.g. the default ZMK branch would be specified as ~zmkfirmware/zmk/main~.
 
-Branches for merging are specified as ~<user>/<repo>/<branch>~, i.e. with no leading ~=~.  E.g. the default ZMK branch would be specified as ~zmkfirmware/zmk/main~.
+Multiple space separated branches can be specified.  The first branch specified is used as an alternative ZMK branch for building.  Any additional branches will be merged.
 
-To specify multiple branches, separate with space.  For no changes, leave as ~default~.
+For no changes, leave as ~default~.
 
 
 ** Supported Keyboards
@@ -350,13 +350,13 @@ Add ~#define MIRYOKU_KLUDEGE_MOUSEKEYSPR~ to the [[#config-file][config file]].
 
 Add ~CONFIG_ZMK_MOUSE=y~ to the [[#kconfig-configuration][Kconfig configuration]].
 
-[[#zmk-branches--merge][Merge or build]] from the mousekeys PR branch ~krikun98/zmk/mouse-pr~
+[[#zmk-branches--branches][Merge or build]] from the mousekeys PR branch ~krikun98/zmk/mouse-pr~
 
-For [[#workflow-builds][workflow builds]], the [[#build-inputs][Build Inputs]] workflow can be used, or for [[#build-examples][Build Examlpe]] workflows see the [[./github/workflows/build-example-corne-nice_nano-mousekeyspr.yml][Build Example corne nice_nano mousekeyspr]] workflow.
+For [[#workflow-builds][workflow builds]], the [[#build-inputs][Build Inputs]] workflow can be used, or for [[#build-examples][Build Examlpe]] workflows see the [[./github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow.
 
 For local builds, make the changes to the local files.
 
-If the PR hasn't been rebased recently the automatic merge may fail.  In that case merge manually or build directly from the branch.
+If the PR hasn't been rebased recently the automatic merge may fail.  In that case build directly from the branch or merge manually.
 
 
 *** Key Emulation Combos
