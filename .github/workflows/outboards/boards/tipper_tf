@@ -1,0 +1,8 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=weteor/Tipper_TF-Config
+outboard_ref=master
+outboard_from=boards/arm/tipper_tf
+outboard_to=boards/arm/tipper_tf
+zmk=weteor/zmk/Tipper_TF_rev2
