@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=weteor/Klacker_BS-Config
+outboard_ref=main
+outboard_from=boards/arm/klacker_bs
+outboard_to=boards/arm/klacker_bs
