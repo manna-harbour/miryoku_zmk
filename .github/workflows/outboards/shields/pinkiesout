@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=sadekbaroudi/zmk-pinkiesout
+outboard_ref=master
+outboard_from=config/boards/shields/pinkiesout
+outboard_to=boards/shields/pinkiesout
