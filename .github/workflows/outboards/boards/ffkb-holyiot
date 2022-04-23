@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=sadekbaroudi/zmk-ffkb-holyiot
+outboard_ref=master
+outboard_from=boards/arm/ffkb-holyiot
+outboard_to=boards/arm/ffkb-holyiot
