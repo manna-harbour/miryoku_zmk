@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=sadekbaroudi/zmk-rockon
+outboard_ref=master
+outboard_from=config/boards/shields/rockon
+outboard_to=boards/shields/rockon
