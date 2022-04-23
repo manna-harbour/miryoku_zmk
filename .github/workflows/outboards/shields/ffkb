@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=sadekbaroudi/zmk-ffkb
+outboard_ref=master
+outboard_from=config/boards/shields/ffkb
+outboard_to=boards/shields/ffkb
