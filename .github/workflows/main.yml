@@ -62,6 +62,8 @@ jobs:
       - name: main
         id: variables
         run: |
+          echo "::group::variables"
+
           if [ -n "${{ matrix.shield }}" -a "${{ matrix.shield }}" != "default" ]
           then
             SHIELD_ARG="-DSHIELD=${{ matrix.shield }}"
@@ -114,6 +116,9 @@ jobs:
 
           . "${GITHUB_WORKSPACE}/miryoku_zmk/.github/workflows/zmk"
 
+          echo "::endgroup::"
+
+          echo "::group::outboards"
           if [ -n "$shield" ]
           then
             outboards="shields/$keyboard_base boards/${{ matrix.board }}"
@@ -144,7 +149,9 @@ jobs:
               outboard_to=''
             fi
           done
+          echo "::endgroup::"
 
+          echo "::group::zmk"
           if [ -n "${{ matrix.branches }}" -a "${{ matrix.branches }}" != 'default' ]
           then
             artifact_build_name="$artifact_build_name branches_"`echo "${{ matrix.branches }}" | md5sum | cut -d ' ' -f 1`
@@ -160,7 +167,9 @@ jobs:
           repo=`echo "$zmk" | cut -f 2 -d '/'`
           branch=`echo "$zmk" | cut -f 3- -d '/'`
           git clone -b "$branch" --depth 1 "https://github.com/$user/$repo.git" 'zmk'
+          echo "::endgroup::"
 
+          echo "::group::merge"
           if [ -n "$merges" ]
           then
             cd "${GITHUB_WORKSPACE}/zmk"
@@ -180,6 +189,7 @@ jobs:
               git status
             done
           fi
+          echo "::endgroup::"
       - name: cache
         if: true
         uses: actions/cache@v3
@@ -192,14 +202,19 @@ jobs:
         continue-on-error: true
       - name: build
         run: |
+          echo "::group::setup"
           cd "${GITHUB_WORKSPACE}/zmk"
           west init -l app
           west update
           west zephyr-export
+          echo "::endgroup::"
 
+          echo "::group::build"
           cd "${GITHUB_WORKSPACE}/zmk/app"
           west build -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/miryoku_zmk/config"
+          echo "::endgroup::"
 
+          echo "::group::copy"
           for extension in "uf2"
           do
             file="${GITHUB_WORKSPACE}/zmk/app/build/zephyr/zmk.$extension"
@@ -208,6 +223,7 @@ jobs:
               cp "$file" "${{ steps.variables.outputs.artifact-dir }}/${{ steps.variables.outputs.artifact-build-name }}.$extension"
             fi
           done
+          echo "::endgroup::"
       - name: upload
         uses: actions/upload-artifact@v3
         with:
