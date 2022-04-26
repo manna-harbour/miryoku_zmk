@@ -12,4 +12,7 @@ jobs:
       shield: '["corne_left","corne_right"]'
       config: '["#define MIRYOKU_KLUDEGE_MOUSEKEYSPR"]'
       kconfig: '["CONFIG_ZMK_MOUSE=y"]'
-      branches: '["zmkfirmware/zmk/main krikun98/zmk/mouse-pr","krikun98/zmk/mouse-pr"]'
+      branches: '[
+        "zmkfirmware/zmk/main krikun98/zmk/mouse-pr",
+        "krikun98/zmk/mouse-pr"
+      ]'

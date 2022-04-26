@@ -10,4 +10,7 @@ jobs:
     uses: manna-harbour/zmk-config/.github/workflows/main.yml@31a649e5571b4572d7010561dd3f191922cd9410
     with:
       board: '["seeeduino_xiao"]'
-      shield: '["hummingbird","zaphod_lite"]'
+      shield: '[
+        "hummingbird",
+        "zaphod_lite"
+      ]'
