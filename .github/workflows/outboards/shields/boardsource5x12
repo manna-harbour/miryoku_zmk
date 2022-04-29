@@ -1,8 +1,0 @@
-# Copyright 2021 Manna Harbour
-# https://github.com/manna-harbour/miryoku
-
-outboard_repository=fsargent/zmk
-outboard_ref=boardsource5x12
-outboard_from=app/boards/shields/boardsource5x12
-outboard_to=boards/shields/boardsource5x12
-
