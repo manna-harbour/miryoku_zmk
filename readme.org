@@ -13,13 +13,13 @@ See the [[docs/quickstart][Miryoku ZMK Quickstart Guide]] to have a personalised
 
 ** Overview
 
-[[#building][Building]] can be performed [[#local-builds][locally]], or via GitHub Actions [[#workflow-builds][workflows]] without use of a local build environment.  Many keyboards are [[#supported-keyboards][supported]], and building out of tree keyboards is automatically supported by the workflows.
+[[#building][Building]] can be performed [[#local-builds][locally]], or via GitHub Actions [[#workflow-builds][workflows]] without use of a local build environment.  Many keyboards are [[#supported-keyboards][supported]], and building out-of-tree keyboards is automatically supported by the workflows.
 
-Workflow builds can be customised by editing one of the [[#build-examples][examples]], or by filling out a [[#build-inputs][form]].  Local and workflow builds can be customised by editing a [[#config-file][config file]], and an [[#example-config-file][example]] is included.
+Workflow builds can be customised by copying and editing one of the [[#build-examples][example workflows]] or by filling out a [[#build-inputs][form]], and specifying [[#options][options]].  Local and workflow builds can be customised by editing a [[#config-file][config file]], and an [[#example-config-file][example]] is included.
 
-The [[#keyboard-keymaps][keyboard keymaps]] include the config file, a [[#mapping][mapping]] for the physical layout, and the [[#miryoku-keymap][Miryoku keymap]].
+The [[#keyboard-keymaps][keyboard keymaps]] are composed of the config file, a [[#mapping-macros][mapping]] for the physical layout, and the [[#miryoku-keymap][Miryoku keymap]].
 
-[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#mouse-keys][mouse keys on the host]] and [[#key-emulation-combos][key emulation combos]].
+[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#mouse-keys][mouse keys]] and [[#key-emulation-combos][key emulation combos]].
 
 
 ** Building
@@ -40,12 +40,14 @@ First log in to GitHub, fork the Miryoku ZMK repository, and enable workflows.
 
 To access a workflow, visit the Actions tab and select the workflow.  To download the firmware from a workflow run, select the workflow, select the workflow run, select the desired Artifacts, and unzip the downloaded zip file.
 
+See the [[docs/quickstart][Miryoku ZMK Quickstart Guide]] for step by step instructions.
+
 Workflow files are in [[.github/workflows]].
 
 
 **** Build Examples
 
-Copy one of the included Build Example workflow files, edit the ~name~ value, edit and add options and values as desired, and push changes.  Select Run workflow, select the Branch if desired, and activate Run workflow.
+Copy one of the included Build Example workflow files, edit the ~name~ value, edit and add options and values as desired, and push changes.  Access the workflow, select Run workflow, select the Branch if desired, and activate Run workflow.
 
 Options are specified in the ~with~ section and are of the following form.
 : option: '["value"]'
@@ -53,89 +55,87 @@ Options are specified in the ~with~ section and are of the following form.
 For multiple values per option use the following form, and a matrix build will be performed for each combination of values across all options.
 : option: '["value1","value2"]'
 
-See [[#fields--options][Fields / Options]] below for a description of each option.
+See [[#fields--options][Options]] below for a description of each option.
 
 
 **** Build Inputs
 
-The Build Inputs workflow can be used without editing workflow files.  Select Run workflow, select the Branch and fill out the form as desired, and activate Run workflow.
+The Build Inputs workflow can be used without editing workflow files.  Access the workflow, Select Run workflow, select the Branch and fill out the form as desired, and activate Run workflow.
 
 Options are specified by entering values directly in the corresponding field.  Multiple comma separated values can be entered per option and a matrix build will be performed for each combination of values across all options.
 
-See [[#fields--options][Fields / Options]] below for a description of each option.
+See [[#fields--options][Options]] below for a description of each option.
 
 
-**** Fields / Options
+**** Options
 
-All [[#build-inputs][Build Inputs]] fields and corresponding [[#build-examples][workflow]] options are described below.
+All [[#workflow-builds][workflow]] options are described below.
 
-The [[#board--board][board]] option is required and all others are optional.
+The [[#board][board]] option is required and all others are optional.
 
 
 ***** Keyboard Selection
 
+See [[#supported-keyboards][Supported Keyboards]] for details of supported keyboards.
 
-****** Board / board
+
+****** board
 
 Specifies the ZMK board.
 
-For keyboards with a separate controller, enter the controller name, e.g. ~nice_nano~, ~nice_nano_v2~, ~seeeduino_xiao~, ~seeeduino_xiao_ble~.  Also specify the [[#shield--shield][shield]].
+For onboard controller keyboards (keyboards with an integrated controller), enter the keyboard name, e.g. ~ahokore~, ~ble_chiffre~, ~technikable~, ~zaphod~.
 
-See the [[.github/workflows/test-all-promicro-controllers.yml][Test All Promicro Controllers]] and [[.github/workflows/test-all-xiao-controllers.yml][Test All Xiao Controllers]] workflow files for a list of all supported controllers.
+For split onboard controller keyboards (keyboards with an integrated controller on each side), enter the keyboard side name, e.g. ~corne-ish_zen_left~, ~corne-ish_zen_right~.  To build both sides in the same run, enter both keyboard side names separated by a comma, e.g. ~corne-ish_zen_left,corne-ish_zen_right~.
 
-For keyboards with an integrated controller, enter the keyboard name, e.g. ~ahokore~, ~ble_chiffre~, ~technikable~, ~zaphod~.
-
-For split keyboards with an integrated controller on each side, enter the keyboard side name, e.g. ~corne-ish_zen_left~, ~corne-ish_zen_right~.  To build both sides in the same run, enter both keyboard side names separated by a comma, e.g. ~corne-ish_zen_left,corne-ish_zen_right~.
-
-See the [[.github/workflows/test-all-boards.yml][Test All Boards]] workflow files for a list of all supported keyboards with an integrated controller.
+For composite keyboards (keyboards with a separate controller), enter the controller name, e.g. ~nice_nano~, ~nice_nano_v2~, ~seeeduino_xiao~, ~seeeduino_xiao_ble~.  Also specify the [[#shield][shield]].
 
 
-****** Shield / shield
+****** shield
 
 Specifies the ZMK shield.
 
-For keyboards with a separate controller, enter the keyboard name, e.g. ~absolem~, ~chocv~, ~eek~, ~osprette~.
+For onboard controller keyboards (keyboards with an integrated controller), leave as ~default~.
 
-For split keyboards with a separate controller on each side, enter the keyboard side name, e.g. ~corne_left~, ~corne_right~, ~cradio_left~, ~cradio_right~.  To build both sides in the same run, enter both keyboard side names separated by a comma, e.g. ~corne_left,corne_right~, ~cradio_left,cradio_right~.
+For composite keyboards (keyboards with a separate controller), enter the keyboard name, e.g. ~absolem~, ~chocv~, ~eek~, ~osprette~.
 
-See the [[.github/workflows/test-all-promicro-shields.yml][Test All Promicro Shields]] and [[.github/workflows/test-all-xiao-shields.yml][Test All Xiao Shields]] workflow files for a list of all supported keyboards with separate controllers.
-
-For keyboards with an integrated controller, leave as ~default~.
+For split composite keyboards (keyboards with a separate controller on each side), enter the keyboard side name, e.g. ~corne_left~, ~corne_right~, ~cradio_left~, ~cradio_right~.  To build both sides in the same run, enter both keyboard side names separated by a comma, e.g. ~corne_left,corne_right~, ~cradio_left,cradio_right~.
 
 
 ***** Miryoku Alternative Layout and Mapping Options
 
-The ~alphas~, ~nav~, ~clipboard~, and ~layers~ options correspond to the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] options.  The ~mapping~ option corresponds to the alternative [[#mapping][mapping]] options.  Alternative layout and mapping options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~, e.g. ~MIRYOKU_ALPHAS=QWERTY~.  To use here, use the value with the corresponding option.  Use ~default~ to represent the default value.  Values for these five options are case-insensitive.
+The ~alphas~, ~nav~, ~clipboard~, and ~layers~ options correspond to the Miryoku alternative layout options.  See the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#layers][default layers]] and [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layouts]] documentation for details.  See the [[.github/workflows/test-all-configs.yml][Test All Configs]] workflow file for a list of all supported values.
 
-See the [[.github/workflows/test-all-configs.yml][Test All Configs]] workflow file for a list of all supported values for the ~alphas~, ~nav~, ~clipboard~, and ~layers~ options.
+The ~mapping~ option corresponds to the alternative [[#mapping-macros][mapping]] options.
 
-
-****** Miryoku Alphas / alphas
-
-Select an alternative alphas layout, e.g. ~colemak~, ~dvorak~, ~halmak~, ~qwerty~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alphas][here]] for details.  For Colemak Mod-DH, leave as ~default~.
+Alternative layout and mapping options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~, e.g. ~MIRYOKU_ALPHAS=QWERTY~.  To use here, use the value with the corresponding option.  Use ~default~ to represent the default value.  Values for these five options are case-insensitive.
 
 
-****** Miryoku Nav / nav
+****** alphas
 
-Select an alternative Nav layout, e.g. ~invertedt~, ~vi~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#nav-1][here]] for details.  For home position line nav, leave as ~default~.
-
-
-****** Miryoku Clipboard / clipboard
-
-Select an alternative clipboard type, e.g. ~mac~, ~win~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#clipboard][here]] for details.  For CUA bindings, leave as ~default~.
+Select an alternative alphas layout, e.g. ~colemak~, ~dvorak~, ~halmak~, ~qwerty~.  For Colemak Mod-DH, leave as ~default~.
 
 
-****** Miryoku Layers / layers
+****** nav
 
-Select an alternative layers layout, e.g. ~flip~.  See [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#layers-1][here]] for details.  For right hand Nav, leave as ~default~.
-
-
-****** Miryoku Mapping / mapping
-
-Select an alternative mapping, e.g. ~extended_thumbs~, ~pinkie_stagger~.  See [[#mapping][here]] for details.  For the default mapping, leave as ~default~.
+Select an alternative Nav layout, e.g. ~invertedt~, ~vi~.  For home position line nav, leave as ~default~.
 
 
-***** Custom Config / config
+****** clipboard
+
+Select an alternative clipboard type, e.g. ~mac~, ~win~.  For CUA bindings, leave as ~default~.
+
+
+****** layers
+
+Select an alternative layers layout, e.g. ~flip~.  For right hand Nav, leave as ~default~.
+
+
+****** mapping
+
+Select an alternative mapping, e.g. ~extended_thumbs~, ~pinkie_stagger~.  For the default mapping, leave as ~default~.
+
+
+***** custom_config
 
 Appends to the [[#config-file][config]] file.  Join multiple lines with ~\n~.  For no additional config, leave as ~default~.
 
@@ -143,12 +143,12 @@ Appends to the [[#config-file][config]] file.  Join multiple lines with ~\n~.  F
 ***** ZMK Options
 
 
-****** Kconfig / kconfig
+****** kconfig
 
-Appends to [[#kconfig-configuration][Kconfig configuration]].  Join multiple lines with ~\n~.  For no additonal config, leave as ~default~.
+Appends to [[#kconfig-configuration][Kconfig configuration]].  Join multiple lines with ~\n~.  For no additional config, leave as ~default~.
 
 
-****** ZMK Branches / branches
+****** branches
 
 Used to select an alternative ZMK branch for building, and to merge branches into ZMK at build time.
 
@@ -161,22 +161,31 @@ For no changes, leave as ~default~.
 
 ** Supported Keyboards
 
-Supported keyboards are those with a [[#keyboard-keymaps][keymap in Miryoku ZMK]] and a [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/][board supported by ZMK]] or combination of board and [[https://github.com/zmkfirmware/zmk/tree/main/app/boards/shields][shield supported by ZMK]].
+In-tree keyboards are maintained as part of ZMK. See the [[https://zmk.dev/docs/hardware/][ZMK Supported Hardware]] documentation for details.
 
-Additionally, building out of tree keyboards is automatically supported by the included [[#workflow-builds][workflows]].  For a list of supported out of tree keyboards, see [[.github/workflows/outboards]].  For local builds of out of tree keyboards, checkout and copy or link the board or shield definition to the appropriate location under [[config]].
+Supporting an in-tree keyboard in Miryoku ZMK requires only adding the [[#keyboard-keymaps][keyboard keymap]] and [[#mapping-macros][mapping]] files.
 
-See the Test All Controllers, Boards, and Shields [[.github/workflows/][workflow files]] for lists of supported keyboards.
+Out-of-tree keyboards are *not* maintained as part of ZMK or Miryoku ZMK. Keyboard definitions for out-of-tree keyboards are located in separate repositories. Some keyboards also require a fork of ZMK. Keyboard definitions and ZMK forks are maintained by the maintainers of those repositories.
 
+To build an out-of-tree keyboard the repositories need be checked out and used appropriately. For [[#local-builds][local builds]] these steps must be performed manually. For [[#workflow-builds][workflow builds]] the Miryoku ZMK build workflows perform these steps automatically at build time.
+
+Supporting an out-of-tree keyboard in Miryoku ZMK requires adding the keymap and mapping files, and references to the repositories for use by workflow builds.
+
+See the Test All Controllers, Boards, and Shields [[#workflow-builds][workflow files]] for lists of supported keyboards.
+
+See [[.github/workflows/outboards]] for details of supported out-of-tree keyboards.
+
+See https://github.com/manna-harbour/miryoku/discussions/81 for available and supported in-tree and out-of-tree keyboards and current maintenance status.
 
 ** Config File
 
-The config file is used to specify [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] and [[#mapping][mapping]] options for [[#Local-Builds][local builds]].  Options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  Convert to the form ~#define MIRYOKU_OPTION_VALUE~ and add to the config file.
+The config file is used to specify [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] and [[#mapping-macros][mapping]] options for [[#Local-Builds][local builds]].  Options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  Convert to the form ~#define MIRYOKU_OPTION_VALUE~ and add to the config file.
 
 The config file can also be used to set default alternative layout and mapping options for [[#workflow-builds][workflow builds]], as an alternative to using the corresponding [[#miryoku-alternative-layout-and-mapping-options][alternative layout and mapping workflow options]].  In this case setting different values for the same option in the config file and in the workflow options may lead to undefined behaviour.
 
 The config file can also be used to set other Miryoku ZMK configuration options for local and workflow builds.
 
-Config file entries can also be specified in the [[#custom-config--config][config]] option for workflow builds.
+Config file entries can also be specified in the [[#custom_config][custom_config]] option for workflow builds.
 
 The file is [[miryoku/custom_config.h]].  See the [[#example-config-file][example config file]].  The config file is included into the keyboard's keymap file before the mapping with:
 
@@ -218,12 +227,12 @@ The Miryoku keymap is a ZMK DT keymap file using C preprocessor macros for [[#co
 Macros are included from [[miryoku/miryoku.h]].  Layer data is generated by [[https://github.com/manna-harbour/miryoku_babel][Miryoku Babel]] and is included from files in the [[miryoku/miryoku_babel]] directory.
 
 
-** Mapping
+** Mapping Macros
 
-The keymap is mapped onto keyboards with different physical layouts.  The keymap is specified in terms of the ~MIRYOKU_MAPPING~ macro.  The macro is defined in a C header file for each physical layout.  Unused keys are mapped to ~&none~.  The files are in [[miryoku/mapping/]].  The mapping file is included into the [[#keyboard-keymaps][keyboard keymap]] file before the Miryoku keymap with e.g.
+The keymap is mapped onto keyboards with different physical layouts.  The keymap is specified in terms of the ~MIRYOKU_MAPPING~ macro.  The macro is defined in a C header file for each physical layout.  Unused keys are mapped to ~&none~.  The files are below [[miryoku/mapping/]].  The mapping file is included into the [[#keyboard-keymaps][keyboard keymap]] file before the [[#miryoku-keymap][Miryoku keymap]] with e.g.
 
 #+BEGIN_SRC C :tangle no
-#include "../miryoku/mapping/36-minidox.h"
+#include "../miryoku/mapping/36/minidox.h"
 #+END_SRC
 
 On each hand, only the main alpha block of 3 rows by 5 columns and the 3 most appropriate thumb keys are used.
@@ -234,17 +243,17 @@ On each hand, only the main alpha block of 3 rows by 5 columns and the 3 most ap
 Notes or diagrams are provided below where the selection of keys is not obvious or where alternatives are provided via mapping configuration options.
 
 
-**** 32-hummingbird
+**** 32/hummingbird
 
 [[#bottom-row-combos][Bottom row combos]] and [[#thumb-combos][thumb combos]] are enabled.
 
 
-**** 34-ferris
+**** 34/ferris
 
 [[#thumb-combos][Thumb combos]] are enabled.
 
 
-**** 44-technikable
+**** 44/technikable
 
 The middle 2 columns are unused.
 
@@ -268,7 +277,7 @@ Supports 2x2u configuration.
 The thumb keys are moved 1u to extend the thumbs.  Supports ortho configuration.
 
 
-**** 48-planck
+**** 48/planck
 
 
 ***** Default
@@ -283,7 +292,7 @@ The thumb keys are moved 1u to extend the thumbs.  Supports ortho configuration.
 [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/mapping/miryoku-kle-mapping-ortho_4x12-extended_thumbs.png]]
 
 
-**** 48-lets_split
+**** 48/lets_split
 
 
 ***** Default
@@ -298,7 +307,7 @@ The thumb keys are moved 1u to extend the thumbs.  Supports ortho configuration.
 [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/mapping/miryoku-kle-mapping-ortho_4x12-split.png]]
 
 
-**** 50-kyria
+**** 50/kyria
 
 
 ***** Default
@@ -315,14 +324,14 @@ The thumb keys are moved 1u to extend the thumbs.  Supports ortho configuration.
 
 ** Keyboard Keymaps
 
-The keyboard keymaps include the [[#config-file][config file]], a [[#mapping][mapping]] for the physical layout, and the [[#miryoku-keymap][Miryoku keymap]].  Keyboard keymap files are in [[config]].
+The keyboard keymaps include the [[#config-file][config file]], a [[#mapping-macros][mapping]] for the physical layout, and the [[#miryoku-keymap][Miryoku keymap]].  Keyboard keymap files are in [[config]].
 
 
 ** Kconfig Configuration
 
 Kconfig keyboard configuration options can be set in ~config/<keyboard>.conf~ for [[#local-builds][local]] and [[#workflow-builds][workflow]] builds.
 
-Kconfig configuration can also be specified in the [[#kconfig--kconfig][kconfig option]] for workflow builds.
+Kconfig configuration can also be specified in the [[#kconfig][kconfig option]] for workflow builds.
 
 Examples include ~CONFIG_ZMK_SLEEP=y~, ~CONFIG_ZMK_DISPLAY=y~, ~CONFIG_BT_CTLR_TX_PWR_PLUS_8=y~.  Additional documentation is available at [[https://deploy-preview-722--zmk.netlify.app/docs/config/index/]].
 
@@ -344,19 +353,17 @@ The Mouse and Button layers use [[https://en.wikipedia.org/wiki/Mouse_keys][mous
 
 **** Mousekeys PR
 
-Support for the [[https://github.com/zmkfirmware/zmk/pull/778][mousekeys PR]] is also included.
+Support for https://github.com/zmkfirmware/zmk/pull/778 is also included.
 
 Add ~#define MIRYOKU_KLUDEGE_MOUSEKEYSPR~ to the [[#config-file][config file]].
 
 Add ~CONFIG_ZMK_MOUSE=y~ to the [[#kconfig-configuration][Kconfig configuration]].
 
-[[#zmk-branches--branches][Merge or build]] from the mousekeys PR branch ~krikun98/zmk/mouse-pr~
+Merge or build from the mousekeys PR branch.
 
-For [[#workflow-builds][workflow builds]], the [[#build-inputs][Build Inputs]] workflow can be used, or for [[#build-examples][Build Examlpe]] workflows see the [[./github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow.
+For [[#workflow-builds][workflow builds]], the [[#build-inputs][Build Inputs]] workflow can be used, or for [[#build-examples][Build Example]] workflows see the [[.github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow. To specify the mousekeys PR [[#branches][branch]] use ~krikun98/zmk/mouse-pr~.  If the PR hasn't been rebased recently the automatic merge may fail.  In that case build directly from the branch or merge manually.
 
-For local builds, make the changes to the local files.
-
-If the PR hasn't been rebased recently the automatic merge may fail.  In that case build directly from the branch or merge manually.
+For local builds, make the changes locally.
 
 
 *** Key Emulation Combos

@@ -1,4 +1,4 @@
-# Copyright 2021 Manna Harbour
+# Copyright 2022 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
 * Miryoku ZMK Quickstart Guide [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/miryoku-roa-32.png]]
@@ -35,7 +35,7 @@ Start here to build new firmware after completing the [[#initial-setup][initial 
 - Select ~Build Inputs~ from the ~Workflows~ list on the left.
 - Press the ~Run workflow~ button on the right.
 #+html: <img src="https://docs.github.com/assets/cb-57703/images/actions-workflow-dispatch.png" width="640"/>
-- Fill out the fields in the popup as [[https://github.com/manna-harbour/miryoku_zmk#fields--options][described]].
+- Fill out the fields in the popup as desired.  See the [[https://github.com/manna-harbour/miryoku_zmk/#options][Options]] documentation for details.
 - Press the ~Run workflow~ button at the bottom of the popup.
 #+html: <img src="https://docs.github.com/assets/cb-22055/images/actions-manually-run-workflow.png" width="640"/>
 - Wait for the workflow run to complete.
