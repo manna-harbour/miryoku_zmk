@@ -36,6 +36,7 @@ Start here to build new firmware after completing the [[#initial-setup][initial 
 - Press the ~Run workflow~ button on the right.
 #+html: <img src="https://docs.github.com/assets/cb-57703/images/actions-workflow-dispatch.png" width="640"/>
 - Fill out the fields in the popup as desired.  See the [[https://github.com/manna-harbour/miryoku_zmk/#options][Options]] documentation for details.
+#+html: <img src="images/fields.png" height="640"/>
 - Press the ~Run workflow~ button at the bottom of the popup.
 #+html: <img src="https://docs.github.com/assets/cb-22055/images/actions-manually-run-workflow.png" width="640"/>
 - Wait for the workflow run to complete.
