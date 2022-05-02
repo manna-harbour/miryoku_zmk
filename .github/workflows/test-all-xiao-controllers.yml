@@ -2,12 +2,11 @@
 # https://github.com/manna-harbour/miryoku
 
 name: 'Test All Xiao Controllers'
-on:
-  - workflow_dispatch
+on: workflow_dispatch
 jobs:
   build:
     if: github.repository_owner == 'manna-harbour'
-    uses: manna-harbour/zmk-config/.github/workflows/main.yml@31a649e5571b4572d7010561dd3f191922cd9410
+    uses: ./.github/workflows/main.yml
     with:
       board: '[
         "seeeduino_xiao",

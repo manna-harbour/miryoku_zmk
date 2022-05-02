@@ -2,10 +2,9 @@
 # https://github.com/manna-harbour/miryoku
 
 name: 'Build Example corne-ish_zen'
-on:
-  - workflow_dispatch
+on: workflow_dispatch
 jobs:
   build:
-    uses: manna-harbour/zmk-config/.github/workflows/main.yml@31a649e5571b4572d7010561dd3f191922cd9410
+    uses: ./.github/workflows/main.yml
     with:
       board: '["corne-ish_zen_left","corne-ish_zen_right"]'
