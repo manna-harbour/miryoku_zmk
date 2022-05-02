@@ -9,7 +9,7 @@ jobs:
     with:
       board: '["nice_nano"]'
       shield: '["corne_left","corne_right"]'
-      config: '["#define MIRYOKU_KLUDEGE_MOUSEKEYSPR"]'
+      cutom_config: '["#define MIRYOKU_KLUDEGE_MOUSEKEYSPR"]'
       kconfig: '["CONFIG_ZMK_MOUSE=y"]'
       branches: '[
         "zmkfirmware/zmk/main krikun98/zmk/mouse-pr",

@@ -6,42 +6,42 @@ on:
   workflow_dispatch:
     inputs:
       board:
-        description: 'Board'
+        description: 'board'
         required: true
       shield:
-        description: 'Shield'
+        description: 'shield'
         required: false
         default: 'default'
       alphas:
-        description: 'Miryoku Alphas'
+        description: 'alphas'
         required: false
         default: 'default'
       nav:
-        description: 'Miryoku Nav'
+        description: 'nav'
         required: false
         default: 'default'
       clipboard:
-        description: 'Miryoku Clipboard'
+        description: 'clipboard'
         required: false
         default: 'default'
       layers:
-        description: 'Miryoku Layers'
+        description: 'layers'
         required: false
         default: 'default'
       mapping:
-        description: 'Miryoku Mapping'
+        description: 'mapping'
         required: false
         default: 'default'
-      config:
-        description: 'Custom Config'
+      cutom_config:
+        description: 'custom_config'
         required: false
         default: 'default'
       kconfig:
-        description: 'Kconfig'
+        description: 'kconfig'
         required: false
         default: 'default'
       branches:
-        description: 'ZMK Branches'
+        description: 'branches'
         required: false
         default: 'default'
 jobs:
@@ -55,7 +55,7 @@ jobs:
       clipboard: ${{ steps.process-inputs.outputs.clipboard }}
       layers: ${{ steps.process-inputs.outputs.layers }}
       mapping: ${{ steps.process-inputs.outputs.mapping }}
-      config: ${{ steps.process-inputs.outputs.config }}
+      cutom_config: ${{ steps.process-inputs.outputs.cutom_config }}
       kconfig: ${{ steps.process-inputs.outputs.kconfig }}
       branches: ${{ steps.process-inputs.outputs.branches }}
     steps:
@@ -74,7 +74,7 @@ jobs:
           set-output "clipboard" "${{ github.event.inputs.clipboard }}"
           set-output "layers" "${{ github.event.inputs.layers }}"
           set-output "mapping" "${{ github.event.inputs.mapping }}"
-          set-output "config" "${{ github.event.inputs.config }}"
+          set-output "cutom_config" "${{ github.event.inputs.cutom_config }}"
           set-output "kconfig" "${{ github.event.inputs.kconfig }}"
           set-output "branches" "${{ github.event.inputs.branches }}"
   build:
@@ -88,6 +88,6 @@ jobs:
       clipboard: ${{ needs.process-inputs.outputs.clipboard }}
       layers: ${{ needs.process-inputs.outputs.layers }}
       mapping: ${{ needs.process-inputs.outputs.mapping }}
-      config: ${{ needs.process-inputs.outputs.config }}
+      cutom_config: ${{ needs.process-inputs.outputs.cutom_config }}
       kconfig: ${{ needs.process-inputs.outputs.kconfig }}
       branches: ${{ needs.process-inputs.outputs.branches }}

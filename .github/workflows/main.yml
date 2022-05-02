@@ -26,7 +26,7 @@ on:
       mapping:
         type: string
         default: '["default"]'
-      config:
+      cutom_config:
         type: string
         default: '["default"]'
       kconfig:
@@ -51,7 +51,7 @@ jobs:
         clipboard: ${{ fromJSON(inputs.clipboard) }}
         layers: ${{ fromJSON(inputs.layers) }}
         mapping: ${{ fromJSON(inputs.mapping) }}
-        config: ${{ fromJSON(inputs.config) }}
+        cutom_config: ${{ fromJSON(inputs.cutom_config) }}
         kconfig: ${{ fromJSON(inputs.kconfig) }}
         branches: ${{ fromJSON(inputs.branches) }}
     steps:
@@ -84,10 +84,10 @@ jobs:
 
           artifact_build_name="miryoku_zmk $shield ${{ matrix.board }}"
 
-          if [ -n "${{ matrix.config }}" -a "${{ matrix.config }}" != 'default' ]
+          if [ -n "${{ matrix.cutom_config }}" -a "${{ matrix.cutom_config }}" != 'default' ]
           then
-            echo "${{ matrix.config }}" >> "$configfile"
-            artifact_build_name="$artifact_build_name config_"`echo "${{ matrix.config }}" | md5sum | cut -d ' ' -f 1`
+            echo "${{ matrix.cutom_config }}" >> "$configfile"
+            artifact_build_name="$artifact_build_name config_"`echo "${{ matrix.cutom_config }}" | md5sum | cut -d ' ' -f 1`
           fi
 
           for option in "alphas_${{ matrix.alphas }}" "nav_${{ matrix.nav }}" "clipboard_${{ matrix.clipboard }}" "layers_${{ matrix.layers }}" "mapping_${{ matrix.mapping }}"
