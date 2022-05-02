@@ -1,4 +1,4 @@
-# Copyright 2021 Manna Harbour
+# Copyright 2022 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
 * Welcome
@@ -17,11 +17,7 @@ Please let me know if you have any issues.
 
 *** Collaborator Access
 
-You've been added as a collaborator to the repository in order to give access.  *There's no branch protection so please take care when pushing*.
-
-You're welcome to make personal branches.  Please name them starting with your username.
-
-Please note that collaborators will be removed from the private beta repository sometime after the public release.
+You've been added as a collaborator to the repository in order to give access.  *There's no branch protection so please take care when pushing*.  In particular the GitHub web interface seems to encourage pushing upstream, so please take extra care if using that.  It is generally advised to use a feature branch instead of ~master~ for local changes, and that will also help avoid accidental modifications upstream when merging.
 
 
 *** Repository Location
@@ -31,50 +27,9 @@ The public release will be at https://github.com/manna-harbour/miryoku_zmk/ and 
 There may be some links in the readme already pointing to the public repository and they will be broken until release.
 
 
-*** Github Actions Workflows
-
-From the public repository a fork will be required to access the workflows, but as you have access to the private beta repository you can use the workflows there directly without forking.
-
-The workflows are implemented with reusable workflows.  As such, absolute URLs for the called workflow are required in the calling workflow, and for private repositories the called workflow is required to be located in the same repository.  So, in order to use the workflows in a private fork of the private beta repository you will need to edit the called workflow URL in the calling workflow files.  E.g. edit [[https://github.com/manna-harbour/zmk-config/blob/ab7d36ed911589735f341d2754bde7987f617b7e/.github/workflows/build-example-corne-nice_nano.yml#L9][this line]] to match the name of your private fork.  This will not be necessary for forks of the public release.
-
-
 ** Todo
 
-Everything can be used now, but there's still some work needed before public release.
-
-*** +Miryoku documentation+
-
-+Miryoku documentation is being moved from the Miryoku QMK repo to the Miryoku repo.  For now, refer to the documentation in Miryoku QMK.+
-
-Miryoku documentation is now at https://github.com/manna-harbour/miryoku.
-
-*** +Miyroku Babel+
-
-+Code generation in Miryoku QMK and Miryoku ZMK is being combined into Miryoku Babel.  At the moment the Miryoku ZMK keymap is generated from [[miryoku/miryoku-zmk-babel.org]].  Refer to the documentation in Miryoku QMK.+
-
-[[https://github.com/manna-harbour/miryoku_babel][Miryoku Babel]] is now being used.
-
-
-*** +Add ZMK mouse keys+
-
-
-**** Default Branch
-
-In the default branch the Mouse layer is using mouse keys on the host.
-
-- X11: https://en.wikipedia.org/wiki/Mouse_keys
-- Windows: https://support.microsoft.com/en-us/windows/use-mouse-keys-to-move-the-mouse-pointer-9e0c72c8-b882-7918-8e7b-391fd62adf33
-- Mac: https://support.apple.com/en-au/guide/mac-help/mh27469/mac
-
-
-**** mousekeys Branch
-
-There is a ~mousekeys~ branch with the [[https://github.com/zmkfirmware/zmk/pull/778][mousekeys PR]] enabled and configured.  Use ~CONFIG_ZMK_MOUSE=y~ in Kconfig [[https://github.com/zmkfirmware/zmk/blob/e91fb88eadc8593f430ea04c5f4e11102176eb94/docs/docs/behaviors/mouse-emulation.md][as described]].
-
-
-*** Add new keyboard control layers
-
-At the moment bluetooth is in the Media layer.  For locations, see https://github.com/manna-harbour/miryoku_babel#media, https://github.com/manna-harbour/miryoku_babel#vi-style, or https://github.com/manna-harbour/miryoku_babel#inverted-t, as appropriate.
+Everything can be used now, but there's still some work needed before public release.  See https://github.com/manna-harbour/miryoku/issues/50 for details.
 
 
 ** 
