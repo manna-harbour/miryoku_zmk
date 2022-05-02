@@ -80,6 +80,8 @@ jobs:
           configfile="${GITHUB_WORKSPACE}/miryoku_zmk/miryoku/custom_config.h"
           echo "::set-output name=configfile::$configfile"
 
+          echo "#define MIRYOKU_KEYBOARD_"`echo "$keyboard_base" | tr '[a-z]' '[A-Z]'` >> "$configfile"
+
           artifact_build_name="miryoku_zmk $shield ${{ matrix.board }}"
 
           if [ -n "${{ matrix.config }}" -a "${{ matrix.config }}" != 'default' ]
