@@ -9,6 +9,7 @@ jobs:
     uses: ./.github/workflows/main.yml
     with:
       board: '[
+        "adv360_left","adv360_right",
         "ahokore",
         "ble_chiffre",
         "corne-ish_zen_left","corne-ish_zen_right",
