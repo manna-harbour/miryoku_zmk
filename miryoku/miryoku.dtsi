@@ -20,6 +20,14 @@
       label = "Base";
       bindings = < U_MACRO_VA_ARGS(MIRYOKU_MAPPING, MIRYOKU_LAYER_BASE) >;
     };
+    EXTRA_layer {
+      label = "Extra";
+      bindings = < U_MACRO_VA_ARGS(MIRYOKU_MAPPING, MIRYOKU_LAYER_EXTRA) >;
+    };
+    TAP_layer {
+      label = "Tap";
+      bindings = < U_MACRO_VA_ARGS(MIRYOKU_MAPPING, MIRYOKU_LAYER_TAP) >;
+    };
     BUTTON_layer {
       label = "Button";
       bindings = < U_MACRO_VA_ARGS(MIRYOKU_MAPPING, MIRYOKU_LAYER_BUTTON) >;
