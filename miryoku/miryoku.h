@@ -7,6 +7,7 @@
 #include "miryoku_babel/miryoku_layer.h"
 
 #define U_MACRO_VA_ARGS(macro, ...) macro(__VA_ARGS__)
+#define U_STRINGIFY(x) #x
 
 #define U_NP &none // key is not present
 #define U_NA &none // present but not available for use
