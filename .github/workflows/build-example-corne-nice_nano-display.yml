@@ -1,7 +1,7 @@
-# Copyright 2021 Manna Harbour
+# Copyright 2022 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-name: 'Build Example corne nice_nano'
+name: 'Build Example corne nice_nano display'
 on: workflow_dispatch
 jobs:
   build:
@@ -9,3 +9,4 @@ jobs:
     with:
       board: '["nice_nano"]'
       shield: '["corne_left","corne_right"]'
+      kconfig: '["CONFIG_ZMK_DISPLAY=y"]'
