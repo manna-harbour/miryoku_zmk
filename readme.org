@@ -344,7 +344,7 @@ Examples include ~CONFIG_ZMK_SLEEP=y~, ~CONFIG_ZMK_DISPLAY=y~, ~CONFIG_BT_CTLR_T
 
 **** Mouse Keys on Host
 
-The Mouse and Button layers use [[https://en.wikipedia.org/wiki/Mouse_keys][mouse keys on the host]].  Middle button, right button, and scroll are not supported.
+The Mouse and Button layers use [[https://en.wikipedia.org/wiki/Mouse_keys][mouse keys on the host]].  Scroll is not supported.
 
 - [[https://linuxreviews.org/HOWTO_use_the_numeric_keyboard_keys_as_mouse_in_XOrg][X11]]
 - [[https://support.apple.com/en-au/guide/mac-help/mh27469/mac][Mac]]

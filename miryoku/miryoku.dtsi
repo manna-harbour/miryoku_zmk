@@ -7,9 +7,6 @@
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/ext_power.h>
-#if defined (MIRYOKU_KLUDGE_MOUSEKEYSPR)
-  #include <dt-bindings/zmk/mouse.h>
-#endif
 
 #include "miryoku.h"
 
@@ -76,6 +73,8 @@
 
 #if defined (MIRYOKU_KLUDGE_MOUSEKEYSPR)
   #include "miryoku_kludge_mousekeyspr.dtsi"
+#else
+  #include "miryoku_mousekeys.dtsi"
 #endif
 
 #if defined (MIRYOKU_KLUDGE_THUMBCOMBOS)
