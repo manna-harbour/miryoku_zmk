@@ -355,7 +355,7 @@ The Mouse and Button layers use [[https://en.wikipedia.org/wiki/Mouse_keys][mous
 
 Support for https://github.com/zmkfirmware/zmk/pull/778 is also included.
 
-Add ~#define MIRYOKU_KLUDEGE_MOUSEKEYSPR~ to the [[#config-file][config file]].
+Add ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ to the [[#config-file][config file]].
 
 Add ~CONFIG_ZMK_MOUSE=y~ to the [[#kconfig-configuration][Kconfig configuration]].
 
