@@ -13,46 +13,13 @@
 / {
   keymap {
     compatible = "zmk,keymap";
-    BASE_layer {
-      label = "Base";
-      bindings = < U_MACRO_VA_ARGS(MIRYOKU_LAYERMAPPING_BASE, MIRYOKU_LAYER_BASE) >;
+#define MIRYOKU_X(LAYER, STRING) \
+    U_##LAYER## { \
+      label = STRING; \
+      bindings = < U_MACRO_VA_ARGS(MIRYOKU_LAYERMAPPING_##LAYER, MIRYOKU_LAYER_##LAYER) >; \
     };
-    EXTRA_layer {
-      label = "Extra";
-      bindings = < U_MACRO_VA_ARGS(MIRYOKU_LAYERMAPPING_EXTRA, MIRYOKU_LAYER_EXTRA) >;
-    };
-    TAP_layer {
-      label = "Tap";
-      bindings = < U_MACRO_VA_ARGS(MIRYOKU_LAYERMAPPING_TAP, MIRYOKU_LAYER_TAP) >;
-    };
-    BUTTON_layer {
-      label = "Button";
-      bindings = < U_MACRO_VA_ARGS(MIRYOKU_LAYERMAPPING_BUTTON, MIRYOKU_LAYER_BUTTON) >;
-    };
-    NAV_layer {
-      label = "Nav";
-      bindings = < U_MACRO_VA_ARGS(MIRYOKU_LAYERMAPPING_NAV, MIRYOKU_LAYER_NAV) >;
-    };
-    MOUSE_layer {
-      label = "Mouse";
-      bindings = < U_MACRO_VA_ARGS(MIRYOKU_LAYERMAPPING_MOUSE, MIRYOKU_LAYER_MOUSE) >;
-    };
-    MEDIA_layer {
-      label = "Media";
-      bindings = < U_MACRO_VA_ARGS(MIRYOKU_LAYERMAPPING_MEDIA, MIRYOKU_LAYER_MEDIA) >;
-    };
-    NUM_layer {
-      label = "Num";
-      bindings = < U_MACRO_VA_ARGS(MIRYOKU_LAYERMAPPING_NUM, MIRYOKU_LAYER_NUM) >;
-    };
-    SYM_layer {
-      label = "Sym";
-      bindings = < U_MACRO_VA_ARGS(MIRYOKU_LAYERMAPPING_SYM, MIRYOKU_LAYER_SYM) >;
-    };
-    FUN_layer {
-      label = "Fun";
-      bindings = < U_MACRO_VA_ARGS(MIRYOKU_LAYERMAPPING_FUN, MIRYOKU_LAYER_FUN) >;
-    };
+MIRYOKU_LAYER_LIST
+#undef MIRYOKU_X
   };
 };
 
