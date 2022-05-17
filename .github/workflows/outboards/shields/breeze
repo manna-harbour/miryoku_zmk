@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=idan/zmk
+outboard_ref=breeze
+outboard_from=app/boards/shields/breeze
+outboard_to=boards/shields/breeze
