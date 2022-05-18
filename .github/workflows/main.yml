@@ -80,7 +80,11 @@ jobs:
           configfile="${GITHUB_WORKSPACE}/miryoku_zmk/miryoku/custom_config.h"
           echo "::set-output name=configfile::$configfile"
 
-          echo "#define MIRYOKU_KEYBOARD_"`echo "$keyboard_base" | tr '[a-z]' '[A-Z]'` >> "$configfile"
+          tmpfile="$configfile.tmp"
+          echo -n '#define ' > "$tmpfile"
+          echo "MIRYOKU_KEYBOARD_$keyboard_base" | tr '[a-z-]' '[A-Z_]' >> "$tmpfile"
+          cat "$configfile" >> "$tmpfile"
+          mv "$tmpfile" "$configfile"
 
           artifact_build_name="miryoku_zmk $shield ${{ matrix.board }}"
 
