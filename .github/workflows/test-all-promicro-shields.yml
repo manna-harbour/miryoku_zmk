@@ -8,7 +8,7 @@ jobs:
     if: github.repository_owner == 'manna-harbour'
     uses: ./.github/workflows/main.yml
     with:
-      board: '["nice_nano"]'
+      board: '["nice_nano_v2"]'
       shield: '[
         "a_dux_left","a_dux_right",
         "absolem",
