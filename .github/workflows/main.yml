@@ -212,8 +212,23 @@ jobs:
           echo "::endgroup::"
 
           echo "::group::build"
+          log='build.log'
+          message='::error::Build failed with exit code'
+          EX_UNAVAILABLE='69'
           cd "${GITHUB_WORKSPACE}/zmk/app"
-          west build -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/miryoku_zmk/config"
+          {
+            west build -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/miryoku_zmk/config" ||
+            echo "$message $?." ;
+          } 2>&1 | tee "$log"
+          if grep -q "$message" "$log"
+          then
+            false
+          fi
+          if ! grep -q 'Using keymap file: .*/config/[^/]*.keymap$' "$log"
+          then
+            echo '::error::Miryoku keyboard keymap not found.'
+            exit "$EX_UNAVAILABLE"
+          fi
           echo "::endgroup::"
 
           echo "::group::copy"
