@@ -8,10 +8,10 @@ jobs:
     uses: ./.github/workflows/main.yml
     with:
       board: '["nice_nano"]'
-      shield: '["corne_left","corne_right"]'
+      shield: '["corne_left"]'
       cutom_config: '["#define MIRYOKU_KLUDGE_MOUSEKEYSPR"]'
       kconfig: '["CONFIG_ZMK_MOUSE=y"]'
       branches: '[
         "zmkfirmware/zmk/main krikun98/zmk/mouse-pr",
-        "krikun98/zmk/mouse-pr"
+        "zmkfirmware/zmk/main ftc/zmk/mouse-ftc"
       ]'

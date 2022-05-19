@@ -364,9 +364,9 @@ Add ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ to the [[#config-file][config file]].
 
 Add ~CONFIG_ZMK_MOUSE=y~ to the [[#kconfig-configuration][Kconfig configuration]].
 
-Merge or build from the mousekeys PR branch.
+Merge the mousekeys PR branch.
 
-For [[#workflow-builds][workflow builds]], the [[#build-inputs][Build Inputs]] workflow can be used, or for [[#build-examples][Build Example]] workflows see the [[.github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow. To specify the mousekeys PR [[#branches][branch]] use ~krikun98/zmk/mouse-pr~.  If the PR hasn't been rebased recently the automatic merge may fail.  In that case build directly from the branch or merge manually.
+For [[#workflow-builds][workflow builds]], the [[#build-inputs][Build Inputs]] workflow can be used. To specify the mousekeys PR [[#branches][branch]] use ~krikun98/zmk/mouse-pr~. For [[#build-examples][Build Example]] workflows see the [[.github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow.  The Build Example workflow also includes suggested branches for when the mousekeys PR branch is out of date.  If it is too far out of date it will need to be merged manually.
 
 For local builds, make the changes locally.
 
