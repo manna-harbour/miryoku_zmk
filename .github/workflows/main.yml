@@ -54,6 +54,8 @@ jobs:
         custom_config: ${{ fromJSON(inputs.custom_config) }}
         kconfig: ${{ fromJSON(inputs.kconfig) }}
         branches: ${{ fromJSON(inputs.branches) }}
+    env:
+      MIRYOKU_DEBUG: ${{ secrets.MIRYOKU_DEBUG }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -62,6 +64,8 @@ jobs:
       - name: main
         id: variables
         run: |
+          test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && set -x
+
           echo "::group::variables"
 
           if [ -n "${{ matrix.shield }}" -a "${{ matrix.shield }}" != "default" ]
@@ -110,15 +114,15 @@ jobs:
           echo "::set-output name=artifact-dir::$artifacts_dir"
           mkdir "$artifacts_dir"
 
-          cp "$configfile" "$artifacts_dir"
+          test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && cp "$configfile" "$artifacts_dir"
 
           if [ -n "${{ matrix.kconfig }}" -a "${{ matrix.kconfig }}" != 'default' ]
           then
             kconfig_file="${GITHUB_WORKSPACE}/miryoku_zmk/config/$keyboard_split.conf"
             echo "${{ matrix.kconfig }}" >> "$kconfig_file"
-            cp "$kconfig_file" "$artifacts_dir"
             artifact_build_name="$artifact_build_name kconfig_"`echo "${{ matrix.kconfig }}" | md5sum | cut -d ' ' -f 1`
           fi
+          test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && test -f "$kconfig_file" && cp "$kconfig_file" "$artifacts_dir"
 
           . "${GITHUB_WORKSPACE}/miryoku_zmk/.github/workflows/zmk"
 
@@ -136,7 +140,7 @@ jobs:
             outboard_file="${GITHUB_WORKSPACE}/miryoku_zmk/.github/workflows/outboards/$outboard"
             if [ -f "$outboard_file" ]
             then
-              cp "$outboard_file" "$artifacts_dir"
+              test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && cp "$outboard_file" "$artifacts_dir"
               . "$outboard_file"
               outboard_dir="${GITHUB_WORKSPACE}/outboards/$outboard"
               if [ -n "$outboard_repository" -a -n "$outboard_ref" ]
@@ -208,42 +212,67 @@ jobs:
         continue-on-error: true
       - name: build
         run: |
+          if [ "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' ]
+          then
+            set -x
+            #west_debug='-v'
+            #west_build_debug='-t rom_report -t ram_report'
+          fi
+
           echo "::group::setup"
           cd "${GITHUB_WORKSPACE}/zmk"
-          west init -l app
-          west update
-          west zephyr-export
+          west $west_debug init -l app
+          west $west_debug update
+          west $west_debug zephyr-export
           echo "::endgroup::"
 
           echo "::group::build"
           log='build.log'
-          message='::error::Build failed with exit code'
+          build_failed_message='::error::Build failed with exit code'
           EX_UNAVAILABLE='69'
+          EX_DATAERR='65'
           cd "${GITHUB_WORKSPACE}/zmk/app"
           {
-            west build -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/miryoku_zmk/config" ||
-            echo "$message $?." ;
+            west $west_debug build -b ${{ matrix.board }} $west_build_debug -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/miryoku_zmk/config" ||
+            echo "$build_failed_message $?." ;
           } 2>&1 | tee "$log"
-          if grep -q "$message" "$log"
+          if grep -q 'Invalid BOARD; see above.' "$log"
           then
-            false
+            echo '::error::Board not found. Unsupported or incorrect board.'
+            (exit "$EX_UNAVAILABLE")
+          fi
+          if grep -q 'Failed to locate keymap file!' "$log"
+          then
+            echo '::error::Keymap not found. Unsupported or incorrect keyboard.'
+            (exit "$EX_UNAVAILABLE")
+          fi
+          if grep -q 'Invalid SHIELD' "$log"
+          then
+            echo '::error::Keymap found but shield not found. Board used for shield.'
+            (exit "$EX_DATAERR")
           fi
           if ! grep -q 'Using keymap file: .*/config/[^/]*.keymap$' "$log"
           then
-            echo '::error::Miryoku keyboard keymap not found.'
-            exit "$EX_UNAVAILABLE"
+            echo '::error::Miryoku keyboard keymap not found. Unsupported or incorrect keyboard.'
+            (exit "$EX_UNAVAILABLE")
+          fi
+          if grep -q "$build_failed_message" "$log"
+          then
+            false
           fi
           echo "::endgroup::"
 
           echo "::group::copy"
-          for extension in "uf2"
+          for extension in 'uf2' 'bin' 'hex'
           do
             file="${GITHUB_WORKSPACE}/zmk/app/build/zephyr/zmk.$extension"
             if [ -f "$file" ]
             then
               cp "$file" "${{ steps.variables.outputs.artifact-dir }}/${{ steps.variables.outputs.artifact-build-name }}.$extension"
+              test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' || break
             fi
           done
+          test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && cp "${GITHUB_WORKSPACE}/zmk/app/build/zephyr/.config" "${{ steps.variables.outputs.artifact-dir }}"
           echo "::endgroup::"
       - name: upload
         uses: actions/upload-artifact@v3

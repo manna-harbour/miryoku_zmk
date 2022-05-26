@@ -6,6 +6,7 @@ on: workflow_dispatch
 jobs:
   build:
     uses: ./.github/workflows/main.yml
+    secrets: inherit
     with:
       board: '["nice_nano"]'
       shield: '["corne_left"]'

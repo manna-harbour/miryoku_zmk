@@ -44,6 +44,8 @@ See the [[docs/quickstart][Miryoku ZMK Quickstart Guide]] for step by step instr
 
 Workflow files are in [[.github/workflows]].
 
+To enable Miryoku ZMK workflow debugging, set the following [[https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository][secret]] in the repository: ~MIRYOKU_DEBUG~ to ~MIRYOKU_DEBUG_TRUE~. Optionally also [[https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/enabling-debug-logging#enabling-step-debug-logging][enable step debugging]].
+
 
 **** Build Examples
 

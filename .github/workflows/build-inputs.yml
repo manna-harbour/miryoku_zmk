@@ -79,6 +79,7 @@ jobs:
           set-output "branches" "${{ github.event.inputs.branches }}"
   build:
     uses: ./.github/workflows/main.yml
+    secrets: inherit
     needs: process-inputs
     with:
       board: ${{ needs.process-inputs.outputs.board }}

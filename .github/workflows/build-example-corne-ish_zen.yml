@@ -6,5 +6,6 @@ on: workflow_dispatch
 jobs:
   build:
     uses: ./.github/workflows/main.yml
+    secrets: inherit
     with:
       board: '["corne-ish_zen_left","corne-ish_zen_right"]'
