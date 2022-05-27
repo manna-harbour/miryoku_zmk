@@ -32,7 +32,7 @@ on:
         description: 'mapping'
         required: false
         default: 'default'
-      cutom_config:
+      custom_config:
         description: 'custom_config'
         required: false
         default: 'default'
@@ -55,7 +55,7 @@ jobs:
       clipboard: ${{ steps.process-inputs.outputs.clipboard }}
       layers: ${{ steps.process-inputs.outputs.layers }}
       mapping: ${{ steps.process-inputs.outputs.mapping }}
-      cutom_config: ${{ steps.process-inputs.outputs.cutom_config }}
+      custom_config: ${{ steps.process-inputs.outputs.custom_config }}
       kconfig: ${{ steps.process-inputs.outputs.kconfig }}
       branches: ${{ steps.process-inputs.outputs.branches }}
     steps:
@@ -74,7 +74,7 @@ jobs:
           set-output "clipboard" "${{ github.event.inputs.clipboard }}"
           set-output "layers" "${{ github.event.inputs.layers }}"
           set-output "mapping" "${{ github.event.inputs.mapping }}"
-          set-output "cutom_config" "${{ github.event.inputs.cutom_config }}"
+          set-output "custom_config" "${{ github.event.inputs.custom_config }}"
           set-output "kconfig" "${{ github.event.inputs.kconfig }}"
           set-output "branches" "${{ github.event.inputs.branches }}"
   build:
@@ -88,6 +88,6 @@ jobs:
       clipboard: ${{ needs.process-inputs.outputs.clipboard }}
       layers: ${{ needs.process-inputs.outputs.layers }}
       mapping: ${{ needs.process-inputs.outputs.mapping }}
-      cutom_config: ${{ needs.process-inputs.outputs.cutom_config }}
+      custom_config: ${{ needs.process-inputs.outputs.custom_config }}
       kconfig: ${{ needs.process-inputs.outputs.kconfig }}
       branches: ${{ needs.process-inputs.outputs.branches }}
