@@ -177,6 +177,7 @@ See [[.github/workflows/outboards]] for details of supported out-of-tree keyboar
 
 See https://github.com/manna-harbour/miryoku/discussions/81 for available and supported in-tree and out-of-tree keyboards and current maintenance status.
 
+
 ** Config File
 
 The config file is used to specify [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] and [[#mapping-macros][mapping]] options for [[#Local-Builds][local builds]].  Options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  Convert to the form ~#define MIRYOKU_OPTION_VALUE~ and add to the config file.
@@ -320,6 +321,32 @@ The thumb keys are moved 1u to extend the thumbs.  Supports ortho configuration.
 ~MIRYOKU_MAPPING=EXTENDED_THUMBS~
 
 [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/mapping/miryoku-kle-mapping-kyria-extended_thumbs.png]]
+
+
+**** 61/60_ansi
+
+
+***** Default
+
+An angled ortho split layout is mapped onto the row-staggered keyboard.  The rows are moved up to better position the thumb keys, the hands are separated as much as possible, and the left hand column angle is reversed to reduce ulnar deviation of the wrists.
+
+[[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/mapping/miryoku-kle-mapping-60_ansi.png]]
+
+
+***** No Reverse Angle
+
+~MIRYOKU_MAPPING=NOREVERSEANGLE~
+
+An alternative subset mapping is also provided without reverse column angle.
+
+[[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/mapping/miryoku-kle-mapping-60_ansi-noreverseangle.png]]
+
+
+***** Lite
+
+~MIRYOKU_MAPPING=LITE~
+
+Another alternative subset mapping is provided mapping only the 3x10 alphas, plus spacebar for space / Nav, with the remainder being the default keymap with semicolon in place of quote.
 
 
 ** Keyboard Keymaps

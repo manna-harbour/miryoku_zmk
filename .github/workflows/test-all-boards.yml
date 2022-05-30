@@ -17,6 +17,7 @@ jobs:
         "ffkb-holyiot",
         "glove80_left","glove80_right",
         "klacker_bs",
+        "nice60",
         "one42",
         "planck_rev6",
         "preonic_rev3",
