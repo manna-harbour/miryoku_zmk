@@ -3,7 +3,7 @@
 
 * Miryoku ZMK [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/miryoku-roa-32.png]]
 
-[[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/cover/miryoku-kle-cover.png]]
+[[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/cover/miryoku-kle-cover-miryoku_zmk.png]]
 
 [[https://github.com/manna-harbour/miryoku/][Miryoku]] is an ergonomic, minimal, orthogonal, and universal keyboard layout.  [[https://github.com/manna-harbour/miryoku_zmk][Miryoku ZMK]] is the Miryoku implementation for [[https://zmkfirmware.dev/][ZMK]].
 
