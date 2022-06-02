@@ -20,12 +20,12 @@ jobs:
         "dvorak",
         "halmak",
         "qwerty",
-        "qwertz"
+        "qwertz",
         "workman"
       ]'
       nav: '[
         "default",
-        "invertedt"
+        "invertedt",
         "vi"
       ]'
       clipboard: '[
