@@ -19,7 +19,7 @@ Workflow builds can be customised by copying and editing one of the [[#build-exa
 
 The [[#keyboard-keymaps][keyboard keymaps]] are composed of the config file, a [[#mapping-macros][mapping]] for the physical layout, and the [[#miryoku-keymap][Miryoku keymap]].
 
-[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#mouse-keys][mouse keys]] and [[#key-emulation-combos][key emulation combos]].
+[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#caps-word][caps word]], [[#key-emulation-combos][key emulation combos]] and [[#mouse-keys][mouse keys]].
 
 
 ** Building
@@ -370,7 +370,33 @@ Examples include ~CONFIG_ZMK_SLEEP=y~, ~CONFIG_ZMK_DISPLAY=y~, ~CONFIG_BT_CTLR_T
 
 *** Caps Word
 
-[[https://zmk.dev/docs/behaviors/caps-word][Caps Word]] is used in place of ~Caps Lock~.  Combine with ~Shift~ for ~Caps Lock~.
+[[https://zmk.dev/docs/behaviors/caps-word][Caps word]] is used in place of ~Caps Lock~.  Combine with ~Shift~ for ~Caps Lock~.
+
+
+*** Key Emulation Combos
+
+Emulate a key with a combo of two other keys.  Enabled automatically on keyboards with a missing key.  Can be enabled on other keyboards for use with hard to reach keys, or for compatibility.
+
+See https://github.com/manna-harbour/miryoku/issues/56.
+
+
+**** Top Row Combos
+
+On the top row on each hand, combo the ring and middle finger keys to emulate the pinkie key, and combo the middle and index finger keys to emulate the inner index key.
+
+Requires ~CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY=16~ [[#kconfig-configuration][Kconfig configuration]].
+
+
+**** Bottom Row Combos
+
+On the bottom row on each hand, combo the ring and middle finger keys to emulate the pinkie key, and combo the middle and index finger keys to emulate the inner index key.
+
+Requires ~CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY=16~ [[#kconfig-configuration][Kconfig configuration]].
+
+
+**** Thumb Combos
+
+On each hand, combo the primary and secondary thumb keys to emulate the tertiary thumb key.  Requires suitable keycaps to enable the thumb to press both keys simultaneously.
 
 
 *** Mouse Keys
@@ -398,32 +424,6 @@ Merge the mousekeys PR branch.
 For [[#workflow-builds][workflow builds]], the [[#build-inputs][Build Inputs]] workflow can be used. To specify the mousekeys PR [[#branches][branch]] use ~krikun98/zmk/mouse-pr~. For [[#build-examples][Build Example]] workflows see the [[.github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow.  The Build Example workflow also includes suggested branches for when the mousekeys PR branch is out of date.  If it is too far out of date it will need to be merged manually.
 
 For local builds, make the changes locally.
-
-
-*** Key Emulation Combos
-
-Emulate a key with a combo of two other keys.  Enabled automatically on keyboards with a missing key.  Can be enabled on other keyboards for use with hard to reach keys, or for compatibility.
-
-See https://github.com/manna-harbour/miryoku/issues/56.
-
-
-**** Top Row Combos
-
-On the top row on each hand, combo the ring and middle finger keys to emulate the pinkie key, and combo the middle and index finger keys to emulate the inner index key.
-
-Requires ~CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY=16~ [[#kconfig-configuration][Kconfig configuration]].
-
-
-**** Bottom Row Combos
-
-On the bottom row on each hand, combo the ring and middle finger keys to emulate the pinkie key, and combo the middle and index finger keys to emulate the inner index key.
-
-Requires ~CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY=16~ [[#kconfig-configuration][Kconfig configuration]].
-
-
-**** Thumb Combos
-
-On each hand, combo the primary and secondary thumb keys to emulate the tertiary thumb key.  Requires suitable keycaps to enable the thumb to press both keys simultaneously.
 
 
 ** 
