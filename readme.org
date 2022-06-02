@@ -19,7 +19,7 @@ Workflow builds can be customised by copying and editing one of the [[#build-exa
 
 The [[#keyboard-keymaps][keyboard keymaps]] are composed of the config file, a [[#mapping-macros][mapping]] for the physical layout, and the [[#miryoku-keymap][Miryoku keymap]].
 
-[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#caps-word][caps word]], [[#key-emulation-combos][key emulation combos]] and [[#mouse-keys][mouse keys]].
+[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#caps-word][caps word]], [[#customisation][customisation]], [[#key-emulation-combos][key emulation combos]] and [[#mouse-keys][mouse keys]].
 
 
 ** Building
@@ -371,6 +371,11 @@ Examples include ~CONFIG_ZMK_SLEEP=y~, ~CONFIG_ZMK_DISPLAY=y~, ~CONFIG_BT_CTLR_T
 *** Caps Word
 
 [[https://zmk.dev/docs/behaviors/caps-word][Caps word]] is used in place of ~Caps Lock~.  Combine with ~Shift~ for ~Caps Lock~.
+
+
+*** Customisation
+
+See https://github.com/manna-harbour/miryoku/discussions/85.
 
 
 *** Key Emulation Combos
