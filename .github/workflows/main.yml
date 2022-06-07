@@ -145,7 +145,11 @@ jobs:
               outboard_dir="${GITHUB_WORKSPACE}/outboards/$outboard"
               if [ -n "$outboard_repository" -a -n "$outboard_ref" ]
               then
-                git clone -b "$outboard_ref" --depth 1 "https://github.com/$outboard_repository.git" "$outboard_dir"
+                if ! echo "$outboard_repository" | grep -q 'https:\/\/'
+                then
+                  outboard_repository="https://github.com/$outboard_repository.git"
+                fi
+                git clone -b "$outboard_ref" --depth 1 "$outboard_repository" "$outboard_dir"
                 if [ -n "$outboard_from" -a -n "$outboard_to" ]
                 then
                   to="${GITHUB_WORKSPACE}/miryoku_zmk/config/$outboard_to"
