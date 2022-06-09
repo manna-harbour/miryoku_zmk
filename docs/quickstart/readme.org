@@ -12,7 +12,7 @@ A personalised build of [[https://github.com/manna-harbour/miryoku_zmk][Miryoku 
 - [[https://github.com/login][Login to GitHub]].
 - Visit https://github.com/manna-harbour/miryoku_zmk.
 - Press the ~Fork~ button in the top right.
-#+html: <img src="https://docs.github.com/assets/cb-6294/images/help/repository/fork_button.jpg"  width="640"/>
+#+html: <img src="https://docs.github.com/assets/cb-28613/images/help/repository/fork_button.png"  width="640"/>
 - Visit https://github.com/?q=miryoku_zmk.
 - Select your fork of ~miryoku_zmk~ from the list on the left.
 - Select the ~Actions~ tab.
