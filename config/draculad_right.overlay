@@ -1,0 +1,11 @@
+
+&pro_micro_i2c {
+  status = "okay";
+  trackball_pim447@a {
+    compatible = "pimoroni,trackball_pim447";
+    reg = <0xa>;
+    label = "TRACKBALL_PIM447";
+    swap-axes;
+    invert-move-y;
+  };
+};
