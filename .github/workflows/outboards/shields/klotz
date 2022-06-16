@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=GEIGEIGEIST/zmk-config-klotz
+outboard_ref=master
+outboard_from=config/boards/shields/klotz
+outboard_to=boards/shields/klotz
