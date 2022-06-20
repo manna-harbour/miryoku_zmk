@@ -91,11 +91,12 @@ jobs:
           mv "$tmpfile" "$configfile"
 
           artifact_build_name="miryoku_zmk $shield ${{ matrix.board }}"
+          hash_length=16
 
           if [ -n "${{ matrix.custom_config }}" -a "${{ matrix.custom_config }}" != 'default' ]
           then
             echo "${{ matrix.custom_config }}" >> "$configfile"
-            artifact_build_name="$artifact_build_name config_"`echo "${{ matrix.custom_config }}" | md5sum | cut -d ' ' -f 1`
+            artifact_build_name="$artifact_build_name config_"`echo "${{ matrix.custom_config }}" | md5sum | head -c "$hash_length"`
           fi
 
           for option in "alphas_${{ matrix.alphas }}" "nav_${{ matrix.nav }}" "clipboard_${{ matrix.clipboard }}" "layers_${{ matrix.layers }}" "mapping_${{ matrix.mapping }}"
@@ -120,7 +121,7 @@ jobs:
           then
             kconfig_file="${GITHUB_WORKSPACE}/miryoku_zmk/config/$keyboard_split.conf"
             echo "${{ matrix.kconfig }}" >> "$kconfig_file"
-            artifact_build_name="$artifact_build_name kconfig_"`echo "${{ matrix.kconfig }}" | md5sum | cut -d ' ' -f 1`
+            artifact_build_name="$artifact_build_name kconfig_"`echo "${{ matrix.kconfig }}" | md5sum | head -c "$hash_length"`
           fi
           test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && test -f "$kconfig_file" && cp "$kconfig_file" "$artifacts_dir"
 
@@ -168,7 +169,7 @@ jobs:
           echo "::group::zmk"
           if [ -n "${{ matrix.branches }}" -a "${{ matrix.branches }}" != 'default' ]
           then
-            artifact_build_name="$artifact_build_name branches_"`echo "${{ matrix.branches }}" | md5sum | cut -d ' ' -f 1`
+            artifact_build_name="$artifact_build_name branches_"`echo "${{ matrix.branches }}" | md5sum | head -c "$hash_length"`
             zmk=`echo "${{ matrix.branches }}" | cut -d ' ' -f 1`
             merges=`echo "${{ matrix.branches }}" | cut -d ' ' -f 2- -s`
           fi
