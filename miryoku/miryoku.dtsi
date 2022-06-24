@@ -33,6 +33,30 @@ MIRYOKU_LAYER_LIST
       flavor = "tap-preferred";
       bindings = <&kp>, <&kp>;
     };
+    lhm: homerow_mods_left {
+      compatible = "zmk,behavior-hold-tap";
+      label = "HOMEROW_MODS_LEFT";
+      #binding-cells = <2>;
+      tapping-term-ms = <U_TAPPING_TERM>;
+      flavor = "tap-unless-interrupted";
+      quick-tap-ms = <U_TAPPING_TERM>;
+      bindings = <&kp>, <&kp>;
+#if defined (MIRYOKU_HOME_MOD_RIGHT_POSITIONS)
+      hold-trigger-key-positions = MIRYOKU_HOME_MOD_RIGHT_POSITIONS ;
+#endif
+    };
+    rhm: homerow_mods_right {
+      compatible = "zmk,behavior-hold-tap";
+      label = "HOMEROW_MODS_RIGHT";
+      #binding-cells = <2>;
+      tapping-term-ms = <U_TAPPING_TERM>;
+      flavor = "tap-unless-interrupted";
+      quick-tap-ms = <U_TAPPING_TERM>;
+      bindings = <&kp>, <&kp>;
+#if defined (MIRYOKU_HOME_MOD_LEFT_POSITIONS)
+      hold-trigger-key-positions = MIRYOKU_HOME_MOD_LEFT_POSITIONS ;
+#endif
+    };
   };
 };
 
