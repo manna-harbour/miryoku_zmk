@@ -83,10 +83,11 @@ U_NP,              U_NP,              U_NA,              U_NA,              U_NA
 
 // Layer 4: media, we use default flipped variant, but have to specify it here as we don't want to flip all layers.
 #define MIRYOKU_LAYER_MEDIA \
-&rgb_ug RGB_EFF,   &rgb_ug RGB_HUI,   &rgb_ug RGB_SAI,   &rgb_ug RGB_BRI,   &rgb_ug RGB_TOG,   U_NA,              U_NA,              U_NA,              U_NA,              &bootloader,       \
-&kp C_PREV,        &kp C_VOL_DN,      &kp C_VOL_UP,      &kp C_NEXT,        &out OUT_TOG,      U_NA,              &kp LSHFT,         &kp LCTRL,         &kp LALT,          &kp LGUI,          \
-&bt BT_SEL 0,      &bt BT_SEL 1,      &bt BT_SEL 2,      &bt BT_SEL 3,      &bt BT_CLR,        U_NA,              U_NA,              U_NA,              &kp RALT,          U_NA,              \
+&u_rgb_eff,        &u_rgb_hui,        &u_rgb_sai,        &u_rgb_bri,        &rgb_ug RGB_TOG,   U_NA,              &to U_BASE,        &to U_EXTRA,       &to U_TAP,         &bootloader,       \
+&kp C_PREV,        &kp C_VOL_DN,      &kp C_VOL_UP,      &kp C_NEXT,        &u_ep_tog,         U_NA,              &kp LSHFT,         &kp LCTRL,         &kp LALT,          &kp LGUI,          \
+&u_bt_sel_0,       &u_bt_sel_1,       &u_bt_sel_2,       &u_bt_sel_3,       &u_out_tog,        U_NA,              &to U_MEDIA,       &to U_FUN,         &kp RALT,          U_NA,              \
 U_NP,              U_NP,              &kp C_MUTE,        &kp C_PP,          &kp C_STOP,        U_NA,              U_NA,              U_NA,              U_NP,              U_NP
+
 
 
 // Layer 5
