@@ -70,12 +70,7 @@ U_UND,             U_CUT,             U_CPY,             U_PST,             U_RD
 U_UND,             U_CUT,             U_CPY,             U_PST,             U_RDO,             U_RDO,             U_PST,             U_CPY,             U_CUT,             U_UND,             \
 U_NP,              U_NP,              U_BTN2,            U_BTN3,            U_BTN1,            U_BTN1,            U_BTN3,            U_BTN2,            U_NP,              U_NP
 
-// Layer 2
-#define MIRYOKU_LAYER_NAV \
-&bootloader,       U_NA,              U_NA,              U_NA,              U_NA,              U_RDO,             U_PST,             U_CPY,             U_CUT,             U_UND,             \
-&kp LGUI,          &kp LALT,          &kp LCTRL,         &kp LSHFT,         U_NA,              &kp CAPS,          &kp LEFT,          &kp DOWN,          &kp UP,            &kp RIGHT,         \
-U_NA,              &kp RALT,          U_NA,              U_NA,              U_NA,              &kp INS,           &kp HOME,          &kp PG_DN,         &kp PG_UP,         &kp END,           \
-U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              &kp RET,           &kp BSPC,          &kp DEL,           U_NP,              U_NP
+// Layer 2: Nav, use default.
 
 
 // Layer 3
@@ -86,7 +81,7 @@ U_NA,              &kp RALT,          U_NA,              U_NA,              U_NA
 U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              U_BTN1,            U_BTN3,            U_BTN2,            U_NP,              U_NP
 
 
-// Layer 4
+// Layer 4: media, we use default flipped variant, but have to specify it here as we don't want to flip all layers.
 #define MIRYOKU_LAYER_MEDIA \
 &rgb_ug RGB_EFF,   &rgb_ug RGB_HUI,   &rgb_ug RGB_SAI,   &rgb_ug RGB_BRI,   &rgb_ug RGB_TOG,   U_NA,              U_NA,              U_NA,              U_NA,              &bootloader,       \
 &kp C_PREV,        &kp C_VOL_DN,      &kp C_VOL_UP,      &kp C_NEXT,        &out OUT_TOG,      U_NA,              &kp LSHFT,         &kp LCTRL,         &kp LALT,          &kp LGUI,          \
@@ -110,12 +105,7 @@ U_NP,              U_NP,              U_NA,              U_NA,              U_NA
 U_NP,              U_NP,             &kp DOLLAR,        &kp EQL,           &kp SEMICOLON,     U_NA,              U_NA,              U_NA,              U_NP,              U_NP
 
 
-// Layer 7
-#define MIRYOKU_LAYER_FUN \
-&kp F12,           &kp F7,            &kp F8,            &kp F9,            &kp PSCRN,         U_NA,              U_NA,              U_NA,              U_NA,              &bootloader,       \
-&kp F11,           &kp F4,            &kp F5,            &kp F6,            &kp SLCK,          U_NA,              &kp LSHFT,         &kp LCTRL,         &kp LALT,          &kp LGUI,          \
-&kp F10,           &kp F1,            &kp F2,            &kp F3,            &kp PAUSE_BREAK,   U_NA,              U_NA,              U_NA,              &kp RALT,          U_NA,              \
-U_NP,              U_NP,              &kp K_APP,         &kp SPC,           &kp TAB,           U_NA,              U_NA,              U_NA,              U_NP,              U_NP
+// Layer 7 is Function, we use the default.
 
 // Layer 8: Game layer (to be used in future)
 /* #define MIRYOKU_LAYER_GAME \ */
