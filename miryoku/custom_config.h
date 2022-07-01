@@ -5,6 +5,13 @@
 
 #pragma once
 
+
+// Define our build options here as well, so that we can compile ZMK locally.
+// WARNING: be sure these options match the github workflow, otherwise there will be problems.
+#define MIRYOKU_ALPHAS_BEAKL15
+#define MIRYOKU_CLIPBOARD_MAC
+
+
 // https://github.com/manna-harbour/miryoku/discussions/85
 // Swapping layers:
 //   Don't just blindly copy paste from the miryoku_layer_alternatives.h. You MUST
