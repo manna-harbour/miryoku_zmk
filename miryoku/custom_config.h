@@ -73,7 +73,7 @@ U_NP,              U_NP,              U_BTN2,            U_BTN3,            U_BT
 // Layer 2: Nav, use default.
 
 
-// Layer 3
+// Layer 3: Mouse, with tons of symbols added
 #define MIRYOKU_LAYER_MOUSE \
 &bootloader,       U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              &kp DOT,           &kp SLASH,         &kp CARET,         &kp PERCENT,       \
 &kp LGUI,          &kp LALT,          &kp LCTRL,         &kp LSHFT,         U_NA,              &kp UNDERSCORE,    &kp COLON,         &kp TILDE,         &kp BACKSLASH,     &kp PIPE,          \
@@ -81,13 +81,8 @@ U_NA,              &kp RALT,          U_NA,              U_NA,              U_NA
 U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              U_BTN1,            U_BTN3,            U_BTN2,            U_NP,              U_NP
 
 
-// Layer 4: media, we use default flipped variant, but have to specify it here as we don't want to flip all layers.
-#define MIRYOKU_LAYER_MEDIA \
-&u_rgb_eff,        &u_rgb_hui,        &u_rgb_sai,        &u_rgb_bri,        &rgb_ug RGB_TOG,   U_NA,              &to U_BASE,        &to U_EXTRA,       &to U_TAP,         &bootloader,       \
-&kp C_PREV,        &kp C_VOL_DN,      &kp C_VOL_UP,      &kp C_NEXT,        &u_ep_tog,         U_NA,              &kp LSHFT,         &kp LCTRL,         &kp LALT,          &kp LGUI,          \
-&u_bt_sel_0,       &u_bt_sel_1,       &u_bt_sel_2,       &u_bt_sel_3,       &u_out_tog,        U_NA,              &to U_MEDIA,       &to U_FUN,         &kp RALT,          U_NA,              \
-U_NP,              U_NP,              &kp C_MUTE,        &kp C_PP,          &kp C_STOP,        U_NA,              U_NA,              U_NA,              U_NP,              U_NP
-
+// Layer 4: media, we use default flipped variant.
+#define MIRYOKU_LAYER_MEDIA MIRYOKU_ALTERNATIVES_MEDIA_FLIP
 
 
 // Layer 5
