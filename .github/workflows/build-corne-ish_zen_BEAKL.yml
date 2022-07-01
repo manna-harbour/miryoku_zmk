@@ -1,14 +1,11 @@
-# Copyright 2021 Manna Harbour
+# Copyright 2022 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-name: 'Test Build'
-on:
-  push:
-  pull_request:
-  workflow_dispatch:
+name: 'Build corne-ish_zen BEAKL'
+on: workflow_dispatch
 jobs:
   build:
-    if: github.repository_owner == 'issmirnov'
+    # uses: issmirnov/zmk-config-miryoku/.github/workflows/main.yml@master
     uses: ./.github/workflows/main.yml
     secrets: inherit
     with:
