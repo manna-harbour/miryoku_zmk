@@ -62,6 +62,7 @@ jobs:
         "reviung39",
         "reviung41",
         "rockon",
+        "rollow_left","rollow_right",
         "scylla_dmmpcb_left","scylla_dmmpcb_right",
         "sofle_left","sofle_right",
         "sofle_rgb_left","sofle_rgb_right",

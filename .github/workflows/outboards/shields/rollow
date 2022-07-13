@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=barbellboards/Rollow-ZMK
+outboard_ref=barbellboards/rollow
+outboard_from=app/boards/shields/rollow
+outboard_to=boards/shields/rollow
