@@ -7,16 +7,16 @@
 #if !defined (MIRYOKU_LAYER_LIST)
 
 #define MIRYOKU_LAYER_LIST \
-MIRYOKU_X(BASE,   "Base") \
-MIRYOKU_X(EXTRA,  "Extra") \
-MIRYOKU_X(TAP,    "Tap") \
-MIRYOKU_X(BUTTON, "Button") \
-MIRYOKU_X(NAV,    "Nav") \
-MIRYOKU_X(MOUSE,  "Mouse") \
-MIRYOKU_X(MEDIA,  "Media") \
-MIRYOKU_X(NUM,    "Num") \
-MIRYOKU_X(SYM,    "Sym") \
-MIRYOKU_X(FUN,    "Fun")
+MIRYOKU_X(BASE,   "Base",   trackball-bindings = <&tmv_coarse>; ) \
+MIRYOKU_X(EXTRA,  "Extra",  trackball-bindings = <&tmv_coarse>; ) \
+MIRYOKU_X(TAP,    "Tap",                                        ) \
+MIRYOKU_X(BUTTON, "Button", trackball-bindings = <&tmv_coarse>; ) \
+MIRYOKU_X(NAV,    "Nav",    trackball-bindings = <&tsl_fine>;   ) \
+MIRYOKU_X(MOUSE,  "Mouse",  trackball-bindings = <&tmv_fine>;   ) \
+MIRYOKU_X(MEDIA,  "Media",                                      ) \
+MIRYOKU_X(NUM,    "Num",                                        ) \
+MIRYOKU_X(SYM,    "Sym",                                        ) \
+MIRYOKU_X(FUN,    "Fun",                                        )
 
 #define U_BASE   0
 #define U_EXTRA  1
