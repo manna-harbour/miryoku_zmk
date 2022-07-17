@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=smores56/clog-v2-zmk-config
+outboard_ref=main
+outboard_from=config/boards/shields/clog_v2
+outboard_to=boards/shields/clog_v2
