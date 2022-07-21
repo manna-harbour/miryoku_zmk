@@ -4,3 +4,4 @@
 #include "../miryoku/custom_config.h"
 #include "../miryoku/mapping/60/lotus58.h"
 #include "../miryoku/miryoku.dtsi"
+#include "../miryoku/custom_keymap.dtsi"

@@ -1,0 +1,73 @@
+#include <behaviors.dtsi>
+
+// 150 is too fast for slower fingers
+#define CUSTOM_TAPPING_TERM 170
+#define CUSTOM_QUICK_TAP_MS 100
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+        combo_esc {
+            timeout-ms = <50>;
+            key-positions = <39 40>;
+            bindings = <&to U_BASE>;
+        };
+    };
+};
+/ {
+    behaviors {
+        /omit-if-no-ref/ lhm: left_hand_positional_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LEFT_POSITIONAL_HOLD_TAP";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <CUSTOM_TAPPING_TERM>;
+            quick-tap-ms = <CUSTOM_QUICK_TAP_MS>;
+            global-quick-tap;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 31 32 33 34 35 36 37 45 46 47 48 49 50 51 56 57 58 59 53 54 55>;    // <---[[right-hand keys + left hand thumb]]
+        };
+        /omit-if-no-ref/ rhm: right_hand_positional_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "RIGHT_POSITIONAL_HOLD_TAP";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <CUSTOM_TAPPING_TERM>;
+            quick-tap-ms = <CUSTOM_QUICK_TAP_MS>;
+            global-quick-tap;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 30 38 39 40 41 42 43 44 52 53 54 55 56 57 58>;    // <---[[left-hand keys + right hand thumb]]
+        };
+        /omit-if-no-ref/ qlt: quicktap_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LAYER_TAP";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <CUSTOM_TAPPING_TERM>;
+            quick-tap-ms = <CUSTOM_QUICK_TAP_MS>;
+            global-quick-tap;
+            bindings = <&mo>, <&kp>;
+        };
+    };
+};
+
+// override miryoku hm with quick tap
+&u_mt {
+    quick-tap-ms = <CUSTOM_QUICK_TAP_MS>;
+    global-quick-tap;
+};
+&u_lt {
+    quick-tap-ms = <CUSTOM_QUICK_TAP_MS>;
+    global-quick-tap;
+};
+
+/*
+#if defined (MIRYOKU_KLUDGE_MOUSEKEYSPR)
+#include <dt-bindings/zmk/mouse.h>
+&mwh {
+  acceleration-exponent = <1>;
+  time-to-max-speed-ms = <2000>;
+  delay-ms = <0>;
+};
+#endif
+*/
