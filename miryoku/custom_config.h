@@ -30,8 +30,9 @@
 //   Don't just blindly copy paste from the miryoku_layer_alternatives.h. You MUST
 //   match the layer names here to the ones expcted in miryoku_layer_selection.h.
 //   So, MIRYOKU_ALTERNATIVES_SYM becoms MIRYOKU_LAYER_SYM
-//   Note, in doing so we lose the ability to do Flip, Inverted T, and other option toggles.
-//   However, we can simply remap the define to the inverted or flipped layer directly as needed
+//   Note, if the Miryoku options such as Flip, Inverted T, and others are used, they will apply to the
+//   non-substituded layers (layers 2 and 7 in this example).
+//   If needed, we can also simply remap the define to the inverted or flipped layer directly.
 //   See layer 4 for the example of how we flip media.
 
 
@@ -39,6 +40,10 @@
 // *********************
 // LAYER LIST
 // *********************
+
+// Define custom layer list: NOTE - we are changing the display names here,
+// with BASE getting set to BEAKL and a few other tweaks.
+// We also add the custom Game layer at the end.
 #define MIRYOKU_LAYER_LIST \
 MIRYOKU_X(BASE,   "BEAKL") \
 MIRYOKU_X(EXTRA,  "Extra") \
@@ -52,6 +57,8 @@ MIRYOKU_X(SYM,    "Sym1") \
 MIRYOKU_X(FUN,    "Func") \
 MIRYOKU_X(GAME,   "Game")
 
+// Define convenience shortcuts to map names to layer indexes. Note that
+// we also add the custom GAME layer at the end.
 #define U_BASE   0
 #define U_EXTRA  1
 #define U_TAP    2
