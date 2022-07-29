@@ -1,25 +1,10 @@
-// Copyright 2021 Manna Harbour
-// https://github.com/manna-harbour/miryoku
-// generated -*- buffer-read-only: t -*-
-// target: zmk
+// See https://github.com/manna-harbour/miryoku + https://github.com/manna-harbour/miryoku_zmk
 
 #pragma once
 
-// **********************
-//     ZMK core options
-// **********************
-// If you want to patch Combo behavior, uncomment these defaults and change them.
-// Docs: https://zmk.dev/docs/config/combos#kconfig
-//
-// #define ZMK_COMBO_MAX_KEYS_PER_COMBO 4
-// #define ZMK_COMBO_MAX_COMBOS_PER_KEY 5
-// #define ZMK_COMBO_MAX_PRESSED_COMBOS 4
-
-// Disable layer indicator widget.
-// #define CONFIG_CUSTOM_WIDGET_LAYER_STATUS n
-
 // Define our miryoku build options here, so that we can compile ZMK locally.
 // WARNING: be sure these options match the github workflow, otherwise there will be problems.
+// #define MIRYOKU_KEYBOARD_CORNE_ISH_ZEN // uncomment when building locally for the Zen
 #define MIRYOKU_ALPHAS_BEAKL15
 #define MIRYOKU_CLIPBOARD_MAC
 
@@ -91,10 +76,23 @@ MIRYOKU_X(GAME,   "Game")
      K20, K21, K22, K23, K24,      K25, K26, K27, K28, K29, \
      N30, N31, K32, K33, K34,      K35, K36, K37, N38, N39 \
 ) \
-&kp TAB     K00  K01  K02  K03  K04       K05  K06  K07  K08  K09  XXX \
+&kp TAB     K00  K01  K02  K03  K04       K05  K06  K07  K08  K09  &to U_BASE \
 &kp LCTRL   K10  K11  K12  K13  K14       K15  K16  K17  K18  K19  XXX \
 &kp LSHIFT  K20  K21  K22  K23  K24       K25  K26  K27  K28  K29  XXX \
                K32  K33  K34       K35  K36  K37
+
+// In order to avoid hacking the button layer with a GAME entrypoint, we can add a layermapping
+// to base and use the outer columns for our custom layers.
+#define MIRYOKU_LAYERMAPPING_BASE( \
+     K00, K01, K02, K03, K04,      K05, K06, K07, K08, K09, \
+     K10, K11, K12, K13, K14,      K15, K16, K17, K18, K19, \
+     K20, K21, K22, K23, K24,      K25, K26, K27, K28, K29, \
+     N30, N31, K32, K33, K34,      K35, K36, K37, N38, N39 \
+) \
+XXX   K00  K01  K02  K03  K04       K05  K06  K07  K08  K09  &to U_GAME \
+XXX   K10  K11  K12  K13  K14       K15  K16  K17  K18  K19  XXX \
+XXX   K20  K21  K22  K23  K24       K25  K26  K27  K28  K29  XXX \
+                K32  K33  K34       K35  K36  K37
 
 #else
   // Allow us to build for other physical keyboards without issues.
@@ -117,12 +115,7 @@ MIRYOKU_X(GAME,   "Game")
 U_NP,              U_NP,              &lt U_NUM ESC,     &lt U_NAV SPC,     &lt U_MOUSE TAB,   &lt U_SYM RET,     &lt U_MEDIA BSPC,    &lt U_FUN DEL,     U_NP,              U_NP
 
 
-// Layer 1
-#define MIRYOKU_LAYER_BUTTON \
-U_UND,             U_CUT,             U_CPY,             U_PST,             U_RDO,             U_RDO,             U_PST,             U_CPY,             U_CUT,             U_UND,             \
-&kp LGUI,          &kp LALT,          &kp LCTRL,         &kp LSHFT,         &to U_GAME,             &none,             &kp LSHFT,         &kp LCTRL,         &kp LALT,          &kp LGUI,          \
-U_UND,             U_CUT,             U_CPY,             U_PST,             U_RDO,             U_RDO,             U_PST,             U_CPY,             U_CUT,             U_UND,             \
-U_NP,              U_NP,              U_BTN2,            U_BTN3,            U_BTN1,            U_BTN1,            U_BTN3,            U_BTN2,            U_NP,              U_NP
+// Layer 1: Button, use default
 
 // Layer 2: Nav, use default.
 
