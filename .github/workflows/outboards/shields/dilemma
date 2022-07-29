@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=0xcharly/zmk-config
+outboard_ref=master
+outboard_from=config/boards/shields/dilemma
+outboard_to=boards/shields/dilemma
