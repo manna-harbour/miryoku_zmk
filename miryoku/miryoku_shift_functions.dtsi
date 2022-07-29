@@ -31,6 +31,8 @@ MIRYOKU_SHIFT_MACRO(u_bt_sel_4, &bt BT_SEL 4, &bt BT_SEL 4 &bt BT_CLR)
 
 MIRYOKU_SHIFT_FUNCTION(u_out_tog, &out OUT_TOG, &out OUT_USB)
 
+MIRYOKU_SHIFT_FUNCTION(u_rgb_tog, &rgb_ug RGB_TOG, &rgb_ug RGB_OFF)
+
 MIRYOKU_SHIFT_FUNCTION(u_rgb_eff, &rgb_ug RGB_EFF, &rgb_ug RGB_EFR)
 MIRYOKU_SHIFT_FUNCTION(u_rgb_hui, &rgb_ug RGB_HUI, &rgb_ug RGB_HUD)
 MIRYOKU_SHIFT_FUNCTION(u_rgb_sai, &rgb_ug RGB_SAI, &rgb_ug RGB_SAD)
