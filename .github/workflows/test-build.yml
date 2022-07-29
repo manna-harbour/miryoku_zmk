@@ -1,7 +1,7 @@
 # Copyright 2022 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-name: 'Test Build Corne PIM447 Left'
+name: 'Test Build Corne PIM447 Right'
 on:
   workflow_dispatch:
 jobs:
@@ -12,4 +12,4 @@ jobs:
       board: '["nice_nano_v2"]'
       shield: '["corne_left","corne_right"]'
       custom_config: '["#define MIRYOKU_KLUDGE_MOUSEKEYSPR"]'
-      branches: '["manna-harbour/zmk/zephyr-2.5+cdc-mkb-mouse-pim447"]'
+      branches: '["manna-harbour/zmk/zephyr-2.5+cdc-mkb-mouse-pim447+corne-central-right"]'
