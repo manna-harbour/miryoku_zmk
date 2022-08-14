@@ -52,7 +52,7 @@ U_NP,              U_NP,              &lt U_FUN DEL,     &lt U_NUM BSPC,    &lt 
 &kp Q,             &kp D,             &kp R,             &kp W,             &kp B,             &kp J,             &kp F,             &kp U,             &kp P,             &kp SQT,           \
 &hm LGUI A,        &hm LALT S,        &hm LCTRL H,       &hm LSHFT T,       &kp G,             &kp Y,             &hm LSHFT N,       &hm LCTRL E,       &hm LALT O,        &hm LGUI I,        \
 &lt U_BUTTON Z,    &hm RALT X,        &kp M,             &kp C,             &kp V,             &kp K,             &kp L,             &kp COMMA,         &hm RALT DOT,      &lt U_BUTTON SLASH,\
-U_NP,              U_NP,              &lt U_FUN DEL,     &lt U_NUM BSPC,    &lt U_SYM RET,     &lt U_MOUSE TAB,   &lt U_NAV SPC,     &lt U_MEDIA ESC,   U_NP,              U_NP
+U_NP,              U_NP,              &lt U_FUN ESC,     &lt U_NUM SPC,     &lt U_SYM TAB,     &lt U_MOUSE RET,   &lt U_NAV BSPC,    &lt U_MEDIA DEL,   U_NP,              U_NP
 
 #define MIRYOKU_ALTERNATIVES_BASE_QWERTY_FLIP \
 &kp Q,             &kp W,             &kp E,             &kp R,             &kp T,             &kp Y,             &kp U,             &kp I,             &kp O,             &kp P,             \
