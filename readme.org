@@ -64,7 +64,10 @@ See [[#fields--options][Options]] below for a description of each option.
 
 The Build Inputs workflow can be used without editing workflow files.  Access the workflow, Select Run workflow, select the Branch and fill out the form as desired, and activate Run workflow.
 
-Options are specified by entering values directly in the corresponding field.  Multiple comma separated values can be entered per option and a matrix build will be performed for each combination of values across all options.
+Most options are specified by entering values directly in the corresponding field.  Multiple comma separated values can be entered per option and a matrix build will be performed for each combination of values across all options.
+
+Values for [[#miryoku-alternative-layout-and-mapping-options][Miryoku alternative layout options]] are selected from a list.  As multiple selection is not supported, matrix builds across multiple values are not possible for these options, and the Test Inputs or [[#build-examples][Build Example]] workflows should be used instead.
+
 
 See [[#fields--options][Options]] below for a description of each option.
 
