@@ -18,6 +18,7 @@ jobs:
         "ffkb-holyiot",
         "glove80_left","glove80_right",
         "klacker_bs",
+        "native_posix_64",
         "nice60",
         "one42",
         "planck_rev6",

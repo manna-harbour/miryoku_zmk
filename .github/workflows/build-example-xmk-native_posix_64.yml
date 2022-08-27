@@ -1,0 +1,12 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+name: 'Build Example 𝑥MK native_posix_64'
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["native_posix_64"]'
+      branches: '["zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command"]'

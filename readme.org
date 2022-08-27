@@ -19,7 +19,7 @@ Workflow builds can be customised by copying and editing one of the [[#build-exa
 
 The [[#keyboard-keymaps][keyboard keymaps]] are composed of the config file, a [[#mapping-macros][mapping]] for the physical layout, and the [[#miryoku-keymap][Miryoku keymap]].
 
-[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#caps-word][caps word]], [[#customisation][customisation]], [[#key-emulation-combos][key emulation combos]] and [[#mouse-keys][mouse keys]].
+[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#caps-word][caps word]], [[#customisation][customisation]], [[#key-emulation-combos][key emulation combos]], [[#mouse-keys][mouse keys]], and [[#𝑥MK][𝑥MK]].
 
 
 ** Building
@@ -447,6 +447,17 @@ Merge the mousekeys PR branch.
 For [[#workflow-builds][workflow builds]], the [[#build-inputs][Build Inputs]] workflow can be used. To specify the mousekeys PR [[#branches][branch]] use ~krikun98/zmk/mouse-pr~. For [[#build-examples][Build Example]] workflows see the [[.github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow.  The Build Example workflow also includes suggested branches for when the mousekeys PR branch is out of date.  If it is too far out of date it will need to be merged manually.
 
 For local builds, make the changes locally.
+
+
+**** 𝑥MK
+
+Use Miryoku ZMK with any keyboard with [[https://github.com/manna-harbour/xmk][𝑥MK]].
+
+For [[#local-builds][local builds]] first merge https://github.com/zmkfirmware/zmk/pull/1318. For the ~xmk~ shield, add https://github.com/manna-harbour/xmk/tree/main/zmk/boards/shields/xmk as ~config/boards/shields/xmk~, and build with shield ~xmk~ and the appropriate board. For the ~native_posix_64~ board, build with board ~native_posix_64~.
+
+For [[#workflow-builds][workflow builds]] for the ~xmk~ shield, use the Build Example 𝑥MK xmk workflow, or use the Build Inputs workflow with shield ~xmk~, the appropriate board, and branches ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~. For workflow builds for the ~native_posix_64~ board, use the Build Example 𝑥MK native_posix_64 workflow, or use the Build Inputs workflow with board ~native_posix_64~ and branches ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~.
+
+Also see [[https://github.com/manna-harbour/miryoku_kmonad][Miryoku KMonad]].
 
 
 ** 

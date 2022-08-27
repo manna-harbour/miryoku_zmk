@@ -268,7 +268,7 @@ jobs:
           echo "::endgroup::"
 
           echo "::group::copy"
-          for extension in 'uf2' 'bin' 'hex'
+          for extension in 'uf2' 'bin' 'hex' 'elf'
           do
             file="${GITHUB_WORKSPACE}/zmk/app/build/zephyr/zmk.$extension"
             if [ -f "$file" ]

@@ -72,5 +72,6 @@ jobs:
         "tbkmini_adapterv2_left","tbkmini_adapterv2_right",
         "tightyl_left","tightyl_right",
         "viterbi_left","viterbi_right",
+        "xmk",
         "zodiark_left","zodiark_right"
       ]'
