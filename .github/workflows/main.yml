@@ -256,7 +256,7 @@ jobs:
             echo '::error::Keymap found but shield not found. Board used for shield.'
             (exit "$EX_DATAERR")
           fi
-          if ! grep -q 'Using keymap file: .*/config/[^/]*.keymap$' "$log"
+          if grep -q 'Using keymap file: .*/boards/' "$log" && ! grep -q 'Using keymap file: .*/settings_reset.keymap' "$log"
           then
             echo '::error::Miryoku keyboard keymap not found. Unsupported or incorrect keyboard.'
             (exit "$EX_UNAVAILABLE")
