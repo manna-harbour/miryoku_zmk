@@ -12,8 +12,4 @@ jobs:
       shield: '["corne_left"]'
       custom_config: '["#define MIRYOKU_KLUDGE_MOUSEKEYSPR"]'
       kconfig: '["CONFIG_ZMK_MOUSE=y"]'
-      branches: '[
-        "zmkfirmware/zmk/main krikun98/zmk/mouse-pr",
-        "zmkfirmware/zmk/main ftc/zmk/mouse-ftc",
-        "ftc/zmk/mouse-ftc"
-      ]'
+      branches: '["zmkfirmware/zmk/main ftc/zmk/mouse-ftc"]'

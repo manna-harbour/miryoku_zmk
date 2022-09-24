@@ -438,13 +438,11 @@ The Mouse and Button layers use [[https://en.wikipedia.org/wiki/Mouse_keys][mous
 
 Support for https://github.com/zmkfirmware/zmk/pull/778 is also included.
 
-Add ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ to the [[#config-file][config file]].
+As the PR branch is not being maintained, use https://github.com/ftc/zmk/tree/mouse-ftc instead.
 
-Add ~CONFIG_ZMK_MOUSE=y~ to the [[#kconfig-configuration][Kconfig configuration]].
+To build, add ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ to the [[#config-file][config file]], add ~CONFIG_ZMK_MOUSE=y~ to the [[#kconfig-configuration][Kconfig configuration]], and merge the mousekeys branch.
 
-Merge the mousekeys PR branch.
-
-For [[#workflow-builds][workflow builds]], the [[#build-inputs][Build Inputs]] workflow can be used. To specify the mousekeys PR [[#branches][branch]] use ~krikun98/zmk/mouse-pr~. For [[#build-examples][Build Example]] workflows see the [[.github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow.  The Build Example workflow also includes suggested branches for when the mousekeys PR branch is out of date.  If it is too far out of date it will need to be merged manually.
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ with the ~custom_config~ option, ~CONFIG_ZMK_MOUSE=y~ with the ~kconfig~ option, and ~zmkfirmware/zmk/main ftc/zmk/mouse-ftc~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow.
 
 For local builds, make the changes locally.
 
