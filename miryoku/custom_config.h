@@ -10,17 +10,176 @@
 #define MOD_3 LALT
 #define MOD_4 LCTRL
 
-// replace quotes with semi colon to better mimic qwerty
-// use custom mod tap config
+// ############# LEFT MODS BEGIN #######################
+
+#define CUSTOM_LEFT_MODS \
+&kp LCTRL, &kp LALT, &kp LSHFT, &kp LGUI
+
+#define CUSTOM_MOD_LEFT_ROW_1 \
+&bootloader,       &to U_TAP,         &to U_EXTRA,       &to U_BASE,        U_NA
+// &u_reset,          U_NA,             RC(RGUI),         RS(RGUI),          &u_caps_word
+
+#define CUSTOM_MOD_LEFT_ROW_2 \
+&kp MOD_4,         &kp MOD_3,         &kp MOD_2,         &kp MOD_1,         U_NA
+// CUSTOM_LEFT_MODS, &kp K_FIND
+
+#define CUSTOM_MOD_LEFT_ROW_3 \
+U_NA,              &kp RALT,          U_NA,              U_NA,              U_NA
+// &kp K_UNDO,       &kp K_CUT,         &kp K_COPY,        &kp K_PASTE,       &kp K_AGAIN
+
+#define CUSTOM_MOD_LEFT_ROW_4 \
+U_NP,              U_NP,              U_NA,              U_NA,              U_NA
+
+// ############# LEFT MODS END #######################
+
+// ############# LEFT BASE BEGIN #######################
+
+#define CUSTOM_BASE_LEFT_ROW_1 \
+&kp Q,             &kp W,             &kp E,             &kp R,             &kp T
+
+#define CUSTOM_BASE_LEFT_ROW_2 \
+&lhm MOD_4 A,      &lhm MOD_3 S,      &lhm MOD_2 D,      &lhm MOD_1 F,      &kp G
+
+#define CUSTOM_BASE_LEFT_ROW_3 \
+&qlt U_BUTTON Z,   &lhm LS(LGUI) X,   &kp C,             &kp V,             &kp B
+
+#define CUSTOM_BASE_LEFT_ROW_4 \
+U_NP,              U_NP,              &qlt U_MEDIA ESC,  &kp SPC,           &qlt U_NAV TAB
+
+// ############# LEFT BASE END #######################
+
+
+// ############# LEFT NUM BEGIN #######################
+
+#define CUSTOM_NUM_LEFT_ROW_1 \
+&kp LBKT,          &kp NUM_7,         &kp NUM_8,         &kp NUM_9,         &kp RBKT
+
+#define CUSTOM_NUM_LEFT_ROW_2 \
+&kp SEMI,          &kp NUM_4,         &kp NUM_5,         &kp NUM_6,         &kp EQL
+
+#define CUSTOM_NUM_LEFT_ROW_3 \
+&kp GRAVE,         &kp NUM_1,         &kp NUM_2,         &kp NUM_3,         &kp BSLH
+
+#define CUSTOM_NUM_LEFT_ROW_4 \
+U_NP,              U_NP,              &kp SQT,           &kp NUM_0,         &kp MINUS
+
+// ############# LEFT NUM END #######################
+
+
+// ############# LEFT SYM BEGIN #######################
+
+#define CUSTOM_SYM_LEFT_ROW_1 \
+&kp LBRC,          &kp AMPS,          &kp ASTRK,         &kp LPAR,          &kp RBRC
+
+#define CUSTOM_SYM_LEFT_ROW_2 \
+&kp COLON,         &kp DLLR,          &kp PRCT,          &kp CRRT,          &kp PLUS
+
+#define CUSTOM_SYM_LEFT_ROW_3 \
+&kp TILDE,         &kp EXCL,          &kp AT,            &kp HASH,          &kp PIPE
+
+#define CUSTOM_SYM_LEFT_ROW_4 \
+U_NP,              U_NP,              &kp DQT,           &kp RPAR,          &kp UNDER
+
+// ############# LEFT SYM END #######################
+
+
+// ############# LEFT FUN BEGIN #######################
+
+#define CUSTOM_FUN_LEFT_ROW_1 \
+&kp F12,           &kp F7,            &kp F8,            &kp F9,            &kp PSCRN
+
+#define CUSTOM_FUN_LEFT_ROW_2 \
+&kp F11,           &kp F4,            &kp F5,            &kp F6,            &kp SLCK
+
+#define CUSTOM_FUN_LEFT_ROW_3 \
+&kp F10,           &kp F1,            &kp F2,            &kp F3,            &kp PAUSE_BREAK
+
+#define CUSTOM_FUN_LEFT_ROW_4 \
+U_NP,              U_NP,              &kp K_APP,         &kp SPC,           &kp TAB
+
+// ############# LEFT FUN BEGIN #######################
+
+
+
+// ############# RIGHT MOD BEGIN #######################
+
+#define CUSTOM_RIGHT_MODS \
+&kp RCTRL, &kp RALT, &kp RSHFT , &kp RGUI
+
+#define CUSTOM_MOD_RIGHT_ROW_1 \
+U_NA,              &to U_BASE,        &to U_EXTRA,       &to U_TAP,         &bootloader
+// &u_caps_word,    RS(RGUI),          RC(RGUI),          U_NA,              &u_reset
+
+#define CUSTOM_MOD_RIGHT_ROW_2 \
+U_NA,              &kp MOD_1,         &kp MOD_2,         &kp MOD_3,         &kp MOD_4
+// &kp K_FIND, CUSTOM_RIGHT_MODS
+
+#define CUSTOM_MOD_RIGHT_ROW_3 \
+U_NA,               U_NA,              U_NA,              &kp RALT,          U_NA
+//&kp K_AGAIN,      &kp K_PASTE,       &kp K_COPY,        &kp K_CUT,         &kp K_UNDO
+
+#define CUSTOM_MOD_RIGHT_ROW_4 \
+U_NA,              U_NA,              U_NA,              U_NP,              U_NP
+
+// ############# RIGHT MOD END #######################
+
+// ############# RIGHT BASE BEGIN #######################
+
+#define CUSTOM_BASE_RIGHT_ROW_1 \
+&kp Y,             &kp U,             &kp I,             &kp O,             &kp P
+
+#define CUSTOM_BASE_RIGHT_ROW_2 \
+&kp H,             &rhm RGUI J,       &rhm RSHFT K,      &rhm RALT L,       &rhm RCTRL SEMI
+
+#define CUSTOM_BASE_RIGHT_ROW_3 \
+&kp N,             &kp M,             &kp COMMA,         &rhm RS(RGUI) DOT, &qlt U_BUTTON SLASH
+
+#define CUSTOM_BASE_RIGHT_ROW_4 \
+&qlt U_SYM RET,    &qlt U_NUM BSPC,   &qlt U_FUN DEL,    U_NP,              U_NP
+
+// ############# RIGHT BASE END #######################
+
+
+// ############# RIGHT NAV BEGIN #######################
+
+#define CUSTOM_NAV_RIGHT_ROW_1 \
+&kp LEFT,          &kp DOWN,          &kp UP,            &kp RIGHT,         &kp PG_UP
+
+#define CUSTOM_NAV_RIGHT_ROW_2 \
+U_MS_L,            U_MS_D,            U_MS_U,            U_MS_R,            &u_caps_word
+
+#define CUSTOM_NAV_RIGHT_ROW_3 \
+U_WH_L,            U_WH_D,            U_WH_U,            U_WH_R,            &kp PG_DN
+
+#define CUSTOM_NAV_RIGHT_ROW_4 \
+U_BTN2,            U_BTN1,            U_BTN3,            U_NP,              U_NP
+
+// ############# RIGHT MEDIA BEGIN #######################
+
+#define CUSTOM_MEDIA_RIGHT_ROW_1 \
+&u_rgb_eff,        &u_rgb_hui,        &u_rgb_sai,        &u_rgb_bri,        &rgb_ug RGB_TOG
+#define CUSTOM_MEDIA_RIGHT_ROW_2 \
+&kp C_PREV,        &kp C_VOL_DN,      &kp C_VOL_UP,      &kp C_NEXT,        &u_ep_tog
+#define CUSTOM_MEDIA_RIGHT_ROW_3 \
+&u_bt_sel_0,       &u_bt_sel_1,       &u_bt_sel_2,       &u_bt_sel_3,       &u_out_tog
+#define CUSTOM_MEDIA_RIGHT_ROW_4 \
+&kp C_STOP,        &kp C_PP,          &kp C_MUTE,        U_NP,              U_NP
+
+// ############# RIGHT MEDIA END #######################
+
+
+#define CUSTOM_SETUP_LAYER(left_layer,right_layer)\
+left_layer##_ROW_1, right_layer##_ROW_1, \
+left_layer##_ROW_2, right_layer##_ROW_2, \
+left_layer##_ROW_3, right_layer##_ROW_3, \
+left_layer##_ROW_4, right_layer##_ROW_4
+
 // use R mods on the right side
 // disable bottom row alt mod
 // no layer on space because it has issues with vscode
 // remove mouse layer since it's merged with nav
 #define MIRYOKU_LAYER_BASE \
-&kp Q,             &kp W,             &kp E,             &kp R,             &kp T,             &kp Y,             &kp U,             &kp I,             &kp O,             &kp P,               \
-&lhm MOD_4 A,      &lhm MOD_3 S,      &lhm MOD_2 D,      &lhm MOD_1 F,      &kp G,             &kp H,             &rhm RGUI J,       &rhm RSHFT K,      &rhm RALT L,       &rhm RCTRL SEMI,     \
-&qlt U_BUTTON Z,   &lhm LS(LGUI) X,   &kp C,             &kp V,             &kp B,             &kp N,             &kp M,             &kp COMMA,         &rhm RS(RGUI) DOT, &qlt U_BUTTON SLASH, \
-U_NP,              U_NP,              &qlt U_MEDIA ESC,  &kp SPC,           &qlt U_NAV TAB,    &qlt U_SYM RET,    &qlt U_NUM BSPC,   &qlt U_FUN DEL,    U_NP,              U_NP
+CUSTOM_SETUP_LAYER(CUSTOM_BASE_LEFT,CUSTOM_BASE_RIGHT)
 
 // add reset button to button layer
 #define MIRYOKU_LAYER_BUTTON \
@@ -31,24 +190,20 @@ U_NP,              U_NP,              U_BTN3,            U_BTN1,            U_BT
 
 // replace dot with quotes and RALT
 #define MIRYOKU_LAYER_NUM \
-&kp LBKT,          &kp NUM_7,         &kp NUM_8,         &kp NUM_9,         &kp RBKT,          U_NA,              &u_to_U_BASE,      &u_to_U_EXTRA,     &u_to_U_TAP,       U_BOOT,            \
-&kp SEMI,          &kp NUM_4,         &kp NUM_5,         &kp NUM_6,         &kp EQL,           U_NA,              &kp MOD_1,         &kp MOD_2,         &kp MOD_3,         &kp MOD_4,         \
-&kp GRAVE,         &kp NUM_1,         &kp NUM_2,         &kp NUM_3,         &kp BSLH,          U_NA,              &u_to_U_NAV,       &u_to_U_NUM,       &kp RALT,          U_NA,              \
-U_NP,              U_NP,              &kp SQT,           &kp NUM_0,         &kp MINUS,         U_NA,              U_NA,              U_NA,              U_NP,              U_NP
+CUSTOM_SETUP_LAYER(CUSTOM_NUM_LEFT,CUSTOM_MOD_RIGHT)
 
-// replace lbr with double quote
 #define MIRYOKU_LAYER_SYM \
-&kp LBRC,          &kp AMPS,          &kp ASTRK,         &kp LPAR,          &kp RBRC,          U_NA,              &u_to_U_BASE,      &u_to_U_EXTRA,     &u_to_U_TAP,       U_BOOT,            \
-&kp COLON,         &kp DLLR,          &kp PRCT,          &kp CRRT,          &kp PLUS,          U_NA,              &kp MOD_1,         &kp MOD_2,         &kp MOD_3,         &kp MOD_4,         \
-&kp TILDE,         &kp EXCL,          &kp AT,            &kp HASH,          &kp PIPE,          U_NA,              &u_to_U_NAV,       &u_to_U_NUM,       &kp RALT,          U_NA,               \
-U_NP,              U_NP,              &kp DQT,           &kp RPAR,          &kp UNDER,         U_NA,              U_NA,              U_NA,              U_NP,              U_NP
+CUSTOM_SETUP_LAYER(CUSTOM_SYM_LEFT,CUSTOM_MOD_RIGHT)
 
 // define nav layer as a combination of nav and mouse layer, and RALT
 #define MIRYOKU_LAYER_NAV \
-U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA,              &kp LEFT,          &kp DOWN,          &kp UP,            &kp RIGHT,         &kp PG_UP,         \
-&kp MOD_4,         &kp MOD_3,         &kp MOD_2,         &kp MOD_1,         U_NA,              U_MS_L,            U_MS_D,            U_MS_U,            U_MS_R,            &u_caps_word,      \
-U_NA,              &kp RALT,          &u_to_U_NUM,       &u_to_U_NAV,       U_NA,              U_WH_L,            U_WH_D,            U_WH_U,            U_WH_R,            &kp PG_DN,         \
-U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              U_BTN2,            U_BTN1,            U_BTN3,            U_NP,              U_NP
+CUSTOM_SETUP_LAYER(CUSTOM_MOD_LEFT,CUSTOM_NAV_RIGHT)
+
+#define MIRYOKU_LAYER_FUN \
+CUSTOM_SETUP_LAYER(CUSTOM_FUN_LEFT,CUSTOM_MOD_RIGHT)
+
+#define MIRYOKU_LAYER_MEDIA \
+CUSTOM_SETUP_LAYER(CUSTOM_MOD_LEFT,CUSTOM_MEDIA_RIGHT)
 
 #if defined (MIRYOKU_KEYBOARD_LOTUS58)
 #define XXX &none
