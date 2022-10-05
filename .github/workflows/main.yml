@@ -191,7 +191,7 @@ jobs:
             git config user.name "${GITHUB_ACTOR}"
             git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
             git fetch --unshallow
-            for merge in "$merges"
+            for merge in $merges
             do
               user=`echo "$merge" | cut -f 1 -d '/'`
               repo=`echo "$merge" | cut -f 2 -d '/'`
