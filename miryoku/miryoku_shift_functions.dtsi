@@ -42,3 +42,9 @@ MIRYOKU_SHIFT_FUNCTION(u_ep_tog, &ext_power EP_TOG, &ext_power EP_OFF)
 
 MIRYOKU_SHIFT_FUNCTION(u_caps_word, &caps_word, &kp CAPS)
 
+#if defined(MIRYOKU_KLUDGE_SUSPEND)
+  MIRYOKU_SHIFT_FUNCTION(u_bootloader, &bootloader, &suspend)
+#else
+  MIRYOKU_SHIFT_FUNCTION(u_bootloader, &bootloader, &reset)
+#endif
+
