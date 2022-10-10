@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=nathanielks/zmk
+outboard_ref=add-shield-dactyl-manuform-4x5
+outboard_from=app/boards/shields/dactyl_manuform_4x5
+outboard_to=boards/shields/dactyl_manuform_4x5
