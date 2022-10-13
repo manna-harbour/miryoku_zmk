@@ -19,7 +19,7 @@ Workflow builds can be customised by copying and editing one of the [[#build-exa
 
 The [[#keyboard-keymaps][keyboard keymaps]] are composed of the config file, a [[#mapping-macros][mapping]] for the physical layout, and the [[#miryoku-keymap][Miryoku keymap]].
 
-[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#caps-word][caps word]], [[#customisation][customisation]], [[#key-emulation-combos][key emulation combos]], [[#mouse-keys][mouse keys]], and [[#𝑥MK][𝑥MK]].
+[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#caps-word][caps word]], [[#customisation][customisation]], [[#double-tap-boot][double tap boot]], [[#key-emulation-combos][key emulation combos]], [[#mouse-keys][mouse keys]], [[#suspend][suspend]], and [[#𝑥MK][𝑥MK]]. Open [[#issues][issues]] are also noted.
 
 
 ** Building
@@ -427,6 +427,15 @@ Examples include ~CONFIG_ZMK_SLEEP=y~, ~CONFIG_ZMK_DISPLAY=y~, ~CONFIG_BT_CTLR_T
 See https://github.com/manna-harbour/miryoku/discussions/85.
 
 
+*** Double Tap Boot
+
+[[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#additional-features][Additional features]] require a double tap to prevent accidental activation. This not supported in ZMK for the bootloader behavior on split keyboards. Use a single tap instead. See https://github.com/zmkfirmware/zmk/issues/1494.
+
+Requiring double tap to activate the bootloader can be enabled for use with non-split keyboards. Use with split keyboards will require use of the reset button to enter the bootloader on the peripheral side.
+
+For [[#local-builds][local builds]], add ~#define MIRYOKU_KLUDGE_DOUBLETAPBOOT~ to the [[#config-file][config file]]. For [[#workflow-builds][workflow builds]], use ~#define MIRYOKU_KLUDGE_DOUBLETAPBOOT~ with the ~custom_config~ option.
+
+
 *** Key Emulation Combos
 
 Emulate a key with a combo of two other keys.  Enabled automatically on keyboards with a missing key.  Can be enabled on other keyboards for use with hard to reach keys, or for compatibility.
@@ -482,13 +491,11 @@ For local builds, make the changes locally.
 
 Support for https://github.com/zmkfirmware/zmk/issues/1292#issuecomment-1264603539 is included using https://github.com/manna-harbour/zmk/tree/suspend-test and https://github.com/manna-harbour/zephyr/tree/v3.0.0+zmk-fixes-suspend-test.
 
-To suspend, hold shift and tap the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#additional-features][boot]] key. For split keyboards, use the boot key on each side, and suspend the peripheral side first.
+Suspend takes the place of the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#additional-features][boot]] key. For split keyboards, suspend the peripheral side then the central side.
 
-To build, add ~#define MIRYOKU_KLUDGE_SUSPEND~ to the [[#config-file][config file]] and merge https://github.com/manna-harbour/zmk/tree/suspend-test.
+For [[#local-builds][local builds]], add ~#define MIRYOKU_KLUDGE_SUSPEND~ to the [[#config-file][config file]] and merge https://github.com/manna-harbour/zmk/tree/suspend-test.
 
 For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~#define MIRYOKU_KLUDGE_SUSPEND~ with the ~custom_config~ option, and ~zmkfirmware/zmk/main manna-harbour/zmk/suspend-test~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-suspend.yml][Build Example suspend]] workflow.
-
-For local builds, make the changes locally.
 
 
 *** 𝑥MK
@@ -500,6 +507,14 @@ For [[#local-builds][local builds]] first merge https://github.com/zmkfirmware/z
 For [[#workflow-builds][workflow builds]] for the ~xmk~ shield, use the Build Example 𝑥MK xmk workflow, or use the Build Inputs workflow with shield ~xmk~, the appropriate board, and branches ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~. For workflow builds for the ~native_posix_64~ board, use the Build Example 𝑥MK native_posix_64 workflow, or use the Build Inputs workflow with board ~native_posix_64~ and branches ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~.
 
 Also see [[https://github.com/manna-harbour/miryoku_kmonad][Miryoku KMonad]].
+
+
+** Issues
+
+
+*** No Current Layer Lock
+
+[[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#additional-features][Current layer lock]] is not supported in ZMK. Use opposite layer lock with the opposite hand instead. See https://github.com/zmkfirmware/zmk/issues/1299.
 
 
 ** 
