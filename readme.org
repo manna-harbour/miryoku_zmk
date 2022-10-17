@@ -408,14 +408,81 @@ See https://github.com/manna-harbour/miryoku/issues/56.
 
 On the top row on each hand, combo the ring and middle finger keys to emulate the pinkie key, and combo the middle and index finger keys to emulate the inner index key.
 
-Requires ~CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY=16~ [[#kconfig-configuration][Kconfig configuration]].
+To enable this you must ensure a few things are in place. 
 
+  * Requires the key positions be defined in the [[miryoku/mapping][mapping file]] for your keyboard.
+    * Example below for corne.
+    * Positions are set for most, if not all boards. But this information is helpful in understanding how this functionality works.
+
+#+BEGIN_SRC C :tangle no
+// Copyright 2022 Manna Harbour
+// https://github.com/manna-harbour/miryoku
+
+#define MIRYOKU_KLUDGE_TOPROWCOMBOS_LEFTPINKIE 2 3
+#define MIRYOKU_KLUDGE_TOPROWCOMBOS_LEFTINNERINDEX 3 4
+#define MIRYOKU_KLUDGE_TOPROWCOMBOS_RIGHTINNERINDEX 7 8
+#define MIRYOKU_KLUDGE_TOPROWCOMBOS_RIGHTPINKIE 8 9
+#+END_SRC
+
+  * Requires ~#define MIRYOKU_KLUDGE_TOPROWCOMBOS~
+    * Set via [[#custom_config][custom configuration]]
+  * Requires ~CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY=16~
+    * Set via [[#kconfig-configuration][Kconfig configuration]]
+  * Requires the combo to be defined in [[miryoku/miryoku_kludge_toprowcombos.dtsi][miryoku_kludge_toprowcombos.dtsi]]
+    * This is set per layer, so if combos are not defined for a layer that you use, you can add them.
+    * Example of QWERTY combos is below.
+    
+#+BEGIN_SRC C :tangle no
+// Copyright 2022 Manna Harbour
+// https://github.com/manna-harbour/miryoku
+
+  #elif defined (MIRYOKU_ALPHAS_QWERTY)
+    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, LEFTPINKIE, &kp Q) // Middle and Ring finger on top left row should type Q if pressed on U_BASE layer
+    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, LEFTINNERINDEX, &kp T) // Middle and Index finger on top left row should type T if pressed on U_BASE layer
+    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, RIGHTINNERINDEX, &kp Y) // Middle and Index finger on tip right row should type Y if pressed on U_BASE layer
+    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, RIGHTPINKIE, &kp P) // Middle and Ring finger on top right row should type P if pressed on U_BASE layer
+  ...
+#+END_SRC
 
 **** Bottom Row Combos
 
 On the bottom row on each hand, combo the ring and middle finger keys to emulate the pinkie key, and combo the middle and index finger keys to emulate the inner index key.
 
-Requires ~CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY=16~ [[#kconfig-configuration][Kconfig configuration]].
+To enable this you must ensure a few things are in place. 
+
+  * Requires the key positions be defined in the [[miryoku/mapping][mapping file]] for your keyboard.
+    * Example below for corne.
+    * Positions are set for most, if not all boards. But this information is helpful in understanding how this functionality works.
+
+#+BEGIN_SRC C :tangle no
+// Copyright 2022 Manna Harbour
+// https://github.com/manna-harbour/miryoku
+
+#define MIRYOKU_KLUDGE_BOTTOMROWCOMBOS_LEFTPINKIE 26 27
+#define MIRYOKU_KLUDGE_BOTTOMROWCOMBOS_LEFTINNERINDEX 27 28
+#define MIRYOKU_KLUDGE_BOTTOMROWCOMBOS_RIGHTINNERINDEX 31 32
+#define MIRYOKU_KLUDGE_BOTTOMROWCOMBOS_RIGHTPINKIE 32 33
+#+END_SRC
+
+  * Requires ~#define MIRYOKU_KLUDGE_BOTTOMROWCOMBOS~
+    * Set via [[#custom_config][custom configuration]]
+  * Requires ~CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY=16~
+    * Set via [[#kconfig-configuration][Kconfig configuration]]
+  * Requires the combo to be defined in [[miryoku/miryoku_kludge_bottomrowcombos.dtsi][miryoku_kludge_bottomrowcombos.dtsi]]
+    * This is set per layer, so if combos are not defined for a layer that you use, you can add them.
+    * Example of QWERTY combos is below.
+    
+#+BEGIN_SRC C :tangle no
+// Copyright 2022 Manna Harbour
+// https://github.com/manna-harbour/miryoku
+
+  #elif defined (MIRYOKU_ALPHAS_QWERTY)
+    MIRYOKU_KLUDGE_BOTTOMROWCOMBOS_MACRO(U_BASE, LEFTPINKIE, &kp Z) // Middle and Ring finger on bottom left row should type Z if pressed on U_BASE layer
+    MIRYOKU_KLUDGE_BOTTOMROWCOMBOS_MACRO(U_BASE, LEFTINNERINDEX, &kp B) // Middle and Index finger on bottom left row shoul type B if pressed on U_BASE layer
+    MIRYOKU_KLUDGE_BOTTOMROWCOMBOS_MACRO(U_BASE, RIGHTINNERINDEX, &kp N) // Middle and Index finger on bottom row row shoul type N if pressed on U_BASE layer
+    MIRYOKU_KLUDGE_BOTTOMROWCOMBOS_MACRO(U_BASE, RIGHTPINKIE, &lt U_BUTTON SLASH) // Middle and Ring finger on bottom right row should type / if pressed on U_BASE layer
+  ...
+#+END_SRC
 
 
 **** Thumb Combos
