@@ -58,7 +58,7 @@ U_NP,              U_NP,              &lt U_FUN ESC,     &lt U_NUM SPC,     &lt 
 &kp Q,             &kp W,             &kp E,             &kp R,             &kp T,             &kp Y,             &kp U,             &kp I,             &kp O,             &kp P,             \
 &hm LGUI A,        &hm LALT S,        &hm LCTRL D,       &hm LSHFT F,       &kp G,             &kp H,             &hm LSHFT J,       &hm LCTRL K,       &hm LALT L,        &hm LGUI SQT,      \
 &lt U_BUTTON Z,    &hm RALT X,        &kp C,             &kp V,             &kp B,             &kp N,             &kp M,             &kp COMMA,         &hm RALT DOT,      &lt U_BUTTON SLASH,\
-U_NP,              U_NP,              &lt U_FUN DEL,     &lt U_NUM BSPC,    &lt U_SYM RET,     &lt U_MOUSE TAB,   &lt U_NAV SPC,     &lt U_MEDIA ESC,   U_NP,              U_NP
+U_NP,              U_NP,              &lt U_FUN ESC,     &lt U_NUM SPC,     &lt U_SYM TAB,     &lt U_MOUSE RET,   &lt U_NAV BSPC,    &lt U_MEDIA DEL,   U_NP,              U_NP
 
 #define MIRYOKU_ALTERNATIVES_BASE_QWERTZ_FLIP \
 &kp Q,             &kp W,             &kp E,             &kp R,             &kp T,             &kp Z,             &kp U,             &kp I,             &kp O,             &kp P,             \
@@ -258,7 +258,7 @@ U_NP,              U_NP,              &kp K_APP,         &kp SPC,           &kp 
 &kp HOME,          &kp PG_DN,         &kp PG_UP,         &kp END,           &kp INS,           U_NA,              &to U_BASE,        &to U_EXTRA,       &to U_TAP,         &u_bootloader,     \
 &kp LEFT,          &kp DOWN,          &kp UP,            &kp RIGHT,         &u_caps_word,      U_NA,              &kp LSHFT,         &kp LCTRL,         &kp LALT,          &kp LGUI,          \
 U_UND,             U_CUT,             U_CPY,             U_PST,             U_RDO,             U_NA,              &to U_NAV,         &to U_NUM,         &kp RALT,          U_NA,              \
-U_NP,              U_NP,              &kp DEL,           &kp BSPC,          &kp RET,           U_NA,              U_NA,              U_NA,              U_NP,              U_NP
+U_NP,              U_NP,              &kp K_APP,         &kp SPC,           &kp TAB,           U_NA,              U_NA,              U_NA,              U_NP,              U_NP
 
 #define MIRYOKU_ALTERNATIVES_NAV_INVERTEDT \
 &u_bootloader,     &to U_TAP,         &to U_EXTRA,       &to U_BASE,        U_NA,              &kp INS,           &kp HOME,          &kp UP,            &kp END,           &kp PG_UP,         \
