@@ -70,9 +70,9 @@ jobs:
 
           if [ -n "${{ matrix.shield }}" -a "${{ matrix.shield }}" != "default" ]
           then
-            SHIELD_ARG="-DSHIELD=${{ matrix.shield }}"
-            keyboard=${{ matrix.shield }}
-            shield=${{ matrix.shield }}
+            SHIELD_ARG="-DSHIELD=\"${{ matrix.shield }}\""
+            shield=`echo ${{ matrix.shield }} | cut -d ' ' -f 1`
+            keyboard="$shield"
           else
             keyboard=${{ matrix.board }}
             shield=""
@@ -90,7 +90,7 @@ jobs:
           cat "$configfile" >> "$tmpfile"
           mv "$tmpfile" "$configfile"
 
-          artifact_build_name="miryoku_zmk $shield ${{ matrix.board }}"
+          artifact_build_name="miryoku_zmk ${{ matrix.shield }} ${{ matrix.board }}"
           hash_length=16
 
           if [ -n "${{ matrix.custom_config }}" -a "${{ matrix.custom_config }}" != 'default' ]
@@ -191,7 +191,7 @@ jobs:
             git config user.name "${GITHUB_ACTOR}"
             git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
             git fetch --unshallow
-            for merge in "$merges"
+            for merge in $merges
             do
               user=`echo "$merge" | cut -f 1 -d '/'`
               repo=`echo "$merge" | cut -f 2 -d '/'`
@@ -256,7 +256,7 @@ jobs:
             echo '::error::Keymap found but shield not found. Board used for shield.'
             (exit "$EX_DATAERR")
           fi
-          if ! grep -q 'Using keymap file: .*/config/[^/]*.keymap$' "$log"
+          if grep -q 'Using keymap file: .*/boards/' "$log" && ! grep -q 'Using keymap file: .*/settings_reset.keymap' "$log"
           then
             echo '::error::Miryoku keyboard keymap not found. Unsupported or incorrect keyboard.'
             (exit "$EX_UNAVAILABLE")
@@ -268,7 +268,7 @@ jobs:
           echo "::endgroup::"
 
           echo "::group::copy"
-          for extension in 'uf2' 'bin' 'hex'
+          for extension in 'uf2' 'bin' 'hex' 'elf'
           do
             file="${GITHUB_WORKSPACE}/zmk/app/build/zephyr/zmk.$extension"
             if [ -f "$file" ]

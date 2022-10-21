@@ -19,7 +19,7 @@ Workflow builds can be customised by copying and editing one of the [[#build-exa
 
 The [[#keyboard-keymaps][keyboard keymaps]] are composed of the config file, a [[#mapping-macros][mapping]] for the physical layout, and the [[#miryoku-keymap][Miryoku keymap]].
 
-[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#caps-word][caps word]], [[#customisation][customisation]], [[#key-emulation-combos][key emulation combos]] and [[#mouse-keys][mouse keys]].
+[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#caps-word][caps word]], [[#customisation][customisation]], [[#key-emulation-combos][key emulation combos]], [[#mouse-keys][mouse keys]], and [[#𝑥MK][𝑥MK]].
 
 
 ** Building
@@ -64,7 +64,10 @@ See [[#fields--options][Options]] below for a description of each option.
 
 The Build Inputs workflow can be used without editing workflow files.  Access the workflow, Select Run workflow, select the Branch and fill out the form as desired, and activate Run workflow.
 
-Options are specified by entering values directly in the corresponding field.  Multiple comma separated values can be entered per option and a matrix build will be performed for each combination of values across all options.
+Most options are specified by entering values directly in the corresponding field.  Multiple comma separated values can be entered per option and a matrix build will be performed for each combination of values across all options.
+
+Values for [[#miryoku-alternative-layout-and-mapping-options][Miryoku alternative layout options]] are selected from a list.  As multiple selection is not supported, matrix builds across multiple values are not possible for these options, and the Test Inputs or [[#build-examples][Build Example]] workflows should be used instead.
+
 
 See [[#fields--options][Options]] below for a description of each option.
 
@@ -102,6 +105,7 @@ For composite keyboards (keyboards with a separate controller), enter the keyboa
 
 For split composite keyboards (keyboards with a separate controller on each side), enter the keyboard side name, e.g. ~corne_left~, ~corne_right~, ~cradio_left~, ~cradio_right~.  To build both sides in the same run, enter both keyboard side names separated by a comma, e.g. ~corne_left,corne_right~, ~cradio_left,cradio_right~.
 
+Also use to specify optional non-keyboard shields, e.g. ~nice_view~. To combine shields, separate with space, e.g. ~nice_view_adapter nice_view~, ~corne_left nice_view_adapter nice_view~. For multiple builds of combined shields in the same run, use both comma and space separators, e.g. ~corne_left nice_view_adapter nice_view,corne_right nice_view_adapter nice_view~.
 
 ***** Miryoku Alternative Layout and Mapping Options
 
@@ -178,6 +182,31 @@ See the Test All Controllers, Boards, and Shields [[#workflow-builds][workflow f
 See [[.github/workflows/outboards]] for details of supported out-of-tree keyboards.
 
 See https://github.com/manna-harbour/miryoku/discussions/81 for available and supported in-tree and out-of-tree keyboards and current maintenance status.
+
+
+*** Notes
+
+Notes are provided below for individual keyboards where required.
+
+
+**** corne-ish_zen
+
+The default ZMK fork for ~corne-ish_zen~ is https://github.com/LOWPROKB/zmk/tree/Board-Corne-ish-Zen-dedicated-work-queue.
+
+A custom branch is available at https://github.com/manna-harbour/zmk/tree/zen. The branch is based on https://github.com/caksoylar/zmk/tree/caksoylar/zen-on-main which adds compatibility with ZMK ~main~.
+
+Extra features have also been added which can be selected with the following [[#kconfig-configuration][Kconfig configuration]] options.
+
+- ~CONFIG_ZMK_DISPLAY_HIDE_MOMENTARY_LAYERS=y~ Suppress layer widget updates for momentary layer changes.
+- ~CONFIG_CUSTOM_WIDGET_LOGO_IMAGE_ZEN=y~ Corne-ish Zen logo (default).
+- ~CONFIG_CUSTOM_WIDGET_LOGO_IMAGE_ZMK=y~ ZMK logo.
+- ~CONFIG_CUSTOM_WIDGET_LOGO_IMAGE_LPKB=y~ LowproKB logo.
+- ~CONFIG_CUSTOM_WIDGET_LOGO_IMAGE_MIRYOKU=y~ Miryoku logo.
+- ~CONFIG_IL0323_INVERT=y~ Invert display.
+
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~manna-harbour/zmk/zen~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-corne-ish_zen-custom.yml][Build Example corne-ish_zen custom]] workflow.
+
+For local builds, make the changes locally.
 
 
 ** Config File
@@ -435,15 +464,37 @@ The Mouse and Button layers use [[https://en.wikipedia.org/wiki/Mouse_keys][mous
 
 Support for https://github.com/zmkfirmware/zmk/pull/778 is also included.
 
-Add ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ to the [[#config-file][config file]].
+As the PR branch is not being maintained, use https://github.com/ftc/zmk/tree/mouse-ftc instead.
 
-Add ~CONFIG_ZMK_MOUSE=y~ to the [[#kconfig-configuration][Kconfig configuration]].
+To build, add ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ to the [[#config-file][config file]], add ~CONFIG_ZMK_MOUSE=y~ to the [[#kconfig-configuration][Kconfig configuration]], and merge the mousekeys branch.
 
-Merge the mousekeys PR branch.
-
-For [[#workflow-builds][workflow builds]], the [[#build-inputs][Build Inputs]] workflow can be used. To specify the mousekeys PR [[#branches][branch]] use ~krikun98/zmk/mouse-pr~. For [[#build-examples][Build Example]] workflows see the [[.github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow.  The Build Example workflow also includes suggested branches for when the mousekeys PR branch is out of date.  If it is too far out of date it will need to be merged manually.
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ with the ~custom_config~ option, ~CONFIG_ZMK_MOUSE=y~ with the ~kconfig~ option, and ~zmkfirmware/zmk/main ftc/zmk/mouse-ftc~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow.
 
 For local builds, make the changes locally.
+
+
+*** Suspend
+
+Support for https://github.com/zmkfirmware/zmk/issues/1292#issuecomment-1264603539 is included using https://github.com/manna-harbour/zmk/tree/suspend-test and https://github.com/manna-harbour/zephyr/tree/v3.0.0+zmk-fixes-suspend-test.
+
+To suspend, hold shift and tap the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#additional-features][boot]] key. For split keyboards, use the boot key on each side, and suspend the peripheral side first.
+
+To build, add ~#define MIRYOKU_KLUDGE_SUSPEND~ to the [[#config-file][config file]] and merge https://github.com/manna-harbour/zmk/tree/suspend-test.
+
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~#define MIRYOKU_KLUDGE_SUSPEND~ with the ~custom_config~ option, and ~zmkfirmware/zmk/main manna-harbour/zmk/suspend-test~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-suspend.yml][Build Example suspend]] workflow.
+
+For local builds, make the changes locally.
+
+
+*** 𝑥MK
+
+Use Miryoku ZMK with any keyboard with [[https://github.com/manna-harbour/xmk][𝑥MK]].
+
+For [[#local-builds][local builds]] first merge https://github.com/zmkfirmware/zmk/pull/1318. For the ~xmk~ shield, add https://github.com/manna-harbour/xmk/tree/main/zmk/boards/shields/xmk as ~config/boards/shields/xmk~, and build with shield ~xmk~ and the appropriate board. For the ~native_posix_64~ board, build with board ~native_posix_64~.
+
+For [[#workflow-builds][workflow builds]] for the ~xmk~ shield, use the Build Example 𝑥MK xmk workflow, or use the Build Inputs workflow with shield ~xmk~, the appropriate board, and branches ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~. For workflow builds for the ~native_posix_64~ board, use the Build Example 𝑥MK native_posix_64 workflow, or use the Build Inputs workflow with board ~native_posix_64~ and branches ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~.
+
+Also see [[https://github.com/manna-harbour/miryoku_kmonad][Miryoku KMonad]].
 
 
 ** 
