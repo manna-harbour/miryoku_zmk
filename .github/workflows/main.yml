@@ -62,7 +62,7 @@ jobs:
         with:
           path: 'miryoku_zmk'
       - name: main
-        id: variables
+        id: main
         run: |
           test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && set -x
 
@@ -77,12 +77,11 @@ jobs:
             keyboard=${{ matrix.board }}
             shield=""
           fi
-          echo "::set-output name=shield-arg::${SHIELD_ARG}"
+          echo "shield_arg=${SHIELD_ARG}" >> $GITHUB_OUTPUT
           keyboard_split="$keyboard"
           keyboard_base=`echo "$keyboard" | sed 's/_\(left\|right\)//'`
 
           configfile="${GITHUB_WORKSPACE}/miryoku_zmk/miryoku/custom_config.h"
-          echo "::set-output name=configfile::$configfile"
 
           tmpfile="$configfile.tmp"
           echo -n '#define ' > "$tmpfile"
@@ -111,11 +110,11 @@ jobs:
             esac
           done
 
-          artifacts_dir="${GITHUB_WORKSPACE}/artifacts"
-          echo "::set-output name=artifact-dir::$artifacts_dir"
-          mkdir "$artifacts_dir"
+          artifact_dir="${GITHUB_WORKSPACE}/artifacts"
+          echo "artifact_dir=$artifact_dir" >> $GITHUB_OUTPUT
+          mkdir "$artifact_dir"
 
-          test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && cp "$configfile" "$artifacts_dir"
+          test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && cp "$configfile" "$artifact_dir"
 
           if [ -n "${{ matrix.kconfig }}" -a "${{ matrix.kconfig }}" != 'default' ]
           then
@@ -123,7 +122,7 @@ jobs:
             echo "${{ matrix.kconfig }}" >> "$kconfig_file"
             artifact_build_name="$artifact_build_name kconfig_"`echo "${{ matrix.kconfig }}" | md5sum | head -c "$hash_length"`
           fi
-          test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && test -f "$kconfig_file" && cp "$kconfig_file" "$artifacts_dir"
+          test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && test -f "$kconfig_file" && cp "$kconfig_file" "$artifact_dir"
 
           . "${GITHUB_WORKSPACE}/miryoku_zmk/.github/workflows/zmk"
 
@@ -141,7 +140,7 @@ jobs:
             outboard_file="${GITHUB_WORKSPACE}/miryoku_zmk/.github/workflows/outboards/$outboard"
             if [ -f "$outboard_file" ]
             then
-              test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && cp "$outboard_file" "$artifacts_dir"
+              test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && cp "$outboard_file" "$artifact_dir"
               . "$outboard_file"
               outboard_dir="${GITHUB_WORKSPACE}/outboards/$outboard"
               if [ -n "$outboard_repository" -a -n "$outboard_ref" ]
@@ -175,8 +174,9 @@ jobs:
           fi
 
           artifact_build_name=`echo $artifact_build_name | tr ' ' '-'`
-          echo "::set-output name=artifact-build-name::$artifact_build_name"
-          echo "::set-output name=artifact-generic-name::"`echo "$artifact_build_name" | sed 's/_\(left\|right\)//'`
+          echo "artifact_build_name=$artifact_build_name" >> $GITHUB_OUTPUT
+          artifact_generic_name=`echo "$artifact_build_name" | sed 's/_\(left\|right\)//'`
+          echo "artifact_generic_name=$artifact_generic_name" >> $GITHUB_OUTPUT
 
           user=`echo "$zmk" | cut -f 1 -d '/'`
           repo=`echo "$zmk" | cut -f 2 -d '/'`
@@ -238,7 +238,7 @@ jobs:
           EX_DATAERR='65'
           cd "${GITHUB_WORKSPACE}/zmk/app"
           {
-            west $west_debug build -b ${{ matrix.board }} $west_build_debug -- ${{ steps.variables.outputs.shield-arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/miryoku_zmk/config" ||
+            west $west_debug build -b ${{ matrix.board }} $west_build_debug -- ${{ steps.main.outputs.shield_arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/miryoku_zmk/config" ||
             echo "$build_failed_message $?." ;
           } 2>&1 | tee "$log"
           if grep -q 'Invalid BOARD; see above.' "$log"
@@ -273,15 +273,15 @@ jobs:
             file="${GITHUB_WORKSPACE}/zmk/app/build/zephyr/zmk.$extension"
             if [ -f "$file" ]
             then
-              cp "$file" "${{ steps.variables.outputs.artifact-dir }}/${{ steps.variables.outputs.artifact-build-name }}.$extension"
+              cp "$file" "${{ steps.main.outputs.artifact_dir }}/${{ steps.main.outputs.artifact_build_name }}.$extension"
               test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' || break
             fi
           done
-          test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && cp "${GITHUB_WORKSPACE}/zmk/app/build/zephyr/.config" "${{ steps.variables.outputs.artifact-dir }}"
+          test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && cp "${GITHUB_WORKSPACE}/zmk/app/build/zephyr/.config" "${{ steps.main.outputs.artifact_dir }}"
           echo "::endgroup::"
       - name: upload
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ steps.variables.outputs.artifact-generic-name }}
-          path: ${{ steps.variables.outputs.artifact-dir }}
+          name: ${{ steps.main.outputs.artifact_generic_name }}
+          path: ${{ steps.main.outputs.artifact_dir }}
 
