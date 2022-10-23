@@ -107,6 +107,7 @@ For split composite keyboards (keyboards with a separate controller on each side
 
 Also use to specify optional non-keyboard shields, e.g. ~nice_view~. To combine shields, separate with space, e.g. ~nice_view_adapter nice_view~, ~corne_left nice_view_adapter nice_view~. For multiple builds of combined shields in the same run, use both comma and space separators, e.g. ~corne_left nice_view_adapter nice_view,corne_right nice_view_adapter nice_view~.
 
+
 ***** Miryoku Alternative Layout and Mapping Options
 
 The ~alphas~, ~nav~, ~clipboard~, and ~layers~ options correspond to the Miryoku alternative layout options.  See the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#layers][default layers]] and [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layouts]] documentation for details.  See the [[.github/workflows/test-all-configs.yml][Test All Configs]] workflow file for a list of all supported values.
@@ -143,7 +144,7 @@ Select an alternative mapping, e.g. ~extended_thumbs~, ~pinkie_stagger~.  For th
 
 ***** custom_config
 
-Appends to the [[#config-file][config]] file.  Join multiple lines with ~\n~.  For no additional config, leave as ~default~.
+Appends to the [[#config-file][config]] file, e.g. ~#define MIRYOKU_TAP_QWERTY~. Join multiple lines with ~\n~, e.g. ~#define MIRYOKU_TAP_QWERTY\n#define MIRYOKU_EXTRA_COLEMAKDH~. For no additional config, leave as ~default~.
 
 
 ***** ZMK Options
@@ -231,16 +232,20 @@ The file is [[miryoku/custom_config.h]].  See the [[#example-config-file][exampl
 Below is an example [[#config-file][config file]] with the following alternative layout and mapping options:
 
 - ~MIRYOKU_ALPHAS=QWERTY~
+- ~MIRYOKU_TAP=QWERTY~
+- ~MIRYOKU_EXTRA=COLEMAKDH~
 - ~MIRYOKU_NAV=INVERTEDT~
 - ~MIRYOKU_CLIPBOARD=WIN~
 - ~MIRYOKU_LAYERS=FLIP~
 - ~MIRYOKU_MAPPING=EXTENDED_THUMBS~
 
 #+BEGIN_SRC C :tangle no
-// Copyright 2021 Manna Harbour
+// Copyright 2022 Manna Harbour
 // https://github.com/manna-harbour/miryoku
 
 #define MIRYOKU_ALPHAS_QWERTY
+#define MIRYOKU_TAP_QWERTY
+#define MIRYOKU_EXTRA_COLEMAKDH
 #define MIRYOKU_NAV_INVERTEDT
 #define MIRYOKU_CLIPBOARD_WIN
 #define MIRYOKU_LAYERS_FLIP
