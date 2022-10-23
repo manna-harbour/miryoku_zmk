@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=ReFil/zmk
+outboard_ref=advantage360
+outboard_from=app/boards/arm/adv360pro
+outboard_to=boards/arm/adv360pro
