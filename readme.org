@@ -19,7 +19,16 @@ Workflow builds can be customised by copying and editing one of the [[#build-exa
 
 The [[#keyboard-keymaps][keyboard keymaps]] are composed of the config file, a [[#mapping-macros][mapping]] for the physical layout, and the [[#miryoku-keymap][Miryoku keymap]].
 
-[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#caps-word][caps word]], [[#customisation][customisation]], [[#double-tap-boot][double tap boot]], [[#key-emulation-combos][key emulation combos]], [[#mouse-keys][mouse keys]], [[#suspend][suspend]], and [[#𝑥MK][𝑥MK]]. Open [[#issues][issues]] are also noted.
+[[#additional-and-experimental-features][Additional and Experimental Features]] include
+[[#caps-word][caps word]],
+[[#customisation][customisation]],
+[[#double-tap-boot][double tap boot]],
+[[#key-emulation-combos][key emulation combos]],
+[[#mouse-keys][mouse keys]],
+[[#suspend][suspend]],
+[[#tap-delay][tap delay]],
+and [[#𝑥MK][𝑥MK]].
+Open [[#issues][issues]] are also noted.
 
 
 ** Building
@@ -498,15 +507,30 @@ For [[#local-builds][local builds]], add ~#define MIRYOKU_KLUDGE_SUSPEND~ to the
 For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~#define MIRYOKU_KLUDGE_SUSPEND~ with the ~custom_config~ option, and ~zmkfirmware/zmk/main manna-harbour/zmk/suspend-test~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-suspend.yml][Build Example suspend]] workflow.
 
 
+*** Tap Delay
+
+Adds a delay between press and release of hold-tap taps, as a work around for https://github.com/zmkfirmware/zmk/issues/1444.
+
+For [[#local-builds][local builds]], add ~#define MIRYOKU_KLUDGE_TAPDELAY~ to the [[#config-file][config file]]. For [[#workflow-builds][workflow builds]], use ~#define MIRYOKU_KLUDGE_TAPDELAY~ with the ~custom_config~ option.
+
+
 *** 𝑥MK
 
 Use Miryoku ZMK with any keyboard with [[https://github.com/manna-harbour/xmk][𝑥MK]].
 
-For [[#local-builds][local builds]] first merge https://github.com/zmkfirmware/zmk/pull/1318. For the ~xmk~ shield, add https://github.com/manna-harbour/xmk/tree/main/zmk/boards/shields/xmk as ~config/boards/shields/xmk~, and build with shield ~xmk~ and the appropriate board. For the ~native_posix_64~ board, build with board ~native_posix_64~.
 
-For [[#workflow-builds][workflow builds]] for the ~xmk~ shield, use the Build Example 𝑥MK xmk workflow, or use the Build Inputs workflow with shield ~xmk~, the appropriate board, and branches ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~. For workflow builds for the ~native_posix_64~ board, use the Build Example 𝑥MK native_posix_64 workflow, or use the Build Inputs workflow with board ~native_posix_64~ and branches ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~.
+**** xmk Shield
 
-Also see [[https://github.com/manna-harbour/miryoku_kmonad][Miryoku KMonad]].
+For [[#local-builds][local builds]] first merge https://github.com/zmkfirmware/zmk/pull/1318. Add https://github.com/manna-harbour/xmk/tree/main/zmk/boards/shields/xmk as ~config/boards/shields/xmk~. Build with shield ~xmk~ and the appropriate board.
+
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~xmk~ with the ~shield~ option, the appropriate board with the ~board~ option, and ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-xmk-xmk.yml][Build Example 𝑥MK xmk]] workflow.
+
+
+**** native_posix_64 Board
+
+For [[#local-builds][local builds]] first merge https://github.com/zmkfirmware/zmk/pull/1318. Add ~#define MIRYOKU_KLUDGE_TAPDELAY~ to the config file. Build with board ~native_posix_64~.
+
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~native_posix_64~ with the ~board~ option, ~#define MIRYOKU_KLUDGE_TAPDELAY~ with the ~custom_config~ option, and ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-xmk-native_posix_64.yml][Build Example 𝑥MK native_posix_64]] workflow.
 
 
 ** Issues
