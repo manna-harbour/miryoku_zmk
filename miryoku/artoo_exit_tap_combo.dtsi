@@ -1,0 +1,14 @@
+// Copyright 2022 Arto Olli
+// https://github.com/Arto-O/miryoku_zmk.git
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+        combo_to_base {
+            timeout-ms = <50>;
+            key-positions = <0 9>;
+            layers = <2>;
+            bindings = <&to U_BASE>;
+        };
+    };
+};
