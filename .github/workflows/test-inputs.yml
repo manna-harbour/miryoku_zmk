@@ -65,7 +65,7 @@ jobs:
           set-output()
           {
             json=`echo "$2" | jq -cnR 'inputs | split(",";"")'`
-            echo "::set-output name=$1::$json"
+            echo "$1=$json" >> $GITHUB_OUTPUT
           }
           set-output "board" "${{ github.event.inputs.board }}"
           set-output "shield" "${{ github.event.inputs.shield }}"
