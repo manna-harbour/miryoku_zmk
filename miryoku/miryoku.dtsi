@@ -45,10 +45,6 @@ MIRYOKU_LAYER_LIST
   #include "miryoku_kludge_bottomrowcombos.dtsi"
 #endif
 
-#if defined (ARTOO_EXIT_TAP_COMBO)
-  #include "artoo_exit_tap_combo.dtsi"
-#endif
-
 #if defined (MIRYOKU_KLUDGE_TAPDELAY)
   #include "miryoku_kludge_tapdelay.dtsi"
 #else
