@@ -36,5 +36,6 @@ jobs:
       ]'
       layers: '[
         "default",
-        "flip"
+        "flip",
+        "flipupper"
       ]'
