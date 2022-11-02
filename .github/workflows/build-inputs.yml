@@ -55,6 +55,7 @@ on:
         options:
         - "default"
         - "flip"
+        - "flipupper"
       mapping:
         description: 'mapping'
         required: false
