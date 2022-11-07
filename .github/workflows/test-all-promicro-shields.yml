@@ -68,6 +68,8 @@ jobs:
         "scylla_dmmpcb_left","scylla_dmmpcb_right",
         "sofle_left","sofle_right",
         "sofle_rgb_left","sofle_rgb_right",
+        "splitkb_aurora_corne_left","splitkb_aurora_corne_right",
+        "splitkb_aurora_sweep_left","splitkb_aurora_sweep_right",
         "splitreus62_left","splitreus62_right",
         "tbkmini_left","tbkmini_right",
         "tbkmini_adapterv2_left","tbkmini_adapterv2_right",
