@@ -19,7 +19,16 @@ Workflow builds can be customised by copying and editing one of the [[#build-exa
 
 The [[#keyboard-keymaps][keyboard keymaps]] are composed of the config file, a [[#mapping-macros][mapping]] for the physical layout, and the [[#miryoku-keymap][Miryoku keymap]].
 
-[[#additional-and-experimental-features][Additional and Experimental Features]] include [[#caps-word][caps word]], [[#customisation][customisation]], [[#key-emulation-combos][key emulation combos]], [[#mouse-keys][mouse keys]], and [[#𝑥MK][𝑥MK]].
+[[#additional-and-experimental-features][Additional and Experimental Features]] include
+[[#caps-word][caps word]],
+[[#customisation][customisation]],
+[[#double-tap-boot][double tap boot]],
+[[#key-emulation-combos][key emulation combos]],
+[[#mouse-keys][mouse keys]],
+[[#suspend][suspend]],
+[[#tap-delay][tap delay]],
+and [[#𝑥MK][𝑥MK]].
+Open [[#issues][issues]] are also noted.
 
 
 ** Building
@@ -107,6 +116,7 @@ For split composite keyboards (keyboards with a separate controller on each side
 
 Also use to specify optional non-keyboard shields, e.g. ~nice_view~. To combine shields, separate with space, e.g. ~nice_view_adapter nice_view~, ~corne_left nice_view_adapter nice_view~. For multiple builds of combined shields in the same run, use both comma and space separators, e.g. ~corne_left nice_view_adapter nice_view,corne_right nice_view_adapter nice_view~.
 
+
 ***** Miryoku Alternative Layout and Mapping Options
 
 The ~alphas~, ~nav~, ~clipboard~, and ~layers~ options correspond to the Miryoku alternative layout options.  See the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#layers][default layers]] and [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layouts]] documentation for details.  See the [[.github/workflows/test-all-configs.yml][Test All Configs]] workflow file for a list of all supported values.
@@ -143,7 +153,7 @@ Select an alternative mapping, e.g. ~extended_thumbs~, ~pinkie_stagger~.  For th
 
 ***** custom_config
 
-Appends to the [[#config-file][config]] file.  Join multiple lines with ~\n~.  For no additional config, leave as ~default~.
+Appends to the [[#config-file][config]] file, e.g. ~#define MIRYOKU_TAP_QWERTY~. Join multiple lines with ~\n~, e.g. ~#define MIRYOKU_TAP_QWERTY\n#define MIRYOKU_EXTRA_COLEMAKDH~. For no additional config, leave as ~default~.
 
 
 ***** ZMK Options
@@ -184,6 +194,31 @@ See [[.github/workflows/outboards]] for details of supported out-of-tree keyboar
 See https://github.com/manna-harbour/miryoku/discussions/81 for available and supported in-tree and out-of-tree keyboards and current maintenance status.
 
 
+*** Notes
+
+Notes are provided below for individual keyboards where required.
+
+
+**** corne-ish_zen
+
+The default ZMK fork for ~corne-ish_zen~ is https://github.com/LOWPROKB/zmk/tree/Board-Corne-ish-Zen-dedicated-work-queue.
+
+A custom branch is available at https://github.com/manna-harbour/zmk/tree/zen. The branch is based on https://github.com/caksoylar/zmk/tree/caksoylar/zen-on-main which adds compatibility with ZMK ~main~.
+
+Extra features have also been added which can be selected with the following [[#kconfig-configuration][Kconfig configuration]] options.
+
+- ~CONFIG_ZMK_DISPLAY_HIDE_MOMENTARY_LAYERS=y~ Suppress layer widget updates for momentary layer changes.
+- ~CONFIG_CUSTOM_WIDGET_LOGO_IMAGE_ZEN=y~ Corne-ish Zen logo (default).
+- ~CONFIG_CUSTOM_WIDGET_LOGO_IMAGE_ZMK=y~ ZMK logo.
+- ~CONFIG_CUSTOM_WIDGET_LOGO_IMAGE_LPKB=y~ LowproKB logo.
+- ~CONFIG_CUSTOM_WIDGET_LOGO_IMAGE_MIRYOKU=y~ Miryoku logo.
+- ~CONFIG_IL0323_INVERT=y~ Invert display.
+
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~manna-harbour/zmk/zen~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-corne-ish_zen-custom.yml][Build Example corne-ish_zen custom]] workflow.
+
+For local builds, make the changes locally.
+
+
 ** Config File
 
 The config file is used to specify [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layout]] and [[#mapping-macros][mapping]] options for [[#Local-Builds][local builds]].  Options are given in the documentation in the form ~MIRYOKU_OPTION=VALUE~.  Convert to the form ~#define MIRYOKU_OPTION_VALUE~ and add to the config file.
@@ -206,16 +241,20 @@ The file is [[miryoku/custom_config.h]].  See the [[#example-config-file][exampl
 Below is an example [[#config-file][config file]] with the following alternative layout and mapping options:
 
 - ~MIRYOKU_ALPHAS=QWERTY~
+- ~MIRYOKU_TAP=QWERTY~
+- ~MIRYOKU_EXTRA=COLEMAKDH~
 - ~MIRYOKU_NAV=INVERTEDT~
 - ~MIRYOKU_CLIPBOARD=WIN~
 - ~MIRYOKU_LAYERS=FLIP~
 - ~MIRYOKU_MAPPING=EXTENDED_THUMBS~
 
 #+BEGIN_SRC C :tangle no
-// Copyright 2021 Manna Harbour
+// Copyright 2022 Manna Harbour
 // https://github.com/manna-harbour/miryoku
 
 #define MIRYOKU_ALPHAS_QWERTY
+#define MIRYOKU_TAP_QWERTY
+#define MIRYOKU_EXTRA_COLEMAKDH
 #define MIRYOKU_NAV_INVERTEDT
 #define MIRYOKU_CLIPBOARD_WIN
 #define MIRYOKU_LAYERS_FLIP
@@ -397,6 +436,15 @@ Examples include ~CONFIG_ZMK_SLEEP=y~, ~CONFIG_ZMK_DISPLAY=y~, ~CONFIG_BT_CTLR_T
 See https://github.com/manna-harbour/miryoku/discussions/85.
 
 
+*** Double Tap Boot
+
+[[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#additional-features][Additional features]] require a double tap to prevent accidental activation. This not supported in ZMK for the bootloader behavior on split keyboards. Use a single tap instead. See https://github.com/zmkfirmware/zmk/issues/1494.
+
+Requiring double tap to activate the bootloader can be enabled for use with non-split keyboards. Use with split keyboards will require use of the reset button to enter the bootloader on the peripheral side.
+
+For [[#local-builds][local builds]], add ~#define MIRYOKU_KLUDGE_DOUBLETAPBOOT~ to the [[#config-file][config file]]. For [[#workflow-builds][workflow builds]], use ~#define MIRYOKU_KLUDGE_DOUBLETAPBOOT~ with the ~custom_config~ option.
+
+
 *** Key Emulation Combos
 
 Emulate a key with a combo of two other keys.  Enabled automatically on keyboards with a missing key.  Can be enabled on other keyboards for use with hard to reach keys, or for compatibility.
@@ -519,24 +567,45 @@ For local builds, make the changes locally.
 
 Support for https://github.com/zmkfirmware/zmk/issues/1292#issuecomment-1264603539 is included using https://github.com/manna-harbour/zmk/tree/suspend-test and https://github.com/manna-harbour/zephyr/tree/v3.0.0+zmk-fixes-suspend-test.
 
-To suspend, hold shift and tap the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#additional-features][boot]] key. For split keyboards, use the boot key on each side, and suspend the peripheral side first.
+Suspend takes the place of the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#additional-features][boot]] key. For split keyboards, suspend the peripheral side then the central side.
 
-To build, add ~#define MIRYOKU_KLUDGE_SUSPEND~ to the [[#config-file][config file]] and merge https://github.com/manna-harbour/zmk/tree/suspend-test.
+For [[#local-builds][local builds]], add ~#define MIRYOKU_KLUDGE_SUSPEND~ to the [[#config-file][config file]] and merge https://github.com/manna-harbour/zmk/tree/suspend-test.
 
 For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~#define MIRYOKU_KLUDGE_SUSPEND~ with the ~custom_config~ option, and ~zmkfirmware/zmk/main manna-harbour/zmk/suspend-test~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-suspend.yml][Build Example suspend]] workflow.
 
-For local builds, make the changes locally.
+
+*** Tap Delay
+
+Adds a delay between press and release of hold-tap taps, as a work around for https://github.com/zmkfirmware/zmk/issues/1444.
+
+For [[#local-builds][local builds]], add ~#define MIRYOKU_KLUDGE_TAPDELAY~ to the [[#config-file][config file]]. For [[#workflow-builds][workflow builds]], use ~#define MIRYOKU_KLUDGE_TAPDELAY~ with the ~custom_config~ option.
 
 
 *** 𝑥MK
 
 Use Miryoku ZMK with any keyboard with [[https://github.com/manna-harbour/xmk][𝑥MK]].
 
-For [[#local-builds][local builds]] first merge https://github.com/zmkfirmware/zmk/pull/1318. For the ~xmk~ shield, add https://github.com/manna-harbour/xmk/tree/main/zmk/boards/shields/xmk as ~config/boards/shields/xmk~, and build with shield ~xmk~ and the appropriate board. For the ~native_posix_64~ board, build with board ~native_posix_64~.
 
-For [[#workflow-builds][workflow builds]] for the ~xmk~ shield, use the Build Example 𝑥MK xmk workflow, or use the Build Inputs workflow with shield ~xmk~, the appropriate board, and branches ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~. For workflow builds for the ~native_posix_64~ board, use the Build Example 𝑥MK native_posix_64 workflow, or use the Build Inputs workflow with board ~native_posix_64~ and branches ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~.
+**** xmk Shield
 
-Also see [[https://github.com/manna-harbour/miryoku_kmonad][Miryoku KMonad]].
+For [[#local-builds][local builds]] first merge https://github.com/zmkfirmware/zmk/pull/1318. Add https://github.com/manna-harbour/xmk/tree/main/zmk/boards/shields/xmk as ~config/boards/shields/xmk~. Build with shield ~xmk~ and the appropriate board.
+
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~xmk~ with the ~shield~ option, the appropriate board with the ~board~ option, and ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-xmk-xmk.yml][Build Example 𝑥MK xmk]] workflow.
+
+
+**** native_posix_64 Board
+
+For [[#local-builds][local builds]] first merge https://github.com/zmkfirmware/zmk/pull/1318. Add ~#define MIRYOKU_KLUDGE_TAPDELAY~ to the config file. Build with board ~native_posix_64~.
+
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~native_posix_64~ with the ~board~ option, ~#define MIRYOKU_KLUDGE_TAPDELAY~ with the ~custom_config~ option, and ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-xmk-native_posix_64.yml][Build Example 𝑥MK native_posix_64]] workflow.
+
+
+** Issues
+
+
+*** No Current Layer Lock
+
+[[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#additional-features][Current layer lock]] is not supported in ZMK. Use opposite layer lock with the opposite hand instead. See https://github.com/zmkfirmware/zmk/issues/1299.
 
 
 ** 

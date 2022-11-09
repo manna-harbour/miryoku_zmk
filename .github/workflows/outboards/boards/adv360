@@ -1,7 +1,0 @@
-# Copyright 2022 Manna Harbour
-# https://github.com/manna-harbour/miryoku
-
-outboard_repository=PolarityWorks/zmk-config-adv360
-outboard_ref=main
-outboard_from=config/boards/arm/adv360
-outboard_to=boards/arm/adv360
