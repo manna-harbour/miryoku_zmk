@@ -17,8 +17,16 @@
 
 #include "miryoku_clipboard.h"
 
+#include "miryoku_double_tap_guard.h"
+
 #if defined (MIRYOKU_KLUDGE_MOUSEKEYSPR)
   #include "miryoku_kludge_mousekeyspr.h"
 #else
   #include "miryoku_mousekeys.h"
+#endif
+
+#if defined (MIRYOKU_KLUDGE_TAPDELAY)
+  #include "miryoku_kludge_tapdelay.h"
+#else
+  #include "miryoku_behaviors.h"
 #endif

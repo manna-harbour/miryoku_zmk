@@ -10,10 +10,11 @@ jobs:
     secrets: inherit
     with:
       board: '[
-        "adv360_left","adv360_right",
+        "adv360pro_left","adv360pro_right",
         "ahokore",
         "ble_chiffre",
         "corne-ish_zen_left","corne-ish_zen_right",
+        "corneish_zen_v2_left","corneish_zen_v2_right",
         "ferris_rev02",
         "ffkb-holyiot",
         "glove80_left","glove80_right",
