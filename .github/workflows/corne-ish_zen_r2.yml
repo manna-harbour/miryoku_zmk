@@ -1,0 +1,13 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+name: 'corne-ish_zen v2 custom'
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["corneish_zen_v2_left","corneish_zen_v2_right"]'
+      custom_config: '["#define NEUEZIEL_ALPHAS_QWERTY","#define NEUEZIEL_NAV_INVERTEDT","#define NEUEZIEL_SYM"]'
+      kconfig: '["CONFIG_ZMK_DISPLAY_HIDE_MOMENTARY_LAYERS=y"]'

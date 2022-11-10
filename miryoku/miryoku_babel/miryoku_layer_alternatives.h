@@ -120,6 +120,12 @@ U_MT(LGUI, A),     U_MT(LALT, S),     U_MT(LCTRL, D),    U_MT(LSHFT, F),    &kp 
 U_LT(U_BUTTON, Z), U_MT(RALT, X),     &kp C,             &kp V,             &kp B,             &kp N,             &kp M,             &kp COMMA,         U_MT(RALT, DOT),   U_LT(U_BUTTON, SLASH),\
 U_NP,              U_NP,              U_LT(U_MEDIA, ESC),U_LT(U_NAV, SPC),  U_LT(U_MOUSE, TAB),U_LT(U_SYM, RET),  U_LT(U_NUM, BSPC), U_LT(U_FUN, DEL),  U_NP,              U_NP
 
+#define NEUEZIEL_ALTERNATIVES_BASE_QWERTY \
+&kp Q,             &kp W,             &kp E,             &kp R,             &kp T,             &kp Y,             &kp U,             &kp I,             &kp O,             &kp P,             \
+U_MT(LCTRL, A),    U_MT(LALT, S),     U_MT(LGUI, D),     U_MT(LSHFT, F),    &kp G,             &kp H,             U_MT(LSHFT, J),    U_MT(LGUI, K),     U_MT(LALT, L),     U_MT(LCTRL, SQT),   \
+U_LT(U_BUTTON, Z), U_MT(RALT, X),     &kp C,             &kp V,             &kp B,             &kp N,             &kp M,             &kp COMMA,         U_MT(RALT, DOT),   U_LT(U_BUTTON, SLASH),\
+U_NP,              U_NP,              U_LT(U_MEDIA, ESC),U_LT(U_NAV, TAB),  U_LT(U_NAV, SPC),  U_LT(U_SYM, BSPC), U_LT(U_NUM, RET),  U_LT(U_FUN, DEL),  U_NP,              U_NP
+
 #define MIRYOKU_ALTERNATIVES_BASE_QWERTZ \
 &kp Q,             &kp W,             &kp E,             &kp R,             &kp T,             &kp Z,             &kp U,             &kp I,             &kp O,             &kp P,             \
 U_MT(LGUI, A),     U_MT(LALT, S),     U_MT(LCTRL, D),    U_MT(LSHFT, F),    &kp G,             &kp H,             U_MT(LSHFT, J),    U_MT(LCTRL, K),    U_MT(LALT, L),     U_MT(LGUI, SQT),   \
@@ -266,6 +272,12 @@ U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA
 U_NA,              &kp RALT,          &u_to_U_NUM,       &u_to_U_NAV,       U_NA,              U_RDO,             U_PST,             U_CPY,             U_CUT,             U_UND,             \
 U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              &kp RET,           &kp BSPC,          &kp DEL,           U_NP,              U_NP
 
+#define NEUEZIEL_ALTERNATIVES_NAV_INVERTEDT \
+U_BOOT,            &u_to_U_TAP,       &kp LA(TAB),       LG(ESC),           LG(LSHFT),         &kp INS,           &kp LS(LA(LEFT)),  &kp UP,            &kp LS(LA(RIGHT)), &kp PG_UP,         \
+&sk LCTRL,         &sk LALT,          &sk LGUI,          &sk LSHFT,         U_NA,              &u_caps_word,      &kp LEFT,          &kp DOWN,          &kp RIGHT,         &kp PG_DN,         \
+U_NA,              &kp RALT,          LA(LG(LEFT)),      LA(LG(F)),         LA(LG(RIGHT)),     U_RDO,             U_PST,             U_CPY,             U_CUT,             U_UND,             \
+U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              &kp BSPC,          &kp RET,           &kp DEL,           U_NP,              U_NP
+
 #define MIRYOKU_ALTERNATIVES_NAV_VI \
 U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA,              U_RDO,             U_PST,             U_CPY,             U_CUT,             U_UND,             \
 &kp LGUI,          &kp LALT,          &kp LCTRL,         &kp LSHFT,         U_NA,              &kp LEFT,          &kp DOWN,          &kp UP,            &kp RIGHT,         &u_caps_word,      \
@@ -365,6 +377,12 @@ U_NP,              U_NP,              U_NA,              U_NA,              U_NA
 &kp COLON,         &kp DLLR,          &kp PRCT,          &kp CRRT,          &kp PLUS,          U_NA,              &kp LSHFT,         &kp LCTRL,         &kp LALT,          &kp LGUI,          \
 &kp TILDE,         &kp EXCL,          &kp AT,            &kp HASH,          &kp PIPE,          U_NA,              &u_to_U_SYM,       &u_to_U_MOUSE,     &kp RALT,          U_NA,              \
 U_NP,              U_NP,              &kp LPAR,          &kp RPAR,          &kp UNDER,         U_NA,              U_NA,              U_NA,              U_NP,              U_NP
+
+#define NEUEZIEL_ALTERNATIVES_SYM \
+&kp ASTRK,         &kp LBKT,          &kp LBRC,          &kp LPAR,          &kp TILDE,         &kp PIPE,          &kp RPAR,          &kp RBRC,          &kp RBKT,          &kp CRRT,          \
+&kp MINUS,         &kp EXCL,          &kp EQUAL,         &kp UNDER,         &kp SEMI,          &kp AMPS,          &sk LSHFT,         &sk LGUI,          &sk LALT,          &sk LCTRL,         \
+&kp PLUS,          &kp GRAVE,         &kp AT,            &kp BSLH,          &kp COLON,         U_NA,              &kp HASH,          &kp DLLR,          &kp PRCNT,         U_NA,              \
+U_NP,              U_NP,              &kp ESC,           &kp TAB,           &kp SPC,           U_NA,              U_NA,              U_NA,              U_NP,              U_NP
 
 
 #define MIRYOKU_ALTERNATIVES_FUN_FLIP \
