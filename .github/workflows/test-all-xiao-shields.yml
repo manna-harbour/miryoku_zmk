@@ -13,6 +13,7 @@ jobs:
       shield: '[
         "clog_v2_left","clog_v2_right",
         "hummingbird",
+        "totem_left","totem_right",
         "xmk",
         "zaphod_lite"
       ]'

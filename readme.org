@@ -309,6 +309,11 @@ Notes or diagrams are provided below where the selection of keys is not obvious 
 For use with PIM447 installed in the right secondary thumb key position. The right tertiary thumb key is replaced with the secondary and [[#thumb-combos][thumb combos]] are enabled. Note that the right secondary thumb key is in the opposite position from usual, relative to the primary.
 
 
+**** 38/totem
+
+The outer pinkie column key can be used as an alternative to the top row pinkie column key.
+
+
 **** 41/reviung41
 
 The thumbs keys, from left to right, are as follows: left secondary, left primary, right secondary, right primary, right tertiary. [[#thumb-combos][Thumb combos]] are enabled for the left thumbs. The left thumb keys are also duplicated on the left outer pinkie column, from top to bottom, as follows: primary, tertiary, secondary. Note that the left secondary thumb key is in the opposite position from usual, relative to the primary. For ~MIRYOKU_LAYERS=FLIP~, substitute left and right above.
