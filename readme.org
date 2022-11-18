@@ -23,6 +23,7 @@ The [[#keyboard-keymaps][keyboard keymaps]] are composed of the config file, a [
 [[#caps-word][caps word]],
 [[#customisation][customisation]],
 [[#double-tap-boot][double tap boot]],
+[[#global-shift-functions][global shift functions]],
 [[#key-emulation-combos][key emulation combos]],
 [[#mouse-keys][mouse keys]],
 [[#suspend][suspend]],
@@ -443,12 +444,20 @@ See https://github.com/manna-harbour/miryoku/discussions/85.
 
 *** Double Tap Boot
 
-[[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#additional-features][Additional features]] require a double tap to prevent accidental activation. This not supported in ZMK for the bootloader behavior on split keyboards. Use a single tap instead. See https://github.com/zmkfirmware/zmk/issues/1494.
+Double tap is used with [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#additional-features][Additional features]]. Double tap for the bootloader behavior is not supported in ZMK on split keyboards. See https://github.com/zmkfirmware/zmk/issues/1494. By default, double tap for bootloader is disabled. Use a single tap instead.
 
-Requiring double tap to activate the bootloader can be enabled for use with non-split keyboards. Use with split keyboards will require use of the reset button to enter the bootloader on the peripheral side.
+Double tap for bootloader can be enabled for use with non-split keyboards. For [[#local-builds][local builds]], add ~#define MIRYOKU_KLUDGE_DOUBLETAPBOOT~ to the [[#config-file][config file]]. For [[#workflow-builds][workflow builds]], use ~#define MIRYOKU_KLUDGE_DOUBLETAPBOOT~ with the ~custom_config~ option.
 
-For [[#local-builds][local builds]], add ~#define MIRYOKU_KLUDGE_DOUBLETAPBOOT~ to the [[#config-file][config file]]. For [[#workflow-builds][workflow builds]], use ~#define MIRYOKU_KLUDGE_DOUBLETAPBOOT~ with the ~custom_config~ option.
+Use with split keyboards will result in the bootloader function only taking effect on the central side. Use a reset button to enter the bootloader on the peripheral side.
 
+
+*** Global Shift Functions
+
+Shift functions are used on [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#media][Media]]. Shift functions are not supported in ZMK for RGB and EP behaviors on split keyboards. See https://github.com/zmkfirmware/zmk/issues/1494. By default, shift functions for RGB and EP are disabled. Only the unshifted functions are available.
+
+Shift functions for RGB and EP can be enabled for use with non-split keyboards. For [[#local-builds][local builds]], add ~#define MIRYOKU_KLUDGE_GLOBALSHIFTFUNCTIONS~ to the [[#config-file][config file]]. For [[#workflow-builds][workflow builds]], use ~#define MIRYOKU_KLUDGE_GLOBALSHIFTFUNCTIONS~ with the ~custom_config~ option.
+
+Use with split keyboards will result in the shifted as well as the unshifted functions for RGB and EP only taking effect on the central side.
 
 *** Key Emulation Combos
 
