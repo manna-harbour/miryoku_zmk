@@ -110,9 +110,9 @@ XXX   K20  K21  K22  K23  K24       K25  K26  K27  K28  K29  XXX \
 // TODO: Look into this, see if there's a way to keep the same config and JUST swap the two keys.
 #define MIRYOKU_LAYER_BASE \
 &kp Q,             &kp H,             &kp O,             &kp U,             &kp X,             &kp G,             &kp C,             &kp R,             &kp F,             &kp Z,             \
-&hm LGUI Y,        &hm LALT I,        &hm LCTRL E,       &hm LSHFT A,       &kp DOT,           &kp D,             &hm LSHFT S,       &hm LCTRL T,       &hm LALT N,        &hm LGUI B,        \
-&lt U_BUTTON J,    &hm RALT SLASH,    &kp COMMA,         &kp K,             &kp SQT,           &kp W,             &kp M,             &kp L,             &hm RALT P,        &lt U_BUTTON V,    \
-U_NP,              U_NP,              &lt U_NUM ESC,     &lt U_NAV SPC,     &lt U_MOUSE TAB,   &lt U_SYM RET,     &lt U_MEDIA BSPC,    &lt U_FUN DEL,     U_NP,              U_NP
+U_MT( LGUI, Y),        U_MT( LALT, I),        U_MT( LCTRL, E),       U_MT( LSHFT, A),       &kp DOT,           &kp D,             U_MT( LSHFT, S),       U_MT( LCTRL, T),       U_MT( LALT, N),        U_MT( LGUI, B),        \
+U_LT( U_BUTTON, J),    U_MT( RALT, SLASH),    &kp COMMA,         &kp K,             &kp SQT,           &kp W,             &kp M,             &kp L,             U_MT( RALT, P),        U_LT( U_BUTTON, V),    \
+U_NP,              U_NP,              U_LT( U_NUM, ESC),     U_LT( U_NAV, SPC),     U_LT( U_MOUSE, TAB),   U_LT( U_SYM, RET),     U_LT( U_MEDIA, BSPC),    U_LT( U_FUN, DEL),     U_NP,              U_NP
 
 
 // Layer 1: Button, use default
