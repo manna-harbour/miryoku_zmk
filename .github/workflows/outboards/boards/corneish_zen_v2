@@ -5,3 +5,4 @@ outboard_repository=LOWPROKB/zmk
 outboard_ref=corne-ish-zen-v2
 outboard_from=app/boards/arm/corneish_zen
 outboard_to=boards/arm/corneish_zen
+zmk=LOWPROKB/zmk/corne-ish-zen-v2
