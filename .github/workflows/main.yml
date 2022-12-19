@@ -89,7 +89,13 @@ jobs:
           cat "$configfile" >> "$tmpfile"
           mv "$tmpfile" "$configfile"
 
-          artifact_build_name="miryoku_zmk ${{ matrix.shield }} ${{ matrix.board }}"
+          artifact_build_name="miryoku_zmk"
+          if [ -n "${{ matrix.shield }}" -a "${{ matrix.shield }}" != 'default' ]
+          then
+            artifact_build_name="$artifact_build_name ${{ matrix.shield }}"
+          fi
+          artifact_build_name="$artifact_build_name ${{ matrix.board }}"
+
           hash_length=16
 
           if [ -n "${{ matrix.custom_config }}" -a "${{ matrix.custom_config }}" != 'default' ]
