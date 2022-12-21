@@ -1,0 +1,13 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+name: 'Build skeletyl nice_nano_v2'
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["nice_nano_v2"]'
+      shield: '["tbkmini_adapterv2_left","tbkmini_adapterv2_right"]'
+      nav: '["invertedt"]'
