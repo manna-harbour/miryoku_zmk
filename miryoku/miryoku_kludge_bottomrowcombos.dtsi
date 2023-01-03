@@ -1,7 +1,7 @@
 // Copyright 2022 Manna Harbour
 // https://github.com/manna-harbour/miryoku
 
-#define MIRYOKU_KLUDGE_BOTTOMROWCOMBOS_TERM 200
+#define MIRYOKU_KLUDGE_BOTTOMROWCOMBOS_TERM 50
 #define MIRYOKU_KLUDGE_BOTTOMROWCOMBOS_MACRO(LAYER, POSITION, BINDING) \
 bottomrowcombos_ ## LAYER ## _ ## POSITION { \
   layers = <LAYER>; \
