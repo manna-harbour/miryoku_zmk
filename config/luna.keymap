@@ -1,0 +1,3 @@
+#include "../miryoku/custom_config.h"
+#include "../miryoku/mapping/30/hummingbird.h"
+#include "../miryoku/miryoku.dtsi"
