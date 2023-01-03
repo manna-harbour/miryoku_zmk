@@ -1,4 +1,4 @@
-outboard_repository=mattdibi/zmk-config-luna
+outboard_repository=Apsu/zmk-luna
 outboard_ref=master
 outboard_from=config/boards/shields/luna
 outboard_to=boards/shields/luna
