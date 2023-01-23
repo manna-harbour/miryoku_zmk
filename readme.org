@@ -422,11 +422,11 @@ The keyboard keymaps include the [[#config-file][config file]], a [[#mapping-mac
 
 ** Kconfig Configuration
 
-Kconfig keyboard configuration options can be set in ~config/<keyboard>.conf~ for [[#local-builds][local]] and [[#workflow-builds][workflow]] builds.
+[[https://zmk.dev/docs/config][Kconfig keyboard configuration options]] can be set in ~config/<keyboard>.conf~ as usual for [[#local-builds][local]] and [[#workflow-builds][workflow]] builds.
+Examples include ~CONFIG_ZMK_SLEEP=y~, ~CONFIG_ZMK_DISPLAY=y~, ~CONFIG_BT_CTLR_TX_PWR_PLUS_8=y~.
+Also see the default ~<keyboard>.conf~ included in the keyboard definition, e.g. [[https://github.com/zmkfirmware/zmk/blob/main/app/boards/shields/corne/corne.conf][corne.conf]].
 
 Kconfig configuration can also be specified in the [[#kconfig][kconfig option]] for workflow builds.
-
-Examples include ~CONFIG_ZMK_SLEEP=y~, ~CONFIG_ZMK_DISPLAY=y~, ~CONFIG_BT_CTLR_TX_PWR_PLUS_8=y~.  Additional documentation is available at [[https://deploy-preview-722--zmk.netlify.app/docs/config/index/]]. Also see the default ~<keyboard>.conf~ included in the keyboard definition, e.g. [[https://github.com/zmkfirmware/zmk/blob/main/app/boards/shields/corne/corne.conf][corne.conf]].
 
 
 ** Additional and Experimental Features
@@ -458,6 +458,7 @@ Shift functions are used on [[https://github.com/manna-harbour/miryoku/tree/mast
 Shift functions for RGB and EP can be enabled for use with non-split keyboards. For [[#local-builds][local builds]], add ~#define MIRYOKU_KLUDGE_GLOBALSHIFTFUNCTIONS~ to the [[#config-file][config file]]. For [[#workflow-builds][workflow builds]], use ~#define MIRYOKU_KLUDGE_GLOBALSHIFTFUNCTIONS~ with the ~custom_config~ option.
 
 Use with split keyboards will result in the shifted as well as the unshifted functions for RGB and EP only taking effect on the central side.
+
 
 *** Key Emulation Combos
 
