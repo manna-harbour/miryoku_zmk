@@ -52,6 +52,7 @@ jobs:
         "levinson_left","levinson_right",
         "lily58_left","lily58_right",
         "lotus58_left","lotus58_right",
+        "luna_left","luna_right",
         "mano42_left","mano42_right",
         "microdox_left","microdox_right",
         "microdox_mod_left","microdox_mod_right",
