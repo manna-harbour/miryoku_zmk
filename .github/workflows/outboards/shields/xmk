@@ -3,5 +3,5 @@
 
 outboard_repository=manna-harbour/xmk
 outboard_ref=main
-outboard_from=zmk/boards/shields/xmk
+outboard_from=zmk-config/boards/shields/xmk
 outboard_to=boards/shields/xmk

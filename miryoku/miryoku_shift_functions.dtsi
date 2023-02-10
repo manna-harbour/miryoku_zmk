@@ -22,7 +22,6 @@
 }; \
 MIRYOKU_SHIFT_FUNCTION(NAME, BINDING, &u_macro_ ## NAME)
 
-
 MIRYOKU_SHIFT_MACRO(u_bt_sel_0, &bt BT_SEL 0, &bt BT_SEL 0 &bt BT_CLR)
 MIRYOKU_SHIFT_MACRO(u_bt_sel_1, &bt BT_SEL 1, &bt BT_SEL 1 &bt BT_CLR)
 MIRYOKU_SHIFT_MACRO(u_bt_sel_2, &bt BT_SEL 2, &bt BT_SEL 2 &bt BT_CLR)
@@ -30,6 +29,10 @@ MIRYOKU_SHIFT_MACRO(u_bt_sel_3, &bt BT_SEL 3, &bt BT_SEL 3 &bt BT_CLR)
 MIRYOKU_SHIFT_MACRO(u_bt_sel_4, &bt BT_SEL 4, &bt BT_SEL 4 &bt BT_CLR)
 
 MIRYOKU_SHIFT_FUNCTION(u_out_tog, &out OUT_TOG, &out OUT_USB)
+
+MIRYOKU_SHIFT_FUNCTION(u_caps_word, &caps_word, &kp CAPS)
+
+#if defined (MIRYOKU_KLUDGE_GLOBALSHIFTFUNCTIONS)
 
 MIRYOKU_SHIFT_FUNCTION(u_rgb_tog, &rgb_ug RGB_TOG, &rgb_ug RGB_OFF)
 
@@ -40,5 +43,4 @@ MIRYOKU_SHIFT_FUNCTION(u_rgb_bri, &rgb_ug RGB_BRI, &rgb_ug RGB_BRD)
 
 MIRYOKU_SHIFT_FUNCTION(u_ep_tog, &ext_power EP_TOG, &ext_power EP_OFF)
 
-MIRYOKU_SHIFT_FUNCTION(u_caps_word, &caps_word, &kp CAPS)
-
+#endif

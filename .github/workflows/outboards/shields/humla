@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=smores56/zmk-config-humla
+outboard_ref=main
+outboard_from=config/boards/shields/humla
+outboard_to=boards/shields/humla
