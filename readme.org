@@ -200,24 +200,13 @@ See https://github.com/manna-harbour/miryoku/discussions/81 for available and su
 Notes are provided below for individual keyboards where required.
 
 
-**** corne-ish_zen
+**** Corne-ish Zen
 
-The default ZMK fork for ~corne-ish_zen~ is https://github.com/LOWPROKB/zmk/tree/Board-Corne-ish-Zen-dedicated-work-queue.
+For Corne-ish Zen v1 (GB R1 and R2) build with board ~corneish_zen_v1_left,corneish_zen_v1_right~, and for Corne-ish Zen v2 (GB R3) build with board ~corneish_zen_v2_left,corneish_zen_v2_right~.
 
-A custom branch is available at https://github.com/manna-harbour/zmk/tree/zen. The branch is based on https://github.com/caksoylar/zmk/tree/caksoylar/zen-on-main which adds compatibility with ZMK ~main~.
+A custom branch is also available at https://github.com/caksoylar/zmk/tree/caksoylar/zen-v1+v2 that includes additional display improvements and options. Documentation is at https://gist.github.com/caksoylar/c411313990978e1903c244f03039187a. Options can be selected with [[#kconfig-configuration][Kconfig configuration]]. For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~caksoylar/zmk/caksoylar/zen-v1+v2~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-corneish_zen-custom.yml][Build Example Corne-ish Zen Custom]] workflow. For local builds, make the changes locally.
 
-Extra features have also been added which can be selected with the following [[#kconfig-configuration][Kconfig configuration]] options.
-
-- ~CONFIG_ZMK_DISPLAY_HIDE_MOMENTARY_LAYERS=y~ Suppress layer widget updates for momentary layer changes.
-- ~CONFIG_CUSTOM_WIDGET_LOGO_IMAGE_ZEN=y~ Corne-ish Zen logo (default).
-- ~CONFIG_CUSTOM_WIDGET_LOGO_IMAGE_ZMK=y~ ZMK logo.
-- ~CONFIG_CUSTOM_WIDGET_LOGO_IMAGE_LPKB=y~ LowproKB logo.
-- ~CONFIG_CUSTOM_WIDGET_LOGO_IMAGE_MIRYOKU=y~ Miryoku logo.
-- ~CONFIG_IL0323_INVERT=y~ Invert display.
-
-For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~manna-harbour/zmk/zen~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-corne-ish_zen-custom.yml][Build Example corne-ish_zen custom]] workflow.
-
-For local builds, make the changes locally.
+Corne-ish Zen v1 can also be built with the original board ~corne-ish_zen_left,corne-ish_zen_right~ using the LowproKB fork, and workflow builds for this board will use this fork by default.
 
 
 ** Config File
@@ -422,11 +411,11 @@ The keyboard keymaps include the [[#config-file][config file]], a [[#mapping-mac
 
 ** Kconfig Configuration
 
-Kconfig keyboard configuration options can be set in ~config/<keyboard>.conf~ for [[#local-builds][local]] and [[#workflow-builds][workflow]] builds.
+[[https://zmk.dev/docs/config][Kconfig keyboard configuration options]] can be set in ~config/<keyboard>.conf~ as usual for [[#local-builds][local]] and [[#workflow-builds][workflow]] builds.
+Examples include ~CONFIG_ZMK_SLEEP=y~, ~CONFIG_ZMK_DISPLAY=y~, ~CONFIG_BT_CTLR_TX_PWR_PLUS_8=y~.
+Also see the default ~<keyboard>.conf~ included in the keyboard definition, e.g. [[https://github.com/zmkfirmware/zmk/blob/main/app/boards/shields/corne/corne.conf][corne.conf]].
 
 Kconfig configuration can also be specified in the [[#kconfig][kconfig option]] for workflow builds.
-
-Examples include ~CONFIG_ZMK_SLEEP=y~, ~CONFIG_ZMK_DISPLAY=y~, ~CONFIG_BT_CTLR_TX_PWR_PLUS_8=y~.  Additional documentation is available at [[https://deploy-preview-722--zmk.netlify.app/docs/config/index/]]. Also see the default ~<keyboard>.conf~ included in the keyboard definition, e.g. [[https://github.com/zmkfirmware/zmk/blob/main/app/boards/shields/corne/corne.conf][corne.conf]].
 
 
 ** Additional and Experimental Features
@@ -458,6 +447,7 @@ Shift functions are used on [[https://github.com/manna-harbour/miryoku/tree/mast
 Shift functions for RGB and EP can be enabled for use with non-split keyboards. For [[#local-builds][local builds]], add ~#define MIRYOKU_KLUDGE_GLOBALSHIFTFUNCTIONS~ to the [[#config-file][config file]]. For [[#workflow-builds][workflow builds]], use ~#define MIRYOKU_KLUDGE_GLOBALSHIFTFUNCTIONS~ with the ~custom_config~ option.
 
 Use with split keyboards will result in the shifted as well as the unshifted functions for RGB and EP only taking effect on the central side.
+
 
 *** Key Emulation Combos
 
