@@ -22,8 +22,8 @@
     U_NP,            U_NP,            U_NA,             U_NA,              U_NA,                U_BTN1,            U_BTN3,             U_BTN2,          U_NP,           U_NP
 
 #define MIRYOKU_LAYER_NUM \
-    &kp 1,           &kp 2,           &kp 3,            &kp 4,             &kp 5,               U_NA,              &kp GRAVE,          &kp MINUS,       &kp EQUAL,      U_NA,             \
-    U_MT(LGUI, 6),   U_MT(LALT, 7),   U_MT(LCTRL, 8),   U_MT(LSHFT, 9),    &kp 0,               U_NA,              &kp LSHFT,          &kp LCTRL,       &kp LALT,       &kp LGUI,         \
+    &kp N1,          &kp N2,          &kp N3,           &kp N4,            &kp N5,              U_NA,              &kp GRAVE,          &kp MINUS,       &kp EQUAL,      U_NA,             \
+    U_MT(LGUI, N6),  U_MT(LALT, N7),  U_MT(LCTRL, N8),  U_MT(LSHFT, N9),   &kp N0,              U_NA,              &kp LSHFT,          &kp LCTRL,       &kp LALT,       &kp LGUI,         \
     &kp BSLH,        &kp DOT,         &kp SEMI,         &kp LBKT,          &kp RBKT,            U_NA,              U_NA,               U_NA,            U_NA,           U_NA,             \
     U_NP,            U_NP,            U_NA,             &kp SPC,           &kp ESC,             U_NA,              U_NA,               U_NA,            U_NP,           U_NP
 
