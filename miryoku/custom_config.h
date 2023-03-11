@@ -53,6 +53,6 @@
 #define U_FUN    4
 
 // faster cursor movement
-#define U_MOUSE_MOVE_MAX 1500
+#define U_MOUSE_MOVE_MAX 2000
 // smaller mouse scroll increments.
-#define U_MOUSE_SCROLL_MAX 50
+#define U_MOUSE_SCROLL_MAX 20
