@@ -11,3 +11,4 @@ jobs:
       board: '["nice_nano_v2"]'
       shield: '["corne_left","corne_right"]'
       kconfig: '["CONFIG_ZMK_DISPLAY=y CONFIG_BT_CTLR_TX_PWR_PLUS_8=y CONFIG_WS2812_STRIP=y"]'
+      alphas: '["workman"]'
