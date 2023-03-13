@@ -1,0 +1,20 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+name: 'Build Kuba'
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["nice_nano_v2"]'
+      shield: '["corne_left nice_view_adapter nice_view","corne_right nice_view_adapter nice_view"]'
+      branches: '["zmkfirmware/zmk/main ftc/zmk/mouse-ftc"]'
+      custom_config: '["#define MIRYOKU_KLUDGE_MOUSEKEYSPR\n#define U_MOUSE_MOVE_MAX 5\n#define U_MOUSE_MOVE_EXPONENT 2\n#define U_MOUSE_MOVE_TIME 500#define U_MOUSE_MOVE_DELAY 0"]'
+      alphas: '["QWERTY"]'
+      nav: '["invertedT"]'
+      clipboard: '["default"]'
+      layers: '["flip"]'
+      mapping: '["default"]'
+      kconfig: '["CONFIG_ZMK_MOUSE=y"]'
