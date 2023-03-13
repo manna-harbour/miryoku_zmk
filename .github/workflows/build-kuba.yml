@@ -19,4 +19,4 @@ jobs:
       clipboard: '["default"]'
       layers: '["flip"]'
       mapping: '["default"]'
-      kconfig: '["CONFIG_ZMK_MOUSE=y"]'
+      kconfig: '["CONFIG_ZMK_MOUSE=y\nCONFIG_BT_CTLR_TX_PWR_PLUS_8=y"]'
