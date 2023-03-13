@@ -13,7 +13,7 @@ jobs:
       board: '["nice_nano_v2"]'
       shield: '["corne_left nice_view_adapter nice_view","corne_right nice_view_adapter nice_view"]'
       branches: '["zmkfirmware/zmk/main ftc/zmk/mouse-ftc"]'
-      custom_config: '["#define U_TAPPING_TERM 100\n#define MIRYOKU_KLUDGE_MOUSEKEYSPR\n#define U_MOUSE_MOVE_MAX 2000\n#define U_MOUSE_MOVE_EXPONENT 1\n#define U_MOUSE_MOVE_TIME 700\n#define U_MOUSE_MOVE_DELAY 0"]'
+      custom_config: '["#define U_TAPPING_TERM 100\n#define MIRYOKU_KLUDGE_MOUSEKEYSPR\n#define U_MOUSE_MOVE_MAX 2000\n#define U_MOUSE_MOVE_EXPONENT 1\n#define U_MOUSE_MOVE_TIME 700\n#define U_MOUSE_MOVE_DELAY 0\n#define U_MOUSE_SCROLL_MAX 30"]'
       alphas: '["QWERTY"]'
       nav: '["invertedT"]'
       clipboard: '["default"]'
