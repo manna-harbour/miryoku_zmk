@@ -1,0 +1,13 @@
+#define MIRYOKU_LANGUAGE_SWITCHER(NAME, BINDING) \
+/ {
+macros {
+  language_switcher: language_switcher {
+    label = NAME;
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings
+        = <&macro_press LANGUAGE_SWITCHER_COMBO BINDING>
+        ;
+    };
+  };
+};

@@ -17,6 +17,7 @@
 
 #include "miryoku_clipboard.h"
 
+#include "miryoku_language_switcher.h"
 #include "miryoku_double_tap_guard.h"
 
 #include "miryoku_shift_functions.h"
