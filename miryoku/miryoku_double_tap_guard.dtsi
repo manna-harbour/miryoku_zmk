@@ -33,7 +33,20 @@ MIRYOKU_DOUBLE_TAP_GUARD(u_to_U_##LAYER, &to U_##LAYER)
 MIRYOKU_LAYER_LIST_REST
 #undef MIRYOKU_X
 
-#include "miryoku_language_switcher.dtsi"
+#define MIRYOKU_LANGUAGE_SWITCHER(NAME, BINDING) \
+/ { \
+macros { \
+  language_switcher: language_switcher { \
+    label = NAME; \
+      compatible = "zmk,behavior-macro"; \
+      #binding-cells = <0>; \
+      bindings \
+        = <&macro_press LANGUAGE_SWITCHER_COMBO BINDING> \
+        ; \
+    }; \
+  }; \
+};
+
 #define MIRYOKU_X(LAYER, STRING) \
 MIRYOKU_LANGUAGE_SWITCHER(s_to_u_##LAYER, &to U_##LAYER)
 MIRYOKU_LAYER_LIST_BASE
