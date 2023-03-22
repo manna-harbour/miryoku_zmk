@@ -14,6 +14,7 @@ jobs:
         "ahokore",
         "ble_chiffre",
         "corne-ish_zen_left","corne-ish_zen_right",
+        "corneish_zen_v1_left","corneish_zen_v1_right",
         "corneish_zen_v2_left","corneish_zen_v2_right",
         "ferris_rev02",
         "ffkb-holyiot",

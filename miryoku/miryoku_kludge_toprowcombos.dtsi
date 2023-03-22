@@ -15,30 +15,55 @@ toprowcombos_ ## LAYER ## _ ## POSITION { \
     compatible = "zmk,combos";
 #if defined (MIRYOKU_LAYERS_FLIP)
   #if defined (MIRYOKU_ALPHAS_AZERTY)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #elif defined (MIRYOKU_ALPHAS_BEAKL15)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #elif defined (MIRYOKU_ALPHAS_COLEMAK)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #elif defined (MIRYOKU_ALPHAS_COLEMAKDHK)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #elif defined (MIRYOKU_ALPHAS_DVORAK)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #elif defined (MIRYOKU_ALPHAS_HALMAK)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #elif defined (MIRYOKU_ALPHAS_WORKMAN)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #elif defined (MIRYOKU_ALPHAS_QWERTY)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #elif defined (MIRYOKU_ALPHAS_QWERTZ)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #else
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #endif
   #if defined (MIRYOKU_NAV_INVERTEDT)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #elif defined (MIRYOKU_NAV_VI)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #else
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #endif
 #else
   #if defined (MIRYOKU_ALPHAS_AZERTY)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #elif defined (MIRYOKU_ALPHAS_BEAKL15)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #elif defined (MIRYOKU_ALPHAS_COLEMAK)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #elif defined (MIRYOKU_ALPHAS_COLEMAKDHK)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #elif defined (MIRYOKU_ALPHAS_DVORAK)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #elif defined (MIRYOKU_ALPHAS_HALMAK)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #elif defined (MIRYOKU_ALPHAS_WORKMAN)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #elif defined (MIRYOKU_ALPHAS_QWERTY)
+    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, LEFTPINKIE, &kp Q)
+    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, LEFTINNERINDEX, &kp T)
+    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, RIGHTINNERINDEX, &kp Y)
+    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, RIGHTPINKIE, &kp P)
   #elif defined (MIRYOKU_ALPHAS_QWERTZ)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #else
     MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, LEFTPINKIE, &kp Q)
     MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, LEFTINNERINDEX, &kp B)
@@ -46,7 +71,9 @@ toprowcombos_ ## LAYER ## _ ## POSITION { \
     MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, RIGHTPINKIE, &kp SQT)
   #endif
   #if defined (MIRYOKU_NAV_INVERTEDT)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #elif defined (MIRYOKU_NAV_VI)
+    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #else
     MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_NAV, LEFTPINKIE, &bootloader)
     MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_NAV, LEFTINNERINDEX, U_NA)
