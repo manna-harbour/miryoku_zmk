@@ -50,6 +50,7 @@ U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA
 U_NA,              &kp RALT,          &u_to_U_NUM,       &u_to_U_NAV,       U_NA,              U_WH_L,            U_WH_D,            U_WH_U,            U_WH_R,            &kp PG_DN,         \
 U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              U_BTN2,            U_BTN1,            U_BTN3,            U_NP,              U_NP
 
+#if defined (MIRYOKU_KEYBOARD_LOTUS58)
 #define XXX &none
 
 #define MIRYOKU_LAYOUTMAPPING_LOTUS58( \
@@ -66,3 +67,9 @@ U_NP,              U_NP,              U_NA,              U_NA,              U_NA
 
 #define MIRYOKU_KLUDGE_THUMBCOMBOS_LEFT 54 55
 #define MIRYOKU_KLUDGE_THUMBCOMBOS_RIGHT 56 57
+#define CUSTOM_PHT_LEFT_KEYS \
+  6 7 8 9 10 11 18 19 20 21 22 23 31 32 33 34 35 36 37 45 46 47 48 49 50 51 56 57 58 59 53 54 55
+#define CUSTOM_PHT_RIGHT_KEYS \
+  0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 30 38 39 40 41 42 43 44 52 53 54 55 56 57 58
+#define CUSTOM_BASE_ESC_COMBO_KEYS 39 40
+#endif
