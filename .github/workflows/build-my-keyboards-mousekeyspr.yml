@@ -1,0 +1,17 @@
+name: 'Build lotus58,corne with mousekeys pr'
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - '*'
+  workflow_dispatch:
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["nice_nano_v2"]'
+      custom_config: '["#define MIRYOKU_KLUDGE_MOUSEKEYSPR"]'
+      shield: '["lotus58_left","lotus58_right","corne_left nice_view_adapter nice_view","corne_right nice_view_adapter nice_view"]'
+      kconfig: '["CONFIG_ZMK_MOUSE=y"]'
+      branches: '["zmkfirmware/zmk/main ftc/zmk/mouse-ftc"]'

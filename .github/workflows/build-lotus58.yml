@@ -1,9 +1,0 @@
-name: 'Build lotus58 nice_nano_v2'
-on: [push, pull_request, workflow_dispatch]
-jobs:
-  build:
-    uses: ./.github/workflows/main.yml
-    secrets: inherit
-    with:
-      board: '["nice_nano_v2"]'
-      shield: '["lotus58_left","lotus58_right"]'
