@@ -38,7 +38,7 @@ MIRYOKU_LAYER_LIST_REST
 ZMK_MACRO(macro_u_##LAYER, bindings 
     = <&macro_press  &kp LALT >
     , <&macro_tap &to U_##LAYER &kp LSHFT >
-    , <&macro_release &kp LSHFT>;); \
+    , <&macro_release &kp LSHFT>;) \
 MIRYOKU_DOUBLE_TAP_GUARD(u_to_U_##LAYER, macro_u_##LAYER)
 MIRYOKU_LAYER_LIST_BASE
 #undef MIRYOKU_Y
