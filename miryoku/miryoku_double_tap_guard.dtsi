@@ -55,8 +55,8 @@ LANGUAGE_CHANGER_MACRO(macro_U_##LAYER, &to U_##LAYER) \
 MIRYOKU_DOUBLE_TAP_GUARD(u_to_U_##LAYER, macro_U_##LAYER)
 / {
     macros {
-        macro_U_BASE : macro_U_BASE {
-            label = U_STRINGIFY(macro_U_BASE);
+        macro_U_BASE: macro_U_BASE {
+            label = "macro_U_BASE";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
