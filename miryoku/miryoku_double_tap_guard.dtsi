@@ -15,7 +15,7 @@
 };
 
 #define LANGUAGE_CHANGER_MACRO(NAME, BINDING) \
-/ {
+/ { \
     macros { \
         NAME : NAME { \
             label = "ZM_zed_em_kay"; \
