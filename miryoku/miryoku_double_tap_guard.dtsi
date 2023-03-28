@@ -22,8 +22,8 @@
             compatible = "zmk,behavior-macro"; \
             #binding-cells = <0>; \
             bindings \
-                = <&macro_press  &kp LALT > \
-                , <&macro_tap BINDING &kp LSHFT > \
+                = <&macro_press  &kp LALT> \
+                , <&macro_tap BINDING &kp LSHFT> \
                 , <&macro_release &kp LALT> \
                 ; \
         }; \
@@ -53,7 +53,7 @@ MIRYOKU_LAYER_LIST_REST
 #define MIRYOKU_Y(LAYER, STRING) \
 LANGUAGE_CHANGER_MACRO(macro_U_##LAYER, &to U_##LAYER) \
 MIRYOKU_DOUBLE_TAP_GUARD(u_to_U_##LAYER, macro_U_##LAYER)
-MIRYOKU_LAYER_LIST_BASE
+MIRYOKU_Y(BASE,   "Base") \
 #undef MIRYOKU_Y
 
 #if defined (MIRYOKU_KLUDGE_DOUBLETAPBOOT)
