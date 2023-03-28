@@ -17,7 +17,7 @@
 #define LANGUAGE_CHANGER_MACRO(NAME, BINDING) \
 / { \
     macros { \
-        NAME : NAME { \
+        NAME: NAME { \
             label = U_STRINGIFY(NAME); \
             compatible = "zmk,behavior-macro"; \
             #binding-cells = <0>; \
@@ -52,22 +52,8 @@ MIRYOKU_LAYER_LIST_REST
 
 #define MIRYOKU_Y(LAYER, STRING) \
 LANGUAGE_CHANGER_MACRO(macro_U_##LAYER, &to U_##LAYER) \
-MIRYOKU_DOUBLE_TAP_GUARD(u_to_U_##LAYER, macro_U_##LAYER)
-/ {
-    macros {
-        macro_U_BASE: macro_U_BASE {
-            label = "macro_U_BASE";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_press  &kp LALT>
-                , <&macro_tap &to U_BASE &kp LSHFT>
-                , <&macro_release &kp LALT>
-                ;
-        };
-    };
-};
-MIRYOKU_DOUBLE_TAP_GUARD(u_to_U_BASE, macro_U_BASE)
+MIRYOKU_DOUBLE_TAP_GUARD(u_to_U_##LAYER, &macro_U_##LAYER)
+MIRYOKU_LAYER_LIST_BASE
 #undef MIRYOKU_Y
 
 #if defined (MIRYOKU_KLUDGE_DOUBLETAPBOOT)
