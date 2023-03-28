@@ -35,8 +35,8 @@ MIRYOKU_LAYER_LIST_REST
 
 
 #define MIRYOKU_X(LAYER, STRING) \
-ZMK_MACRO(macro_u_##LAYER, bindings=<&kp LALT &kp LSHFT &to U_##LAYER>) \
-MIRYOKU_DOUBLE_TAP_GUARD(u_to_U_##LAYER, &kp LALT)
+ZMK_MACRO(macro_u_##LAYER, bindings = <&kp LALT &kp LSHFT &to U_##LAYER>;) \
+MIRYOKU_DOUBLE_TAP_GUARD(u_to_U_##LAYER, macro_u_##LAYER)
 MIRYOKU_LAYER_LIST_BASE
 #undef MIRYOKU_X
 
