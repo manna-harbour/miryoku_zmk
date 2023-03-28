@@ -18,7 +18,7 @@
 / { \
     macros { \
         NAME : NAME { \
-            label = "ZM_zed_em_kay"; \
+            label = U_STRINGIFY(NAME); \
             compatible = "zmk,behavior-macro"; \
             #binding-cells = <0>; \
             bindings \
