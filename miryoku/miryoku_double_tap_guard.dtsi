@@ -33,22 +33,11 @@ MIRYOKU_DOUBLE_TAP_GUARD(u_to_U_##LAYER, &to U_##LAYER)
 MIRYOKU_LAYER_LIST_REST
 #undef MIRYOKU_X
 
-#define MIRYOKU_LANGUAGE_SWITCHER(NAME, BINDING) \
-/ { \
-macros { \
-  language_switcher: language_switcher { \
-    label = NAME; \
-      compatible = "zmk,behavior-macro"; \
-      #binding-cells = <0>; \
-      bindings \
-        = <&macro_press &kp LALT &kp LSHFT BINDING> \
-        ; \
-    }; \
-  }; \
-};
 
 #define MIRYOKU_X(LAYER, STRING) \
-MIRYOKU_LANGUAGE_SWITCHER(u_to_U_##LAYER, &to U_##LAYER)
+MIRYOKU_LANGUAGE_SWITCHER(, )\
+ZMK_MACRO(macro_u_##LAYER, bindings=<&kp LALT &kp LSHFT &to U_##LAYER>)
+MIRYOKU_DOUBLE_TAP_GUARD(u_to_U_##LAYER, &macro_u_##LAYER)
 MIRYOKU_LAYER_LIST_BASE
 #undef MIRYOKU_X
 
