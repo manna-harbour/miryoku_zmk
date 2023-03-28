@@ -14,6 +14,25 @@
   }; \
 };
 
+#define LANGUAGE_CHANGER_MACRO(NAME, BINDING) \
+/ {
+    macros { \
+        NAME : NAME { \
+            label = "ZM_zed_em_kay"; \
+            compatible = "zmk,behavior-macro"; \
+            #binding-cells = <0>; \
+            bindings \
+                = <&macro_press  &kp LALT > \
+                , <&macro_tap BINDING &kp LSHFT > \
+                , <&macro_release &kp LALT> \
+                ; \
+        }; \
+    }; \
+};
+
+#define MIRYOKU_LAYER_LIST_BASE \
+MIRYOKU_Y(BASE,   "Base") \
+MIRYOKU_Y(EXTRA,  "Extra")
 
 #define MIRYOKU_LAYER_LIST_REST \
 MIRYOKU_X(TAP,    "Tap") \
@@ -32,9 +51,9 @@ MIRYOKU_LAYER_LIST_REST
 
 
 #define MIRYOKU_Y(LAYER, STRING) \
-MIRYOKU_DOUBLE_TAP_GUARD(u_to_U_##LAYER, &to U_##LAYER)
-MIRYOKU_Y(BASE,   "Base")
-MIRYOKU_Y(EXTRA,  "Extra")
+LANGUAGE_CHANGER_MACRO(macro_U_##LAYER, &to U_##LAYER) \
+MIRYOKU_DOUBLE_TAP_GUARD(u_to_U_##LAYER, macro_U_##LAYER)
+MIRYOKU_LAYER_LIST_BASE
 #undef MIRYOKU_Y
 
 #if defined (MIRYOKU_KLUDGE_DOUBLETAPBOOT)
