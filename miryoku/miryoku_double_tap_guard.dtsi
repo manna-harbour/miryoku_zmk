@@ -54,8 +54,8 @@ MIRYOKU_LAYER_LIST_BASE
 
 #if defined (MIRYOKU_KLUDGE_DOUBLETAPBOOT)
   #if defined (MIRYOKU_KLUDGE_SUSPEND)
-MIRYOKU_DOUBLE_TAP_GUARD(u_suspend, &suspend)
+    MIRYOKU_DOUBLE_TAP_GUARD(u_suspend, &suspend)
   #else
-MIRYOKU_DOUBLE_TAP_GUARD(u_bootloader, &bootloader)
+    MIRYOKU_DOUBLE_TAP_GUARD(u_bootloader, &bootloader)
   #endif
 #endif
