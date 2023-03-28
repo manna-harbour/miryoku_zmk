@@ -41,7 +41,7 @@ macros { \
       compatible = "zmk,behavior-macro"; \
       #binding-cells = <0>; \
       bindings \
-        = <&macro_press LANGUAGE_SWITCHER_COMBO BINDING> \
+        = <&macro_press &kp LALT &kp LSHFT BINDING> \
         ; \
     }; \
   }; \
