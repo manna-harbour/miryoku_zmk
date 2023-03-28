@@ -14,9 +14,6 @@
   }; \
 };
 
-#define MIRYOKU_LAYER_LIST_BASE \
-MIRYOKU_Y(BASE,   "Base") \
-MIRYOKU_Y(EXTRA,  "Extra")
 
 #define MIRYOKU_LAYER_LIST_REST \
 MIRYOKU_X(TAP,    "Tap") \
@@ -40,7 +37,8 @@ ZMK_MACRO(macro_u_##LAYER, bindings \
     , <&macro_tap &to U_##LAYER &kp LSHFT> \
     , <&macro_release &kp LSHFT>;) \
 MIRYOKU_DOUBLE_TAP_GUARD(u_to_U_##LAYER, macro_u_##LAYER)
-MIRYOKU_LAYER_LIST_BASE
+MIRYOKU_Y(BASE,   "Base")
+MIRYOKU_Y(EXTRA,  "Extra")
 #undef MIRYOKU_Y
 
 #if defined (MIRYOKU_KLUDGE_DOUBLETAPBOOT)
