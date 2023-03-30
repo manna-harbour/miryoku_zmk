@@ -18,7 +18,7 @@ jobs:
         "corneish_zen_v2_left","corneish_zen_v2_right",
         "ferris_rev02",
         "ffkb-holyiot",
-        "glove80_left","glove80_right",
+        "glove80_lh","glove80_rh",
         "klacker_bs",
         "native_posix_64",
         "nice60",
