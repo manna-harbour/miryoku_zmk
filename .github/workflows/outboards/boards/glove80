@@ -1,7 +1,8 @@
-# Copyright 2022 Manna Harbour
+# Copyright 2023 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
 outboard_repository=moergo-sc/zmk
-outboard_ref=glove80
+outboard_ref=main
 outboard_from=app/boards/arm/glove80
 outboard_to=boards/arm/glove80
+zmk=moergo-sc/zmk/main
