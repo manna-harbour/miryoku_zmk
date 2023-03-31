@@ -4,6 +4,8 @@ on:
     # Sequence of patterns matched against refs/tags
     tags:
       - '*'
+    branches:
+      - 'master'
   workflow_dispatch:
 jobs:
   build:
