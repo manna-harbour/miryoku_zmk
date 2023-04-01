@@ -16,16 +16,13 @@
 &kp LCTRL, &kp LALT, &kp LSHFT, &kp LGUI
 
 #define CUSTOM_MOD_LEFT_ROW_1 \
-&bootloader,       &to U_TAP,         &to U_EXTRA,       &to U_BASE,        U_NA
-// &u_reset,          U_NA,             RC(RGUI),         RS(RGUI),          &u_caps_word
+U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA
 
 #define CUSTOM_MOD_LEFT_ROW_2 \
 &kp MOD_4,         &kp MOD_3,         &kp MOD_2,         &kp MOD_1,         U_NA
-// CUSTOM_LEFT_MODS, &kp K_FIND
 
 #define CUSTOM_MOD_LEFT_ROW_3 \
-U_NA,              &kp RALT,          U_NA,              U_NA,              U_NA
-// &kp K_UNDO,       &kp K_CUT,         &kp K_COPY,        &kp K_PASTE,       &kp K_AGAIN
+U_NA,              &kp RALT,          &u_to_U_NUM,       &u_to_U_NAV,       U_NA
 
 #define CUSTOM_MOD_LEFT_ROW_4 \
 U_NP,              U_NP,              U_NA,              U_NA,              U_NA
@@ -97,8 +94,7 @@ U_NP,              U_NP,              &kp DQT,           &kp RPAR,          &kp 
 #define CUSTOM_FUN_LEFT_ROW_4 \
 U_NP,              U_NP,              &kp K_APP,         &kp SPC,           &kp TAB
 
-// ############# LEFT FUN BEGIN #######################
-
+// ############# LEFT FUN end #######################
 
 
 // ############# RIGHT MOD BEGIN #######################
@@ -107,15 +103,14 @@ U_NP,              U_NP,              &kp K_APP,         &kp SPC,           &kp 
 &kp RCTRL, &kp RALT, &kp RSHFT , &kp RGUI
 
 #define CUSTOM_MOD_RIGHT_ROW_1 \
-U_NA,              &to U_BASE,        &to U_EXTRA,       &to U_TAP,         &bootloader
-// &u_caps_word,    RS(RGUI),          RC(RGUI),          U_NA,              &u_reset
+U_NA,              &u_to_U_BASE,      &u_to_U_EXTRA,     &u_to_U_TAP,       U_BOOT
 
 #define CUSTOM_MOD_RIGHT_ROW_2 \
 U_NA,              &kp MOD_1,         &kp MOD_2,         &kp MOD_3,         &kp MOD_4
 // &kp K_FIND, CUSTOM_RIGHT_MODS
 
 #define CUSTOM_MOD_RIGHT_ROW_3 \
-U_NA,               U_NA,              U_NA,              &kp RALT,          U_NA
+U_NA,              &u_to_U_NAV,       &u_to_U_NUM,       &kp RALT,          U_NA
 //&kp K_AGAIN,      &kp K_PASTE,       &kp K_COPY,        &kp K_CUT,         &kp K_UNDO
 
 #define CUSTOM_MOD_RIGHT_ROW_4 \
@@ -157,9 +152,9 @@ U_BTN2,            U_BTN1,            U_BTN3,            U_NP,              U_NP
 // ############# RIGHT MEDIA BEGIN #######################
 
 #define CUSTOM_MEDIA_RIGHT_ROW_1 \
-&u_rgb_eff,        &u_rgb_hui,        &u_rgb_sai,        &u_rgb_bri,        &rgb_ug RGB_TOG
+U_RGB_EFF,         U_RGB_HUI,         U_RGB_SAI,         U_RGB_BRI,         U_RGB_TOG
 #define CUSTOM_MEDIA_RIGHT_ROW_2 \
-&kp C_PREV,        &kp C_VOL_DN,      &kp C_VOL_UP,      &kp C_NEXT,        &u_ep_tog
+&kp C_PREV,        &kp C_VOL_DN,      &kp C_VOL_UP,      &kp C_NEXT,        U_EP_TOG
 #define CUSTOM_MEDIA_RIGHT_ROW_3 \
 &u_bt_sel_0,       &u_bt_sel_1,       &u_bt_sel_2,       &u_bt_sel_3,       &u_out_tog
 #define CUSTOM_MEDIA_RIGHT_ROW_4 \
