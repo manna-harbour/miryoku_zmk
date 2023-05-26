@@ -1,4 +1,4 @@
-# Copyright 2022 Manna Harbour
+# Copyright 2023 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
 name: 'Test All Promicro Shields'
@@ -48,6 +48,7 @@ jobs:
         "klotz_left","klotz_right",
         "kyria_left","kyria_right",
         "kyria_rev2_left","kyria_rev2_right",
+        "kyria_rev3_left","kyria_rev3_right",
         "leeloo_left","leeloo_right",
         "levinson_left","levinson_right",
         "lily58_left","lily58_right",
