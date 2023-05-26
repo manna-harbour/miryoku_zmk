@@ -73,6 +73,7 @@ jobs:
         "sofle_left","sofle_right",
         "sofle_rgb_left","sofle_rgb_right",
         "splitkb_aurora_corne_left","splitkb_aurora_corne_right",
+        "splitkb_aurora_lily58_left","splitkb_aurora_lily58_right",
         "splitkb_aurora_sweep_left","splitkb_aurora_sweep_right",
         "splitreus62_left","splitreus62_right",
         "swweeep_left","swweeep_right",
