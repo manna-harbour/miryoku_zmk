@@ -1,0 +1,8 @@
+// Copyright 2021 Manna Harbour
+// https://github.com/manna-harbour/miryoku
+
+#define MIRYOKU_KLUDGE_THUMBCOMBOS
+
+#include "../miryoku/custom_config.h"
+#include "../miryoku/mapping/36/minidox.h"
+#include "../miryoku/miryoku.dtsi"

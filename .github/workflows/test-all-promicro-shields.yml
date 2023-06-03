@@ -56,6 +56,7 @@ jobs:
         "luna_left","luna_right",
         "mano42_left","mano42_right",
         "microdox_left","microdox_right",
+        "microdox_v2_left","microdox_v2_right",
         "microdox_mod_left","microdox_mod_right",
         "naked60",
         "osprette",
