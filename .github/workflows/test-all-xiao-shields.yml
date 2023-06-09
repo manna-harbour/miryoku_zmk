@@ -13,6 +13,7 @@ jobs:
       shield: '[
         "clog_v2_left","clog_v2_right",
         "hummingbird",
+        "kpukboard_left","kpukboard_right",
         "revxlp",
         "rommana_left","rommana_right",
         "totem_left","totem_right",
