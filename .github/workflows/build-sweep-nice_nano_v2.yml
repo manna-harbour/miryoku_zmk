@@ -9,4 +9,4 @@ jobs:
     secrets: inherit
     with:
       board: '["nice_nano_v2"]'
-      shield: '["ferris"]'
+      shield: '["ferris_rev02"]'
