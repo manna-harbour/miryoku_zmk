@@ -8,4 +8,5 @@ jobs:
     uses: ./.github/workflows/main.yml
     secrets: inherit
     with:
-      board: '["ferris_rev02"]'
+      board: '["nice_nano_v2"]'
+      shield: '["sweep_left", "sweep_right"]'
