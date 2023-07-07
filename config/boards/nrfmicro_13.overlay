@@ -41,7 +41,7 @@
   };
 };
 
-{
+/ {
 	chosen {
 		zmk,underglow = &led_strip;
         zephyr,display = &oled;
