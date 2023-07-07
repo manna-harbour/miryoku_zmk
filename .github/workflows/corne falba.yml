@@ -18,4 +18,5 @@ jobs:
       shield: '["corne_left","corne_right"]'
       alphas: '["QWERTY"]'
       nav: '["vi"]'
+      custom_config: '["#define MIRYOKU_KLUDGE_MOUSEKEYSPR\n#define MIRYOKU_KLUDGE_TOPROWCOMBOS"]'
       branches: '["zmkfirmware/zmk/main urob/zmk/mouse-3.2"]'
