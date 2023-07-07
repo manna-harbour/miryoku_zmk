@@ -1,0 +1,8 @@
+#include <dt-bindings/led/led.h>
+
+{
+	chosen {
+		zmk,underglow = &led_strip;
+        zephyr,display = &oled;
+	};
+};
