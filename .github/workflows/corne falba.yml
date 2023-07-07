@@ -19,5 +19,5 @@ jobs:
       alphas: '["QWERTY"]'
       nav: '["vi"]'
       custom_config: '["#define MIRYOKU_KLUDGE_MOUSEKEYSPR"]'
-      kconfig: '["CONFIG_ZMK_MOUSE=y"]'
+      kconfig: '["CONFIG_ZMK_MOUSE=y\nCONFIG_ZMK_RGB_UNDERGLOW=y\nCONFIG_WS2812_STRIP=y\nCONFIG_ZMK_RGB_UNDERGLOW_AUTO_OFF_IDLE=y\nCONFIG_ZMK_RGB_UNDERGLOW_AUTO_OFF_USB=y\nCONFIG_ZMK_SLEEP=y\nCONFIG_ZMK_IDLE_SLEEP_TIMEOUT=600000\nCONFIG_BT_CTLR_TX_PWR_PLUS_8=y\nCONFIG_ZMK_DISPLAY=y\nCONFIG_BT_GATT_ENFORCE_SUBSCRIPTION=n"]'
       branches: '["zmkfirmware/zmk/main urob/zmk/mouse-3.2"]'
