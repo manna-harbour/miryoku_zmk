@@ -1,6 +1,68 @@
 #include <dt-bindings/led/led.h>
 
-{
+&pinctrl {
+    spi3_default: spi3_default {
+        group1 {
+            psels = <NRF_PSEL(SPIM_MOSI, 0, 6)>;
+        };
+    };
+
+    spi3_sleep: spi3_sleep {
+        group1 {
+            psels = <NRF_PSEL(SPIM_MOSI, 0, 6)>;
+            low-power-enable;
+        };
+    };
+};
+
+&spi3 {
+  compatible = "nordic,nrf-spim";
+  status = "okay";
+
+  pinctrl-0 = <&spi3_default>;
+  pinctrl-1 = <&spi3_sleep>;
+  pinctrl-names = "default", "sleep";
+
+  led_strip: ws2812@0 {
+    compatible = "worldsemi,ws2812-spi";
+    label = "WS2812";
+
+    /* SPI */
+    reg = <0>; /* ignored, but necessary for SPI bindings */
+    spi-max-frequency = <4000000>;
+
+    /* WS2812 */
+    chain-length = <54>; /* number of LEDs */
+    spi-one-frame = <0x70>;
+    spi-zero-frame = <0x40>;
+    color-mapping = <LED_COLOR_ID_GREEN
+						LED_COLOR_ID_RED
+                        LED_COLOR_ID_BLUE>;
+  };
+};
+
+
+/* &pro_micro_i2c {
+	status = "okay";
+
+	oled_custom: ssd1306@3c {
+		compatible = "solomon,ssd1306fb";
+		reg = <0x3c>;
+		label = "DISPLAY";
+		width = <128>;
+		height = <32>;
+		segment-offset = <0>;
+		page-offset = <0>;
+		display-offset = <0>;
+		multiplex-ratio = <31>;
+		segment-remap;
+		com-invdir;
+		com-sequential;
+		prechargep = <0x22>;
+	};
+}; */
+
+/ {
 	chosen {
 		zmk,underglow = &led_strip;
         zephyr,display = &oled;
