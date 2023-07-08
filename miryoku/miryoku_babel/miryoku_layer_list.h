@@ -17,7 +17,7 @@ MIRYOKU_X(MEDIA,  "Media") \
 MIRYOKU_X(NUM,    "Num") \
 MIRYOKU_X(SYM,    "Sym") \
 MIRYOKU_X(FUN,    "Fun") \
-MIRYOKU_X(ITA,      "Ita") \
+MIRYOKU_X(ITA,    "Ita") \
 
 #define U_BASE   0
 #define U_EXTRA  1
