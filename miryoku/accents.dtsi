@@ -40,16 +40,16 @@
 
     accents {
         ACCENTED_KEY(agrv, "à", "À", "àÀ", A, GRAVE, LALT)
-        ACCENTED_KEY(aacu, "á", "Á", "áÁ", A, SINGLE_QUOTE, LCTRL)
-        ACCENTED_KEY(atil, "ã", "Ã", "ãÃ", A, N, LCTRL)
-        ACCENTED_KEY(acir, "â", "Â", "âÂ", A, I, LCTRL)
-        ACCENTED_KEY(eacu, "é", "É", "éÉ", E, SINGLE_QUOTE, LCTRL)
-        ACCENTED_KEY(ecir, "ê", "Ê", "êÊ", E, I, LCTRL)
-        ACCENTED_KEY(iacu, "ì", "Ì", "ìÌ", I, GRAVE, LCTRL)
-        ACCENTED_KEY(oacu, "ó", "Ó", "óÓ", O, SINGLE_QUOTE, LCTRL)
-        ACCENTED_KEY(otil, "õ", "Õ", "õÕ", O, N, LCTRL)
-        ACCENTED_KEY(ocir, "ô", "Ô", "ôÔ", O, I, LCTRL)
-        ACCENTED_KEY(uacu, "ú", "Ú", "úÚ", U, SINGLE_QUOTE, LCTRL)
+        ACCENTED_KEY(aacu, "á", "Á", "áÁ", A, SINGLE_QUOTE, LALT)
+        ACCENTED_KEY(atil, "ã", "Ã", "ãÃ", A, N, LALT)
+        ACCENTED_KEY(acir, "â", "Â", "âÂ", A, I, LALT)
+        ACCENTED_KEY(eacu, "é", "É", "éÉ", E, SINGLE_QUOTE, LALT)
+        ACCENTED_KEY(ecir, "ê", "Ê", "êÊ", E, I, LALT)
+        ACCENTED_KEY(iacu, "ì", "Ì", "ìÌ", I, GRAVE, LALT)
+        ACCENTED_KEY(oacu, "ó", "Ó", "óÓ", O, SINGLE_QUOTE, LALT)
+        ACCENTED_KEY(otil, "õ", "Õ", "õÕ", O, N, LALT)
+        ACCENTED_KEY(ocir, "ô", "Ô", "ôÔ", O, I, LALT)
+        ACCENTED_KEY(uacu, "ú", "Ú", "úÚ", U, SINGLE_QUOTE, LALT)
 
         ac_ccdi: ac_ccdi {
             wait-ms = <0>;
