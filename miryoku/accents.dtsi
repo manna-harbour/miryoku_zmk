@@ -7,9 +7,9 @@
             compatible = "zmk,behavior-macro"; \
             #binding-cells = <0>; \
             bindings \
-                = <&macro_press &kp LALT> \
+                = <&macro_press &kp LCTRL> \
                 , <&macro_tap &kp DEAD_KEY> \
-                , <&macro_release &kp LALT> \
+                , <&macro_release &kp LCTRL> \
                 , <&macro_tap &kp KEY> \
                 ; \
         }; \
