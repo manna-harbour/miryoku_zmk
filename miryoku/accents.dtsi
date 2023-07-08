@@ -1,8 +1,8 @@
 / {
     #define ACCENTED_KEY(NAME, LABEL_U, LABEL_L, LABEL, KEY, DEAD_KEY) \
         ac_##NAME##_l: ac_##NAME##_l { \
-            wait-ms = <0>; \
-            tap-ms = <0>; \
+            wait-ms = <33>; \
+            tap-ms = <33>; \
             label = LABEL_L; \
             compatible = "zmk,behavior-macro"; \
             #binding-cells = <0>; \
