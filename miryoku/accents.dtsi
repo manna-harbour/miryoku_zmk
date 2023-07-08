@@ -1,15 +1,15 @@
 / {
-    #define ACCENTED_KEY(NAME, LABEL_U, LABEL_L, LABEL, KEY, DEAD_KEY) \
+    #define ACCENTED_KEY(NAME, LABEL_U, LABEL_L, LABEL, KEY, DEAD_KEY, MOD_KEY) \
         ac_##NAME##_l: ac_##NAME##_l { \
-            wait-ms = <2000>; \
-            tap-ms = <2000>; \
+            wait-ms = <0>; \
+            tap-ms = <0>; \
             label = LABEL_L; \
             compatible = "zmk,behavior-macro"; \
             #binding-cells = <0>; \
             bindings \
-                = <&macro_press &kp LALT> \
+                = <&macro_press &kp MOD_KEY> \
                 , <&macro_tap &kp DEAD_KEY> \
-                , <&macro_release &kp LALT> \
+                , <&macro_release &kp MOD_KEY> \
                 , <&macro_tap &kp KEY> \
                 ; \
         }; \
@@ -21,9 +21,9 @@
             #binding-cells = <0>; \
             bindings \
                 = <&macro_release &kp LSHFT> \
-                , <&macro_press &kp LALT> \
+                , <&macro_press &kp MOD_KEY> \
                 , <&macro_tap &kp DEAD_KEY> \
-                , <&macro_release &kp LALT> \
+                , <&macro_release &kp MOD_KEY> \
                 , <&macro_press &kp LSHFT> \
                 , <&macro_tap &kp KEY> \
                 , <&macro_release &kp LSHFT> \
@@ -39,17 +39,17 @@
         };
 
     accents {
-        ACCENTED_KEY(agrv, "à", "À", "àÀ", A, GRAVE)
-        ACCENTED_KEY(aacu, "á", "Á", "áÁ", A, E)
-        ACCENTED_KEY(atil, "ã", "Ã", "ãÃ", A, N)
-        ACCENTED_KEY(acir, "â", "Â", "âÂ", A, I)
-        ACCENTED_KEY(eacu, "é", "É", "éÉ", E, E)
-        ACCENTED_KEY(ecir, "ê", "Ê", "êÊ", E, I)
-        ACCENTED_KEY(iacu, "í", "Í", "íÍ", I, E)
-        ACCENTED_KEY(oacu, "ó", "Ó", "óÓ", O, E)
-        ACCENTED_KEY(otil, "õ", "Õ", "õÕ", O, N)
-        ACCENTED_KEY(ocir, "ô", "Ô", "ôÔ", O, I)
-        ACCENTED_KEY(uacu, "ú", "Ú", "úÚ", U, E)
+        ACCENTED_KEY(agrv, "à", "À", "àÀ", A, GRAVE, LALT)
+        ACCENTED_KEY(aacu, "á", "Á", "áÁ", A, E, LCTRL)
+        ACCENTED_KEY(atil, "ã", "Ã", "ãÃ", A, N, LCTRL)
+        ACCENTED_KEY(acir, "â", "Â", "âÂ", A, I, LCTRL)
+        ACCENTED_KEY(eacu, "é", "É", "éÉ", E, E, LCTRL)
+        ACCENTED_KEY(ecir, "ê", "Ê", "êÊ", E, I, LCTRL)
+        ACCENTED_KEY(iacu, "í", "Í", "íÍ", I, E, LCTRL)
+        ACCENTED_KEY(oacu, "ó", "Ó", "óÓ", O, E, LCTRL)
+        ACCENTED_KEY(otil, "õ", "Õ", "õÕ", O, N, LCTRL)
+        ACCENTED_KEY(ocir, "ô", "Ô", "ôÔ", O, I, LCTRL)
+        ACCENTED_KEY(uacu, "ú", "Ú", "úÚ", U, E, LCTRL)
 
         ac_ccdi: ac_ccdi {
             wait-ms = <0>;
