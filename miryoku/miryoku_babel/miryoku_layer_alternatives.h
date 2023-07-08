@@ -392,7 +392,7 @@ U_NA,              U_NA,             U_NA,               U_NA,              U_NA
 U_NP,              U_NP,             U_NA,               U_NA,              U_NA,              U_NA,              U_NA,              U_NA,             U_NP,               U_NP
 
 #define MIRYOKU_ALTERNATIVES_ITA \
-U_NA,              U_NA,             &ac_eacu,           U_NA,              U_NA,              U_NA,              &ac_uacu,          &ac_iacu,         &ac_otil,           U_NA,              \
+&kp S,              U_NA,             &ac_eacu,           U_NA,              U_NA,              U_NA,              &ac_uacu,          &ac_iacu,         &ac_otil,           U_NA,              \
 &ac_aacu,          U_NA,             U_NA,               &kp LSHFT,         U_NA,              U_NA,              &kp RSHFT,         U_NA,             U_NA,               U_NA,              \
 U_NA,              U_NA,             U_NA,               U_NA,              U_NA,              U_NA,              U_NA,              U_NA,             U_NA,               U_NA,              \
 U_NP,              U_NP,             U_NA,               U_NA,              U_NA,              U_NA,              U_NA,              U_NA,             U_NP,               U_NP
