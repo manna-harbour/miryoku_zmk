@@ -1,0 +1,67 @@
+/ {
+    #define ACCENTED_KEY(NAME, LABEL_U, LABEL_L, LABEL, KEY, DEAD_KEY) \
+        ac_##NAME##_l: ac_##NAME##_l { \
+            wait-ms = <0>; \
+            tap-ms = <0>; \
+            label = LABEL_L; \
+            compatible = "zmk,behavior-macro"; \
+            #binding-cells = <0>; \
+            bindings \
+                = <&macro_press &kp LALT> \
+                , <&macro_tap &kp DEAD_KEY> \
+                , <&macro_release &kp LALT> \
+                , <&macro_tap &kp KEY> \
+                ; \
+        }; \
+        ac_##NAME##_u: ac_##NAME##_u { \
+            wait-ms = <0>; \
+            tap-ms = <0>; \
+            label = LABEL_U; \
+            compatible = "zmk,behavior-macro"; \
+            #binding-cells = <0>; \
+            bindings \
+                = <&macro_release &kp LSHFT> \
+                , <&macro_press &kp LALT> \
+                , <&macro_tap &kp DEAD_KEY> \
+                , <&macro_release &kp LALT> \
+                , <&macro_press &kp LSHFT> \
+                , <&macro_tap &kp KEY> \
+                , <&macro_release &kp LSHFT> \
+                ; \
+        }; \
+        ac_##NAME: ac_##NAME { \
+            label = LABEL; \
+            compatible = "zmk,behavior-mod-morph"; \
+            #binding-cells = <0>; \
+            bindings = <&ac_##NAME##_l>, <&ac_##NAME##_u>; \
+            mods = <(MOD_LSFT|MOD_RSFT)>; \
+            keep-mods = <(MOD_LSFT|MOD_RSFT)>; \
+        };
+
+    accents {
+        ACCENTED_KEY(agrv, "à", "À", "àÀ", A, GRAVE)
+        ACCENTED_KEY(aacu, "á", "Á", "áÁ", A, E)
+        ACCENTED_KEY(atil, "ã", "Ã", "ãÃ", A, N)
+        ACCENTED_KEY(acir, "â", "Â", "âÂ", A, I)
+        ACCENTED_KEY(eacu, "é", "É", "éÉ", E, E)
+        ACCENTED_KEY(ecir, "ê", "Ê", "êÊ", E, I)
+        ACCENTED_KEY(iacu, "í", "Í", "íÍ", I, E)
+        ACCENTED_KEY(oacu, "ó", "Ó", "óÓ", O, E)
+        ACCENTED_KEY(otil, "õ", "Õ", "õÕ", O, N)
+        ACCENTED_KEY(ocir, "ô", "Ô", "ôÔ", O, I)
+        ACCENTED_KEY(uacu, "ú", "Ú", "úÚ", U, E)
+
+        ac_ccdi: ac_ccdi {
+            wait-ms = <0>;
+            tap-ms = <0>;
+            label = "ç";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_tap &kp C>
+                , <&macro_release &kp LALT>
+                ;
+        };
+    };
+};
