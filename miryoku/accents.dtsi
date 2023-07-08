@@ -45,7 +45,7 @@
         ACCENTED_KEY(acir, "â", "Â", "âÂ", A, I, LCTRL)
         ACCENTED_KEY(eacu, "é", "É", "éÉ", E, SINGLE_QUOTE, LCTRL)
         ACCENTED_KEY(ecir, "ê", "Ê", "êÊ", E, I, LCTRL)
-        ACCENTED_KEY(iacu, "í", "Í", "íÍ", I, E, LCTRL)
+        ACCENTED_KEY(iacu, "ì", "Ì", "ìÌ", I, GRAVE, LCTRL)
         ACCENTED_KEY(oacu, "ó", "Ó", "óÓ", O, SINGLE_QUOTE, LCTRL)
         ACCENTED_KEY(otil, "õ", "Õ", "õÕ", O, N, LCTRL)
         ACCENTED_KEY(ocir, "ô", "Ô", "ôÔ", O, I, LCTRL)
