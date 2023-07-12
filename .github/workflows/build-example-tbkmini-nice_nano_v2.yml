@@ -1,7 +1,7 @@
-# Copyright 2021 Manna Harbour
+# Copyright 2023 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-name: 'Build Example tbkmini nice_nano_v2'
+name: 'Build Example Charybdis Test'
 on: workflow_dispatch
 jobs:
   build:
@@ -9,4 +9,7 @@ jobs:
     secrets: inherit
     with:
       board: '["nice_nano_v2"]'
-      shield: '["tbkmini_left","tbkmini_right"]'
+      shield: '["charybdis_left","charybdis_right"]'
+      custom_config: '["#define MIRYOKU_KLUDGE_MOUSEKEYSPR"]'
+      kconfig: '["CONFIG_ZMK_MOUSE=y\nCONFIG_MOUSE_LAYER_INDEX=3\nCONFIG_MOUSE_LAYER_ACTIVE_MS=750"]'
+
