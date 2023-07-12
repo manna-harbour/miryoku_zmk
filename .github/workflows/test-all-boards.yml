@@ -10,6 +10,7 @@ jobs:
     secrets: inherit
     with:
       board: '[
+        "adv360_left","adv360_right",
         "adv360pro_left","adv360pro_right",
         "ahokore",
         "ble_chiffre",
