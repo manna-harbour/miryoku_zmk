@@ -27,6 +27,7 @@ jobs:
         "preonic_rev3",
         "technikable",
         "tipper_tf",
-        "zaphod"
+        "zaphod",
+        "dao_left","dao_right"
       ]'
 
