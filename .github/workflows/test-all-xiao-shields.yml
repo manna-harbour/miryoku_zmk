@@ -11,6 +11,7 @@ jobs:
     with:
       board: '["seeeduino_xiao"]'
       shield: '[
+        "chipper_left","chipper_right",
         "clog_v2_left","clog_v2_right",
         "hummingbird",
         "kpukboard_left","kpukboard_right",
