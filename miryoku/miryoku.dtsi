@@ -14,7 +14,7 @@
   keymap {
     compatible = "zmk,keymap";
 #define MIRYOKU_X(LAYER, STRING) \
-    U_##LAYER## { \
+    LAYER { \
       label = STRING; \
       bindings = < U_MACRO_VA_ARGS(MIRYOKU_LAYERMAPPING_##LAYER, MIRYOKU_LAYER_##LAYER) >; \
     };
