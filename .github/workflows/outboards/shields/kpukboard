@@ -1,0 +1,7 @@
+# Copyright 2023 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=kriku/kpukboard-zmk
+outboard_ref=main
+outboard_from=config/boards/shields/kpukboard
+outboard_to=boards/shields/kpukboard

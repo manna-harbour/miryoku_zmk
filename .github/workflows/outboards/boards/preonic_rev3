@@ -1,7 +1,0 @@
-# Copyright 2021 Manna Harbour
-# https://github.com/manna-harbour/miryoku
-
-outboard_repository=shurikai/zmk
-outboard_ref=add_preonic
-outboard_from=app/boards/arm/preonic
-outboard_to=boards/arm/preonic

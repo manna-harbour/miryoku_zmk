@@ -1,4 +1,4 @@
-# Copyright 2022 Manna Harbour
+# Copyright 2023 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
 name: 'Test All Promicro Shields'
@@ -48,6 +48,7 @@ jobs:
         "klotz_left","klotz_right",
         "kyria_left","kyria_right",
         "kyria_rev2_left","kyria_rev2_right",
+        "kyria_rev3_left","kyria_rev3_right",
         "leeloo_left","leeloo_right",
         "levinson_left","levinson_right",
         "lily58_left","lily58_right",
@@ -55,6 +56,7 @@ jobs:
         "luna_left","luna_right",
         "mano42_left","mano42_right",
         "microdox_left","microdox_right",
+        "microdox_v2_left","microdox_v2_right",
         "microdox_mod_left","microdox_mod_right",
         "naked60",
         "osprette",
@@ -72,6 +74,7 @@ jobs:
         "sofle_left","sofle_right",
         "sofle_rgb_left","sofle_rgb_right",
         "splitkb_aurora_corne_left","splitkb_aurora_corne_right",
+        "splitkb_aurora_lily58_left","splitkb_aurora_lily58_right",
         "splitkb_aurora_sweep_left","splitkb_aurora_sweep_right",
         "splitreus62_left","splitreus62_right",
         "swweeep_left","swweeep_right",
@@ -79,6 +82,7 @@ jobs:
         "tbkmini_adapterv2_left","tbkmini_adapterv2_right",
         "tightyl_left","tightyl_right",
         "viterbi_left","viterbi_right",
+        "waterfowl_left","waterfowl_right",
         "xmk",
         "zodiark_left","zodiark_right"
       ]'
