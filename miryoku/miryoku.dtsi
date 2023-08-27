@@ -26,7 +26,7 @@ MIRYOKU_LAYER_LIST
 #include "miryoku_shift_functions.dtsi"
 
 
-#if defined (MIRYOKU_LANGUAGE_SWITCHER)
+#if defined (MIRYOKU_KLUDGE_LANGUAGE_SWITCHER)
   #include "miryoku_language_switcher.dtsi"
 #endif
 
