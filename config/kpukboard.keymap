@@ -2,5 +2,5 @@
 // https://github.com/manna-harbour/miryoku
 
 #include "../miryoku/custom_config.h"
-#include "../miryoku/mapping/82/adv360pro.h"
+#include "../miryoku/mapping/38/kpukboard.h"
 #include "../miryoku/miryoku.dtsi"

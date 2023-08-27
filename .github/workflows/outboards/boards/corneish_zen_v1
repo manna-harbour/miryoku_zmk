@@ -1,7 +1,0 @@
-# Copyright 2022 Manna Harbour
-# https://github.com/manna-harbour/miryoku
-
-outboard_repository=caksoylar/zmk
-outboard_ref=add-zen-v1
-outboard_from=app/boards/arm/corneish_zen
-outboard_to=boards/arm/corneish_zen
