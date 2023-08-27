@@ -1,13 +1,29 @@
 #define MIRYOKU_LANGUAGE_SWITCHER(NAME, BINDING) \
 / { \
-macros { \
-  language_switcher: language_switcher { \
-    label = NAME; \
-      compatible = "zmk,behavior-macro"; \
-      #binding-cells = <0>; \
-      bindings \
-        = <&macro_press LANGUAGE_SWITCHER_COMBO BINDING> \
-        ; \
+    macros { \
+        NAME: NAME { \
+            label = U_STRINGIFY(NAME); \
+            compatible = "zmk,behavior-macro"; \
+            #binding-cells = <0>; \
+            bindings \
+                = <&macro_press  &kp LALT> \
+                , <&macro_tap BINDING &kp LSHFT> \
+                , <&macro_release &kp LALT> \
+                ; \
+        }; \
     }; \
-  }; \
 };
+
+#define MIRYOKU_LAYER_SWITCHER_LIST \
+MIRYOKU_X(BASE,   "Base") \
+MIRYOKU_X(EXTRA,  "Extra")
+
+#define MIRYOKU_LAYER_SWITCHER_LIST_REST \
+MIRYOKU_X(TAP,    "Tap") \
+MIRYOKU_X(BUTTON, "Button") \
+MIRYOKU_X(NAV,    "Nav") \
+MIRYOKU_X(MOUSE,  "Mouse") \
+MIRYOKU_X(MEDIA,  "Media") \
+MIRYOKU_X(NUM,    "Num") \
+MIRYOKU_X(SYM,    "Sym") \
+MIRYOKU_X(FUN,    "Fun")

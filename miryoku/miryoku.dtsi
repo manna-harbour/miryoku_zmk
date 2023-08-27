@@ -26,6 +26,10 @@ MIRYOKU_LAYER_LIST
 #include "miryoku_shift_functions.dtsi"
 
 
+#if defined (MIRYOKU_LANGUAGE_SWITCHER)
+  #include "miryoku_language_switcher.dtsi"
+#endif
+
 #include "miryoku_double_tap_guard.dtsi"
 
 #if defined (MIRYOKU_KLUDGE_MOUSEKEYSPR)

@@ -1,6 +1,6 @@
 // Copyright 2022 Manna Harbour
 // https://github.com/manna-harbour/miryoku
-
+#include miroku_language_switcher.h
 #define MIRYOKU_DOUBLE_TAP_GUARD(NAME, BINDING) \
 / { \
   behaviors { \
@@ -14,47 +14,20 @@
   }; \
 };
 
-#define LANGUAGE_CHANGER_MACRO(NAME, BINDING) \
-/ { \
-    macros { \
-        NAME: NAME { \
-            label = U_STRINGIFY(NAME); \
-            compatible = "zmk,behavior-macro"; \
-            #binding-cells = <0>; \
-            bindings \
-                = <&macro_press  &kp LALT> \
-                , <&macro_tap BINDING &kp LSHFT> \
-                , <&macro_release &kp LALT> \
-                ; \
-        }; \
-    }; \
-};
 
-#define MIRYOKU_LAYER_LIST_BASE \
-MIRYOKU_Y(BASE,   "Base") \
-MIRYOKU_Y(EXTRA,  "Extra")
 
-#define MIRYOKU_LAYER_LIST_REST \
-MIRYOKU_X(TAP,    "Tap") \
-MIRYOKU_X(BUTTON, "Button") \
-MIRYOKU_X(NAV,    "Nav") \
-MIRYOKU_X(MOUSE,  "Mouse") \
-MIRYOKU_X(MEDIA,  "Media") \
-MIRYOKU_X(NUM,    "Num") \
-MIRYOKU_X(SYM,    "Sym") \
-MIRYOKU_X(FUN,    "Fun")
 
 #define MIRYOKU_X(LAYER, STRING) \
 MIRYOKU_DOUBLE_TAP_GUARD(u_to_U_##LAYER, &to U_##LAYER)
-MIRYOKU_LAYER_LIST_REST
+MIRYOKU_LAYER_SWITCHER_LIST_REST
 #undef MIRYOKU_X
 
 
-#define MIRYOKU_Y(LAYER, STRING) \
+#define MIRYOKU_X(LAYER, STRING) \
 LANGUAGE_CHANGER_MACRO(macro_U_##LAYER, &to U_##LAYER) \
 MIRYOKU_DOUBLE_TAP_GUARD(u_to_U_##LAYER, &macro_U_##LAYER)
-MIRYOKU_LAYER_LIST_BASE
-#undef MIRYOKU_Y
+MIRYOKU_LAYER_SWITCHER_LIST
+#undef MIRYOKU_X
 
 #if defined (MIRYOKU_KLUDGE_DOUBLETAPBOOT)
   #if defined (MIRYOKU_KLUDGE_SUSPEND)
