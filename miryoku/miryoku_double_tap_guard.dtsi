@@ -1,6 +1,5 @@
 // Copyright 2022 Manna Harbour
 // https://github.com/manna-harbour/miryoku
-#include miroku_language_switcher.h
 #define MIRYOKU_DOUBLE_TAP_GUARD(NAME, BINDING) \
 / { \
   behaviors { \
