@@ -19,5 +19,13 @@
       flavor = "tap-preferred";
       bindings = <&mo>, <&kp>;
     };
-  };
+    behaviors {
+        incl: inverted_colon {
+            compatible = "zmk,behavior-mod-morph";
+            label = "INVERT_COLON";
+            #binding-cells = <0>;
+            bindings = <&kp COLON>, <&kp SEMI>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+    };
 };
