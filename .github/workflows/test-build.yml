@@ -12,6 +12,6 @@ jobs:
     uses: ./.github/workflows/main.yml
     secrets: inherit
     with:
-      board: '["corne-ish_zen_left","corne-ish_zen_right"]'
+      board: '["corneish_zen_v1_left","corneish_zen_v1_right"]'
       alphas: '["BEAKL15"]'
       clipboard: '["mac"]'
