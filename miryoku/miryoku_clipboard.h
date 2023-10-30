@@ -22,9 +22,9 @@
   #define U_CUT &kp LC(X)
   #define U_UND &kp LC(Z)
 #else
-  #define U_RDO &kp K_AGAIN
+  #define U_RDO &kp LC(Y)
   #define U_PST &kp LS(INS)
   #define U_CPY &kp LC(INS)
   #define U_CUT &kp LS(DEL)
-  #define U_UND &kp K_UNDO
+  #define U_UND &kp LC(Z)
 #endif
