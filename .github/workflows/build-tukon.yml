@@ -1,7 +1,7 @@
 # Copyright 2021 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-name: "Build Example tbkmini nice_nano_v2"
+name: "Build tukon"
 on: workflow_dispatch
 jobs:
   build:
@@ -9,4 +9,4 @@ jobs:
     secrets: inherit
     with:
       board: '["nice_nano_v2"]'
-      shield: '["tukon_left nice_view_adapter nice_view","tukon_right nice_view_adapter nice_view"]'
+      shield: '["tukon_left","tukon_right"]'
