@@ -9,5 +9,4 @@ jobs:
     secrets: inherit
     with:
       board: '["nice_nano_v2"]'
-      shield: '["tukon"]'
-      # kconfig: '["CONFIG_ZMK_DISPLAY=y"]'
+      shield: '["tukon_left","tukon_right"]'
