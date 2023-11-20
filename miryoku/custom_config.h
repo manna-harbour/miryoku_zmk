@@ -30,7 +30,7 @@
 // with BASE getting set to BEAKL and a few other tweaks.
 // We also add the custom Game layer at the end.
 #define MIRYOKU_LAYER_LIST \
-MIRYOKU_X(BASE,   "BEAKL") \
+MIRYOKU_X(BASE,   "QWERTY") \
 MIRYOKU_X(EXTRA,  "Extra") \
 MIRYOKU_X(TAP,    "Tap") \
 MIRYOKU_X(BUTTON, "Button") \
@@ -104,15 +104,16 @@ XXX   K20  K21  K22  K23  K24       K25  K26  K27  K28  K29  XXX \
 // LAYER DEFINITIONS
 // **********************
 
-// Layer 0 is in main BEAKL config. BUT, we swapped NUM and MEDIA triggers to get the symbol layer to work.
+// Layer 0 is in main QWERTY config. BUT, we swapped NUM and MEDIA triggers to get the symbol layer to work.
 // As this would break other user's expected workflows, we keep this change here and don't contribute upstream.
 // The config pasted below is identical to the canonical BEAKL15 defined in miryoku, except for the two thumb keys swapped
 // TODO: Look into this, see if there's a way to keep the same config and JUST swap the two keys.
 #define MIRYOKU_LAYER_BASE \
-&kp Q,             &kp H,             &kp O,             &kp U,             &kp X,             &kp G,             &kp C,             &kp R,             &kp F,             &kp Z,             \
-U_MT( LGUI, Y),        U_MT( LALT, I),        U_MT( LCTRL, E),       U_MT( LSHFT, A),       &kp DOT,           &kp D,             U_MT( LSHFT, S),       U_MT( LCTRL, T),       U_MT( LALT, N),        U_MT( LGUI, B),        \
-U_LT( U_BUTTON, J),    U_MT( RALT, SLASH),    &kp COMMA,         &kp K,             &kp SQT,           &kp W,             &kp M,             &kp L,             U_MT( RALT, P),        U_LT( U_BUTTON, V),    \
+&kp Q,             &kp W,             &kp E,             &kp R,             &kp T,             &kp Y,             &kp U,             &kp I,             &kp O,             &kp P,             \
+U_MT(LGUI, A),     U_MT(LALT, S),     U_MT(LCTRL, D),    U_MT(LSHFT, F),    &kp G,             &kp H,             U_MT(LSHFT, J),    U_MT(LCTRL, K),    U_MT(LALT, L),     U_MT(LGUI, SQT),   \
+U_LT(U_BUTTON, Z), U_MT(RALT, X),     &kp C,             &kp V,             &kp B,             &kp N,             &kp M,             &kp COMMA,         U_MT(RALT, DOT),   U_LT(U_BUTTON, SLASH),\
 U_NP,              U_NP,              U_LT( U_NUM, ESC),     U_LT( U_NAV, SPC),     U_LT( U_MOUSE, TAB),   U_LT( U_SYM, RET),     U_LT( U_MEDIA, BSPC),    U_LT( U_FUN, DEL),     U_NP,              U_NP
+
 
 
 // Layer 1: Button, use default
