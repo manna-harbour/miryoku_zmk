@@ -488,13 +488,11 @@ Mouse movement requires [[https://en.wikipedia.org/wiki/Mouse_keys][enabling mou
 
 **** Mousekeys PR
 
-Mouse movement and scroll is supported with https://github.com/zmkfirmware/zmk/pull/778.
+Mouse movement and scroll is supported with https://github.com/caksoylar/zmk/tree/feat/mouse-keys-3.2.
 
-As the PR branch is not being maintained, use https://github.com/urob/zmk/tree/mouse-3.2 instead.
+To build, add ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ to the [[#config-file][config file]], and merge the mousekeys branch.
 
-To build, add ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ to the [[#config-file][config file]], add ~CONFIG_ZMK_MOUSE=y~ to the [[#kconfig-configuration][Kconfig configuration]], and merge the mousekeys branch.
-
-For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ with the ~custom_config~ option, ~CONFIG_ZMK_MOUSE=y~ with the ~kconfig~ option, and ~zmkfirmware/zmk/main urob/zmk/mouse-3.2~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow.
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ with the ~custom_config~ option, and ~zmkfirmware/zmk/main caksoylar/zmk/feat/mouse-keys-3.2~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow.
 
 For local builds, make the changes locally.
 

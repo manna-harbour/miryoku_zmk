@@ -7,9 +7,10 @@
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/ext_power.h>
-#include <dt-bindings/zmk/mouse.h>
 
 #include "miryoku.h"
+
+#include <dt-bindings/zmk/mouse.h>
 
 / {
   keymap {
