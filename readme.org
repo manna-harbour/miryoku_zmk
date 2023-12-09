@@ -475,10 +475,11 @@ On each hand, combo the primary and secondary thumb keys to emulate the tertiary
 
 *** Mouse Keys
 
+[[https://zmk.dev/docs/behaviors/mouse-emulation][ZMK supports mouse buttons only]].
 
 **** Mouse Keys on Host
 
-The Mouse and Button layers use [[https://en.wikipedia.org/wiki/Mouse_keys][mouse keys on the host]].  Scroll is not supported.
+Mouse movement requires [[https://en.wikipedia.org/wiki/Mouse_keys][enabling mouse keys on the host]].  Mouse scroll is not supported.
 
 - [[https://linuxreviews.org/HOWTO_use_the_numeric_keyboard_keys_as_mouse_in_XOrg][X11]]
 - [[https://support.apple.com/en-au/guide/mac-help/mh27469/mac][Mac]]
@@ -487,7 +488,7 @@ The Mouse and Button layers use [[https://en.wikipedia.org/wiki/Mouse_keys][mous
 
 **** Mousekeys PR
 
-Support for https://github.com/zmkfirmware/zmk/pull/778 is also included.
+Mouse movement and scroll is supported with https://github.com/zmkfirmware/zmk/pull/778.
 
 As the PR branch is not being maintained, use https://github.com/urob/zmk/tree/mouse-3.2 instead.
 
