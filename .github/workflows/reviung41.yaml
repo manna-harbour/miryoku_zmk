@@ -12,3 +12,4 @@ jobs:
       shield: '["reviung41"]'
       custom_config: '["#define MIRYOKU_KLUDGE_MOUSEKEYSPR","#define MIRYOKU_KLUDGE_GLOBALSHIFTFUNCTIONS"]'
       branches: '["zmkfirmware/zmk/main caksoylar/zmk/feat/mouse-keys-3.2"]'
+      kconfig: '["CONFIG_ZMK_RGB_UNDERGLOW=y\nCONFIG_WS2812_STRIP=y"]'
