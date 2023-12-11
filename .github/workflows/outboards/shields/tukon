@@ -2,6 +2,6 @@
 # https://github.com/manna-harbour/miryoku
 
 outboard_repository=fouf96/zmk_chocofy_tukon
-outboard_ref=testing-more-configs
+outboard_ref=feature/testing-more-configs
 outboard_from=config/boards/shields/tukon
 outboard_to=boards/shields/tukon
