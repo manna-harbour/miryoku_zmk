@@ -10,3 +10,4 @@ jobs:
     with:
       board: '["nice_nano_v2"]'
       shield: '["tukon_left"]'
+      kconfig: '["CONFIG_ZMK_DISPLAY=y"]'
