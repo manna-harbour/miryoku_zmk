@@ -1,0 +1,15 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+name: 'Build Ferris Sweep'
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["nice_nano_v2"]'
+      shield: '["ferris_left","ferris_right"]'
+      custom_config: '["#define MIRYOKU_KLUDGE_MOUSEKEYSPR","#define MIRYOKU_KLUDGE_GLOBALSHIFTFUNCTIONS"]'
+      branches: '["zmkfirmware/zmk/main caksoylar/zmk/feat/mouse-keys-3.2"]'
+      kconfig: '["CONFIG_ZMK_RGB_UNDERGLOW=y\nCONFIG_WS2812_STRIP=y"]'
