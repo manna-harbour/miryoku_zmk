@@ -10,7 +10,7 @@ jobs:
     with:
       board: '["nice_nano_v2"]'
       shield: '["corne_left", "corne_right"]'
-      alphas: 'QWERTY'
-      nav: 'vi'
-      clipboard: 'Mac'
+      alphas: '["QWERTY"]'
+      nav: '["vi"]'
+      clipboard: '["Mac"]'
       custom_config: '["#define MIRYOKU_KLUDGE_MOUSEKEYSPR"]'
