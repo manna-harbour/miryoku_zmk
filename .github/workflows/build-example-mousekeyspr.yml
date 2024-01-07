@@ -11,4 +11,3 @@ jobs:
       board: '["nice_nano_v2"]'
       shield: '["corne_left,corne_right"]'
       custom_config: '["#define MIRYOKU_KLUDGE_MOUSEKEYSPR", "#define MIRYOKU_ALPHAS_QWERTY", "#define MIRYOKU_NAV_VI", "#define MIRYOKU_CLIPBOARD_MAC"]'
-      branches: '["zmkfirmware/zmk/main caksoylar/zmk/feat/mouse-keys-3.2"]'
