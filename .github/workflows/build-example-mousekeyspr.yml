@@ -13,4 +13,3 @@ jobs:
       alphas: '["QWERTY"]'
       nav: '["vi"]'
       clipboard: '["Mac"]'
-      custom_config: '["#define MIRYOKU_KLUDGE_MOUSEKEYSPR"]'
