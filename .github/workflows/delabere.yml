@@ -11,4 +11,4 @@ jobs:
       board: '["nice_nano_v2"]'
       shield: '["corne_left", "corne_right"]'
       branches: '["caksoylar/zmk/feat/mouse-keys-3.2"]'
-      kconfig: '[CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY=16]'
+      kconfig: '["CONFIG_ZMK_COMBO_MAX_COMBOS_PER_KEY=16"]'
