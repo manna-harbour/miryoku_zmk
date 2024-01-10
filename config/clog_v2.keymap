@@ -1,6 +1,0 @@
-// Copyright 2022 Manna Harbour
-// https://github.com/manna-harbour/miryoku
-
-#include "../miryoku/custom_config.h"
-#include "../miryoku/mapping/36/clog_v2.h"
-#include "../miryoku/miryoku.dtsi"
