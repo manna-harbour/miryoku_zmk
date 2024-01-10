@@ -12,103 +12,12 @@ toprowcombos_ ## LAYER ## _ ## POSITION { \
 
 / {
   combos {
-    compatible = "zmk,combos";
-#if defined (MIRYOKU_LAYERS_FLIP)
-  #if defined (MIRYOKU_ALPHAS_AZERTY)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #elif defined (MIRYOKU_ALPHAS_BEAKL15)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #elif defined (MIRYOKU_ALPHAS_COLEMAK)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #elif defined (MIRYOKU_ALPHAS_COLEMAKDHK)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #elif defined (MIRYOKU_ALPHAS_DVORAK)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #elif defined (MIRYOKU_ALPHAS_HALMAK)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #elif defined (MIRYOKU_ALPHAS_WORKMAN)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #elif defined (MIRYOKU_ALPHAS_QWERTY)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #elif defined (MIRYOKU_ALPHAS_QWERTZ)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #else
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #endif
-  #if defined (MIRYOKU_NAV_INVERTEDT)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #elif defined (MIRYOKU_NAV_VI)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #else
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #endif
-#else
-  #if defined (MIRYOKU_ALPHAS_AZERTY)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #elif defined (MIRYOKU_ALPHAS_BEAKL15)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #elif defined (MIRYOKU_ALPHAS_COLEMAK)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #elif defined (MIRYOKU_ALPHAS_COLEMAKDHK)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #elif defined (MIRYOKU_ALPHAS_DVORAK)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #elif defined (MIRYOKU_ALPHAS_HALMAK)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #elif defined (MIRYOKU_ALPHAS_WORKMAN)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #elif defined (MIRYOKU_ALPHAS_QWERTY)
+
     MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, LEFTPINKIE, &kp Q)
     MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, LEFTINNERINDEX, &kp T)
     MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, RIGHTINNERINDEX, &kp Y)
     MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, RIGHTPINKIE, &kp P)
     MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, DOUBLEINDEX, &u_caps_word)
-  #elif defined (MIRYOKU_ALPHAS_QWERTZ)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #else
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, LEFTPINKIE, &kp Q)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, LEFTINNERINDEX, &kp B)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, RIGHTINNERINDEX, &kp J)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, RIGHTPINKIE, &kp SQT)
-  #endif
-  #if defined (MIRYOKU_NAV_INVERTEDT)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #elif defined (MIRYOKU_NAV_VI)
-    #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
-  #else
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_NAV, LEFTPINKIE, &bootloader)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_NAV, LEFTINNERINDEX, U_NA)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_NAV, RIGHTINNERINDEX, U_RDO)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_NAV, RIGHTPINKIE, U_UND)
-
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_MOUSE, LEFTPINKIE, &bootloader)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_MOUSE, LEFTINNERINDEX, U_NA)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_MOUSE, RIGHTINNERINDEX, U_RDO)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_MOUSE, RIGHTPINKIE, U_UND)
-
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_MEDIA, LEFTPINKIE, &bootloader)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_MEDIA, LEFTINNERINDEX, U_NA)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_MEDIA, RIGHTINNERINDEX, &rgb_ug RGB_TOG)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_MEDIA, RIGHTPINKIE, &u_rgb_bri)
-  #endif
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_NUM, LEFTPINKIE, &kp LBKT)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_NUM, LEFTINNERINDEX, &kp RBKT)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_NUM, RIGHTINNERINDEX, U_NA)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_NUM, RIGHTPINKIE, &bootloader)
-
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_SYM, LEFTPINKIE, &kp LBRC)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_SYM, LEFTINNERINDEX, &kp RBRC)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_SYM, RIGHTINNERINDEX, U_NA)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_SYM, RIGHTPINKIE, &bootloader)
-
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_FUN, LEFTPINKIE, &kp F12)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_FUN, LEFTINNERINDEX, &kp PSCRN)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_FUN, RIGHTINNERINDEX, U_NA)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_FUN, RIGHTPINKIE, &bootloader)
-#endif
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BUTTON, LEFTPINKIE, U_UND)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BUTTON, LEFTINNERINDEX, U_RDO)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BUTTON, RIGHTINNERINDEX, U_RDO)
-    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BUTTON, RIGHTPINKIE, U_UND)
+  
   };
 };
