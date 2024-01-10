@@ -62,6 +62,7 @@ toprowcombos_ ## LAYER ## _ ## POSITION { \
     MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, LEFTINNERINDEX, &kp T)
     MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, RIGHTINNERINDEX, &kp Y)
     MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, RIGHTPINKIE, &kp P)
+    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, DOUBLEINDEX, &u_caps_word)
   #elif defined (MIRYOKU_ALPHAS_QWERTZ)
     #error "Not implemented. See https://github.com/manna-harbour/miryoku/issues/56"
   #else
