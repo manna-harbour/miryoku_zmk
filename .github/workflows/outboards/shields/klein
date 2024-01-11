@@ -1,0 +1,7 @@
+# Copyright 2024 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=snsten/Klein-zmk
+outboard_ref=main
+outboard_from=config/boards/shields/klein
+outboard_to=boards/shields/klein
