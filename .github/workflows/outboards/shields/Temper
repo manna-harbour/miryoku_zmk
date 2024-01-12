@@ -2,6 +2,6 @@
 # https://github.com/manna-harbour/miryoku
 
 outboard_repository=raedcho/temper-zmk-config
-outboard_ref=master
+outboard_ref=main
 outboard_from=config/boards/shields/temper
 outboard_to=boards/shields/temper
