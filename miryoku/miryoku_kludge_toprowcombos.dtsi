@@ -15,5 +15,6 @@ toprowcombos_ ## LAYER ## _ ## POSITION { \
     compatible = "zmk,combos";
     MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, DOUBLEINDEX, &u_caps_word)
     MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, JK, &kp ESC)
+    MIRYOKU_KLUDGE_TOPROWCOMBOS_MACRO(U_BASE, TMUX, &kp LC(A))
   };
 };
