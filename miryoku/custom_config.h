@@ -29,7 +29,7 @@ U_NP,              U_NP,              U_NA,              U_NA,              U_NA
 
 #define MIRYOKU_LAYER_NAV \
 U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA,              U_RDO,             U_PST,             U_CPY,             U_CUT,             U_UND,             \
-&kp LCTRL,         &kp LALT,          &kp LGUI,          &kp LSHFT,         LG(LS(N5)),        &kp LEFT,          &kp DOWN,          &kp UP,            &kp RIGHT,         &u_caps_word,      \
+&kp LCTRL,         &kp LALT,          &kp LGUI,          &kp LSHFT,         &kp LG(LS(N5)),    &kp LEFT,          &kp DOWN,          &kp UP,            &kp RIGHT,         &u_caps_word,      \
 U_NA,              U_CUT,             U_CPY,             U_PST,             LG(LC(LS(N4))),    &kp HOME,          &kp PG_DN,         &kp PG_UP,         &kp END,           &kp INS,           \
 U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              &kp RET,           &kp BSPC,          &kp DEL,           U_NP,              U_NP
 
