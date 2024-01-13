@@ -29,8 +29,8 @@ U_NP,              U_NP,              U_NA,              U_NA,              U_NA
 #define MIRYOKU_LAYER_NAV \
 U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA,              U_MS_L,            U_MS_D,            U_MS_U,            U_MS_R,            U_CUT,             \
 &kp LCTRL,         &kp LALT,          &kp LGUI,          &kp LSHFT,         &kp LG(LS(N5)),    &kp LEFT,          &kp DOWN,          &kp UP,            &kp RIGHT,         U_CPY,      \
-U_NA,              U_CUT,             U_CPY,             U_PST,             &kp LG(LC(LS(N4))),&kp HOME,          &kp PG_DN,         &kp PG_UP,         &kp END,           U_PST,           \
-U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              RET,               U_BTN1,            BSPC,              U_NP,              U_NP
+U_NA,              U_CUT,             U_CPY,             U_PST,             &kp LG(LC(LS(N4))),U_WH_L,            U_WH_D,            U_WH_U,            U_WH_R,            U_PST,           \
+U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              &kp RET,           U_BTN1,            &kp BSPC,          U_NP,              U_NP
 
 #define MIRYOKU_LAYER_MOUSE \
 U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA,              U_RDO,             U_PST,             U_CPY,             U_CUT,             U_UND,             \
