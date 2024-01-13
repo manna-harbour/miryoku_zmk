@@ -16,13 +16,13 @@ U_NP,              U_NP,              U_LT(U_MEDIA, ESC),U_LT(U_NAV, GRAVE),U_LT
 
 #define MIRYOKU_LAYER_NUM \
 &kp EXCL,          &kp AT,            &kp HASH,          &kp DLLR,          &kp PRCNT,         &kp CARET,         &kp AMPS,          &kp ASTRK,         &kp MINUS,         &kp PLUS,          \
-&kp N1,            &kp N2,            &kp N3,            &kp N4,            &kp N5,            &kp N6,            &kp N7,            &kp N8,            &kp N9,            &kp N0,            \
+&kp N1,            &kp N2,            &kp N3,            &kp N4,            &kp N5,            &kp N6,            U_MT(LSHFT, N7),   U_MT(LGUI, N8),    U_MT(LALT, N9),    U_MT(LCTRL, N0),   \
 U_NP,              U_NP,              U_NP,              U_NP,              U_NP,              U_NA,              U_NP,              U_NP,              U_NP,              U_NA,              \
 U_NP,              U_NP,              U_NP,              U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              U_NP,              U_NP
 
 #define MIRYOKU_LAYER_SYM \
 &kp GRAVE,         U_NA,              U_NA,              U_NA,              U_NA,              &kp PIPE,          &kp LPAR,          &kp RPAR,          &kp UNDER,         &kp EQUAL,            \
-&kp TILDE,         U_NA,              U_NA,              U_NA,              U_NA,              &kp COLON,         &kp LBRC,          &kp RBRC,          U_NA,              U_NA,         \
+&kp TILDE,         U_NA,              U_NA,              U_NA,              U_NA,              &kp COLON,         &kp LBRC,          &kp RBRC,          U_NA,              U_NA,                 \
 U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              &kp SEMI,          &kp LBKT,          &kp RBKT,          U_NA,              &kp BSLH,              \
 U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NP,              U_NP
 
@@ -52,7 +52,7 @@ U_NP,              U_NP,              U_NA,              U_NA,              U_NA
 U_NP,              U_NP,              &kp K_APP,         &kp SPACE,         &kp TAB,           U_NA,              U_NA,              U_NA,              U_NP,              U_NP
 
 #define MIRYOKU_LAYER_BUTTON \
-U_NP,           &kp LG(F10),          U_NP,              U_NP,              &kp LG(F6),        U_NA,              U_NP,              U_NP,              U_NP,              U_NP,             \
-U_NP,           &kp LG(F1),           U_NP,              U_NP,              U_NP,              U_NA,              U_NP,              U_NP,              U_NP,              U_NP,             \
-U_NP,           U_NP,                 U_NP,              U_NP,              U_NP,              U_NA,              U_NP,              U_NP,              U_NP,              U_NA,             \
+U_NA,           &kp LG(F10),          U_NA,              U_NA,              &kp LG(F6),        U_NA,              U_NA,              U_NA,              U_NA,              U_NA,             \
+U_NA,           &kp LG(F1),           U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,             \
+U_NA,           U_NA,                 U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,             \
 U_NP,           U_NP,                 &kp LG(F2),        U_NP,              &kp LG(F3),        U_NA,              U_NA,              U_NA,              U_NP,              U_NP
