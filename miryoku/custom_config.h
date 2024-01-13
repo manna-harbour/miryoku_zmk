@@ -54,5 +54,5 @@ U_NP,              U_NP,              &kp K_APP,         &kp SPACE,         &kp 
 #define MIRYOKU_LAYER_BUTTON \
 U_NA,           &kp LG(F10),          U_NA,              U_NA,              &kp LG(F6),        U_NA,              U_NA,              U_NA,              U_NA,              U_NA,             \
 U_NA,           &kp LG(F1),           U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,             \
-U_NA,           U_NA,                 U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,             \
-U_NP,           U_NP,                 &kp LG(F2),        U_NP,              &kp LG(F3),        U_NA,              U_NA,              U_NA,              U_NP,              U_NP
+U_NA,           U_NA,                 &kp LG(F2),        U_NA,              &kp LG(F3),        U_NA,              U_NA,              U_NA,              U_NA,              U_NA,             \
+U_NP,           U_NP,                 U_NA,              U_NP,              U_NA,              U_NA,              U_NA,              U_NA,              U_NP,              U_NP
