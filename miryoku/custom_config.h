@@ -21,8 +21,8 @@ U_NP,              U_NP,              U_NP,              U_NP,              U_NP
 U_NP,              U_NP,              U_NP,              U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              U_NP,              U_NP
 
 #define MIRYOKU_LAYER_SYM \
-U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              &kp PIPE,          &kp LPAR,          &kp RPAR,          &kp UNDER,         &kp EQUAL,            \
-&kp TILDE,         U_NA,              U_NA,              U_NA,              U_NA,              &kp COLON,         &kp LBRC,          &kp RBRC,          U_NA,              &kp GRAVE,                 \
+&kp TILDE,         U_NA,              U_NA,              U_NA,              U_NA,              &kp PIPE,          &kp LPAR,          &kp RPAR,          &kp UNDER,         &kp EQUAL,            \
+U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              &kp COLON,         &kp LBRC,          &kp RBRC,          U_NA,              &kp GRAVE,                 \
 U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              &kp SEMI,          &kp LBKT,          &kp RBKT,          U_NA,              &kp BSLH,              \
 U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NA,              U_NP,              U_NP
 
