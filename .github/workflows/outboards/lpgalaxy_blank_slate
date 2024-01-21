@@ -1,0 +1,7 @@
+# Copyright 2024 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=petejohanson/blank-slate-zmk-module
+outboard_ref=main
+outboard_from=boards/arm/lpgalaxy_blank_slate
+outboard_to=boards/arm/lpgalaxy_blank_slate
