@@ -1,5 +1,11 @@
 // Copyright 2021 Manna Harbour
 // https://github.com/manna-harbour/miryoku
+#define HOST_OS 2
+#include "../miryoku/nodefreehelper.h"
+
+ZMK_UNICODE_PAIR( de_ae,   N0, N0,  E, N4,   N0, N0,  C, N4 )
+ZMK_UNICODE_PAIR( de_oe,   N0, N0,  F, N6,   N0, N0,  D, N6 )
+ZMK_UNICODE_PAIR( de_ue,   N0, N0,  F,  C,   N0, N0,  D,  C )
 
 #include "../miryoku/custom_config.h"
 #include "../miryoku/mapping/42/corne.h"
