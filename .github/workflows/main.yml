@@ -74,6 +74,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: 'miryoku_zmk'
+          submodules: 'true'
       - name: main
         id: main
         run: |
