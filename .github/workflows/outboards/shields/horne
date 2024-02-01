@@ -3,5 +3,5 @@
 
 outboard_repository=padda-wan/horne-zmk-shield
 outboard_ref=main
-outboard_from=zmk_config/boards/shields/horne-zmk-shield
-outboard_to=boards/shields/horne-zmk-shield
+outboard_from=zmk_config/boards/shields/horne
+outboard_to=boards/shields/horne
