@@ -9,7 +9,7 @@ jobs:
     secrets: inherit
     with:
       board: '["seeeduino_xiao_ble"]'
-      shield: '["horne_left rgbled_adapter","horne_right rgbled_adapter"]'
+      shield: '["horne_left","horne_right"]'
       kconfig: '["CONFIG_ZMK_DISPLAY=n"]'
       alphas: '["qwerty"]'
       nav: '["vi"]'
