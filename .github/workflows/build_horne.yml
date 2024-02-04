@@ -11,3 +11,7 @@ jobs:
       board: '["seeeduino_xiao_ble"]'
       shield: '["horne_left","horne_right"]'
       kconfig: '["CONFIG_ZMK_DISPLAY=n"]'
+      alphas: '["qwerty"]'
+      nav: '["vi"]'
+      clipboard: '["mac"]'
+      layers: '["default"]'
