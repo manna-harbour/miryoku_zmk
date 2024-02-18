@@ -1,0 +1,16 @@
+# My Biild for ChocCorne
+
+name: 'Build my ChocCorne'
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["nice_nano_v2"]'
+      shield: '["corne_left","corne_right"]'
+      alphas: "colemak"
+      nav: "invertedT"
+      layers: "flip"
+      # custom_config: '["#define MIRYOKU_KLUDGE_SUSPEND"]'
+      # branches: '["zmkfirmware/zmk/main manna-harbour/zmk/suspend-test"]'
