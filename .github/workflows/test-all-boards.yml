@@ -22,6 +22,7 @@ jobs:
         "glove80_lh","glove80_rh",
         "klacker_bs",
         "lpgalaxy_blank_slate",
+	"kain",
         "native_posix_64",
         "nice60",
         "one42",
