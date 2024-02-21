@@ -1,0 +1,4 @@
+outboard_repository=joekain/zmk-config
+outboard_ref=master
+outboard_from=/
+outboard_to=boards/shields/kain
