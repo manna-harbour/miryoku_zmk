@@ -1,0 +1,7 @@
+// Copied from corne.keymap by Joseph Kain
+// Copyright 2021 Manna Harbour
+// https://github.com/manna-harbour/miryoku
+
+#include "../miryoku/custom_config.h"
+#include "../miryoku/mapping/42/kain.h"
+#include "../miryoku/miryoku.dtsi"
