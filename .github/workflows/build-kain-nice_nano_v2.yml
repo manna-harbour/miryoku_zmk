@@ -1,0 +1,16 @@
+# Adapted from build-example-conne-nice_nano_v2-nice_view.yml by
+# Joseph Kain
+#
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+name: 'Build Kain nice_nano_v2'
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["nice_nano_v2"]'
+      shield: '["kain_left","kain_right"]'
+
