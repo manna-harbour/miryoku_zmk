@@ -171,7 +171,7 @@ Used to select an alternative ZMK branch for building, and to merge branches int
 
 Branches are specified in the form ~<user>/<repo>/<branch>~.  E.g. the default ZMK branch would be specified as ~zmkfirmware/zmk/main~.
 
-Multiple space separated branches can be specified.  The first branch specified is used as an alternative ZMK branch for building.  Any additional branches will be merged.
+Multiple space separated branches can be specified.  The first branch specified is used as an alternative ZMK branch for building.  Any additional branches will be merged.  Automatic merging is only possible where there are no conflicts.  If there are conflicts, build from the branch directly, or request a rebase from the branch maintainer.
 
 For no changes, leave as ~default~.
 
@@ -490,9 +490,11 @@ Mouse movement requires [[https://en.wikipedia.org/wiki/Mouse_keys][enabling mou
 
 Mouse movement and scroll is supported with https://github.com/caksoylar/zmk/tree/feat/mouse-keys-3.2.
 
-To build, add ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ to the [[#config-file][config file]], and merge the mousekeys branch.
+To build, add ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ to the [[#config-file][config file]], and switch to or merge the mousekeys branch.
 
-For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ with the ~custom_config~ option, and ~zmkfirmware/zmk/main caksoylar/zmk/feat/mouse-keys-3.2~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow.
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ with the ~custom_config~ option, and ~caksoylar/zmk/feat/mouse-keys-3.2~ with the ~branches~ option.  Alternatively, use ~zmkfirmware/zmk/main caksoylar/zmk/feat/mouse-keys-3.2~ to attempt an automatic [[#branches][merge]] of the branch into ZMK main.
+
+For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow.
 
 For local builds, make the changes locally.
 
@@ -503,9 +505,11 @@ Support for https://github.com/zmkfirmware/zmk/issues/1292#issuecomment-12646035
 
 Suspend takes the place of the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#additional-features][boot]] key. For split keyboards, suspend the peripheral side then the central side.
 
-For [[#local-builds][local builds]], add ~#define MIRYOKU_KLUDGE_SUSPEND~ to the [[#config-file][config file]] and merge https://github.com/manna-harbour/zmk/tree/suspend-test.
+For [[#local-builds][local builds]], add ~#define MIRYOKU_KLUDGE_SUSPEND~ to the [[#config-file][config file]] and switch to or merge https://github.com/manna-harbour/zmk/tree/suspend-test.
 
-For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~#define MIRYOKU_KLUDGE_SUSPEND~ with the ~custom_config~ option, and ~zmkfirmware/zmk/main manna-harbour/zmk/suspend-test~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-suspend.yml][Build Example suspend]] workflow.
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~#define MIRYOKU_KLUDGE_SUSPEND~ with the ~custom_config~ option, and ~manna-harbour/zmk/suspend-test~ with the ~branches~ option.  Alternatively, use ~zmkfirmware/zmk/main manna-harbour/zmk/suspend-test~ to attempt an automatic [[#branches][merge]] of the branch into ZMK main.
+
+For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-suspend.yml][Build Example suspend]] workflow.
 
 
 *** Tap Delay
@@ -522,16 +526,20 @@ Use Miryoku ZMK with any keyboard with [[https://github.com/manna-harbour/xmk][�
 
 **** xmk Shield
 
-For [[#local-builds][local builds]] first merge https://github.com/zmkfirmware/zmk/pull/1318. Add https://github.com/manna-harbour/xmk/tree/main/zmk/boards/shields/xmk as ~config/boards/shields/xmk~. Build with shield ~xmk~ and the appropriate board.
+For [[#local-builds][local builds]], first switch to or merge https://github.com/zmkfirmware/zmk/pull/1318. Add https://github.com/manna-harbour/xmk/tree/main/zmk/boards/shields/xmk as ~config/boards/shields/xmk~. Build with shield ~xmk~ and the appropriate board.
 
-For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~xmk~ with the ~shield~ option, the appropriate board with the ~board~ option, and ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-xmk-xmk.yml][Build Example 𝑥MK xmk]] workflow.
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~xmk~ with the ~shield~ option, the appropriate board with the ~board~ option, and ~petejohanson/zmk/shell/tap-command~ with the ~branches~ option.  Alternatively, use ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~ to attempt an automatic [[#branches][merge]] of the branch into ZMK main.
+
+For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-xmk-xmk.yml][Build Example 𝑥MK xmk]] workflow.
 
 
 **** native_posix_64 Board
 
-For [[#local-builds][local builds]] first merge https://github.com/zmkfirmware/zmk/pull/1318. Add ~#define MIRYOKU_KLUDGE_TAPDELAY~ to the config file. Build with board ~native_posix_64~.
+For [[#local-builds][local builds]], first switch to or merge https://github.com/zmkfirmware/zmk/pull/1318. Add ~#define MIRYOKU_KLUDGE_TAPDELAY~ to the config file. Build with board ~native_posix_64~.
 
-For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~native_posix_64~ with the ~board~ option, ~#define MIRYOKU_KLUDGE_TAPDELAY~ with the ~custom_config~ option, and ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-xmk-native_posix_64.yml][Build Example 𝑥MK native_posix_64]] workflow.
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~native_posix_64~ with the ~board~ option, ~#define MIRYOKU_KLUDGE_TAPDELAY~ with the ~custom_config~ option, and ~petejohanson/zmk/shell/tap-command~ with the ~branches~ option.  Alternatively, use ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~ to attempt an automatic [[#branches][merge]] of the branch into ZMK main.
+
+For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-xmk-native_posix_64.yml][Build Example 𝑥MK native_posix_64]] workflow.
 
 
 ** Issues
