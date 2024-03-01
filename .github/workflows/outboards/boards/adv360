@@ -5,4 +5,4 @@ outboard_repository=KinesisCorporation/Adv360-Pro-ZMK
 outboard_ref=V2.0
 outboard_from=config/boards/arm/adv360
 outboard_to=boards/arm/adv360
-zmk=refil/zmk/adv360-z3
+outboard_branches=refil/zmk/adv360-z3

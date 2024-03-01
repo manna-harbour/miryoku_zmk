@@ -120,7 +120,7 @@ Also use to specify optional non-keyboard shields, e.g. ~nice_view~. To combine 
 
 ***** Miryoku Alternative Layout and Mapping Options
 
-The ~alphas~, ~nav~, ~clipboard~, and ~layers~ options correspond to the Miryoku alternative layout options.  See the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#layers][default layers]] and [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layouts]] documentation for details.  See the [[.github/workflows/test-all-configs.yml][Test All Configs]] workflow file for a list of all supported values.
+The ~alphas~, ~extra~, ~tap~, ~nav~, ~clipboard~, and ~layers~ options correspond to the Miryoku alternative layout options.  See the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#layers][default layers]] and [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layouts]] documentation for details.  See the [[.github/workflows/test-all-configs.yml][Test All Configs]] workflow file for a list of all supported values.
 
 The ~mapping~ option corresponds to the alternative [[#mapping-macros][mapping]] options.
 
@@ -137,11 +137,6 @@ Select an alternative alphas layout, e.g. ~colemak~, ~dvorak~, ~halmak~, ~qwerty
 Select an alternative Nav layout, e.g. ~invertedt~, ~vi~.  For home position line nav, leave as ~default~.
 
 
-****** clipboard
-
-Select an alternative clipboard type, e.g. ~mac~, ~win~.  For CUA bindings, leave as ~default~.
-
-
 ****** layers
 
 Select an alternative layers layout, e.g. ~flip~.  For right hand Nav, leave as ~default~.
@@ -154,7 +149,27 @@ Select an alternative mapping, e.g. ~extended_thumbs~, ~pinkie_stagger~.  For th
 
 ***** custom_config
 
-Appends to the [[#config-file][config]] file, e.g. ~#define MIRYOKU_TAP_QWERTY~. Join multiple lines with ~\n~, e.g. ~#define MIRYOKU_TAP_QWERTY\n#define MIRYOKU_EXTRA_COLEMAKDH~. For no additional config, leave as ~default~.
+Appends to the [[#config-file][config]] file, e.g. ~#define MIRYOKU_CLIPBOARD_WIN~. Join multiple lines with ~\n~, e.g. ~#define MIRYOKU_EXTRA_DVORAK\n#define MIRYOKU_TAP_QWERTY\n#define MIRYOKU_CLIPBOARD_WIN~. For no additional config, leave as ~default~.
+
+
+***** Additional Options
+
+These options are not available in the [[#build-inputs][Build Inputs]] workflow due to platform limitations.  Use the [[#custom_config][custom_config]] option instead.
+
+
+****** extra
+
+Select an alternative alphas layout for the Extra layer, e.g. ~colemak~, ~dvorak~, ~halmak~, ~qwerty~.  For QWERTY, leave as ~default~.
+
+
+****** tap
+
+Select an alternative alphas layout for the Tap layer, e.g. ~colemak~, ~dvorak~, ~halmak~, ~qwerty~.  For Colemak Mod-DH, leave as ~default~.
+
+
+****** clipboard
+
+Select an alternative clipboard type, e.g. ~mac~, ~win~.  For CUA bindings, leave as ~default~.
 
 
 ***** ZMK Options
@@ -174,6 +189,18 @@ Branches are specified in the form ~<user>/<repo>/<branch>~.  E.g. the default Z
 Multiple space separated branches can be specified.  The first branch specified is used as an alternative ZMK branch for building.  Any additional branches will be merged.  Automatic merging is only possible where there are no conflicts.  If there are conflicts, build from the branch directly, or request a rebase from the branch maintainer.
 
 For no changes, leave as ~default~.
+
+
+***** modules
+
+Used to build with external modlues.
+
+Modules are specified in the form ~<user>/<repo>/<branch>~.
+
+Multiple space separated modules can be specified.
+
+For no changes, leave as ~default~.
+
 
 
 ** Supported Keyboards
