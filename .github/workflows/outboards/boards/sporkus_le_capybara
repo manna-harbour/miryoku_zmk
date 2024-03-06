@@ -1,0 +1,4 @@
+# Copyright 2024 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_modules=petejohanson/le-capybara-zmk-module/main
