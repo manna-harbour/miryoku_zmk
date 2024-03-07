@@ -191,9 +191,9 @@ Multiple space separated branches can be specified.  The first branch specified 
 For no changes, leave as ~default~.
 
 
-***** modules
+****** modules
 
-Used to build with external modlues.
+Used to build with external modules.
 
 Modules are specified in the form ~<user>/<repo>/<branch>~.
 
