@@ -1,0 +1,5 @@
+# Copyright 2024 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_modules='vloth/charybdis-zmk-module/main inorichi/zmk-pmw3610-driver/main'
+outboard_branches='petejohanson/zmk/feat/pointers-move-scroll'
