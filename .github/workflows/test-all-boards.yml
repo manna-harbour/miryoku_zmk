@@ -21,11 +21,13 @@ jobs:
         "ffkb-holyiot",
         "glove80_lh","glove80_rh",
         "klacker_bs",
+        "lpgalaxy_blank_slate",
         "native_posix_64",
         "nice60",
         "one42",
         "planck_rev6",
         "preonic_rev3",
+        "sporkus_le_capybara",
         "technikable",
         "tipper_tf",
         "zaphod"

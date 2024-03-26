@@ -23,6 +23,30 @@ jobs:
         "qwertz",
         "workman"
       ]'
+      extra: '[
+        "default",
+        "azerty",
+        "beakl15",
+        "colemak",
+        "colemakdhk",
+        "dvorak",
+        "halmak",
+        "qwerty",
+        "qwertz",
+        "workman"
+      ]'
+      tap: '[
+        "default",
+        "azerty",
+        "beakl15",
+        "colemak",
+        "colemakdhk",
+        "dvorak",
+        "halmak",
+        "qwerty",
+        "qwertz",
+        "workman"
+      ]'
       nav: '[
         "default",
         "invertedt",

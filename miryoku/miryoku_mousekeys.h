@@ -3,9 +3,10 @@
 
 #pragma once
 
-#define U_BTN1 &u_macro_btn1
-#define U_BTN2 &u_macro_btn2
-#define U_BTN3 &u_macro_btn3
+#define U_BTN1 &mkp MB1
+#define U_BTN2 &mkp MB2
+#define U_BTN3 &mkp MB3
+
 #define U_MS_D &kp KP_N2
 #define U_MS_L &kp KP_N4
 #define U_MS_R &kp KP_N6
