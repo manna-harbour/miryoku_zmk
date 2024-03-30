@@ -11,7 +11,7 @@ jobs:
       board: '["nice_nano_v2"]'
       shield: '["corne_left","corne_right"]'
       alphas: '["QWERTY"]'
-      layers: '["flip"]'
+      # layers: '["flip"]'
       nav: '["invertedt"]'
       clipboard: '["mac"]'
 
