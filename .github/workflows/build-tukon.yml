@@ -10,3 +10,4 @@ jobs:
     with:
       board: '["nice_nano_v2"]'
       shield: '["tukon_left", "tukon_right"]'
+      branches: '["power/domains-and-device-runtime"]'
