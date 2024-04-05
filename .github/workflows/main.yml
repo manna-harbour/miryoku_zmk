@@ -71,7 +71,7 @@ jobs:
       MIRYOKU_DEBUG: ${{ secrets.MIRYOKU_DEBUG }}
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: 'miryoku_zmk'
       - name: main
@@ -277,7 +277,7 @@ jobs:
           echo "::endgroup::"
       - name: cache
         if: true
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             zmk/modules/
