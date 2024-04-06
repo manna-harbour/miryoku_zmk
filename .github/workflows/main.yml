@@ -1,7 +1,7 @@
 # Copyright 2021 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-name: 'Main'
+name: "Main"
 on:
   workflow_call:
     inputs:
@@ -19,7 +19,7 @@ on:
         default: '["default"]'
       tap:
         type: string
-        default: '["default"]'  
+        default: '["default"]'
       nav:
         type: string
         default: '["default"]'
@@ -44,7 +44,6 @@ on:
       modules:
         type: string
         default: '["default"]'
-  
 
 jobs:
   main:
@@ -73,7 +72,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
         with:
-          path: 'miryoku_zmk'
+          path: "miryoku_zmk"
       - name: main
         id: main
         run: |
@@ -224,9 +223,17 @@ jobs:
           user=`echo "$zmk" | cut -f 1 -d '/'`
           repo=`echo "$zmk" | cut -f 2 -d '/'`
           branch=`echo "$zmk" | cut -f 3- -d '/'`
+          
+          echo "ZMK details: $zmk"
+          echo "User: $user"
+          echo "Repository: $repo"
+          echo "Branch: $branch"
+          
           git clone -b "$branch" --depth 1 "https://github.com/$user/$repo.git" 'zmk'
+          echo "Repository cloned successfully."
+          
           echo "::endgroup::"
-
+          
           echo "::group::merge"
           merges=`echo "$branches" | cut -d ' ' -f 2- -s`
           if [ -n "$merges" ]
@@ -354,4 +361,3 @@ jobs:
         with:
           name: ${{ steps.main.outputs.artifact_generic_name }}
           path: ${{ steps.main.outputs.artifact_dir }}
-
