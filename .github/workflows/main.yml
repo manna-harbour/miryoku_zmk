@@ -78,7 +78,7 @@ jobs:
         id: main
         run: |
           test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && set -x
-
+          
           echo "::group::variables"
 
           if [ -n "${{ matrix.shield }}" -a "${{ matrix.shield }}" != "default" ]
@@ -157,6 +157,26 @@ jobs:
           run_name=`echo $run_name | tr ' ' '-'`
           echo "run_name=$run_name" >> $GITHUB_OUTPUT
 
+          echo "::endgroup::"
+
+          echo "::group::matrix"
+          matrix_file="$artifact_dir/matrix.txt"
+          echo "
+          board: '${{ matrix.board }}'
+          shield: '${{ matrix.shield }}'
+          alphas: '${{ matrix.alphas }}'
+          extra: '${{ matrix.extra }}'
+          tap: '${{ matrix.tap }}'
+          nav: '${{ matrix.nav }}'
+          clipboard: '${{ matrix.clipboard }}'
+          layers: '${{ matrix.layers }}'
+          mapping: '${{ matrix.mapping }}'
+          custom_config: '${{ matrix.custom_config }}'
+          kconfig: '${{ matrix.kconfig }}'
+          branches: '${{ matrix.branches }}'  
+          modules: '${{ matrix.modules }}'
+          " > "$matrix_file"
+          cat "$matrix_file"
           echo "::endgroup::"
 
           echo "::group::outboards"
