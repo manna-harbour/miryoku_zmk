@@ -5,6 +5,6 @@
 #include "../miryoku/mapping/42/corne.h"
 #include "../miryoku/miryoku.dtsi"
 
-#define HOST_OS 1
+#define HOST_OS 2
 #include "../zmk-nodefree-config/helper.h"
 #include "../zmk-nodefree-config/international_chars/german.dtsi"
