@@ -31,7 +31,7 @@ XXX  K20  K21  K22  K23  K24       K25  K26  K27  K28  K29  &de_ue \
 
 #define MIRYOKU_LAYER_BASE \
 &kp Q,             &kp D,             &kp R,             &kp W,             &kp B,             &kp J,             &kp F,             &kp U,             &kp P,             &kp SQT,              \
-&kp A,             U_MT(LALT, S),     U_MT(LCTRL, H),    U_MT(LSHFT, T),    &kp G,             &kp Y,             U_MT(LSHFT, N),    U_MT(LCTRL, E),    U_MT(LALT, O),     &kp I,                \
+&kp U_MT(LGUI, A), U_MT(LALT, S),     U_MT(LCTRL, H),    U_MT(LSHFT, T),    &kp G,             &kp Y,             U_MT(LSHFT, N),    U_MT(LCTRL, E),    U_MT(LALT, O),     U_MT(LGUI, I),        \
 U_LT(U_BUTTON, Z), U_MT(RALT, X),     &kp M,             U_MT(LGUI, C),     &kp V,             &kp K,             U_MT(LGUI, L),     &kp COMMA,         U_MT(RALT, DOT),   U_LT(U_BUTTON, SLASH),\
 U_NP,              U_NP,              U_LT(U_MEDIA, ESC),U_LT(U_NAV, SPACE),U_LT(U_MOUSE, TAB),U_LT(U_SYM, RET),  U_LT(U_NUM, BSPC), U_LT(U_FUN, DEL),  U_NP,              U_NP
 
