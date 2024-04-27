@@ -11,3 +11,5 @@ jobs:
       board: '["nice_nano_v2"]'
       alphas: '["QWERTY"]'
       shield: '["corne_left","corne_right"]'
+      branches: '["caksoylar/zmk/feat/mouse-keys-3.2"]'
+      nav: '["vi"]'
