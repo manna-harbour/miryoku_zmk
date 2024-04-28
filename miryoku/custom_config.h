@@ -15,17 +15,6 @@
 #define U_TAPPING_TERM 220
 #define U_QUICK_TAP 150
 
-#define MIRYOKU_LAYOUTMAPPING_CORNE( \
-     K00, K01, K02, K03, K04,      K05, K06, K07, K08, K09, \
-     K10, K11, K12, K13, K14,      K15, K16, K17, K18, K19, \
-     K20, K21, K22, K23, K24,      K25, K26, K27, K28, K29, \
-     N30, N31, K32, K33, K34,      K35, K36, K37, N38, N39 \
-) \
-&kp ESC    K00  K01  K02  K03  K04       K05  K06  K07  K08  K09  &kp MINUS \
-&kp LSHFT  K10  K11  K12  K13  K14       K15  K16  K17  K18  K19  &kp SINGLE_QUOTE \
-&kp LCTRL  K20  K21  K22  K23  K24       K25  K26  K27  K28  K29  &kp GRAVE \
-                     K32  K33  K34       K35  K36  K37
-
 #define MIRYOKU_LAYER_BASE \
 &kp Q,             &kp W,             &kp E,             &kp R,             &kp T,                  &kp Y,             &kp U,             &kp I,             &kp O,             &kp P,             \
 U_MT(LGUI, A),     U_MT(LALT, S),     U_MT(LCTRL, D),    U_MT(LSHFT, F),    &kp G,                  U_MT(H, H), U_MT(LSHFT, J),    U_MT(LCTRL, K),    U_MT(LALT, L),     U_MT(LGUI, SEMI),   \
@@ -68,11 +57,22 @@ U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA
 U_NA,              &kp RALT,          &u_to_U_FUN,       &u_to_U_MEDIA,     U_NA,              &u_bt_sel_0,       &u_bt_sel_1,       &u_bt_sel_2,       &u_bt_sel_3,       &u_out_tog,        \
 U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              &kp C_STOP,        &kp C_PP,          &kp C_MUTE,        U_NP,              U_NP
 
-/* #define MIRYOKU_LAYER_FRENCH \ */
-/* ___,            ___,        fr_e_grave,  ___,     ___,              ___,       ___,      ___,       ___,        ___,          \ */
-/* ___,            ___,        ___,         ___,     ___,              ___,       ___,      ___,       ___,        ___,          \ */
-/* ___,            ___,        ___,         ___,     ___,              ___,       ___,      ___,       ___,        ___,          \ */
-/* ___,            ___,        ___,         ___,     ___,              ___,       ___,      ___,       ___,        ___ */
+#define MIRYOKU_LAYER_FRENCH \
+___,            ___,        &fr_e_grave, ___,     ___,              ___,       ___,      ___,       ___,        ___,          \
+___,            ___,        ___,         ___,     ___,              ___,       ___,      ___,       ___,        ___,          \
+___,            ___,        ___,         ___,     ___,              ___,       ___,      ___,       ___,        ___,          \
+___,            ___,        ___,         ___,     ___,              ___,       ___,      ___,       ___,        ___
+
+#define MIRYOKU_LAYOUTMAPPING_CORNE( \
+     K00, K01, K02, K03, K04,      K05, K06, K07, K08, K09, \
+     K10, K11, K12, K13, K14,      K15, K16, K17, K18, K19, \
+     K20, K21, K22, K23, K24,      K25, K26, K27, K28, K29, \
+     N30, N31, K32, K33, K34,      K35, K36, K37, N38, N39 \
+) \
+&kp ESC    K00  K01  K02  K03  K04       K05  K06  K07  K08  K09  &kp MINUS \
+&kp LSHFT  K10  K11  K12  K13  K14       K15  K16  K17  K18  K19  &kp SINGLE_QUOTE \
+&kp LCTRL  K20  K21  K22  K23  K24       K25  K26  K27  K28  K29  &kp GRAVE \
+                     K32  K33  K34       K35  K36  K37
 
 #define MIRYOKU_LAYER_LIST \
 MIRYOKU_X(BASE,   "Base") \
@@ -85,9 +85,9 @@ MIRYOKU_X(MEDIA,  "Media") \
 MIRYOKU_X(NUM,    "Num") \
 MIRYOKU_X(SYM,    "Sym") \
 MIRYOKU_X(FUN,    "Fun") \
-/* MIRYOKU_X(FRENCH,   "French") */
-/**/
-/* #define MIRYOKU_LAYERMAPPING_FRENCH MIRYOKU_MAPPING */
+MIRYOKU_X(FRENCH, "French")
+
+#define MIRYOKU_LAYERMAPPING_FRENCH MIRYOKU_MAPPING
 
 #define U_BASE   0
 #define U_EXTRA  1
@@ -99,4 +99,4 @@ MIRYOKU_X(FUN,    "Fun") \
 #define U_NUM    7
 #define U_SYM    8
 #define U_FUN    9
-/* #define U_FRENCH 10 */
+#define U_FRENCH 10
