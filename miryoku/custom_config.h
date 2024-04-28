@@ -16,10 +16,6 @@
 
 #define U_TAPPING_TERM 220
 #define U_QUICK_TAP 150
-/* #define U_MT_FLAVOR balanced */
-/* #define U_LT_FLAVOR balanced */
-// #define U_MT_FLAVOR "tap-preferred"
-// #define U_LT_FLAVOR "tap-preferred"
 
 #define MIRYOKU_LAYOUTMAPPING_CORNE( \
      K00, K01, K02, K03, K04,      K05, K06, K07, K08, K09, \
