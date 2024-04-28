@@ -1,5 +1,10 @@
 // Copyright 2021 Manna Harbour
 // https://github.com/manna-harbour/miryoku
+//
+#include "./custom_helper.h"
+/* #include "./french.dtsi" */
+
+#define ___ &trans
 
 #define MIRYOKU_KLUDGE_MOUSEKEYSPR
 #define U_MOUSE_MOVE_EXPONENT 1
@@ -29,7 +34,7 @@
 
 #define MIRYOKU_LAYER_BASE \
 &kp Q,             &kp W,             &kp E,             &kp R,             &kp T,                  &kp Y,             &kp U,             &kp I,             &kp O,             &kp P,             \
-U_MT(LGUI, A),     U_MT(LALT, S),     U_MT(LCTRL, D),    U_MT(LSHFT, F),    &kp G,                  &kp H,             U_MT(LSHFT, J),    U_MT(LCTRL, K),    U_MT(LALT, L),     U_MT(LGUI, SEMI),   \
+U_MT(LGUI, A),     U_MT(LALT, S),     U_MT(LCTRL, D),    U_MT(LSHFT, F),    &kp G,                  U_MT(H, H), U_MT(LSHFT, J),    U_MT(LCTRL, K),    U_MT(LALT, L),     U_MT(LGUI, SEMI),   \
 U_LT(U_BUTTON, Z), U_MT(RALT, X),     &kp C,             &kp V,             &kp B,                  &kp N,             &kp M,             &kp COMMA,         U_MT(RALT, DOT),   U_LT(U_BUTTON, SLASH),\
 U_NP,              U_NP,              U_LT(U_MEDIA, ESC),U_LT(U_MOUSE, TAB),U_LT(U_NAV, SPACE),     U_LT(U_SYM, RET),  U_LT(U_NUM, BSPC), U_LT(U_FUN, DEL),  U_NP,              U_NP
 
@@ -69,6 +74,12 @@ U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA
 U_NA,              &kp RALT,          &u_to_U_FUN,       &u_to_U_MEDIA,     U_NA,              &u_bt_sel_0,       &u_bt_sel_1,       &u_bt_sel_2,       &u_bt_sel_3,       &u_out_tog,        \
 U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              &kp C_STOP,        &kp C_PP,          &kp C_MUTE,        U_NP,              U_NP
 
+/* #define MIRYOKU_LAYER_FRENCH \ */
+/* ___,            ___,        fr_e_grave,  ___,     ___,              ___,       ___,      ___,       ___,        ___,          \ */
+/* ___,            ___,        ___,         ___,     ___,              ___,       ___,      ___,       ___,        ___,          \ */
+/* ___,            ___,        ___,         ___,     ___,              ___,       ___,      ___,       ___,        ___,          \ */
+/* ___,            ___,        ___,         ___,     ___,              ___,       ___,      ___,       ___,        ___ */
+
 #define MIRYOKU_LAYER_LIST \
 MIRYOKU_X(BASE,   "Base") \
 MIRYOKU_X(EXTRA,  "Extra") \
@@ -79,7 +90,10 @@ MIRYOKU_X(MOUSE,  "Mouse") \
 MIRYOKU_X(MEDIA,  "Media") \
 MIRYOKU_X(NUM,    "Num") \
 MIRYOKU_X(SYM,    "Sym") \
-MIRYOKU_X(FUN,    "Fun")
+MIRYOKU_X(FUN,    "Fun") \
+/* MIRYOKU_X(FRENCH,   "French") */
+/**/
+/* #define MIRYOKU_LAYERMAPPING_FRENCH MIRYOKU_MAPPING */
 
 #define U_BASE   0
 #define U_EXTRA  1
@@ -91,3 +105,4 @@ MIRYOKU_X(FUN,    "Fun")
 #define U_NUM    7
 #define U_SYM    8
 #define U_FUN    9
+/* #define U_FRENCH 10 */
