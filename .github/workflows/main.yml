@@ -98,7 +98,8 @@ jobs:
 
           tmpfile="$configfile.tmp"
           echo -n '#define ' > "$tmpfile"
-          echo "MIRYOKU_KEYBOARD_$keyboard_base" | tr '[a-z-]' '[A-Z_]' >> "$tmpfile"
+          echo -n "MIRYOKU_KEYBOARD_$keyboard_base" | tr  -c '[:alnum:]' '_' |tr '[:lower:]' '[:upper:]' >> "$tmpfile"
+          echo >> "$tmpfile"
           cat "$configfile" >> "$tmpfile"
           mv "$tmpfile" "$configfile"
 
