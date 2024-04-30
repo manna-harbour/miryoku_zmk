@@ -1,7 +1,4 @@
-# Copyright 2021 Manna Harbour
+# Copyright 2024 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-outboard_repository=petejohanson/technikable-zmk-config
-outboard_ref=main
-outboard_from=boards/arm/technikable
-outboard_to=boards/arm/technikable
+outboard_modules=petejohanson/technikable-zmk-config/main
