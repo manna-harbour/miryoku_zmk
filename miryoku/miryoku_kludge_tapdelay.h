@@ -12,7 +12,7 @@ U_MACRO(u_tapdelay_tap_##CODE, bindings = <&macro_press &kp CODE>, <&macro_relea
     u_tapdelay_mt_##CODE: u_tapdelay_mt_##CODE { \
       compatible = "zmk,behavior-hold-tap"; \
       #binding-cells = <2>; \
-      tapping_term_ms = <U_TAPPING_TERM>; \
+      tapping-term-ms = <U_TAPPING_TERM>; \
       flavor = "tap-preferred"; \
       bindings = <&kp>, <&u_tapdelay_tap_##CODE>; \
     }; \
@@ -25,7 +25,7 @@ U_MACRO(u_tapdelay_tap_##CODE, bindings = <&macro_press &kp CODE>, <&macro_relea
     u_tapdelay_lt_##CODE: u_tapdelay_lt_##CODE { \
       compatible = "zmk,behavior-hold-tap"; \
       #binding-cells = <2>; \
-      tapping_term_ms = <U_TAPPING_TERM>; \
+      tapping-term-ms = <U_TAPPING_TERM>; \
       flavor = "tap-preferred"; \
       bindings = <&mo>, <&u_tapdelay_tap_##CODE>; \
     }; \
