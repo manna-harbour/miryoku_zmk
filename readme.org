@@ -225,7 +225,7 @@ See https://github.com/manna-harbour/miryoku/discussions/81 for available and su
 
 Outboards are files containing out-of-tree board and shield definition metadata.
 
-Files are at [[.github/workflows/outboards]]. Outboards for boards and shields are contained in the corresponding subdirectories. Files are named after the board or shield.
+Files are at [[.github/workflows/outboards]]. Outboards for boards and shields are contained in the corresponding subdirectories. Files are named after the base board or shield name (i.e. without revision or ~_left~ / ~_right~ suffixes).
 
 Outboards contain Bourne shell variable assignments. Supported variables are described below. See the files for samples.
 

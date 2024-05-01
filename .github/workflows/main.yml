@@ -92,13 +92,13 @@ jobs:
           fi
           echo "shield_arg=$SHIELD_ARG" >> $GITHUB_OUTPUT
           keyboard_split="$keyboard"
-          keyboard_base=`echo "$keyboard" | sed 's/_\(left\|right\)//'`
+          keyboard_base=`echo "$keyboard" | sed -e 's/_\(left\|right\)//' -e 's/@.*//'`
 
           configfile="${GITHUB_WORKSPACE}/miryoku_zmk/miryoku/custom_config.h"
 
           tmpfile="$configfile.tmp"
           echo -n '#define ' > "$tmpfile"
-          echo -n "MIRYOKU_KEYBOARD_$keyboard_base" | tr  -c '[:alnum:]' '_' |tr '[:lower:]' '[:upper:]' >> "$tmpfile"
+          echo -n "MIRYOKU_KEYBOARD_$keyboard_base" | tr  -c '[:alnum:]' '_' | tr '[:lower:]' '[:upper:]' >> "$tmpfile"
           echo >> "$tmpfile"
           cat "$configfile" >> "$tmpfile"
           mv "$tmpfile" "$configfile"
