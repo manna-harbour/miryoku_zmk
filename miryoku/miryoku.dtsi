@@ -22,7 +22,7 @@
     compatible = "zmk,keymap";
 #define MIRYOKU_X(LAYER, STRING) \
     LAYER { \
-      label = STRING; \
+      display-name = STRING; \
       bindings = < U_MACRO_VA_ARGS(MIRYOKU_LAYERMAPPING_##LAYER, MIRYOKU_LAYER_##LAYER) >; \
     };
 MIRYOKU_LAYER_LIST

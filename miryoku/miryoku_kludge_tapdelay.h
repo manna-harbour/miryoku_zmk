@@ -11,9 +11,8 @@ U_MACRO(u_tapdelay_tap_##CODE, bindings = <&macro_press &kp CODE>, <&macro_relea
   behaviors { \
     u_tapdelay_mt_##CODE: u_tapdelay_mt_##CODE { \
       compatible = "zmk,behavior-hold-tap"; \
-      label = U_STRINGIFY(u_tapdelay_mt_##CODE); \
       #binding-cells = <2>; \
-      tapping_term_ms = <U_TAPPING_TERM>; \
+      tapping-term-ms = <U_TAPPING_TERM>; \
       flavor = "tap-preferred"; \
       bindings = <&kp>, <&u_tapdelay_tap_##CODE>; \
     }; \
@@ -25,9 +24,8 @@ U_MACRO(u_tapdelay_tap_##CODE, bindings = <&macro_press &kp CODE>, <&macro_relea
   behaviors { \
     u_tapdelay_lt_##CODE: u_tapdelay_lt_##CODE { \
       compatible = "zmk,behavior-hold-tap"; \
-      label = U_STRINGIFY(u_tapdelay_lt_##CODE); \
       #binding-cells = <2>; \
-      tapping_term_ms = <U_TAPPING_TERM>; \
+      tapping-term-ms = <U_TAPPING_TERM>; \
       flavor = "tap-preferred"; \
       bindings = <&mo>, <&u_tapdelay_tap_##CODE>; \
     }; \
@@ -69,7 +67,7 @@ MIRYOKU_X(COMMA,) \
 MIRYOKU_X(DOT,) \
 MIRYOKU_X(SLASH,) \
 MIRYOKU_X(ESC,) \
-MIRYOKU_X(SPC,) \
+MIRYOKU_X(SPACE,) \
 MIRYOKU_X(TAB,) \
 MIRYOKU_X(RET,) \
 MIRYOKU_X(BSPC,) \
