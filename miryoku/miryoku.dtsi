@@ -1,11 +1,11 @@
 // Copyright 2022 Manna Harbour
-// https://github.com/manna-harbour/miryoku
+// https: //github.com/manna-harbour/miryoku
 
 #include <behaviors.dtsi>
 #include <behaviors/mouse_key_press.dtsi>
 #if defined (MIRYOKU_KLUDGE_MOUSEKEYSPR)
-  #include <behaviors/mouse_move.dtsi>
-  #include <behaviors/mouse_scroll.dtsi>
+#include <behaviors/mouse_move.dtsi>
+#include <behaviors/mouse_scroll.dtsi>
 #endif
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
@@ -20,34 +20,14 @@
 / {
   keymap {
     compatible = "zmk,keymap";
-#define MIRYOKU_X(LAYER, STRING) \
+    #define MIRYOKU_X(LAYER, STRING) \
     LAYER { \
       display-name = STRING; \
-      bindings = < U_MACRO_VA_ARGS(MIRYOKU_LAYERMAPPING_##LAYER, MIRYOKU_LAYER_##LAYER) >; \
+      bindings = <U_MACRO_VA_ARGS(MIRYOKU_LAYERMAPPING_##LAYER, MIRYOKU_LAYER_##LAYER)>; \
     };
-MIRYOKU_LAYER_LIST
-#undef MIRYOKU_X
+    MIRYOKU_LAYER_LIST
+    #undef MIRYOKU_X
   };
-};
-
-&pro_micro_i2c {
-    status = "okay";
-
-    oled: ssd1306@3c {
-        compatible = "solomon,ssd1306fb";
-        reg = <0x3c>;
-        label = "DISPLAY";
-        width = <128>;
-        height = <32>;
-        segment-offset = <0>;
-        page-offset = <0>;
-        display-offset = <0>;
-        multiplex-ratio = <31>;
-        segment-remap;
-        com-invdir;
-        com-sequential;
-        prechargep = <0x22>;
-    };
 };
 
 #include "miryoku_shift_functions.dtsi"
@@ -55,25 +35,25 @@ MIRYOKU_LAYER_LIST
 #include "miryoku_double_tap_guard.dtsi"
 
 #if defined (MIRYOKU_KLUDGE_MOUSEKEYSPR)
-  #include "miryoku_kludge_mousekeyspr.dtsi"
+#include "miryoku_kludge_mousekeyspr.dtsi"
 #else
-  #include "miryoku_mousekeys.dtsi"
+#include "miryoku_mousekeys.dtsi"
 #endif
 
 #if defined (MIRYOKU_KLUDGE_THUMBCOMBOS)
-  #include "miryoku_kludge_thumbcombos.dtsi"
+#include "miryoku_kludge_thumbcombos.dtsi"
 #endif
 
 #if defined (MIRYOKU_KLUDGE_TOPROWCOMBOS)
-  #include "miryoku_kludge_toprowcombos.dtsi"
+#include "miryoku_kludge_toprowcombos.dtsi"
 #endif
 
 #if defined (MIRYOKU_KLUDGE_BOTTOMROWCOMBOS)
-  #include "miryoku_kludge_bottomrowcombos.dtsi"
+#include "miryoku_kludge_bottomrowcombos.dtsi"
 #endif
 
 #if defined (MIRYOKU_KLUDGE_TAPDELAY)
-  #include "miryoku_kludge_tapdelay.dtsi"
+#include "miryoku_kludge_tapdelay.dtsi"
 #else
-  #include "miryoku_behaviors.dtsi"
+#include "miryoku_behaviors.dtsi"
 #endif
