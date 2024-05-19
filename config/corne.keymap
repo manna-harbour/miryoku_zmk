@@ -4,10 +4,3 @@
 #include "../miryoku/custom_config.h"
 #include "../miryoku/mapping/42/corne.h"
 #include "../miryoku/miryoku.dtsi"
-
-// OLED Configuration
-CONFIG_ZMK_DISPLAY=y
-CONFIG_ZMK_WIDGET_LAYER_STATUS=y
-CONFIG_ZMK_WIDGET_BATTERY_STATUS=y
-CONFIG_ZMK_WIDGET_OUTPUT_STATUS=y
-CONFIG_BT_CTLR_TX_PWR_PLUS_8=y
