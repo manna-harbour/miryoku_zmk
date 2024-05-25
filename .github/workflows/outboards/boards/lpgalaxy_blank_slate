@@ -1,4 +1,4 @@
 # Copyright 2024 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-outboard_modules=petejohanson/technikable-zmk-config/main
+outboard_modules=petejohanson/blank-slate-module/main

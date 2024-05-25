@@ -5,4 +5,4 @@ outboard_repository=weteor/Tipper_TF-Config
 outboard_ref=master
 outboard_from=boards/arm/tipper_tf
 outboard_to=boards/arm/tipper_tf
-zmk=weteor/zmk/Tipper_TF_rev2
+outboard_branches=weteor/zmk/Tipper_TF_rev2

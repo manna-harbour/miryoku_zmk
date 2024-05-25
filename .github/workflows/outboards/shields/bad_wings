@@ -1,0 +1,7 @@
+# Copyright 2024 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=hazels-garage/zmk-bad-wings
+outboard_ref=main
+outboard_from=config/boards/shields/bad_wings
+outboard_to=boards/shields/bad_wings

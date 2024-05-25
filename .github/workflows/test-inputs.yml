@@ -20,10 +20,6 @@ on:
         description: 'nav'
         required: false
         default: 'default'
-      clipboard:
-        description: 'clipboard'
-        required: false
-        default: 'default'
       layers:
         description: 'layers'
         required: false
@@ -44,6 +40,10 @@ on:
         description: 'branches'
         required: false
         default: 'default'
+      modules:
+        description: 'modules'
+        required: false
+        default: 'default'
 jobs:
   process-inputs:
     runs-on: ubuntu-latest
@@ -52,12 +52,12 @@ jobs:
       shield: ${{ steps.process-inputs.outputs.shield }}
       alphas: ${{ steps.process-inputs.outputs.alphas }}
       nav: ${{ steps.process-inputs.outputs.nav }}
-      clipboard: ${{ steps.process-inputs.outputs.clipboard }}
       layers: ${{ steps.process-inputs.outputs.layers }}
       mapping: ${{ steps.process-inputs.outputs.mapping }}
       custom_config: ${{ steps.process-inputs.outputs.custom_config }}
       kconfig: ${{ steps.process-inputs.outputs.kconfig }}
       branches: ${{ steps.process-inputs.outputs.branches }}
+      modules: ${{ steps.process-inputs.outputs.modules }}
     steps:
       - name: Process inputs
         id: process-inputs
@@ -71,12 +71,12 @@ jobs:
           set-output "shield" "${{ github.event.inputs.shield }}"
           set-output "alphas" "${{ github.event.inputs.alphas }}"
           set-output "nav" "${{ github.event.inputs.nav }}"
-          set-output "clipboard" "${{ github.event.inputs.clipboard }}"
           set-output "layers" "${{ github.event.inputs.layers }}"
           set-output "mapping" "${{ github.event.inputs.mapping }}"
           set-output "custom_config" "${{ github.event.inputs.custom_config }}"
           set-output "kconfig" "${{ github.event.inputs.kconfig }}"
           set-output "branches" "${{ github.event.inputs.branches }}"
+          set-output "modules" "${{ github.event.inputs.modules }}"
   build:
     uses: ./.github/workflows/main.yml
     secrets: inherit
@@ -86,9 +86,9 @@ jobs:
       shield: ${{ needs.process-inputs.outputs.shield }}
       alphas: ${{ needs.process-inputs.outputs.alphas }}
       nav: ${{ needs.process-inputs.outputs.nav }}
-      clipboard: ${{ needs.process-inputs.outputs.clipboard }}
       layers: ${{ needs.process-inputs.outputs.layers }}
       mapping: ${{ needs.process-inputs.outputs.mapping }}
       custom_config: ${{ needs.process-inputs.outputs.custom_config }}
       kconfig: ${{ needs.process-inputs.outputs.kconfig }}
       branches: ${{ needs.process-inputs.outputs.branches }}
+      modules: ${{ needs.process-inputs.outputs.modules }}

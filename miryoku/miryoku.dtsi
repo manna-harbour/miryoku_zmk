@@ -2,6 +2,11 @@
 // https://github.com/manna-harbour/miryoku
 
 #include <behaviors.dtsi>
+#include <behaviors/mouse_key_press.dtsi>
+#if defined (MIRYOKU_KLUDGE_MOUSEKEYSPR)
+  #include <behaviors/mouse_move.dtsi>
+  #include <behaviors/mouse_scroll.dtsi>
+#endif
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/rgb.h>
@@ -10,12 +15,14 @@
 
 #include "miryoku.h"
 
+#include <dt-bindings/zmk/mouse.h>
+
 / {
   keymap {
     compatible = "zmk,keymap";
 #define MIRYOKU_X(LAYER, STRING) \
-    U_##LAYER## { \
-      label = STRING; \
+    LAYER { \
+      display-name = STRING; \
       bindings = < U_MACRO_VA_ARGS(MIRYOKU_LAYERMAPPING_##LAYER, MIRYOKU_LAYER_##LAYER) >; \
     };
 MIRYOKU_LAYER_LIST

@@ -26,7 +26,7 @@ The [[#keyboard-keymaps][keyboard keymaps]] are composed of the config file, a [
 [[#global-shift-functions][global shift functions]],
 [[#key-emulation-combos][key emulation combos]],
 [[#mouse-keys][mouse keys]],
-[[#suspend][suspend]],
+[[#soft-off][soft off]],
 [[#tap-delay][tap delay]],
 and [[#𝑥MK][𝑥MK]].
 Open [[#issues][issues]] are also noted.
@@ -120,7 +120,7 @@ Also use to specify optional non-keyboard shields, e.g. ~nice_view~. To combine 
 
 ***** Miryoku Alternative Layout and Mapping Options
 
-The ~alphas~, ~nav~, ~clipboard~, and ~layers~ options correspond to the Miryoku alternative layout options.  See the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#layers][default layers]] and [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layouts]] documentation for details.  See the [[.github/workflows/test-all-configs.yml][Test All Configs]] workflow file for a list of all supported values.
+The ~alphas~, ~extra~, ~tap~, ~nav~, ~clipboard~, and ~layers~ options correspond to the Miryoku alternative layout options.  See the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#layers][default layers]] and [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#alternative-layouts][alternative layouts]] documentation for details.  See the [[.github/workflows/test-all-configs.yml][Test All Configs]] workflow file for a list of all supported values.
 
 The ~mapping~ option corresponds to the alternative [[#mapping-macros][mapping]] options.
 
@@ -137,11 +137,6 @@ Select an alternative alphas layout, e.g. ~colemak~, ~dvorak~, ~halmak~, ~qwerty
 Select an alternative Nav layout, e.g. ~invertedt~, ~vi~.  For home position line nav, leave as ~default~.
 
 
-****** clipboard
-
-Select an alternative clipboard type, e.g. ~mac~, ~win~.  For CUA bindings, leave as ~default~.
-
-
 ****** layers
 
 Select an alternative layers layout, e.g. ~flip~.  For right hand Nav, leave as ~default~.
@@ -154,7 +149,27 @@ Select an alternative mapping, e.g. ~extended_thumbs~, ~pinkie_stagger~.  For th
 
 ***** custom_config
 
-Appends to the [[#config-file][config]] file, e.g. ~#define MIRYOKU_TAP_QWERTY~. Join multiple lines with ~\n~, e.g. ~#define MIRYOKU_TAP_QWERTY\n#define MIRYOKU_EXTRA_COLEMAKDH~. For no additional config, leave as ~default~.
+Appends to the [[#config-file][config]] file, e.g. ~#define MIRYOKU_CLIPBOARD_WIN~. Join multiple lines with ~\n~, e.g. ~#define MIRYOKU_EXTRA_DVORAK\n#define MIRYOKU_TAP_QWERTY\n#define MIRYOKU_CLIPBOARD_WIN~. For no additional config, leave as ~default~.
+
+
+***** Additional Options
+
+These options are not available in the [[#build-inputs][Build Inputs]] workflow due to platform limitations.  Use the [[#custom_config][custom_config]] option instead.
+
+
+****** extra
+
+Select an alternative alphas layout for the Extra layer, e.g. ~colemak~, ~dvorak~, ~halmak~, ~qwerty~.  For QWERTY, leave as ~default~.
+
+
+****** tap
+
+Select an alternative alphas layout for the Tap layer, e.g. ~colemak~, ~dvorak~, ~halmak~, ~qwerty~.  For Colemak Mod-DH, leave as ~default~.
+
+
+****** clipboard
+
+Select an alternative clipboard type, e.g. ~mac~, ~win~.  For CUA bindings, leave as ~default~.
 
 
 ***** ZMK Options
@@ -171,7 +186,18 @@ Used to select an alternative ZMK branch for building, and to merge branches int
 
 Branches are specified in the form ~<user>/<repo>/<branch>~.  E.g. the default ZMK branch would be specified as ~zmkfirmware/zmk/main~.
 
-Multiple space separated branches can be specified.  The first branch specified is used as an alternative ZMK branch for building.  Any additional branches will be merged.
+Multiple space separated branches can be specified.  The first branch specified is used as an alternative ZMK branch for building.  Any additional branches will be merged.  Automatic merging is only possible where there are no conflicts.  If there are conflicts, build from the branch directly, or request a rebase from the branch maintainer.
+
+For no changes, leave as ~default~.
+
+
+****** modules
+
+Used to build with external modules.
+
+Modules are specified in the form ~<user>/<repo>/<branch>~.
+
+Multiple space separated modules can be specified.
 
 For no changes, leave as ~default~.
 
@@ -182,17 +208,69 @@ In-tree keyboards are maintained as part of ZMK. See the [[https://zmk.dev/docs/
 
 Supporting an in-tree keyboard in Miryoku ZMK requires only adding the [[#keyboard-keymaps][keyboard keymap]] and [[#mapping-macros][mapping]] files.
 
-Out-of-tree keyboards are *not* maintained as part of ZMK or Miryoku ZMK. Keyboard definitions for out-of-tree keyboards are located in separate repositories. Some keyboards also require a fork of ZMK. Keyboard definitions and ZMK forks are maintained by the maintainers of those repositories.
+Out-of-tree keyboards are *not* maintained as part of ZMK or Miryoku ZMK. Keyboard definitions for out-of-tree keyboards are located in separate repositories. Some keyboards also require ZMK forks or external modules. Keyboard definitions, ZMK forks, and external modules are maintained by the maintainers of those repositories.
 
-To build an out-of-tree keyboard the repositories need be checked out and used appropriately. For [[#local-builds][local builds]] these steps must be performed manually. For [[#workflow-builds][workflow builds]] the Miryoku ZMK build workflows perform these steps automatically at build time.
+To build an out-of-tree keyboard the repositories need be checked out and used appropriately. For [[#local-builds][local builds]] these steps must be performed manually. For [[#workflow-builds][workflow builds]] the Miryoku ZMK build workflows perform these steps automatically at build time using [[#Outboards][outboards]].
 
-Supporting an out-of-tree keyboard in Miryoku ZMK requires adding the keymap and mapping files, and references to the repositories for use by workflow builds.
+Supporting an out-of-tree keyboard in Miryoku ZMK requires adding the keymap, mapping, and outboards files.
 
 See the Test All Controllers, Boards, and Shields [[#workflow-builds][workflow files]] for lists of supported keyboards.
 
-See [[.github/workflows/outboards]] for details of supported out-of-tree keyboards.
+See outboards for details of supported out-of-tree keyboards.
 
-See https://github.com/manna-harbour/miryoku/discussions/81 for available and supported in-tree and out-of-tree keyboards and current maintenance status.
+See https://github.com/manna-harbour/miryoku/discussions/81 for available and supported in-tree and out-of-tree keyboards.
+
+
+*** Outboards
+
+Outboards are files containing out-of-tree board and shield definition metadata.
+
+Files are at [[.github/workflows/outboards]]. Outboards for boards and shields are contained in the corresponding subdirectories. Files are named after the base board or shield name (i.e. without revision or ~_left~ / ~_right~ suffixes).
+
+Outboards contain Bourne shell variable assignments. Supported variables are described below. See the files for samples.
+
+
+**** Repository and Symlink Variables
+
+Board or shield definitions stored in an external repository are cloned and symlinked at build time according to the following variables. All are required.
+
+
+***** outboard_repository
+
+The repository containing the board or shield definition. For GitHub repositories, the ~https://github.com/~ prefix can be omitted.
+
+
+***** outboard_ref
+
+The name of the branch containing the board or shield definition.
+
+
+***** outboard_from
+
+The path to the directory containing the board or shield definition.
+
+
+***** outboard_to
+
+The path to the directory below ~config/~ where the board or shield definition should be located.
+
+
+**** outboard_branches
+
+Specify if the board or shield requires or is defined in one or more ZMK forks. Use is the same as for the workflow [[#branches][branches]] option. 
+
+If the board or shield definition is contained in a specified branch, [[#Repository-and-Symlink-Variables][repository and symlink variables]] are not required.
+
+If branches are also specified via the workflow ~branches~ option or in other outboards, all branches will be used.
+
+
+**** outboard_modules
+
+Specify if the board or shield requires or is defined in one or more external modules. Use is the same as for the workflow [[#modules][modules]] option. 
+
+If the board or shield definition is contained in a specified module, [[#Repository-and-Symlink-Variables][repository and symlink variables]] are not required.
+
+If modules are also specified via the workflow ~modules~ option or in other outboards, all modules will be used.
 
 
 *** Notes
@@ -475,10 +553,11 @@ On each hand, combo the primary and secondary thumb keys to emulate the tertiary
 
 *** Mouse Keys
 
+[[https://zmk.dev/docs/behaviors/mouse-emulation][ZMK supports mouse buttons only]].
 
 **** Mouse Keys on Host
 
-The Mouse and Button layers use [[https://en.wikipedia.org/wiki/Mouse_keys][mouse keys on the host]].  Scroll is not supported.
+Mouse movement requires [[https://en.wikipedia.org/wiki/Mouse_keys][enabling mouse keys on the host]].  Mouse scroll is not supported.
 
 - [[https://linuxreviews.org/HOWTO_use_the_numeric_keyboard_keys_as_mouse_in_XOrg][X11]]
 - [[https://support.apple.com/en-au/guide/mac-help/mh27469/mac][Mac]]
@@ -487,26 +566,28 @@ The Mouse and Button layers use [[https://en.wikipedia.org/wiki/Mouse_keys][mous
 
 **** Mousekeys PR
 
-Support for https://github.com/zmkfirmware/zmk/pull/778 is also included.
+Mouse movement and scroll is supported with https://github.com/petejohanson/zmk/tree/feat/pointers-move-scroll from https://github.com/zmkfirmware/zmk/pull/2027.
 
-As the PR branch is not being maintained, use https://github.com/urob/zmk/tree/mouse-3.2 instead.
+To build, add ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ to the [[#config-file][config file]], add ~CONFIG_ZMK_MOUSE=y~ to the [[#kconfig-configuration][Kconfig configuration]], and switch to or merge the mousekeys branch.
 
-To build, add ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ to the [[#config-file][config file]], add ~CONFIG_ZMK_MOUSE=y~ to the [[#kconfig-configuration][Kconfig configuration]], and merge the mousekeys branch.
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ with the ~custom_config~ option, ~CONFIG_ZMK_MOUSE=y~ with the ~kconfig~ option, and ~petejohanson/zmk/feat/pointers-move-scroll~ with the ~branches~ option. Alternatively, use ~zmkfirmware/zmk/main petejohanson/zmk/feat/pointers-move-scroll~ to attempt an automatic [[#branches][merge]] of the branch into ZMK main.
 
-For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ with the ~custom_config~ option, ~CONFIG_ZMK_MOUSE=y~ with the ~kconfig~ option, and ~zmkfirmware/zmk/main urob/zmk/mouse-3.2~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow.
+For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow.
 
 For local builds, make the changes locally.
 
 
-*** Suspend
+*** Soft Off
 
-Support for https://github.com/zmkfirmware/zmk/issues/1292#issuecomment-1264603539 is included using https://github.com/manna-harbour/zmk/tree/suspend-test and https://github.com/manna-harbour/zephyr/tree/v3.0.0+zmk-fixes-suspend-test.
+Support for [[https://zmk.dev/docs/features/soft-off][soft off]] can be enabled.
 
-Suspend takes the place of the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#additional-features][boot]] key. For split keyboards, suspend the peripheral side then the central side.
+Soft off takes the place of the [[https://github.com/manna-harbour/miryoku/tree/master/docs/reference#additional-features][boot]] key.
 
-For [[#local-builds][local builds]], add ~#define MIRYOKU_KLUDGE_SUSPEND~ to the [[#config-file][config file]] and merge https://github.com/manna-harbour/zmk/tree/suspend-test.
+For [[#local-builds][local builds]], add ~#define MIRYOKU_KLUDGE_SOFT_OFF~ to the [[#config-file][config file]] and ~CONFIG_ZMK_PM_SOFT_OFF=y~ to the [[#kconfig-configuration][Kconfig configuration]].
 
-For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~#define MIRYOKU_KLUDGE_SUSPEND~ with the ~custom_config~ option, and ~zmkfirmware/zmk/main manna-harbour/zmk/suspend-test~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-suspend.yml][Build Example suspend]] workflow.
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~#define MIRYOKU_KLUDGE_SOFT_OFF~ with the ~custom_config~ option, and ~CONFIG_ZMK_PM_SOFT_OFF=y~ with the ~kconfig~ option.
+
+For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-soft_off.yml][Build Example soft_off]] workflow.
 
 
 *** Tap Delay
@@ -523,16 +604,20 @@ Use Miryoku ZMK with any keyboard with [[https://github.com/manna-harbour/xmk][�
 
 **** xmk Shield
 
-For [[#local-builds][local builds]] first merge https://github.com/zmkfirmware/zmk/pull/1318. Add https://github.com/manna-harbour/xmk/tree/main/zmk/boards/shields/xmk as ~config/boards/shields/xmk~. Build with shield ~xmk~ and the appropriate board.
+For [[#local-builds][local builds]], first switch to or merge https://github.com/zmkfirmware/zmk/pull/1318. Add https://github.com/manna-harbour/xmk/tree/main/zmk/boards/shields/xmk as ~config/boards/shields/xmk~. Build with shield ~xmk~ and the appropriate board.
 
-For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~xmk~ with the ~shield~ option, the appropriate board with the ~board~ option, and ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-xmk-xmk.yml][Build Example 𝑥MK xmk]] workflow.
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~xmk~ with the ~shield~ option, the appropriate board with the ~board~ option, and ~petejohanson/zmk/shell/tap-command~ with the ~branches~ option.  Alternatively, use ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~ to attempt an automatic [[#branches][merge]] of the branch into ZMK main.
+
+For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-xmk-xmk.yml][Build Example 𝑥MK xmk]] workflow.
 
 
 **** native_posix_64 Board
 
-For [[#local-builds][local builds]] first merge https://github.com/zmkfirmware/zmk/pull/1318. Add ~#define MIRYOKU_KLUDGE_TAPDELAY~ to the config file. Build with board ~native_posix_64~.
+For [[#local-builds][local builds]], first switch to or merge https://github.com/zmkfirmware/zmk/pull/1318. Add ~#define MIRYOKU_KLUDGE_TAPDELAY~ to the config file. Build with board ~native_posix_64~.
 
-For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~native_posix_64~ with the ~board~ option, ~#define MIRYOKU_KLUDGE_TAPDELAY~ with the ~custom_config~ option, and ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~ with the ~branches~ option. For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-xmk-native_posix_64.yml][Build Example 𝑥MK native_posix_64]] workflow.
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~native_posix_64~ with the ~board~ option, ~#define MIRYOKU_KLUDGE_TAPDELAY~ with the ~custom_config~ option, and ~petejohanson/zmk/shell/tap-command~ with the ~branches~ option.  Alternatively, use ~zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command~ to attempt an automatic [[#branches][merge]] of the branch into ZMK main.
+
+For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-xmk-native_posix_64.yml][Build Example 𝑥MK native_posix_64]] workflow.
 
 
 ** Issues

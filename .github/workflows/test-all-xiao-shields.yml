@@ -11,8 +11,12 @@ jobs:
     with:
       board: '["seeeduino_xiao"]'
       shield: '[
+        "bad_wings",
+        "chipper_left","chipper_right",
         "clog_v2_left","clog_v2_right",
         "hummingbird",
+        "klein_left","klein_right",
+        "kpukboard_left","kpukboard_right",
         "revxlp",
         "rommana_left","rommana_right",
         "totem_left","totem_right",

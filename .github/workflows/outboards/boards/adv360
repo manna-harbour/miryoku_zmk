@@ -1,0 +1,8 @@
+# Copyright 2024 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=KinesisCorporation/Adv360-Pro-ZMK
+outboard_ref=V3.0
+outboard_from=config/boards/arm/adv360
+outboard_to=boards/arm/adv360
+outboard_branches=refil/zmk/adv360-z3.5
