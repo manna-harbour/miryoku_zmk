@@ -10,20 +10,24 @@ jobs:
     secrets: inherit
     with:
       board: '[
+        "adv360_left","adv360_right",
         "adv360pro_left","adv360pro_right",
         "ahokore",
         "ble_chiffre",
         "corneish_zen_v1_left","corneish_zen_v1_right",
         "corneish_zen_v2_left","corneish_zen_v2_right",
+        "dao_left","dao_right",
         "ferris_rev02",
         "ffkb-holyiot",
         "glove80_lh","glove80_rh",
         "klacker_bs",
+        "lpgalaxy_blank_slate",
         "native_posix_64",
         "nice60",
         "one42",
         "planck_rev6",
         "preonic_rev3",
+        "sporkus_le_capybara",
         "technikable",
         "tipper_tf",
         "zaphod"

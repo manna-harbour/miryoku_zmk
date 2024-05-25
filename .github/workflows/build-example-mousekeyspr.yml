@@ -1,4 +1,4 @@
-# Copyright 2023 Manna Harbour
+# Copyright 2024 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
 name: 'Build Example mousekeyspr'
@@ -12,4 +12,4 @@ jobs:
       shield: '["corne_left"]'
       custom_config: '["#define MIRYOKU_KLUDGE_MOUSEKEYSPR"]'
       kconfig: '["CONFIG_ZMK_MOUSE=y"]'
-      branches: '["zmkfirmware/zmk/main urob/zmk/mouse-3.2"]'
+      branches: '["petejohanson/zmk/feat/pointers-move-scroll","zmkfirmware/zmk/main petejohanson/zmk/feat/pointers-move-scroll"]'

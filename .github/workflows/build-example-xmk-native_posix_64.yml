@@ -10,4 +10,4 @@ jobs:
     with:
       board: '["native_posix_64"]'
       custom_config: '["#define MIRYOKU_KLUDGE_TAPDELAY"]'
-      branches: '["zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command"]'
+      branches: '["petejohanson/zmk/shell/tap-command","zmkfirmware/zmk/main petejohanson/zmk/shell/tap-command"]'

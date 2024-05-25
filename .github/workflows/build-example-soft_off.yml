@@ -1,7 +1,7 @@
-# Copyright 2022 Manna Harbour
+# Copyright 2024 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-name: 'Build Example suspend'
+name: 'Build Example soft off'
 on: workflow_dispatch
 jobs:
   build:
@@ -10,5 +10,5 @@ jobs:
     with:
       board: '["nice_nano"]'
       shield: '["corne_left","corne_right"]'
-      custom_config: '["#define MIRYOKU_KLUDGE_SUSPEND"]'
-      branches: '["zmkfirmware/zmk/main manna-harbour/zmk/suspend-test"]'
+      custom_config: '["#define MIRYOKU_KLUDGE_SOFT_OFF"]'
+      kconfig: '["CONFIG_ZMK_PM_SOFT_OFF=y"]'
