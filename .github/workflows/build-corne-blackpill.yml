@@ -1,0 +1,12 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+name: 'Build Corne with Blackpill F411CE'
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["blackpill_f411ce"]'
+      shield: '["corne_left","corne_right"]'
