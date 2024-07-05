@@ -6,7 +6,6 @@
   behaviors { \
     NAME: NAME { \
       compatible = "zmk,behavior-mod-morph"; \
-      label = U_STRINGIFY(NAME); \
       #binding-cells = <0>; \
       bindings = <BINDING>, <SHIFT_BINDING>; \
       mods = <(MOD_LSFT|MOD_RSFT)>; \

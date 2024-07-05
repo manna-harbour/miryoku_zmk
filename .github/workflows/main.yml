@@ -70,7 +70,7 @@ jobs:
       MIRYOKU_DEBUG: ${{ secrets.MIRYOKU_DEBUG }}
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: "miryoku_zmk"
       - name: main
@@ -89,31 +89,32 @@ jobs:
             keyboard=${{ matrix.board }}
             shield=""
           fi
-          echo "shield_arg=${SHIELD_ARG}" >> $GITHUB_OUTPUT
+          echo "shield_arg=$SHIELD_ARG" >> $GITHUB_OUTPUT
           keyboard_split="$keyboard"
-          keyboard_base=`echo "$keyboard" | sed 's/_\(left\|right\)//'`
+          keyboard_base=`echo "$keyboard" | sed -e 's/_\(left\|right\)//' -e 's/@.*//'`
 
           configfile="${GITHUB_WORKSPACE}/miryoku_zmk/miryoku/custom_config.h"
 
           tmpfile="$configfile.tmp"
           echo -n '#define ' > "$tmpfile"
-          echo "MIRYOKU_KEYBOARD_$keyboard_base" | tr '[a-z-]' '[A-Z_]' >> "$tmpfile"
+          echo -n "MIRYOKU_KEYBOARD_$keyboard_base" | tr  -c '[:alnum:]' '_' | tr '[:lower:]' '[:upper:]' >> "$tmpfile"
+          echo >> "$tmpfile"
           cat "$configfile" >> "$tmpfile"
           mv "$tmpfile" "$configfile"
 
-          artifact_build_name="miryoku_zmk"
+          run_name="miryoku_zmk"
           if [ -n "${{ matrix.shield }}" -a "${{ matrix.shield }}" != 'default' ]
           then
-            artifact_build_name="$artifact_build_name ${{ matrix.shield }}"
+            run_name="$run_name ${{ matrix.shield }}"
           fi
-          artifact_build_name="$artifact_build_name ${{ matrix.board }}"
+          run_name="$run_name ${{ matrix.board }}"
 
-          hash_length=16
+          hash_length=8
 
           if [ -n "${{ matrix.custom_config }}" -a "${{ matrix.custom_config }}" != 'default' ]
           then
             echo "${{ matrix.custom_config }}" >> "$configfile"
-            artifact_build_name="$artifact_build_name config_"`echo "${{ matrix.custom_config }}" | md5sum | head -c "$hash_length"`
+            run_name="$run_name config_"`echo "${{ matrix.custom_config }}" | md5sum | head -c "$hash_length"`
           fi
 
           for option in "alphas_${{ matrix.alphas }}" "extra_${{ matrix.extra }}" "tap_${{ matrix.tap }}" "nav_${{ matrix.nav }}" "clipboard_${{ matrix.clipboard }}" "layers_${{ matrix.layers }}" "mapping_${{ matrix.mapping }}"
@@ -122,7 +123,7 @@ jobs:
               *_ ) ;;
               *_default ) ;;
               * )
-                artifact_build_name="$artifact_build_name $option"
+                run_name="$run_name $option"
                 echo "#define MIRYOKU_"`echo "$option" | tr 'a-z' 'A-Z'` >> "$configfile"
                 ;;
             esac
@@ -138,26 +139,44 @@ jobs:
           then
             kconfig_file="${GITHUB_WORKSPACE}/miryoku_zmk/config/$keyboard_split.conf"
             echo "${{ matrix.kconfig }}" >> "$kconfig_file"
-            artifact_build_name="$artifact_build_name kconfig_"`echo "${{ matrix.kconfig }}" | md5sum | head -c "$hash_length"`
+            test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && cp "$kconfig_file" "$artifact_dir"
+            run_name="$run_name kconfig_"`echo "${{ matrix.kconfig }}" | md5sum | head -c "$hash_length"`
           fi
-          test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && test -f "$kconfig_file" && cp "$kconfig_file" "$artifact_dir"
 
           if [ -n "${{ matrix.branches }}" -a "${{ matrix.branches }}" != 'default' ]
           then
-            artifact_build_name="$artifact_build_name branches_"`echo "${{ matrix.branches }}" | md5sum | head -c "$hash_length"`
+            run_name="$run_name branches_"`echo "${{ matrix.branches }}" | md5sum | head -c "$hash_length"`
             branches="${{ matrix.branches }}"
           fi
           if [ -n "${{ matrix.modules }}" -a "${{ matrix.modules }}" != 'default' ]
           then
-            artifact_build_name="$artifact_build_name modules_"`echo "${{ matrix.modules }}" | md5sum | head -c "$hash_length"`
+            run_name="$run_name modules_"`echo "${{ matrix.modules }}" | md5sum | head -c "$hash_length"`
             modules="${{ matrix.modules }}"
           fi
 
-          artifact_build_name=`echo $artifact_build_name | tr ' ' '-'`
-          echo "artifact_build_name=$artifact_build_name" >> $GITHUB_OUTPUT
-          artifact_generic_name=`echo "$artifact_build_name" | sed 's/_\(left\|right\)//'`
-          echo "artifact_generic_name=$artifact_generic_name" >> $GITHUB_OUTPUT
+          run_name=`echo $run_name | tr ' ' '-'`
+          echo "run_name=$run_name" >> $GITHUB_OUTPUT
 
+          echo "::endgroup::"
+
+          echo "::group::matrix"
+          matrix_file="$artifact_dir/matrix.txt"
+          echo "
+          board: '${{ matrix.board }}'
+          shield: '${{ matrix.shield }}'
+          alphas: '${{ matrix.alphas }}'
+          extra: '${{ matrix.extra }}'
+          tap: '${{ matrix.tap }}'
+          nav: '${{ matrix.nav }}'
+          clipboard: '${{ matrix.clipboard }}'
+          layers: '${{ matrix.layers }}'
+          mapping: '${{ matrix.mapping }}'
+          custom_config: '${{ matrix.custom_config }}'
+          kconfig: '${{ matrix.kconfig }}'
+          branches: '${{ matrix.branches }}'  
+          modules: '${{ matrix.modules }}'
+          " > "$matrix_file"
+          cat "$matrix_file"
           echo "::endgroup::"
 
           echo "::group::outboards"
@@ -223,17 +242,17 @@ jobs:
           user=`echo "$zmk" | cut -f 1 -d '/'`
           repo=`echo "$zmk" | cut -f 2 -d '/'`
           branch=`echo "$zmk" | cut -f 3- -d '/'`
-          
+
           echo "ZMK details: $zmk"
           echo "User: $user"
           echo "Repository: $repo"
           echo "Branch: $branch"
-          
+
           git clone -b "$branch" --depth 1 "https://github.com/$user/$repo.git" 'zmk'
           echo "Repository cloned successfully."
-          
+
           echo "::endgroup::"
-          
+
           echo "::group::merge"
           merges=`echo "$branches" | cut -d ' ' -f 2- -s`
           if [ -n "$merges" ]
@@ -258,7 +277,6 @@ jobs:
           echo "::endgroup::"
 
           echo "::group::modules"
-
           for module in $modules 
           do
             user=`echo "$module" | cut -f 1 -d '/'`
@@ -279,12 +297,12 @@ jobs:
           if [ -n "$module_dirs" ]
           then
             modules_arg="-DZMK_EXTRA_MODULES=\"$module_dirs\""
-            echo "modules_arg=${modules_arg}" >> $GITHUB_OUTPUT
+            echo "modules_arg=$modules_arg" >> $GITHUB_OUTPUT
           fi
           echo "::endgroup::"
       - name: cache
         if: true
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             zmk/modules/
@@ -350,14 +368,37 @@ jobs:
             file="${GITHUB_WORKSPACE}/zmk/app/build/zephyr/zmk.$extension"
             if [ -f "$file" ]
             then
-              cp "$file" "${{ steps.main.outputs.artifact_dir }}/${{ steps.main.outputs.artifact_build_name }}.$extension"
+              cp "$file" "${{ steps.main.outputs.artifact_dir }}"
               test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' || break
             fi
           done
-          test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && cp "${GITHUB_WORKSPACE}/zmk/app/build/zephyr/.config" "${{ steps.main.outputs.artifact_dir }}/${{ steps.main.outputs.artifact_build_name }}.config"
+          test "$MIRYOKU_DEBUG" = 'MIRYOKU_DEBUG_TRUE' && cp "${GITHUB_WORKSPACE}/zmk/app/build/zephyr/.config" "${{ steps.main.outputs.artifact_dir }}"
           echo "::endgroup::"
       - name: upload
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ steps.main.outputs.artifact_generic_name }}
+          name: ${{ steps.main.outputs.run_name }}
           path: ${{ steps.main.outputs.artifact_dir }}
+
+      - name: ${{ matrix.shield }} Kconfig file
+        run: |
+          if [ -f "${GITHUB_WORKSPACE}/zmk/app/build/zephyr/.config" ]
+          then
+            grep -v -e "^#" -e "^$" "${GITHUB_WORKSPACE}/zmk/app/build/zephyr/.config" | sort
+          else
+            echo "No Kconfig output"
+          fi
+        if: ${{ !cancelled() }}
+
+      - name: ${{ matrix.shield }} Devicetree file
+        run: |
+          if [ -f "${GITHUB_WORKSPACE}/zmk/app/build/zephyr/zephyr.dts" ]
+          then
+            cat "${GITHUB_WORKSPACE}/zmk/app/build/zephyr/zephyr.dts"
+          elif [ -f "${GITHUB_WORKSPACE}/zmk/app/build/zephyr/zephyr.dts.pre" ]
+          then
+            cat -s "${GITHUB_WORKSPACE}/zmk/app/build/zephyr/zephyr.dts.pre"
+          else
+            echo "No Devicetree output"
+          fi
+        if: ${{ !cancelled() }}

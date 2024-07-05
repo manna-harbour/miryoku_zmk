@@ -6,7 +6,6 @@
   behaviors { \
     NAME: NAME { \
       compatible = "zmk,behavior-tap-dance"; \
-      label = U_STRINGIFY(NAME); \
       #binding-cells = <0>; \
       tapping-term-ms = <U_TAPPING_TERM>; \
       bindings = <&none>, <BINDING>; \
@@ -20,8 +19,8 @@ MIRYOKU_LAYER_LIST
 #undef MIRYOKU_X
 
 #if defined (MIRYOKU_KLUDGE_DOUBLETAPBOOT)
-  #if defined (MIRYOKU_KLUDGE_SUSPEND)
-MIRYOKU_DOUBLE_TAP_GUARD(u_suspend, &suspend)
+  #if defined (MIRYOKU_KLUDGE_SOFT_OFF)
+MIRYOKU_DOUBLE_TAP_GUARD(u_soft_off, &soft_off)
   #else
 MIRYOKU_DOUBLE_TAP_GUARD(u_bootloader, &bootloader)
   #endif
