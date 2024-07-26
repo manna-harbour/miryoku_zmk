@@ -1,0 +1,14 @@
+
+name: 'Build personal corne nice_nano_v2 nice_view'
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["nice_nano_v2"]'
+      shield: '["corne_left nice_view_adapter nice_view","corne_right nice_view_adapter nice_view"]'
+      alphas: '["QWERTY"]'
+      nav: '["vi"]'
+      kconfig: '["CONFIG_ZMK_SLEEP=y\nCONFIG_BT_CTLR_TX_PWR_PLUS_8=y\nCONFIG_ZMK_KSCAN_DEBOUNCE_PRESS_MS=1\nCONFIG_ZMK_KSCAN_DEBOUNCE_RELEASE_MS=7\nCONFIG_ZMK_DISPLAY=y"]'
+
