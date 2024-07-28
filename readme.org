@@ -42,6 +42,13 @@ First [[https://zmk.dev/docs/development/setup][set up the ZMK build environment
 Clone this repository and set [[https://zmk.dev/docs/development/build-flash#building-from-zmk-config-folder][ZMK_CONFIG]] to the absolute path of the [[config]] subdirectory.  Use the [[#config-file][config file]] to select alternative layout and mapping options.
 
 
+**** Docker Builds
+If using the [[https://zmk.dev/docs/development/setup/docker][ZMK Docker build environment]], create your [[https://zmk.dev/docs/development/build-flash#building-from-zmk-config-folder][zmk-config volume]] with the ~device~ argument set to the absolute path of your ~miryoku_zmk~ directory. [[https://github.com/manna-harbour/miryoku_zmk][Miryoku ZMK]] must be in the ~zmk-config~ volume in order for your keymap to build.
+
+The [[config]] subdirectory can then be provided at build time.
+: -DZMK_CONFIG="/workspaces/zmk-config/config"
+
+
 *** Workflow Builds
 
 Firmware can be built via GitHub Actions workflows without use of a local build environment.
