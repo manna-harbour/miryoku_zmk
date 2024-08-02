@@ -8,10 +8,11 @@ on:
       board:
         description: 'board'
         required: true
+        default: "seeeduino_xiao_ble"
       shield:
         description: 'shield'
         required: false
-        default: 'default'
+        default: 'pipar_dongle,pipar_left,pipar_right'
       alphas:
         description: 'alphas'
         required: false
