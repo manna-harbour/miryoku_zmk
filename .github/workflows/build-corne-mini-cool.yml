@@ -1,6 +1,6 @@
 # https://github.com/manna-harbour/miryoku
 
-name: 'Build jory's corne mini cool board'
+name: 'Build jorys corne mini cool board'
 on: workflow_dispatch
 jobs:
   build:
