@@ -1,0 +1,18 @@
+# https://github.com/manna-harbour/miryoku
+
+name: 'Build jory's corne mini cool board'
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["nice_nano"]'
+      shield: '["corne_left nice_view_adapter nice_view","corne_right nice_view_adapter nice_view", "settings_reset"]'
+      kconfig: '["CONFIG_ZMK_DISPLAY=y"]'
+      custom_config: '["#define MIRYOKU_TAP_QWERTY\n#define MIRYOKU_CLIPBOARD_MAC"]'
+      alphas: '["qwerty"]'
+      extra: '["qwerty"]'
+      tap: '["qwerty"]'
+      nav: '["vi"]'
+      clipboard: '["mac"]'
