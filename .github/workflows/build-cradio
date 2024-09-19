@@ -1,0 +1,12 @@
+name: 'Build Example corne nice_nano_v2 nice_view'
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["nice_nano_v2"]'
+      shield: '["cradio_left","cradio_right"]'
+      alphas: '["colemakdhk"]'
+      nav: '["vi"]'
+      custom_config: '["#define MIRYOKU_EXTRA_COLEMAKDHK"]'
