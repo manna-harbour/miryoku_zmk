@@ -1,4 +1,4 @@
-name: 'Build Example corne nice_nano_v2 nice_view'
+name: 'Build Cradio'
 on: workflow_dispatch
 jobs:
   build:
