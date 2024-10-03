@@ -365,6 +365,21 @@ Notes or diagrams are provided below where the selection of keys is not obvious 
 [[#thumb-combos][Thumb combos]] are enabled.
 
 
+**** 36/willis
+
+***** Bruce
+
+~MIRYOKU_MAPPING=2X2U~
+
+Supports Bruce/Le Chiffre 2x2u configuration.
+[[#thumb-combos][Thumb combos]] are enabled.
+
+***** Minidox
+
+Default.
+3x1U thumb keys.
+
+
 **** 38/draculad
 
 
