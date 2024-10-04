@@ -8,14 +8,15 @@ on:
       board:
         description: 'board'
         required: true
+        default: 'nice_nano_v2'
       shield:
         description: 'shield'
         required: false
-        default: 'default'
+        default: 'lily58_left nice_view_adapter nice_view,lily58_right nice_view_adapter nice_view'
       alphas:
         description: 'alphas'
         required: false
-        default: 'default'
+        default: 'QWERTY'
         type: choice
         options:
         - "default"
