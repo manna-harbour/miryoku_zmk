@@ -2,7 +2,11 @@
 # https://github.com/manna-harbour/miryoku
 
 name: 'dg-corne'
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'master'
 jobs:
   build:
     uses: ./.github/workflows/main.yml
