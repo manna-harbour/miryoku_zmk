@@ -13,3 +13,9 @@ left-flash:
 
 right-flash:
 	mv right.uf2 /media/davidg/NICENANO/
+
+clean:
+	-rm matrix.txt
+	-rm left.uf2.txt
+	-rm right.uf2.txt
+	-rm tmp/*.zip
