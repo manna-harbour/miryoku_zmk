@@ -1,7 +1,4 @@
 # Copyright 2023 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-outboard_repository=duckyb/zmk-urchin
-outboard_ref=master
-outboard_from=config/boards/shields/urchin
-outboard_to=boards/shields/urchin
+outboard_modules=duckyb/urchin-zmk-module/main
