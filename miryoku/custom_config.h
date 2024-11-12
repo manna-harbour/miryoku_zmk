@@ -25,7 +25,7 @@ K40  K20  K21  K22  K23  K24       K25  K26  K27  K28  K29  K41 \
 #define K41 &kp RSHFT
 
 #define K42 &u_bt_sel_0
-#define K43 &u_bt_sel_0
+#define K43 &u_bt_sel_1
 
 #define MIRYOKU_LAYER_SYM \
 &kp LBRC,          &kp AMPS,          &kp ASTRK,         &kp LPAR,          &kp RBRC,          &kp F5,            &kp LS(F5),        &kp F9,            &kp F10,            &kp F11,            \
