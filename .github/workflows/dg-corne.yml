@@ -7,7 +7,7 @@ on:
   push:
     branches:
       - 'master'
-      - 'enable-oleds'
+      - 'revise-bt'
 jobs:
   build:
     uses: ./.github/workflows/main.yml
