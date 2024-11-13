@@ -7,7 +7,7 @@ on:
   push:
     branches:
       - 'master'
-      - 'revise-bt'
+      - 'revise-taphold'
 jobs:
   build:
     uses: ./.github/workflows/main.yml
