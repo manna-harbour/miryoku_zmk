@@ -3,5 +3,5 @@
 
 outboard_repository=raeedcho/temper-zmk-config
 outboard_ref=main
-outboard_from=config/boards/shields/temper
+outboard_from=boards/shields/temper
 outboard_to=boards/shields/temper

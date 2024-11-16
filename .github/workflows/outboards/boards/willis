@@ -1,0 +1,4 @@
+# Copyright 2024 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_modules=krikun98/willis-zmk-module/main
