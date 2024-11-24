@@ -15,6 +15,7 @@ jobs:
         "chipper_left","chipper_right",
         "clog_v2_left","clog_v2_right",
         "ergonaut_one_left","ergonaut_one_right",
+        "ergonaut_one_s_left","ergonaut_one_s_right",
         "hummingbird",
         "klein_left","klein_right",
         "kpukboard_left","kpukboard_right",
