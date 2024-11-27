@@ -17,7 +17,7 @@ jobs:
         "hummingbird",
         "klein_left","klein_right",
         "kpukboard_left","kpukboard_right",
-        "pipar_dongle","pipar_left","pipar_right",
+        "pipar_sool_dongle","pipar_sool_left","pipar_sool_right",
         "revxlp",
         "rommana_left","rommana_right",
         "totem_left","totem_right",
