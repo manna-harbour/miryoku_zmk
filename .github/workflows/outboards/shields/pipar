@@ -1,7 +1,0 @@
-# Copyright 2024 Manna Harbour
-# https://github.com/manna-harbour/miryoku
-
-outboard_repository=RasmusKoit/pipar
-outboard_ref=master
-outboard_from=config/boards/shields/pipar
-outboard_to=boards/shields/pipar
