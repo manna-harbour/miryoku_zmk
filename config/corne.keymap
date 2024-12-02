@@ -4,3 +4,30 @@
 #include "../miryoku/custom_config.h"
 #include "../miryoku/mapping/42/corne.h"
 #include "../miryoku/miryoku.dtsi"
+
+/ {
+  combos {
+    compatible = "zmk,combos";
+
+    NUM {
+      bindings = <&tog 1>;
+      key - positions = <30 20>;
+    };
+
+    NAV {
+      bindings = <&tog 2>;
+      key - positions = <30 21>;
+    };
+
+    MEDIA {
+      bindings = <&tog 3>;
+      key - positions = <30 22>;
+    };
+
+    MOUSE {
+      bindings = <&tog 4>;
+      key - positions = <30 23>;
+    };
+  };
+};
+
