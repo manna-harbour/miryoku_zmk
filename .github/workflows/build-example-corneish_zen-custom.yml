@@ -12,6 +12,5 @@ jobs:
         "corneish_zen_v1_left","corneish_zen_v1_right",
         "corneish_zen_v2_left","corneish_zen_v2_right"
       ]'
-      custom_config: '["#define MIRYOKU_KLUDGE_MOUSEKEYSPR"]'
-      kconfig: '["CONFIG_ZMK_MOUSE=y\nCONFIG_ZMK_DISPLAY_HIDE_MOMENTARY_LAYERS=y\nCONFIG_CUSTOM_WIDGET_LAYER_STATUS_HIDE_HEADING=y\nCONFIG_CUSTOM_WIDGET_LOGO_IMAGE_MIRYOKU=y\nCONFIG_IL0323_INVERT=y"]'
-      branches: '["zmkfirmware/zmk/main caksoylar/zmk/caksoylar/zen-v1+v2 petejohanson/zmk/feat/pointers-move-scroll"]'
+      kconfig: '["CONFIG_ZMK_POINTING=y\nCONFIG_ZMK_DISPLAY_HIDE_MOMENTARY_LAYERS=y\nCONFIG_CUSTOM_WIDGET_LAYER_STATUS_HIDE_HEADING=y\nCONFIG_CUSTOM_WIDGET_LOGO_IMAGE_MIRYOKU=y\nCONFIG_IL0323_INVERT=y"]'
+      branches: '["zmkfirmware/zmk/main caksoylar/zmk/caksoylar/zen-v1+v2"]'
