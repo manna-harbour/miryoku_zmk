@@ -2,11 +2,6 @@
 // https://github.com/manna-harbour/miryoku
 
 #include <behaviors.dtsi>
-#include <behaviors/mouse_key_press.dtsi>
-#if defined (MIRYOKU_KLUDGE_MOUSEKEYSPR)
-  #include <behaviors/mouse_move.dtsi>
-  #include <behaviors/mouse_scroll.dtsi>
-#endif
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/rgb.h>
@@ -15,7 +10,7 @@
 
 #include "miryoku.h"
 
-#include <dt-bindings/zmk/mouse.h>
+#include <dt-bindings/zmk/pointing.h>
 
 / {
   keymap {
@@ -34,11 +29,7 @@ MIRYOKU_LAYER_LIST
 
 #include "miryoku_double_tap_guard.dtsi"
 
-#if defined (MIRYOKU_KLUDGE_MOUSEKEYSPR)
-  #include "miryoku_kludge_mousekeyspr.dtsi"
-#else
-  #include "miryoku_mousekeys.dtsi"
-#endif
+#include "miryoku_mouse.dtsi"
 
 #if defined (MIRYOKU_KLUDGE_THUMBCOMBOS)
   #include "miryoku_kludge_thumbcombos.dtsi"

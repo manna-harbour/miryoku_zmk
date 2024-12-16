@@ -1,6 +1,0 @@
-// Copyright 2022 Manna Harbour
-// https://github.com/manna-harbour/miryoku
-
-U_MACRO(u_macro_btn1, wait-ms = <0>; bindings = <&kp KP_SLASH &kp KP_N5>;)
-U_MACRO(u_macro_btn2, wait-ms = <0>; bindings = <&kp KP_MINUS &kp KP_N5>;)
-U_MACRO(u_macro_btn3, wait-ms = <0>; bindings = <&kp KP_ASTERISK &kp KP_N5>;)
