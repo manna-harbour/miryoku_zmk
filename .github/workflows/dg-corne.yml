@@ -7,7 +7,7 @@ on:
   push:
     branches:
       - 'master'
-      - 'revise-taphold'
+      - 'power-management'
 jobs:
   build:
     uses: ./.github/workflows/main.yml
