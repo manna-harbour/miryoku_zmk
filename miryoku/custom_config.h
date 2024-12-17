@@ -28,10 +28,10 @@ K40  K20  K21  K22  K23  K24       K25  K26  K27  K28  K29  K41 \
 #define K43 &u_bt_sel_1
 
 #define MIRYOKU_LAYER_SYM \
-&kp LBRC,          &kp AMPS,          &kp ASTRK,         &kp LPAR,          &kp RBRC,          &kp F5,            &kp LS(F5),        &kp F9,            &kp F10,            &kp F11,            \
+&kp LBRC,          &kp AMPS,          &kp ASTRK,         &kp LPAR,          &kp RBRC,          &kp F5,            &kp F6,            &kp F7,            &kp F9,            &kp F10,           \
 &kp COLON,         &kp DLLR,          &kp PRCNT,         &kp CARET,         &kp PLUS,          U_NA,              &kp LSHFT,         &kp LCTRL,         &kp LALT,          &kp LGUI,          \
 &kp TILDE,         &kp EXCL,          &kp AT,            &kp HASH,          &kp PIPE,          U_NA,              &u_to_U_SYM,       &u_to_U_MOUSE,     &kp RALT,          U_NA,              \
-U_NP,              U_NP,              &kp LPAR,          &kp RPAR,          &kp UNDER,         U_NA,              U_NA,              U_NA,              U_NP,              U_NP
+U_NP,              U_NP,              &kp LPAR,          &kp RPAR,          &kp UNDER,         &kp F1,            &kp F2,            &kp F3,            &kp F4,            U_NP
 
 #define MIRYOKU_LAYERMAPPING_SYM( \
      K00, K01, K02, K03, K04,      K05, K06, K07, K08, K09, \
@@ -40,11 +40,13 @@ U_NP,              U_NP,              &kp LPAR,          &kp RPAR,          &kp 
      N30, N31, K32, K33, K34,      K35, K36, K37, N38, N39 \
 ) \
 XXX  K00  K01  K02  K03  K04       K05  K06  K07  K08  K09  K44 \
-XXX  K10  K11  K12  K13  K14       K15  K16  K17  K18  K19  XXX \
-XXX  K20  K21  K22  K23  K24       K25  K26  K27  K28  K29  XXX \
+XXX  K10  K11  K12  K13  K14       K15  K16  K17  K18  K19  K45 \
+XXX  K20  K21  K22  K23  K24       K25  K26  K27  K28  K29  K46 \
                K32  K33  K34       K35  K36  K37
 
-#define K44 &kp F12
+#define K44 &kp F10
+#define K45 &kp F11
+#define K46 &kp F12
 
 #define MIRYOKU_KLUDGE_TOPROWCOMBOS_LEFTPINKIE 2 3
 #define MIRYOKU_KLUDGE_TOPROWCOMBOS_LEFTINNERINDEX 3 4
