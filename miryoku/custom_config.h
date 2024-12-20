@@ -30,8 +30,8 @@ K40  K20  K21  K22  K23  K24       K25  K26  K27  K28  K29  K41 \
 #define MIRYOKU_LAYER_SYM \
 &kp LBRC,          &kp AMPS,          &kp ASTRK,         &kp LPAR,          &kp RBRC,          &kp F5,            &kp F6,            &kp F7,            &kp F9,            &kp F10,           \
 &kp COLON,         &kp DLLR,          &kp PRCNT,         &kp CARET,         &kp PLUS,          U_NA,              &kp LSHFT,         &kp LCTRL,         &kp LALT,          &kp LGUI,          \
-&kp TILDE,         &kp EXCL,          &kp AT,            &kp HASH,          &kp PIPE,          U_NA,              &u_to_U_SYM,       &u_to_U_MOUSE,     &kp RALT,          U_NA,              \
-U_NP,              U_NP,              &kp LPAR,          &kp RPAR,          &kp UNDER,         &kp F1,            &kp F2,            &kp F3,            &kp F4,            U_NP
+&kp TILDE,         &kp EXCL,          &kp AT,            &kp HASH,          &kp PIPE,          &kp F1,            &kp F2,            &kp F3,            &kp F4,            U_NA,              \
+U_NP,              U_NP,              &kp LPAR,          &kp RPAR,          &kp UNDER,         U_NA,              U_NA,              U_NA,              U_NP,              U_NP
 
 #define MIRYOKU_LAYERMAPPING_SYM( \
      K00, K01, K02, K03, K04,      K05, K06, K07, K08, K09, \
