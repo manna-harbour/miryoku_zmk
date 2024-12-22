@@ -1,0 +1,14 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+name: 'Build ffkb_v3'
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["ffkb_v3"]'
+      shield: '["nice_nano", "nice_nano_v2"]'
+      alphas: '["qwerty"]'
+      extra: '["colemakdh"]'
