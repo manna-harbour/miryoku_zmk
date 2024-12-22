@@ -92,7 +92,7 @@ jobs:
           fi
           echo "shield_arg=$SHIELD_ARG" >> $GITHUB_OUTPUT
           keyboard_split="$keyboard"
-          keyboard_base=`echo "$keyboard" | sed -e 's/_\(left\|right\)//' -e 's/@.*//'`
+          keyboard_base=`echo "$keyboard" | sed -e 's/_\(left\|right\|dongle\)//' -e 's/@.*//'`
 
           configfile="${GITHUB_WORKSPACE}/miryoku_zmk/miryoku/custom_config.h"
 
