@@ -10,9 +10,11 @@ unzip:
 
 left-flash:
 	mv left.uf2 /media/davidg/NICENANO/
+	#mv left.uf2 /media/davidg/MIKOTO-BOOT/
 
 right-flash:
 	mv right.uf2 /media/davidg/NICENANO/
+	#mv right.uf2 /media/davidg/MIKOTO-BOOT/
 
 clean:
 	-rm matrix.txt

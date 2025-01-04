@@ -7,13 +7,13 @@ on:
   push:
     branches:
       - 'master'
-      - 'power-management'
+      - 'mikoto'
 jobs:
   build:
     uses: ./.github/workflows/main.yml
     secrets: inherit
     with:
-      board: '["nice_nano_v2"]'
+      board: '["mikoto_520"]'
       shield: '["corne_left","corne_right"]'
       alphas: '["QWERTY"]'
       nav: '["vi"]'
