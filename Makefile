@@ -9,13 +9,13 @@ unzip:
 	mv zmk.uf2 right.uf2
 
 left-flash:
-	mv left.uf2 /media/davidg/NICENANO/
-	#mv left.uf2 /media/davidg/MIKOTO-BOOT/
+	#mv left.uf2 /media/davidg/NICENANO/
+	mv left.uf2 /media/davidg/MIKOTO-BOOT/
 
 right-flash:
-	mv right.uf2 /media/davidg/NICENANO/
-	#mv right.uf2 /media/davidg/MIKOTO-BOOT/
-
+	#mv right.uf2 /media/davidg/NICENANO/
+	mv right.uf2 /media/davidg/MIKOTO-BOOT/
+ieiRi
 clean:
 	-rm matrix.txt
 	-rm left.uf2.txt
