@@ -15,7 +15,7 @@ left-flash:
 right-flash:
 	#mv right.uf2 /media/davidg/NICENANO/
 	mv right.uf2 /media/davidg/MIKOTO-BOOT/
-ieiRi
+
 clean:
 	-rm matrix.txt
 	-rm left.uf2.txt
