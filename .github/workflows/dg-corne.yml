@@ -18,4 +18,4 @@ jobs:
       alphas: '["QWERTY"]'
       nav: '["vi"]'
       custom_config: '["#define MIRYOKU_KLUDGE_SOFT_OFF"]'
-      kconfig: '["CONFIG_ZMK_PM_SOFT_OFF=y"]'
+      kconfig: '["CONFIG_ZMK_PM_SOFT_OFF=y\nCONFIG_ZMK_POINTING=y"]'
