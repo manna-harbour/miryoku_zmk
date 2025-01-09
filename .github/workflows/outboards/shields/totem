@@ -1,7 +1,7 @@
 # Copyright 2022 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
-outboard_repository=GEIGEIGEIST/zmk-config-totem
-outboard_ref=master
+outboard_repository=jozefKruszynski/zmk-config-totem-dongle
+outboard_ref=main
 outboard_from=config/boards/shields/totem
 outboard_to=boards/shields/totem
