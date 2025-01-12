@@ -6,6 +6,23 @@
 
 #define XXX &none
 
+#define TOGGLE_W_SHIFT &toggle_w_shift
+
+/ {
+    behaviors {
+        toggle_w_shift: toggle_w_shift {
+            compatible = "zmk,behavior-macro";
+            label = "Toggle W and Shift";
+            #binding-cells = <0>;
+            bindings = <
+                &macro_press &kp W &kp LSFT
+                &macro_pause_for_release
+                &macro_release &kp W &kp LSFT
+            >;
+        };
+    };
+};
+
 // FPS friendly tap layer
 #define MIRYOKU_LAYER_GAME \
 &kp TAB,           &kp Q,             &kp W,             &kp E,             &kp R,             &kp Y,             &kp U,             &kp I,             &kp O,             &kp P,             \
@@ -14,7 +31,7 @@
 U_NP,              U_NP,              &kp LALT,          &kp SPC,           &mo U_GAMENUM,     &kp RET,           &kp BSPC,          &kp DEL,           U_NP,              U_NP
 
 #define MIRYOKU_LAYER_GAMENUM \
-&kp ESC,           &kp NUM_1,         &kp NUM_2,         &kp NUM_3,         &kp T,             &kp LBKT,          &kp F7,            &kp F8,            &kp F9,            &sk W,         \
+&kp ESC,           &kp NUM_1,         &kp NUM_2,         &kp NUM_3,         &kp T,             &kp LBKT,          &kp F7,            &kp F8,            &kp F9,            TOGGLE_W_SHIFT,         \
 &kp LSHFT,         &kp NUM_4,         &kp NUM_5,         &kp NUM_6,         &kp G,             &kp EQL,           &kp F4,            &kp F5,            &kp F6,            &sk LSHIFT,         \
 &kp LCTRL,         &kp NUM_7,         &kp NUM_8,         &kp NUM_9,         &kp B,             &kp BSLH,          &kp F1,            &kp F2,            &kp F3,            &kp GRAVE,        \
 U_NP,              U_NP,              &to U_BASE,        &kp SPC,           &none,             &kp MINUS,         &kp NUM_0,         &kp DOT,           U_NP,              U_NP
