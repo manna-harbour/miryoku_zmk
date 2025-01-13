@@ -6,14 +6,6 @@
 
 #define XXX &none
 
-U_MACRO(u_toggle_w_shift,
-  bindings = <
-    &macro_press &kp W &kp LSFT    // Press 'W' and 'Shift'
-    &macro_pause_for_release       // Wait for the key release
-    &macro_release &kp W &kp LSFT  // Release 'W' and 'Shift'
-  >;
-)
-
 // FPS friendly tap layer
 #define MIRYOKU_LAYER_GAME \
 &kp TAB,           &kp Q,             &kp W,             &kp E,             &kp R,             &kp Y,             &kp U,             &kp I,             &kp O,             &kp P,             \

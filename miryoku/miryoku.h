@@ -31,6 +31,8 @@
 
 #include "miryoku_shift_functions.h"
 
+#include "macro.h"
+
 #if defined (MIRYOKU_KLUDGE_MOUSEKEYSPR)
   #include "miryoku_kludge_mousekeyspr.h"
 #else
