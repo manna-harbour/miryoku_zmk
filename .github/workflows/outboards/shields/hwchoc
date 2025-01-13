@@ -3,5 +3,5 @@
 
 outboard_repository=https://github.com/evgnskv/hwchoc
 outboard_ref=main
-outboard_from=config/boards/shields/hwchoc
+outboard_from=/boards/shields/hwchoc
 outboard_to=boards/shields/hwchoc
