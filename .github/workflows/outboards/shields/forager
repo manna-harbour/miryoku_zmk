@@ -1,0 +1,8 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=carrefinho/forager-zmk-module
+outboard_ref=main
+outboard_from=config/boards/shields/forager
+outboard_to=boards/shields/forager
+
