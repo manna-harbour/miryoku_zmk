@@ -79,6 +79,7 @@ jobs:
         "splitkb_aurora_sweep_left","splitkb_aurora_sweep_right",
         "splitreus62_left","splitreus62_right",
         "swweeep_left","swweeep_right",
+        "swoop_left","swoop_right",
         "tbkmini_left","tbkmini_right",
         "tbkmini_adapterv2_left","tbkmini_adapterv2_right",
         "temper_left","temper_right",
