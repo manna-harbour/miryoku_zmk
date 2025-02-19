@@ -1,0 +1,13 @@
+# Copyright 2025 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+name: 'Build Example USB logging'
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["nice_nano"]'
+      shield: '["corne_left","corne_right"]'
+      snippets: '["zmk-usb-logging"]'
