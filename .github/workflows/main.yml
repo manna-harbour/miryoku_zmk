@@ -1,4 +1,4 @@
-# Copyright 2021 Manna Harbour
+# Copyright 2025 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
 name: 'Main'
@@ -44,7 +44,10 @@ on:
       modules:
         type: string
         default: '["default"]'
-  
+      snippets:
+        type: string
+        default: '["default"]'
+    
 
 jobs:
   main:
@@ -67,6 +70,7 @@ jobs:
         kconfig: ${{ fromJSON(inputs.kconfig) }}
         branches: ${{ fromJSON(inputs.branches) }}
         modules: ${{ fromJSON(inputs.modules) }}
+        snippets: ${{ fromJSON(inputs.snippets) }}
     env:
       MIRYOKU_DEBUG: ${{ secrets.MIRYOKU_DEBUG }}
     steps:
@@ -154,6 +158,11 @@ jobs:
             run_name="$run_name modules_"`echo "${{ matrix.modules }}" | md5sum | head -c "$hash_length"`
             modules="${{ matrix.modules }}"
           fi
+          if [ -n "${{ matrix.snippets }}" -a "${{ matrix.snippets }}" != 'default' ]
+          then
+            run_name="$run_name snippets_"`echo "${{ matrix.snippets }}" | md5sum | head -c "$hash_length"`
+            snippets="${{ matrix.snippets }}"
+          fi
 
           run_name=`echo $run_name | tr ' ' '-'`
           echo "run_name=$run_name" >> $GITHUB_OUTPUT
@@ -176,6 +185,7 @@ jobs:
           kconfig: '${{ matrix.kconfig }}'
           branches: '${{ matrix.branches }}'  
           modules: '${{ matrix.modules }}'
+          snippets: '${{ matrix.snippets }}'
           " > "$matrix_file"
           cat "$matrix_file"
           echo "::endgroup::"
@@ -195,6 +205,7 @@ jobs:
             outboard_to=''
             outboard_branches=''
             outboard_modules=''
+            outboard_snippets=''
             outboard_file="${GITHUB_WORKSPACE}/miryoku_zmk/.github/workflows/outboards/$outboard"
             if [ -f "$outboard_file" ]
             then
@@ -228,6 +239,15 @@ jobs:
                   modules="$modules $outboard_modules"
                 else
                   modules="$outboard_modules"
+                fi
+              fi
+              if [ -n "$outboard_snippets" ]
+              then
+                if [ -n "$snippets" ]
+                then
+                  snippets="$snippets $outboard_snippets"
+                else
+                  snippets="$outboard_snippets"
                 fi
               fi
             fi
@@ -293,6 +313,23 @@ jobs:
             echo "modules_arg=$modules_arg" >> $GITHUB_OUTPUT
           fi
           echo "::endgroup::"
+
+          echo "::group::snippets"
+          for snippet in $snippets 
+          do
+            if [ -z "$snippets_args" ]
+            then
+              snippets_args="-S \"$snippet\""
+            else
+              snippets_args="$snippets_args -S \"$snippet\""
+            fi
+          done
+          if [ -n "$snippets_args" ]
+          then
+            echo "snippets_args=$snippets_args" >> $GITHUB_OUTPUT
+          fi
+          echo "::endgroup::"
+
       - name: cache
         if: true
         uses: actions/cache@v4
@@ -326,7 +363,7 @@ jobs:
           EX_DATAERR='65'
           cd "${GITHUB_WORKSPACE}/zmk/app"
           {
-            west $west_debug build -b ${{ matrix.board }} $west_build_debug -- ${{ steps.main.outputs.shield_arg }} ${{ steps.main.outputs.modules_arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/miryoku_zmk/config" ||
+            west $west_debug build -b ${{ matrix.board }} $west_build_debug ${{ steps.main.outputs.snippets_args }} -- ${{ steps.main.outputs.shield_arg }} ${{ steps.main.outputs.modules_arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/miryoku_zmk/config" ||
             echo "$build_failed_message $?." ;
           } 2>&1 | tee "$log"
           if grep -q 'Invalid BOARD; see above.' "$log"

@@ -1,4 +1,4 @@
-# Copyright 2022 Manna Harbour
+# Copyright 2025 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
 name: 'Test Inputs'
@@ -24,10 +24,6 @@ on:
         description: 'layers'
         required: false
         default: 'default'
-      mapping:
-        description: 'mapping'
-        required: false
-        default: 'default'
       custom_config:
         description: 'custom_config'
         required: false
@@ -44,6 +40,10 @@ on:
         description: 'modules'
         required: false
         default: 'default'
+      snippets:
+        description: 'snippets'
+        required: false
+        default: 'default'
 jobs:
   process-inputs:
     runs-on: ubuntu-latest
@@ -53,11 +53,11 @@ jobs:
       alphas: ${{ steps.process-inputs.outputs.alphas }}
       nav: ${{ steps.process-inputs.outputs.nav }}
       layers: ${{ steps.process-inputs.outputs.layers }}
-      mapping: ${{ steps.process-inputs.outputs.mapping }}
       custom_config: ${{ steps.process-inputs.outputs.custom_config }}
       kconfig: ${{ steps.process-inputs.outputs.kconfig }}
       branches: ${{ steps.process-inputs.outputs.branches }}
       modules: ${{ steps.process-inputs.outputs.modules }}
+      snippets: ${{ steps.process-inputs.outputs.snippets }}
     steps:
       - name: Process inputs
         id: process-inputs
@@ -72,11 +72,11 @@ jobs:
           set-output "alphas" "${{ github.event.inputs.alphas }}"
           set-output "nav" "${{ github.event.inputs.nav }}"
           set-output "layers" "${{ github.event.inputs.layers }}"
-          set-output "mapping" "${{ github.event.inputs.mapping }}"
           set-output "custom_config" "${{ github.event.inputs.custom_config }}"
           set-output "kconfig" "${{ github.event.inputs.kconfig }}"
           set-output "branches" "${{ github.event.inputs.branches }}"
           set-output "modules" "${{ github.event.inputs.modules }}"
+          set-output "snippets" "${{ github.event.inputs.snippets }}"
   build:
     uses: ./.github/workflows/main.yml
     secrets: inherit
@@ -87,8 +87,8 @@ jobs:
       alphas: ${{ needs.process-inputs.outputs.alphas }}
       nav: ${{ needs.process-inputs.outputs.nav }}
       layers: ${{ needs.process-inputs.outputs.layers }}
-      mapping: ${{ needs.process-inputs.outputs.mapping }}
       custom_config: ${{ needs.process-inputs.outputs.custom_config }}
       kconfig: ${{ needs.process-inputs.outputs.kconfig }}
       branches: ${{ needs.process-inputs.outputs.branches }}
       modules: ${{ needs.process-inputs.outputs.modules }}
+      snippets: ${{ needs.process-inputs.outputs.snippets }}

@@ -1,4 +1,4 @@
-# Copyright 2023 Manna Harbour
+# Copyright 2025 Manna Harbour
 # https://github.com/manna-harbour/miryoku
 
 * Miryoku ZMK [[https://raw.githubusercontent.com/manna-harbour/miryoku/master/data/logos/miryoku-roa-32.png]]
@@ -142,11 +142,6 @@ Select an alternative Nav layout, e.g. ~invertedt~, ~vi~.  For home position lin
 Select an alternative layers layout, e.g. ~flip~.  For right hand Nav, leave as ~default~.
 
 
-****** mapping
-
-Select an alternative mapping, e.g. ~extended_thumbs~, ~pinkie_stagger~.  For the default mapping, leave as ~default~.
-
-
 ***** custom_config
 
 Appends to the [[#config-file][config]] file, e.g. ~#define MIRYOKU_CLIPBOARD_WIN~. Join multiple lines with ~\n~, e.g. ~#define MIRYOKU_EXTRA_DVORAK\n#define MIRYOKU_TAP_QWERTY\n#define MIRYOKU_CLIPBOARD_WIN~. For no additional config, leave as ~default~.
@@ -170,6 +165,11 @@ Select an alternative alphas layout for the Tap layer, e.g. ~colemak~, ~dvorak~,
 ****** clipboard
 
 Select an alternative clipboard type, e.g. ~mac~, ~win~.  For CUA bindings, leave as ~default~.
+
+
+****** mapping
+
+Select an alternative mapping, e.g. ~extended_thumbs~, ~pinkie_stagger~.  For the default mapping, leave as ~default~.
 
 
 ***** ZMK Options
@@ -198,6 +198,15 @@ Used to build with external modules.
 Modules are specified in the form ~<user>/<repo>/<branch>~.
 
 Multiple space separated modules can be specified.
+
+For no changes, leave as ~default~.
+
+
+****** snippets
+
+Used to build with snippets.
+
+Multiple space separated snippets can be specified.
 
 For no changes, leave as ~default~.
 
@@ -271,6 +280,13 @@ Specify if the board or shield requires or is defined in one or more external mo
 If the board or shield definition is contained in a specified module, [[#Repository-and-Symlink-Variables][repository and symlink variables]] are not required.
 
 If modules are also specified via the workflow ~modules~ option or in other outboards, all modules will be used.
+
+
+**** outboard_snippets
+
+Specify if the board or shield requires one or more snippets. Use is the same as for the workflow [[#snippets][snippets]] option. 
+
+If snippets are also specified via the workflow ~snippets~ option or in other outboards, all snippets will be used.
 
 
 *** Notes
