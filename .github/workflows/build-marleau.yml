@@ -1,0 +1,12 @@
+name: "Build marleau's sweep"
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["nice_nano_v2"]'
+      shield: '["cradio_left","cradio_right"]'
+      alphas: '["qwerty"]'
+      nav: '["vi"]'
+      kconfig: '["CONFIG_ZMK_MOUSE=y", "CONFIG_ZMK_POINTING=y"]'
