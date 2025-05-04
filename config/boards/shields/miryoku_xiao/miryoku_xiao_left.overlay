@@ -1,0 +1,18 @@
+#include "miryoku_xiao.dtsi"
+
+&kscan0 {
+    row-gpios
+        = <&xiao_d 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 0
+        , <&xiao_d 9  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 1
+        , <&xiao_d 8  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 2
+        , <&xiao_d 7  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 3
+        ;
+
+    col-gpios
+        = <&xiao_d 0 GPIO_ACTIVE_HIGH> // Col 0
+        , <&xiao_d 1 GPIO_ACTIVE_HIGH> // Col 1
+        , <&xiao_d 2 GPIO_ACTIVE_HIGH> // Col 2
+        , <&xiao_d 3 GPIO_ACTIVE_HIGH> // Col 3
+        , <&xiao_d 4 GPIO_ACTIVE_HIGH> // Col 4
+        ;
+}; 
