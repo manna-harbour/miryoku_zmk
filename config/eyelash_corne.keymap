@@ -1,0 +1,12 @@
+// Copyright 2021 Manna Harbour
+// https://github.com/manna-harbour/miryoku
+
+#include "../miryoku/custom_config.h"
+#include "../miryoku/mapping/42/eyelash_corne.h"
+#include "../miryoku/miryoku.dtsi"
+
+/ {
+	chosen {
+		zmk,matrix_transform = &default_transform;
+	};
+};

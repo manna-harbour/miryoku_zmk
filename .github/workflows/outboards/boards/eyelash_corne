@@ -1,0 +1,7 @@
+# Copyright 2023 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=a741725193/zmk-new_corne
+outboard_ref=main
+outboard_from=boards/arm/eyelash_corne
+outboard_to=boards/arm/eyelash_corne

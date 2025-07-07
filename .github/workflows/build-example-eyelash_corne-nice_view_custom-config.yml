@@ -1,0 +1,15 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+name: "Build Example eyelash_corne nice_view display custom config"
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["eyelash_corne_left", "eyelash_corne_right"]'
+      shield: '["nice_view"]'
+      custom_config: '["#define MIRYOKU_CLIPBOARD_MAC\n#define MIRYOKU_KLUDGE_MOUSEKEYSPR"]'
+      kconfig: '["CONFIG_ZMK_DISPLAY=y\nCONFIG_ZMK_SLEEP=y\nCONFIG_ZMK_IDLE_SLEEP_TIMEOUT=1600000\nCONFIG_WS2812_STRIP=y\nCONFIG_ZMK_RGB_UNDERGLOW=y\nCONFIG_ZMK_RGB_UNDERGLOW_ON_START=n\nCONFIG_ZMK_RGB_UNDERGLOW_AUTO_OFF_IDLE=y\nCONFIG_ZMK_RGB_UNDERGLOW_HUE_START=160\nCONFIG_ZMK_RGB_UNDERGLOW_EFF_START=3\nCONFIG_ZMK_BLE_EXPERIMENTAL_CONN=y\nCONFIG_ZMK_BLE_PASSKEY_ENTRY=y\nCONFIG_EC11=y\nCONFIG_EC11_TRIGGER_GLOBAL_THREAD=y\nCONFIG_ZMK_MOUSE=y\nCONFIG_ZMK_BACKLIGHT=y\nCONFIG_ZMK_BACKLIGHT_BRT_START=100"]'
+      modules: '["a741725193/zmk-new_corne/main"]'

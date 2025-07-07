@@ -1,0 +1,13 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+name: "Build Example eyelash_corne nice_view display"
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["eyelash_corne_left", "eyelash_corne_right"]'
+      shield: '["nice_view"]'
+      modules: '["a741725193/zmk-new_corne/main"]'
