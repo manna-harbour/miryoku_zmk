@@ -40,10 +40,10 @@ U_NP,              U_NP,              U_BTN3,            U_BTN1,            U_BT
 U_NP,              U_NP,              &kp LALT,          &mo U_DB,          &kp SPACE,         &kp RET,           &kp BSPC,          &kp DEL,           U_NP,              U_NP
 
 #define MIRYOKU_LAYER_DB \
-&kp ESC,           &kp N4,            &kp N5,            &kp N6,            &kp T,             &kp Y,             &kp U,             &kp I,             &kp O,             &kp P,             \
-&kp LSHFT,         &kp Q,             &kp D,             &kp F,             &kp G,             &kp H,             &kp J,             &kp K,             &kp L,             &kp SQT,           \
-&kp LALT,          &kp Z,             &kp X,             &kp C,             &kp B,             &kp N,             &kp M,             &kp COMMA,         &kp DOT,           &kp SLASH,         \
-U_NP,              U_NP,              &kp LALT,          &none,             &kp SPACE,         &kp RET,           &u_to_U_BASE       &kp DEL,           U_NP,              U_NP
+&kp ESC,           &kp N4,            &kp N5,            &kp N6,            &kp T,             &kp F15,           &kp F7,            &kp F8,            &kp F9,            &kp F12,           \
+&kp LSHFT,         &kp Q,             &kp D,             &kp F,             &kp G,             &kp F14,           &kp F4,            &kp F5,            &kp F6,            &kp F11,           \
+&kp LALT,          &kp Z,             &kp X,             &kp C,             &kp B,             &kp F13,           &kp F1,            &kp F2,            &kp F3,            &kp F10,           \
+U_NP,              U_NP,              &kp LALT,          &none,             &kp SPACE,         &kp RET,           &u_to_U_BASE,      &kp DEL,           U_NP,              U_NP
 
 #define MIRYOKU_LAYER_CA \
 &kp TAB,           &kp N1,            &kp N2,            &kp N3,            &kp R,             &kp Y,             &kp U,             &kp I,             &kp O,             &kp P,             \
@@ -52,10 +52,10 @@ U_NP,              U_NP,              &kp LALT,          &none,             &kp 
 U_NP,              U_NP,              &kp LALT,          &mo U_CB,          &kp SPACE,         &kp RET,           &kp BSPC,          &kp DEL,           U_NP,              U_NP
 
 #define MIRYOKU_LAYER_CB \
-&kp ESC,           &kp N4,            &kp N5,            &kp E,             &kp B,             &kp Y,             &kp U,             &kp I,             &kp O,             &kp P,             \
-&kp LSHFT,         &kp A,             &kp W,             &kp D,             &kp T,             &kp H,             &kp J,             &kp K,             &kp L,             &kp SQT,           \
-&kp LCTRL,         &kp Z,             &kp S,             &kp X,             &kp Y,             &kp N,             &kp M,             &kp COMMA,         &kp DOT,           &kp SLASH,         \
-U_NP,              U_NP,              &kp LALT,          &none,             &kp SPACE,         &kp RET,           &u_to_U_BASE        &kp DEL,           U_NP,              U_NP
+&kp ESC,           &kp N4,            &kp N5,            &kp E,             &kp B,             &kp F15,           &kp F7,            &kp F8,            &kp F9,            &kp F12,           \
+&kp LSHFT,         &kp A,             &kp W,             &kp D,             &kp T,             &kp F14,           &kp F4,            &kp F5,            &kp F6,            &kp F11,           \
+&kp LCTRL,         &kp Z,             &kp S,             &kp X,             &kp Y,             &kp F13,           &kp F1,            &kp F2,            &kp F3,            &kp F10,           \
+U_NP,              U_NP,              &kp LALT,          &none,             &kp SPACE,         &kp RET,           &u_to_U_BASE,      &kp DEL,           U_NP,              U_NP
 
 #define MIRYOKU_LAYER_LIST \
 MIRYOKU_X(BASE,   "Base") \
