@@ -6,10 +6,8 @@
 // generated -*- buffer-read-only: t -*-
 // target: zmk
 
-#pragma once
+#define MIRYOKU_KLUDGE_MOUSEKEYSPR
 
-#define u_to_U_DA &to U_DA
-#define u_to_U_CA &to U_CA
 
 #define MIRYOKU_ALTERNATIVES_NAV_VI \
 U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA,              U_CPY,             U_UND,             U_RDO,             U_CUT,             U_PST,             \
@@ -75,6 +73,12 @@ MIRYOKU_X(DB,     "Dota Extra") \
 MIRYOKU_X(CA,     "CS Base") \
 MIRYOKU_X(CB,     "CS Extra")
 
+
+
+#define MIRYOKU_LAYERMAPPING_DA MIRYOKU_MAPPING
+#define MIRYOKU_LAYERMAPPING_DB MIRYOKU_MAPPING
+#define MIRYOKU_LAYERMAPPING_CA MIRYOKU_MAPPING
+#define MIRYOKU_LAYERMAPPING_CB MIRYOKU_MAPPING
 
 #define U_BASE   0
 #define U_EXTRA  1
