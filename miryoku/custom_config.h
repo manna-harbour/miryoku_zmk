@@ -8,6 +8,8 @@
 
 #pragma once
 
+#define u_to_U_DA &to U_DA
+#define u_to_U_CA &to U_CA
 
 #define MIRYOKU_ALTERNATIVES_NAV_VI \
 U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA,              U_CPY,             U_UND,             U_RDO,             U_CUT,             U_PST,             \
