@@ -86,5 +86,5 @@ MIRYOKU_X(CB,     "CS Extra")
 #define U_FUN    9
 #define U_DA    10
 #define U_DB    11
-#define U_CA    20
-#define U_CB    21
+#define U_CA    12
+#define U_CB    13
