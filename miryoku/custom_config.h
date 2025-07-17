@@ -5,6 +5,41 @@
 
 #define MIRYOKU_KLUDGE_MOUSEKEYSPR
 
+#define MIRYOKU_LAYER_LIST \
+MIRYOKU_X(BASE,   "Base") \
+MIRYOKU_X(EXTRA,  "Extra") \
+MIRYOKU_X(TAP,    "Tap") \
+MIRYOKU_X(BUTTON, "Button") \
+MIRYOKU_X(NAV,    "Nav") \
+MIRYOKU_X(MOUSE,  "Mouse") \
+MIRYOKU_X(MEDIA,  "Media") \
+MIRYOKU_X(NUM,    "Num") \
+MIRYOKU_X(SYM,    "Sym") \
+MIRYOKU_X(FUN,    "Fun") \
+MIRYOKU_X(DA,     "Dota Base") \
+MIRYOKU_X(DB,     "Dota Extra") \
+MIRYOKU_X(CA,     "CS Base") \
+MIRYOKU_X(CB,     "CS Extra")
+
+#define MIRYOKU_LAYERMAPPING_DA MIRYOKU_MAPPING
+#define MIRYOKU_LAYERMAPPING_DB MIRYOKU_MAPPING
+#define MIRYOKU_LAYERMAPPING_CA MIRYOKU_MAPPING
+#define MIRYOKU_LAYERMAPPING_CB MIRYOKU_MAPPING
+
+#define U_BASE   0
+#define U_EXTRA  1
+#define U_TAP    2
+#define U_BUTTON 3
+#define U_NAV    4
+#define U_MOUSE  5
+#define U_MEDIA  6
+#define U_NUM    7
+#define U_SYM    8
+#define U_FUN    9
+#define U_DA    10
+#define U_DB    11
+#define U_CA    12
+#define U_CB    13
 
 #define MIRYOKU_ALTERNATIVES_NAV_VI \
 U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA,              U_CPY,             U_UND,             U_RDO,             U_CUT,             U_PST,             \
@@ -53,39 +88,3 @@ U_NP,              U_NP,              &kp LALT,          &mo U_CB,          &kp 
 &kp LSHFT,         &kp A,             &kp W,             &kp D,             &kp T,             &kp F14,           &kp F4,            &kp F5,            &kp F6,            &kp F11,           \
 &kp LCTRL,         &kp Z,             &kp S,             &kp X,             &kp Y,             &kp F13,           &kp F1,            &kp F2,            &kp F3,            &kp F10,           \
 U_NP,              U_NP,              &kp LALT,          &none,             &kp SPACE,         &kp RET,           &to U_BASE,        &kp DEL,           U_NP,              U_NP
-
-#define MIRYOKU_LAYER_LIST \
-MIRYOKU_X(BASE,   "Base") \
-MIRYOKU_X(EXTRA,  "Extra") \
-MIRYOKU_X(TAP,    "Tap") \
-MIRYOKU_X(BUTTON, "Button") \
-MIRYOKU_X(NAV,    "Nav") \
-MIRYOKU_X(MOUSE,  "Mouse") \
-MIRYOKU_X(MEDIA,  "Media") \
-MIRYOKU_X(NUM,    "Num") \
-MIRYOKU_X(SYM,    "Sym") \
-MIRYOKU_X(FUN,    "Fun") \
-MIRYOKU_X(DA,     "Dota Base") \
-MIRYOKU_X(DB,     "Dota Extra") \
-MIRYOKU_X(CA,     "CS Base") \
-MIRYOKU_X(CB,     "CS Extra")
-
-#define MIRYOKU_LAYERMAPPING_DA MIRYOKU_MAPPING
-#define MIRYOKU_LAYERMAPPING_DB MIRYOKU_MAPPING
-#define MIRYOKU_LAYERMAPPING_CA MIRYOKU_MAPPING
-#define MIRYOKU_LAYERMAPPING_CB MIRYOKU_MAPPING
-
-#define U_BASE   0
-#define U_EXTRA  1
-#define U_TAP    2
-#define U_BUTTON 3
-#define U_NAV    4
-#define U_MOUSE  5
-#define U_MEDIA  6
-#define U_NUM    7
-#define U_SYM    8
-#define U_FUN    9
-#define U_DA    10
-#define U_DB    11
-#define U_CA    12
-#define U_CB    13
