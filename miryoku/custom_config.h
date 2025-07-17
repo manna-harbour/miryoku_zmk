@@ -1,6 +1,3 @@
-// Copyright 2021 Manna Harbour
-// https://github.com/manna-harbour/miryoku
-
 // Copyright 2022 Manna Harbour
 // https://github.com/manna-harbour/miryoku
 // generated -*- buffer-read-only: t -*-
@@ -22,7 +19,7 @@ U_NA,              &kp RALT,          &u_to_U_SYM,       &u_to_U_MOUSE,     U_NA
 U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              U_BTN2,            U_BTN1,            U_BTN3,            U_NP,              U_NP
 
 #define MIRYOKU_ALTERNATIVES_MEDIA_VI \
-U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA,              &kp F18,           &kp F19,           &kp F20,           &to U_DA,          &to U_CA,          \
+U_BOOT,            &u_to_U_TAP,       &u_to_U_EXTRA,     &u_to_U_BASE,      U_NA,              &kp F18,           &kp F19,           &kp F20,           &kp F21,           &kp F22,          \
 &kp LGUI,          &kp LALT,          &kp LCTRL,         &kp LSHFT,         U_NA,              &kp C_PREV,        &kp C_VOL_DN,      &kp C_VOL_UP,      &kp C_NEXT,        U_EP_TOG,          \
 U_NA,              &kp RALT,          &u_to_U_FUN,       &u_to_U_MEDIA,     U_NA,              &u_bt_sel_0,       &u_bt_sel_1,       &u_bt_sel_2,       &u_bt_sel_3,       &u_out_tog,        \
 U_NP,              U_NP,              U_NA,              U_NA,              U_NA,              &kp C_STOP,        &kp C_PP,          &kp C_MUTE,        U_NP,              U_NP
@@ -43,7 +40,7 @@ U_NP,              U_NP,              &kp LALT,          &mo U_DB,          &kp 
 &kp ESC,           &kp N4,            &kp N5,            &kp N6,            &kp T,             &kp F15,           &kp F7,            &kp F8,            &kp F9,            &kp F12,           \
 &kp LSHFT,         &kp Q,             &kp D,             &kp F,             &kp G,             &kp F14,           &kp F4,            &kp F5,            &kp F6,            &kp F11,           \
 &kp LALT,          &kp Z,             &kp X,             &kp C,             &kp B,             &kp F13,           &kp F1,            &kp F2,            &kp F3,            &kp F10,           \
-U_NP,              U_NP,              &kp LALT,          &none,             &kp SPACE,         &kp RET,           &u_to_U_BASE,      &kp DEL,           U_NP,              U_NP
+U_NP,              U_NP,              &kp LALT,          &none,             &kp SPACE,         &kp RET,           &to U_BASE,        &kp DEL,           U_NP,              U_NP
 
 #define MIRYOKU_LAYER_CA \
 &kp TAB,           &kp N1,            &kp N2,            &kp N3,            &kp R,             &kp Y,             &kp U,             &kp I,             &kp O,             &kp P,             \
@@ -55,7 +52,7 @@ U_NP,              U_NP,              &kp LALT,          &mo U_CB,          &kp 
 &kp ESC,           &kp N4,            &kp N5,            &kp E,             &kp B,             &kp F15,           &kp F7,            &kp F8,            &kp F9,            &kp F12,           \
 &kp LSHFT,         &kp A,             &kp W,             &kp D,             &kp T,             &kp F14,           &kp F4,            &kp F5,            &kp F6,            &kp F11,           \
 &kp LCTRL,         &kp Z,             &kp S,             &kp X,             &kp Y,             &kp F13,           &kp F1,            &kp F2,            &kp F3,            &kp F10,           \
-U_NP,              U_NP,              &kp LALT,          &none,             &kp SPACE,         &kp RET,           &u_to_U_BASE,      &kp DEL,           U_NP,              U_NP
+U_NP,              U_NP,              &kp LALT,          &none,             &kp SPACE,         &kp RET,           &to U_BASE,        &kp DEL,           U_NP,              U_NP
 
 #define MIRYOKU_LAYER_LIST \
 MIRYOKU_X(BASE,   "Base") \
@@ -72,8 +69,6 @@ MIRYOKU_X(DA,     "Dota Base") \
 MIRYOKU_X(DB,     "Dota Extra") \
 MIRYOKU_X(CA,     "CS Base") \
 MIRYOKU_X(CB,     "CS Extra")
-
-
 
 #define MIRYOKU_LAYERMAPPING_DA MIRYOKU_MAPPING
 #define MIRYOKU_LAYERMAPPING_DB MIRYOKU_MAPPING
