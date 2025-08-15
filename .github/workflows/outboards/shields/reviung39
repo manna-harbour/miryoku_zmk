@@ -1,8 +1,0 @@
-# Copyright 2021 Manna Harbour
-# https://github.com/manna-harbour/miryoku
-
-outboard_repository=jshreynolds/zmk
-outboard_ref=main
-outboard_from=app/boards/shields/reviung39
-outboard_to=boards/shields/reviung39
-
