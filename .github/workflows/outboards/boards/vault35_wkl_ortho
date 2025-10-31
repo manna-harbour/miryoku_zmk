@@ -1,0 +1,7 @@
+# Copyright 2024 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=BeatGrate/zmk-config-vault35_wkl_ortho
+outboard_ref=main
+outboard_from=config/boards/arm/vault35_wkl_ortho
+outboard_to=boards/arm/vault35_wkl_ortho
