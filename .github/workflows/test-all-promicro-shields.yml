@@ -84,6 +84,7 @@ jobs:
         "tbkmini_left","tbkmini_right",
         "tbkmini_adapterv2_left","tbkmini_adapterv2_right",
         "temper_left","temper_right",
+        "tempest_left","tempest_right"
         "tightyl_left","tightyl_right",
         "viterbi_left","viterbi_right",
         "waterfowl_left","waterfowl_right",
