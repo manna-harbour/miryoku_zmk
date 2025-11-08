@@ -1,0 +1,48 @@
+// Copyright 2025 Reza
+// https://github.com/manna-harbour/miryoku
+
+#if defined (MIRYOKU_SENSOR_BINDINGS)
+
+#include "miryoku_sensor_bindings.h"
+
+&miryoku_BASE {
+  sensor-bindings = <MIRYOKU_SENSOR_BASE>;
+};
+
+&miryoku_EXTRA {
+  sensor-bindings = <MIRYOKU_SENSOR_EXTRA>;
+};
+
+&miryoku_TAP {
+  sensor-bindings = <MIRYOKU_SENSOR_TAP>;
+};
+
+&miryoku_BUTTON {
+  sensor-bindings = <MIRYOKU_SENSOR_BUTTON>;
+};
+
+&miryoku_NAV {
+  sensor-bindings = <MIRYOKU_SENSOR_NAV>;
+};
+
+&miryoku_MOUSE {
+  sensor-bindings = <MIRYOKU_SENSOR_MOUSE>;
+};
+
+&miryoku_MEDIA {
+  sensor-bindings = <MIRYOKU_SENSOR_MEDIA>;
+};
+
+&miryoku_NUM {
+  sensor-bindings = <MIRYOKU_SENSOR_NUM>;
+};
+
+&miryoku_SYM {
+  sensor-bindings = <MIRYOKU_SENSOR_SYM>;
+};
+
+&miryoku_FUN {
+  sensor-bindings = <MIRYOKU_SENSOR_FUN>;
+};
+
+#endif
