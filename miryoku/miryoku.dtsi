@@ -17,7 +17,7 @@
   keymap {
     compatible = "zmk,keymap";
 #define MIRYOKU_X(LAYER, STRING) \
-    LAYER { \
+    miryoku_##LAYER: LAYER { \
       display-name = STRING; \
       bindings = < U_MACRO_VA_ARGS(MIRYOKU_LAYERMAPPING_##LAYER, MIRYOKU_LAYER_##LAYER) >; \
     };
@@ -31,6 +31,10 @@ MIRYOKU_LAYER_LIST
 #include "miryoku_double_tap_guard.dtsi"
 
 #include "miryoku_mousekeys.dtsi"
+
+#if defined (MIRYOKU_SENSOR_BINDINGS)
+  #include "miryoku_sensor_bindings.dtsi"
+#endif
 
 #if defined (MIRYOKU_KLUDGE_THUMBCOMBOS)
   #include "miryoku_kludge_thumbcombos.dtsi"
