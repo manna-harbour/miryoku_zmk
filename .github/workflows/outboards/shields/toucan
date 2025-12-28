@@ -1,0 +1,4 @@
+# Copyright 2023 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_modules="beekeeb/zmk-keyboard-toucan/main caksoylar/zmk-rgbled-widget/main petejohanson/cirque-input-module/main"

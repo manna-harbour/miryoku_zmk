@@ -1,0 +1,13 @@
+# Copyright 2023 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+name: 'Build beekeeb Toucan'
+on: workflow_dispatch
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["seeeduino_xiao_ble"]'
+      shield: '["toucan_left rgbled_adapter nice_view_gem","toucan_right rgbled_adapter"]'
+      branches: '["zmkfirmware/zmk/v0.3.0"]'
