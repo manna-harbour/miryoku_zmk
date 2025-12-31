@@ -8,5 +8,5 @@ jobs:
     uses: ./.github/workflows/main.yml
     secrets: inherit
     with:
-      board: '["corneish_zen_v1_left","corneish_zen_v1_right"]'
+      board: '["corneish_zen_left","corneish_zen_right"]'
 
