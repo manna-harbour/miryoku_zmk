@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=padda-wan/horne-zmk-shield
+outboard_ref=main
+outboard_from=boards/shields/horne
+outboard_to=boards/shields/horne

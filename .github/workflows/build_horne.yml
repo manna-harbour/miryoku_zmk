@@ -1,0 +1,22 @@
+# opyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+name: 'Build handwired horne'
+on: 
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["seeeduino_xiao_ble"]'
+      shield: '["horne_left rgbled_adapter","horne_right rgbled_adapter"]'
+      kconfig: '["CONFIG_ZMK_DISPLAY=n\nCONFIG_ZMK_POINTING=y"]'
+      alphas: '["qwerty"]'
+      nav: '["vi"]'
+      clipboard: '["mac"]'
+      layers: '["default"]'
+      modules: '["caksoylar/zmk-rgbled-widget/main"]'
+      branches: '["zmkfirmware/zmk/main"]'

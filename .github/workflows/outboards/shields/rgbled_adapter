@@ -1,0 +1,7 @@
+# Copyright 2022 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=caksoylar/zmk-rgbled-widget
+outboard_ref=main
+outboard_from=boards/shields/rgbled_adapter
+outboard_to=boards/shields/rgbled_adapter
