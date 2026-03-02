@@ -13,7 +13,7 @@ jobs:
     with:
       board: '["seeeduino_xiao_ble"]'
       shield: '["horne_left rgbled_adapter","horne_right rgbled_adapter"]'
-      kconfig: '["CONFIG_ZMK_DISPLAY=n\nCONFIG_ZMK_POINTING=y\nCONFIG_ZMK_SLEEP=y\nCONFIG_ZMK_IDLE_SLEEP_TIMEOUT=900000"]'
+      kconfig: '["CONFIG_ZMK_DISPLAY=n\nCONFIG_ZMK_POINTING=y"]'
       alphas: '["qwerty"]'
       nav: '["vi"]'
       clipboard: '["mac"]'
