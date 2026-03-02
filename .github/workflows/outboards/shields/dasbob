@@ -1,0 +1,7 @@
+# Copyright 2024 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=KarolTx/zmk-dasbob
+outboard_ref=main
+outboard_from=boards/shields/dasbob
+outboard_to=boards/shields/dasbob
