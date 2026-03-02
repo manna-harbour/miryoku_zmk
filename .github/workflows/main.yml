@@ -210,7 +210,8 @@ jobs:
                 git clone -b "$outboard_ref" --depth 1 "$outboard_repository" "$outboard_dir"
                 to="${GITHUB_WORKSPACE}/miryoku_zmk/config/$outboard_to"
                 mkdir -p `dirname "$to"`
-                ln -sr "$outboard_dir/$outboard_from" "$to"
+                rm -rf "$to"
+                cp -a "$outboard_dir/$outboard_from" "$to"
               fi
               if [ -n "$outboard_branches" ]
               then
@@ -325,6 +326,9 @@ jobs:
           EX_UNAVAILABLE='69'
           EX_DATAERR='65'
           cd "${GITHUB_WORKSPACE}/zmk/app"
+          echo "::group::board discovery debug"
+          find "${GITHUB_WORKSPACE}" -type f -path '*/pillbug/board.yml' -print || true
+          echo "::endgroup::"
           {
             west $west_debug build -b ${{ matrix.board }} $west_build_debug -- ${{ steps.main.outputs.shield_arg }} ${{ steps.main.outputs.modules_arg }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/miryoku_zmk/config" ||
             echo "$build_failed_message $?." ;
@@ -372,4 +376,3 @@ jobs:
         with:
           name: ${{ steps.main.outputs.run_name }}
           path: ${{ steps.main.outputs.artifact_dir }}
-
