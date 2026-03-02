@@ -18,5 +18,4 @@ jobs:
       nav: '["vi"]'
       clipboard: '["mac"]'
       layers: '["default"]'
-      modules: '["caksoylar/zmk-rgbled-widget/main"]'
       branches: '["zmkfirmware/zmk/main"]'
