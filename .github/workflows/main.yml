@@ -210,8 +210,7 @@ jobs:
                 git clone -b "$outboard_ref" --depth 1 "$outboard_repository" "$outboard_dir"
                 to="${GITHUB_WORKSPACE}/miryoku_zmk/config/$outboard_to"
                 mkdir -p `dirname "$to"`
-                rm -rf "$to"
-                cp -a "$outboard_dir/$outboard_from" "$to"
+                ln -sr "$outboard_dir/$outboard_from" "$to"
               fi
               if [ -n "$outboard_branches" ]
               then
