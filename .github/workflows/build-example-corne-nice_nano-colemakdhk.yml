@@ -2,7 +2,11 @@
 # https://github.com/manna-harbour/miryoku
 
 name: 'Build Example corne nice_nano ColemakDHK nice_view'
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - claude/fix-corne-zmk-connection-yeLbd
 jobs:
   build:
     uses: ./.github/workflows/main.yml
