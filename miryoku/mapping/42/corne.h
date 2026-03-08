@@ -1,6 +1,7 @@
 // Copyright 2022 Manna Harbour
 // https://github.com/manna-harbour/miryoku
 
+#include "../../miryoku.dtsi"
 #if !defined (MIRYOKU_LAYOUTMAPPING_CORNE)
 
 #define XXX &none
