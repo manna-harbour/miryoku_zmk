@@ -1,6 +1,16 @@
 // Copyright 2022 Manna Harbour
 // https://github.com/manna-harbour/miryoku
 
-U_MACRO(u_macro_btn1, wait-ms = <0>; bindings = <&kp KP_SLASH &kp KP_N5>;)
-U_MACRO(u_macro_btn2, wait-ms = <0>; bindings = <&kp KP_MINUS &kp KP_N5>;)
-U_MACRO(u_macro_btn3, wait-ms = <0>; bindings = <&kp KP_ASTERISK &kp KP_N5>;)
+&mmv {
+  acceleration-exponent = <U_MOUSE_MOVE_EXPONENT>;
+  time-to-max-speed-ms = <U_MOUSE_MOVE_TIME>;
+  delay-ms = <U_MOUSE_MOVE_DELAY>;
+};
+
+/*
+&msc {
+  acceleration-exponent = <U_MOUSE_SCROLL_EXPONENT>;
+  time-to-max-speed-ms = <U_MOUSE_SCROLL_TIME>;
+  delay-ms = <U_MOUSE_SCROLL_DELAY>;
+};
+*/

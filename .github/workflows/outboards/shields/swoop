@@ -1,0 +1,7 @@
+# Copyright 2024 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=adnanaq/swoop-zmk-config
+outboard_ref=main
+outboard_from=config/boards/shields/swoop
+outboard_to=boards/shields/swoop
