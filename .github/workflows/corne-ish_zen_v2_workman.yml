@@ -1,0 +1,18 @@
+# Copyright 2021 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+name: 'Corne-ish Zen V2, Workman, flip'
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+    secrets: inherit
+    with:
+      board: '["corneish_zen_v2_left","corneish_zen_v2_right"]'
+      alphas: '["workman"]'
+      layers: '["flip"]'
+      kconfig: '["CONFIG_BT_CTLR_TX_PWR_PLUS_8=y"]'
