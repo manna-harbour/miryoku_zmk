@@ -1,4 +1,4 @@
-name: 'corne nice_nano_v2 nice_view'
+name: 'my bulid file'
 on: workflow_dispatch
 jobs:
   build:
