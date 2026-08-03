@@ -365,6 +365,21 @@ Notes or diagrams are provided below where the selection of keys is not obvious 
 [[#thumb-combos][Thumb combos]] are enabled.
 
 
+**** 36/willis
+
+***** Bruce
+
+~MIRYOKU_MAPPING=2X2U~
+
+Supports Bruce/Le Chiffre 2x2u configuration.
+[[#thumb-combos][Thumb combos]] are enabled.
+
+***** Minidox
+
+Default.
+3x1U thumb keys.
+
+
 **** 38/draculad
 
 
@@ -553,29 +568,15 @@ On each hand, combo the primary and secondary thumb keys to emulate the tertiary
 
 *** Mouse Keys
 
-[[https://zmk.dev/docs/behaviors/mouse-emulation][ZMK supports mouse buttons only]].
+[[https://zmk.dev/docs/behaviors/mouse-emulation][ZMK supports mouse keys]].
 
-**** Mouse Keys on Host
+To build, add ~CONFIG_ZMK_POINTING=y~ to the [[#kconfig-configuration][Kconfig configuration]].
 
-Mouse movement requires [[https://en.wikipedia.org/wiki/Mouse_keys][enabling mouse keys on the host]].  Mouse scroll is not supported.
+For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~CONFIG_ZMK_POINTING=y~ with the ~kconfig~ option.
 
-- [[https://linuxreviews.org/HOWTO_use_the_numeric_keyboard_keys_as_mouse_in_XOrg][X11]]
-- [[https://support.apple.com/en-au/guide/mac-help/mh27469/mac][Mac]]
-- [[https://support.microsoft.com/en-us/windows/use-mouse-keys-to-move-the-mouse-pointer-9e0c72c8-b882-7918-8e7b-391fd62adf33][Windows]]
-
-
-**** Mousekeys PR
-
-Mouse movement and scroll is supported with https://github.com/petejohanson/zmk/tree/feat/pointers-move-scroll from https://github.com/zmkfirmware/zmk/pull/2027.
-
-To build, add ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ to the [[#config-file][config file]], add ~CONFIG_ZMK_MOUSE=y~ to the [[#kconfig-configuration][Kconfig configuration]], and switch to or merge the mousekeys branch.
-
-For [[#workflow-builds][workflow builds]] using the [[#build-inputs][Build Inputs]] workflow, use ~#define MIRYOKU_KLUDGE_MOUSEKEYSPR~ with the ~custom_config~ option, ~CONFIG_ZMK_MOUSE=y~ with the ~kconfig~ option, and ~petejohanson/zmk/feat/pointers-move-scroll~ with the ~branches~ option. Alternatively, use ~zmkfirmware/zmk/main petejohanson/zmk/feat/pointers-move-scroll~ to attempt an automatic [[#branches][merge]] of the branch into ZMK main.
-
-For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-mousekeyspr.yml][Build Example mousekeyspr]] workflow.
+For workflow builds using [[#build-examples][Build Example]] workflows, see the [[.github/workflows/build-example-mouse.yml][Build Example with mouse support]] workflow.
 
 For local builds, make the changes locally.
-
 
 *** Soft Off
 

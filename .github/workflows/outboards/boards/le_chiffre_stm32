@@ -1,0 +1,7 @@
+# Copyright 2024 Manna Harbour
+# https://github.com/manna-harbour/miryoku
+
+outboard_repository=petejohanson/le-chiffre-stm32-zmk-config
+outboard_ref=main
+outboard_from=config/boards/arm/le_chiffre_stm32
+outboard_to=boards/arm/le_chiffre_stm32

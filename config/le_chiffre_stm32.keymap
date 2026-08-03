@@ -1,0 +1,6 @@
+// Copyright 2021 Manna Harbour
+// https://github.com/manna-harbour/miryoku
+
+#include "../miryoku/custom_config.h"
+#include "../miryoku/mapping/34/ble_chiffre.h"
+#include "../miryoku/miryoku.dtsi"
