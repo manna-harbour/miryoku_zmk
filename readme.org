@@ -100,9 +100,9 @@ Specifies the ZMK board.
 
 For onboard controller keyboards (keyboards with an integrated controller), enter the keyboard name, e.g. ~ahokore~, ~ble_chiffre~, ~technikable~, ~zaphod~.
 
-For split onboard controller keyboards (keyboards with an integrated controller on each side), enter the keyboard side name, e.g. ~corneish_zen_v1_left~, ~corneish_zen_v1_right~.  To build both sides in the same run, enter both keyboard side names separated by a comma, e.g. ~corneish_zen_v1_left,corneish_zen_v1_right~.
+For split onboard controller keyboards (keyboards with an integrated controller on each side), enter the keyboard side name, e.g. ~corneish_zen_left~, ~corneish_zen_right~.  To build both sides in the same run, enter both keyboard side names separated by a comma, e.g. ~corneish_zen_left,corneish_zen_right~.
 
-For composite keyboards (keyboards with a separate controller), enter the controller name, e.g. ~nice_nano~, ~nice_nano_v2~, ~seeeduino_xiao~, ~seeeduino_xiao_ble~.  Also specify the [[#shield][shield]].
+For composite keyboards (keyboards with a separate controller), enter the controller name, e.g. ~nice_nano~, ~seeeduino_xiao~, ~seeeduino_xiao_ble~.  Also specify the [[#shield][shield]].
 
 
 ****** shield
