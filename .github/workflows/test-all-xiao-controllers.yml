@@ -10,7 +10,7 @@ jobs:
     secrets: inherit
     with:
       board: '[
-        "seeeduino_xiao",
-        "seeeduino_xiao_ble"
+        "seeeduino_xiao//zmk",
+        "xiao_ble//zmk"
       ]'
       shield: '["hummingbird"]'
